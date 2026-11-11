@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Ícone genérico de app (Design System Nyx Car): para apps sem ícone de traço próprio na
+    lista "Todos" (instalados depois da 0.4.4). Quadrado arredondado com um círculo, em traço.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M7.5,4 H16.5 A3.5,3.5 0 0,1 20,7.5 V16.5 A3.5,3.5 0 0,1 16.5,20 H7.5 A3.5,3.5 0 0,1 4,16.5 V7.5 A3.5,3.5 0 0,1 7.5,4 Z M9,12 A3,3 0 1,0 15,12 A3,3 0 1,0 9,12 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

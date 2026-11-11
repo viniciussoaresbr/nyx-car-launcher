@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Seletor de segmentos (0.4.4): trilho escuro arredondado atrás das opções. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/pc_surface_high" />
+    <corners android:radius="@dimen/pc_radius_l" />
+</shape>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Opção do seletor de segmentos (0.4.4): a selecionada ganha a pílula de destaque, como a barra
+    inferior. A área de toque é a opção inteira (64 dp de altura); a pílula fica 6 dp para dentro.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <inset android:inset="6dp">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/pc_surface_highest" />
+                <corners android:radius="@dimen/pc_radius_m" />
+            </shape>
+        </inset>
+    </item>
+    <item android:state_selected="true">
+        <inset android:inset="6dp">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/pc_accent_container" />
+                <corners android:radius="@dimen/pc_radius_m" />
+            </shape>
+        </inset>
+    </item>
+    <item android:drawable="@android:color/transparent" />
+</selector>

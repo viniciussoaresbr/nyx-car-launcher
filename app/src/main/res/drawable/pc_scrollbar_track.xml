@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Barra de rolagem (0.4.4): o trilho, mais escuro, com a mesma largura da parte que anda. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="9dp"
+    android:insetRight="9dp">
+    <shape android:shape="rectangle">
+        <solid android:color="@color/pc_surface_high" />
+        <corners android:radius="3dp" />
+    </shape>
+</inset>

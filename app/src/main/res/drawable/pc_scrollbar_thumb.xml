@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Barra de rolagem (0.4.4): a parte que anda. A área da barra tem a largura da margem da tela
+    (24 dp); o desenho fica no meio dela, com 6 dp de largura.
+-->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="9dp"
+    android:insetRight="9dp">
+    <shape android:shape="rectangle">
+        <solid android:color="@color/pc_text_secondary" />
+        <corners android:radius="3dp" />
+    </shape>
+</inset>

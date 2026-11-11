@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ícone "Instruções" (Design System Nyx Car): livro aberto em traço. Branco: a cor vem do tint. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M12,6.5 C10.5,5.2 8,4.5 3.5,4.5 V18.5 C8,18.5 10.5,19.2 12,20.5 C13.5,19.2 16,18.5 20.5,18.5 V4.5 C16,4.5 13.5,5.2 12,6.5 Z M12,6.5 V20.5"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

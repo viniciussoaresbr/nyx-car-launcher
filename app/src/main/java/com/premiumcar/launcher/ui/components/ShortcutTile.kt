@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.core.content.withStyledAttributes
+import androidx.core.view.isVisible
 import com.premiumcar.launcher.R
 
 /**
@@ -54,9 +55,9 @@ class ShortcutTile @JvmOverloads constructor(
 
     /** Linha de apoio sob o rótulo (ex.: "Não encontrado"); `null` esconde. */
     var caption: CharSequence?
-        get() = captionView.text.takeIf { captionView.visibility == VISIBLE }
+        get() = captionView.text.takeIf { captionView.isVisible }
         set(value) {
             captionView.text = value
-            captionView.visibility = if (value.isNullOrEmpty()) GONE else VISIBLE
+            captionView.isVisible = !value.isNullOrEmpty()
         }
 }

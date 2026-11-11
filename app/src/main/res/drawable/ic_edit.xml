@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ícone "Editar" (Design System Nyx Car): lápis em traço. Branco: a cor vem do tint. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M4,20 L4.6,16.4 L15.5,5.5 A2.1,2.1 0 0,1 18.5,8.5 L7.6,19.4 Z M13.5,7.5 L16.5,10.5"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>
