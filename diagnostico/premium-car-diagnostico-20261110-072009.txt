@@ -1,0 +1,776 @@
+PREMIUM CAR LAUNCHER — RELATÓRIO DE DIAGNÓSTICO
+Versão do app: 0.3.0
+Gerado em: 10/11/2026 07:20:23 (BRT)
+Legenda: [*] destaque · [!] atenção. Identificadores (serial, MAC, IMEI, rede) foram omitidos.
+
+========================================================================
+SISTEMA
+========================================================================
+
+## Versão do sistema
+    Android declarado: 13
+[*] Nível de API real (SDK_INT): 27 — corresponde ao Android 8.1
+[!] Consistência: INCOERENTE: o sistema se apresenta como Android 13, mas a API real é 27 (Android 8.1)
+    API de lançamento (first_api_level): indisponível
+    Patch de segurança: 2018-07-05
+[*] Kernel: 3.18.79+
+    /proc/version: indisponível
+    Máquina virtual: ART 2.1.0
+    Treble / VNDK: true / —
+    Modo low-RAM (Android Go): não
+    Build: full_8227L_demo-user 13 O11019 1776394618 release-keys
+    Fingerprint: alps/full_8227L_demo/8227L_demo:13/O11019/1776394618:user/release-keys
+    Tipo / tags: user / release-keys
+
+## Aparelho
+    Fabricante / marca: alps / alps
+    Modelo: 8227L_demo
+    Produto / dispositivo: full_8227L_demo / 8227L_demo
+    Placa / hardware: unknown / ac8227l
+[*] Plataforma (ro.board.platform): ac8227l
+    Característica do build: default
+[*] ABIs suportadas: armeabi-v7a, armeabi
+    Executa apps de 64 bits: não (somente 32 bits)
+
+## Processador
+    Núcleos ativos: 4
+    Núcleos existentes (sysfs): 0-3
+[*] Núcleos identificados: 4× Cortex-A7 (0xc07)
+    Hardware (cpuinfo): AC8227L
+    Modelo (cpuinfo): ARMv7 Processor rev 3 (v7l)
+    Arquitetura: 7
+    Recursos: half thumb fastmult vfp edsp thumbee neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm
+[*] Frequência máxima: 1118 MHz
+
+## Memória
+[*] RAM total: 1,90 GB
+    Disponível agora: 820,0 MB
+    Limiar de memória baixa: 144,0 MB
+    Sistema em memória baixa agora: não
+    Swap / zRAM: 1024,0 MB
+[*] Heap por app (memoryClass): 128 MB · grande: 256 MB
+    Heap máximo deste processo: 128,0 MB
+    dalvik.vm.heapgrowthlimit / heapsize: 128m / 256m
+
+## Gráficos
+    OpenGL ES (sistema): 2.0
+[*] GPU (GL_RENDERER): Mali-450 MP
+    Fabricante da GPU: ARM
+    Versão do driver GL: OpenGL ES 2.0 58bf738
+    Vulkan: não suportado
+    Renderizador da interface (HWUI): padrão do sistema
+
+## Armazenamento interno
+    Total: 25,29 GB
+    Livre: 22,86 GB
+
+========================================================================
+TELA E TOQUE
+========================================================================
+
+## Tela
+[*] Resolução física: 1280 × 720 px
+[*] Densidade: 160 dpi (mdpi) · 1 dp = 1,00 px
+    Densidade de fábrica (ro.sf.lcd_density): indisponível
+[*] Área lógica disponível: 1280 × 655 dp
+    Menor largura (sw): 720 dp
+    DPI físico informado (x / y): 160,0 / 160,0
+    Diagonal estimada: 9,2" (depende do DPI informado; pode ser impreciso)
+[*] Taxa de atualização: 60,0 Hz
+    Modos de vídeo: 1280×720 @ 60,0 Hz
+    Orientação: horizontal · rotação 0°
+    Modo de interface (uiMode): normal · diurno
+    Escala de fonte do sistema: 1,00
+
+## Janela do aplicativo
+    Janela: 1280 × 720 px (1280 × 720 dp)
+[*] Área útil para a interface: 1280 × 655 px (1280 × 655 dp)
+[*] Barra superior: 65 px (65 dp)
+    Barra inferior: 0 px (0 dp)
+    Barras laterais (esq. / dir.): 0 px (0 dp) / 0 px (0 dp)
+    Obs.: A área útil é o espaço real disponível para o launcher, já descontadas as barras do sistema.
+
+## Toque e entrada
+    Multitoque: 5 ou mais pontos
+[*] Tela de toque: TS_GT9xx: faixa X 0–1279 · Y 0–719
+    Dispositivos de entrada: Virtual
+        TS_GT9xx
+        mtk-kpd
+    Obs.: Use a aba Calibração para testar a precisão do toque.
+
+========================================================================
+APPS E ATALHOS
+========================================================================
+
+## Atalhos e indicadores do launcher
+    Wi-Fi (indicador da Home): conectado
+    Bluetooth segundo o Android: ligado (indicador visível)
+    Música tocando agora (botão ▶/⏸): não
+    Atalho: CarPlay (ZLINK): com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    Atalho: Bluetooth: com.autochips.bluetooth/.MainBluetoothActivity
+    Atalho: BT Música: com.autochips.bluetooth/.BtMusicActivity
+    Atalho: Música USB: com.hcn.AutoMediaPlayer/com.hcn.MediaActivity.MusicPlayerUiActivity
+    Atalho: Vídeo: com.hcn.AutoMediaPlayer/com.hcn.MediaActivity.VideoPlayerUiActivity
+    Atalho: Rádio: com.hcn.autoradio/.RadioMain
+    Atalho: Maps: com.google.android.apps.maps/com.google.android.maps.MapsActivity
+    Atalho: YouTube: com.google.android.youtube/.app.honeycomb.Shell$HomeActivity
+    Atalho: Câmera: com.auto.hcamera/.VideoInActivity
+    Atalho: Informações do carro: com.hcn.autocan/.activity.CanActivity
+    Atalho: Veículo: com.hcn.autosetting/.ui.SettingActivity
+    Atalho: Comandos de volante: com.hcn.swc/.MainActivity
+    Atalho: Equalizador: com.hcn.autoeq/.MainActivity
+    Atalho: Arquivos: com.mediatek.filemanager/.FileManagerOperationActivity
+    Atalho: Configurações do Android: android.settings.SETTINGS
+    Atalho: Wi-Fi: android.settings.WIFI_SETTINGS
+    Atalho: Som: android.settings.SOUND_SETTINGS
+    Atalho: Tela: android.settings.DISPLAY_SETTINGS
+    Atalho: Data e hora: android.settings.DATE_SETTINGS
+    Obs.: Cada atalho mostra a tela que será aberta. "Não encontrado" deixa o atalho desativado no launcher.
+
+## USB: teste do CarPlay pelo cabo
+    Modo host USB (recurso declarado): sim
+    iPhone detectado pelo cabo: não
+    Aparelhos USB conectados: 1
+    Aparelho 1: DT 101 G2 · 0930:6545 · classe definida por interface · 1 interface · /dev/bus/usb/001/015
+    Leitura 1: 07:09:04 · 1 aparelho · iPhone: não
+    Leitura 2: 07:13:15 · 0 aparelhos · iPhone: não
+    Leitura 3: 07:19:33 · 1 aparelho · iPhone: não
+    Obs.: Toque em "Atualizar" com o iPhone desconectado, depois conectado pelo cabo e com o CarPlay aberto. Com o CarPlay ativo, o iPhone pode sumir da lista: o CarPlay pode inverter os papéis da porta USB. Anote também se o ZLINK abriu sozinho ao conectar.
+
+## Depuração (ADB)
+    Opções do desenvolvedor: desativadas
+    Depuração USB (ADB): desligada
+    Tela de opções do desenvolvedor: com.android.settings/com.android.settings.development.DevelopmentSettingsDisabledActivity
+    Obs.: Com a depuração ligada, o PC conecta pela rede na porta 8555 (ver BUILD.md, seção 9).
+
+## Tela inicial (launcher)
+[*] Launcher padrão atual: Tela de início 3 — com.android.launcher3/.Launcher
+    Launcher instalado 1: Tela de início 3 — com.android.launcher3/.Launcher · sistema
+    Launcher instalado 2:  — com.android.settings/.FallbackHome · sistema
+    Tela "Escolher tela inicial": disponível
+    Obs.: Anote o pacote do launcher original: ele é a referência para recuperação (ver BUILD.md).
+
+## Candidatos para atalhos
+[*] Projeção (CarPlay / Android Auto): ZLINK5 — com.zjinnova.zlink
+    Bluetooth / telefone: Bluetooth — com.autochips.bluetooth
+        BT Música — com.autochips.bluetooth
+    Música / mídia: BT Música — com.autochips.bluetooth
+        Música — com.hcn.AutoMediaPlayer
+        Vídeo — com.hcn.AutoMediaPlayer
+    Rádio: Rádio — com.hcn.autoradio
+    Navegação: Maps — com.google.android.apps.maps
+    Vídeo: Vídeo — com.hcn.AutoMediaPlayer
+        YouTube — com.google.android.youtube
+    Veículo / câmera: Atualização de Rede Can — com.hcn.canupgrade
+        Av In — com.auto.hcamera
+        Comandos de volante — com.hcn.swc
+    Configurações: Configurar — com.android.settings
+        Configurações Do Veículo — com.hcn.autosetting
+    Arquivos: Gerenciador de arquivos — com.mediatek.filemanager
+    Obs.: Classificação automática por nome e pacote; confirme na lista completa de aplicativos.
+
+## Atalhos do sistema (intents)
+    Configurações do Android: Configurar — com.android.settings/.Settings
+[!] Bluetooth: indisponível
+    Wi-Fi: Wi-Fi — com.android.settings/.Settings$WifiSettingsActivity
+    Data e hora: Data e hora — com.android.settings/.Settings$DateTimeSettingsActivity
+    Tela: Tela — com.android.settings/.Settings$DisplaySettingsActivity
+    Som: Som — com.android.settings/.Settings$SoundSettingsActivity
+    Lista de aplicativos: Informações do app — com.android.settings/.Settings$ManageApplicationsActivity
+    Escolher tela inicial: Apps padrão — com.android.settings/.Settings$AdvancedAppsActivity
+    Apps padrão: Apps padrão — com.android.settings/.Settings$AdvancedAppsActivity
+    Fontes desconhecidas: Instalar apps desconhecidos — com.android.settings/.Settings$ManageExternalSourcesActivity
+    Acesso a notificações: Acesso a notificações — com.android.settings/.Settings$NotificationAccessSettingsActivity
+    Acesso ao uso de apps: Apps com acesso ao uso — com.android.settings/.Settings$UsageAccessSettingsActivity
+[!] Player de música padrão: indisponível
+    App de mapas padrão: Maps — com.google.android.apps.maps/com.google.android.maps.MapsActivity
+    Navegação (geo:): Maps — com.google.android.apps.maps/com.google.android.maps.MapsActivity
+[!] Discador: indisponível
+    Navegador: Chrome — com.android.chrome/com.google.android.apps.chrome.Main
+    Seletor de arquivos ("Salvar em…"): Arquivos — com.android.documentsui/.picker.PickActivity
+    Obs.: "Indisponível" significa que o atalho não pode ser aberto por esta via neste firmware.
+
+## Mídia (cartão de música)
+    Apps com MediaBrowserService: Áudio Bluetooth — com.android.bluetooth/.a2dpsink.mbs.A2dpMediaBrowserService
+        Podcasts — com.google.android.googlequicksearchbox/com.google.android.apps.search.podcasts.browser.PodcastBrowserService
+        Google Notícias — com.google.android.googlequicksearchbox/com.google.android.libraries.assistant.auto.tng.media.mediabrowser.NewsMediaBrowserService
+        YouTube — com.google.android.youtube/com.google.android.apps.youtube.app.extensions.mediabrowser.impl.MainAppMediaBrowserService
+    Modo low-RAM (Android Go): não
+    Obs.: Mostrar a faixa que toca em outros apps exige "Acesso a notificações" (ver Atalhos do sistema). Em modo low-RAM o Android costuma bloquear esse acesso — a confirmar na Fase 4.
+
+## Aplicativos com ícone (29)
+    : com.hcn.screensaver · v1.0 · sistema
+    atualização: com.hcn.autoupdate · v1.0 · sistema
+    Atualização de Rede Can: com.hcn.canupgrade · v3.0.1.2026-01-12 11:51:39 · sistema
+    Atualização Mcu: com.hcn.mcuupgrade · v1.0 · sistema
+    Av In: com.auto.hcamera · v8.1.0 · sistema
+    Bluetooth: com.autochips.bluetooth · v2.1.2025-11-06 17:33:55 · sistema
+    BT Música: com.autochips.bluetooth · v2.1.2025-11-06 17:33:55 · sistema
+    Chrome: com.android.chrome · v138.0.7204.179 · sistema
+    Comandos de volante: com.hcn.swc · v1.0 · sistema
+    Configurar: com.android.settings · v8.1.0 · sistema
+    Configurações Do Veículo: com.hcn.autosetting · v1.0 · sistema
+    DSP: com.hcn.autoeq · v2025_11_07_17_40_23 · sistema
+    Fan: com.hcn.autofan · vuis8581_2024_05_27_16_42_23
+    Gerenciador de arquivos: com.mediatek.filemanager · v1.0 · sistema
+    Google: com.google.android.googlequicksearchbox · v14.14.16.26.arm · sistema
+    HBO Max: com.wbd.stream · v6.16.0.70
+    Informaçãodocarro: com.hcn.autocan · v146.0.1.20251110 · sistema
+    Instruções: com.hcn.autouserguide · v1.0 · sistema
+    Maps: com.google.android.apps.maps · v25.32.00.790560726 · sistema
+    Música: com.hcn.AutoMediaPlayer · v1.3.20260202-ac8227l · sistema
+    PC Diagnóstico: com.premiumcar.launcher · v0.3.0
+    Play Store: com.android.vending · v50.3.27-24 [0] [PR] 875414499 · sistema
+    Premium Car: com.premiumcar.launcher · v0.3.0
+    Rádio: com.hcn.autoradio · vV.1.0.2512171412 · sistema
+    Scan de imagens: com.hcn.gallery · v1.0 · sistema
+    Theme: com.hcn.themepicker · v1.0 · sistema
+    Vídeo: com.hcn.AutoMediaPlayer · v1.3.20260202-ac8227l · sistema
+    YouTube: com.google.android.youtube · v20.26.40 · sistema
+    ZLINK5: com.zjinnova.zlink · v5.4.23
+
+========================================================================
+RECURSOS
+========================================================================
+
+## Recursos principais
+    Bluetooth: sim
+    Bluetooth LE: não
+    Wi-Fi: sim
+    Wi-Fi Direct: sim
+    GPS: sim
+    USB host (pendrive): sim
+    USB acessório: sim
+    Câmera: sim
+    Microfone: sim
+    Telefonia (chip): não
+    Android Automotive oficial: não
+    Declarado como RAM baixa: não
+    Suporte a launchers: sim
+    Widgets de apps: sim
+    Papel de parede animado: sim
+    Picture-in-picture: sim
+    Apps em telas secundárias: sim
+    WebView: sim
+
+## Todos os recursos declarados (43)
+    android.hardware.audio.output: sim
+    android.hardware.bluetooth: sim
+    android.hardware.camera: sim
+    android.hardware.camera.any: sim
+    android.hardware.ethernet: sim
+    android.hardware.faketouch: sim
+    android.hardware.location: sim
+    android.hardware.location.gps: sim
+    android.hardware.location.network: sim
+    android.hardware.microphone: sim
+    android.hardware.nfc: sim
+    android.hardware.nfc.any: sim
+    android.hardware.nfc.hce: sim
+    android.hardware.nfc.hcef: sim
+    android.hardware.ram.normal: sim
+    android.hardware.screen.landscape: sim
+    android.hardware.screen.portrait: sim
+    android.hardware.touchscreen: sim
+    android.hardware.touchscreen.multitouch: sim
+    android.hardware.touchscreen.multitouch.distinct: sim
+    android.hardware.touchscreen.multitouch.jazzhand: sim
+    android.hardware.usb.accessory: sim
+    android.hardware.usb.host: sim
+    android.hardware.wifi: sim
+    android.hardware.wifi.direct: sim
+    android.software.activities_on_secondary_displays: sim
+    android.software.app_widgets: sim
+    android.software.autofill: sim
+    android.software.backup: sim
+    android.software.companion_device_setup: sim
+    android.software.connectionservice: sim
+    android.software.cts: sim
+    android.software.device_admin: sim
+    android.software.home_screen: sim
+    android.software.input_methods: sim
+    android.software.live_wallpaper: sim
+    android.software.managed_users: sim
+    android.software.midi: sim
+    android.software.picture_in_picture: sim
+    android.software.voice_recognizers: sim
+    android.software.webview: sim
+    com.google.android.feature.GMSEXPRESS_PLUS_BUILD: sim
+    com.nxp.mifare: sim
+
+========================================================================
+PROPRIEDADES
+========================================================================
+
+## Propriedades do sistema (445)
+    af.music.outputid: 2
+    audio.dualmic: 1
+    bt.profiles.avrcp.multiPlayer.enable: 0
+    bt_drv.ko: 1
+    camera.disable_zsl_mode: 1
+    dalvik.vm.appimageformat: lz4
+    dalvik.vm.dex2oat-Xms: 64m
+    dalvik.vm.dex2oat-Xmx: 512m
+    dalvik.vm.dexopt.secondary: true
+    dalvik.vm.heapgrowthlimit: 128m
+    dalvik.vm.heapsize: 256m
+    dalvik.vm.image-dex2oat-Xms: 64m
+    dalvik.vm.image-dex2oat-Xmx: 64m
+    dalvik.vm.isa.arm.features: default
+    dalvik.vm.isa.arm.variant: cortex-a7
+    dalvik.vm.stack-trace-dir: /data/anr
+    dalvik.vm.usejit: true
+    dalvik.vm.usejitprofiles: true
+    debug.MB.running: 0
+    debug.atrace.tags.enableflags: 0
+    debug.force_rtl: 0
+    debug.gpsdbglog.file: none
+    debug.mtk.aee.reinit: done
+    debug.mtk.aee.status: free
+    debug.mtk.aee.vstatus: free
+    debug.mtklog.netlog.Running: 0
+    debug.sf.disable_backpressure: 1
+    debug.sf.enable_hwc_vds: 1
+    debug.sf.latch_unsignaled: 1
+    dev.bootcomplete: 1
+    drm.service.enabled: true
+    fmradio_drv.ko: 1
+    gps.clock.type: 20
+    gps.gps.version: 0x8127
+    gps_drv.ko: 1
+    gsm.network.type: Unknown
+    gsm.operator.alpha: (vazio)
+    gsm.operator.iso-country: (vazio)
+    gsm.operator.isroaming: false
+    gsm.operator.numeric: (vazio)
+    gsm.sim.operator.alpha: (vazio)
+    gsm.sim.operator.iso-country: (vazio)
+    gsm.sim.operator.numeric: (vazio)
+    hw.sys.device.version: CVD1810-WJ_24.02.20_339
+    hw.sys.radio.region: 7
+    hwservicemanager.ready: true
+    init.svc.DMAgent: running
+    init.svc.NvRAMAgent: running
+    init.svc.adbd: stopped
+    init.svc.aee-reinit: stopped
+    init.svc.aee_aed: running
+    init.svc.aee_aedv: running
+    init.svc.aeev-reinit: stopped
+    init.svc.atc_hal_audhw: running
+    init.svc.audio-hal-2-0: running
+    init.svc.audioserver: running
+    init.svc.automated: stopped
+    init.svc.backcar_daemon: running
+    init.svc.bluetooth-1-0: running
+    init.svc.bootanim: stopped
+    init.svc.broadcastradio-hal: running
+    init.svc.camerad: running
+    init.svc.camerahalserver: running
+    init.svc.cameraserver: running
+    init.svc.cas-hal-1-0: running
+    init.svc.chg_mcu_val: stopped
+    init.svc.configstore-hal-1-0: running
+    init.svc.console: running
+    init.svc.drm: running
+    init.svc.drm-hal-1-0: running
+    init.svc.drm-widevine-hal-1-0: running
+    init.svc.fan: running
+    init.svc.gatekeeper-1-0: running
+    init.svc.gatekeeperd: running
+    init.svc.ged_srv: running
+    init.svc.gnss_service: running
+    init.svc.gralloc-2-0: running
+    init.svc.healthd: running
+    init.svc.hidl_memory: running
+    init.svc.hostapd: stopped
+    init.svc.hwcomposer-2-1: running
+    init.svc.hwservicemanager: running
+    init.svc.installd: running
+    init.svc.keymanage-1-0: running
+    init.svc.keymaster-3-0: running
+    init.svc.keystore: running
+    init.svc.kmesg: running
+    init.svc.lbs_hidl_service: running
+    init.svc.light-hal-2-0: running
+    init.svc.lmkd: running
+    init.svc.logcat: running
+    init.svc.logd: running
+    init.svc.logd-reinit: stopped
+    init.svc.mcud: running
+    init.svc.media: running
+    init.svc.mediacodec: running
+    init.svc.mediadrm: running
+    init.svc.mediaextractor: running
+    init.svc.mediametrics: running
+    init.svc.memtrack-hal-1-0: running
+    init.svc.metalogo_daemon: running
+    init.svc.mnld: running
+    init.svc.mobile_log_d: running
+    init.svc.mtkcodecservice-1-1: running
+    init.svc.netd: running
+    init.svc.netdagent: running
+    init.svc.netdiag: running
+    init.svc.nvram_daemon: stopped
+    init.svc.nvrom: running
+    init.svc.power-hal-1-1: running
+    init.svc.ril-3gddaemon: stopped
+    init.svc.servicemanager: running
+    init.svc.storaged: running
+    init.svc.surfaceflinger: running
+    init.svc.teststub: running
+    init.svc.thermal: running
+    init.svc.thermal_manager: stopped
+    init.svc.thermald: running
+    init.svc.thermalservice: running
+    init.svc.tombstoned: running
+    init.svc.ueventd: running
+    init.svc.usb-hal-1-1: running
+    init.svc.usbdongled: running
+    init.svc.vendor.nfc_hal_service: stopped
+    init.svc.vndservicemanager: running
+    init.svc.vold: running
+    init.svc.webview_zygote32: running
+    init.svc.wifi_hal_legacy: running
+    init.svc.wificond: running
+    init.svc.wmt_launcher: running
+    init.svc.wmt_loader: stopped
+    init.svc.wpa_supplicant: running
+    init.svc.z-link: running
+    init.svc.zygote: running
+    log.mcud.statistics: rx:6144,drop:0,err:0
+    log.tag: M
+    media.settings.xml: /vendor/etc/media_profiles.xml
+    media.wfd.portrait: 0
+    media.wfd.video-format: 5
+    mediatek.wlan.chip: mediatek.wlan.module.postfix=_
+    mediatek.wlan.ctia: 0
+    mtk.vdec.waitkeyframeforplay: 1
+    mtk_in_house_tee_support: true
+    net.bt.name: Android
+    net.qtaguid_enabled: 1
+    net.tcp.default_init_rwnd: 60
+    persist.aee.core.direct: enable
+    persist.aee.core.dump: enable
+    persist.aee.mode: 3
+    persist.atc.bt.callfilter: enable
+    persist.atc.bt.inbandringtone: disable
+    persist.atc.bt.pan: enable
+    persist.atc.bt.transToPinyin: true
+    persist.atc.bt.volumesync: enable
+    persist.atc.fsckexternaldevice: false
+    persist.audio.get.hpoffset: 0
+    persist.demo.hdmirotates: true
+    persist.dis.force_direct: 1
+    persist.dm.lock: false
+    persist.log.tag.CdmaMoSms: I
+    persist.log.tag.CdmaMtSms: I
+    persist.log.tag.DCT: D
+    persist.log.tag.RILMUXD: I
+    persist.mediascan.foldcnt: 256
+    persist.mediascan.foldlevel: 8
+    persist.mediascanner.audio.cnt: 3000
+    persist.mediascanner.fileCnt: 0
+    persist.mediascanner.image.cnt: 1500
+    persist.mediascanner.slpTimeMs: 0
+    persist.mediascanner.thread.run: 1
+    persist.mediascanner.video.cnt: 500
+    persist.meta.dumpdata: 0
+    persist.mtk.connsys.poweron.ctl: 0
+    persist.mtk.wcn.combo.chipid: 0x8127
+    persist.mtk.wcn.coredump.mode: 0
+    persist.mtk.wcn.dynamic.dump: 0
+    persist.mtk.wcn.patch.version: 20180907200225a
+    persist.mtk_vilte_support: 0
+    persist.mtk_viwifi_support: 0
+    persist.nfc_cfg.nfc_chip_type: (vazio)
+    persist.nfc_cfg.nfc_fw_version: (vazio)
+    persist.nfc_cfg.nfc_fwupdate: (vazio)
+    persist.operator.optr: OP01
+    persist.operator.seg: SEGC
+    persist.operator.spec: SPEC0200
+    persist.radio.combo.chipid: -1
+    persist.radio.mobile.data: 0,0
+    persist.radio.mtk_ps2_rat: G
+    persist.radio.mtk_ps3_rat: G
+    persist.service.acm.enable: 0
+    persist.sys.autoplay: 1
+    persist.sys.bt.reverse_name: disable
+    persist.sys.customer: WJ
+    persist.sys.dalvik.vm.lib.2: libart.so
+    persist.sys.etheme_god: 400
+    persist.sys.gps.time: 0
+    persist.sys.launcher.skin: AutoTheme_XT88.apk
+    persist.sys.launcher.skin.pkg: com.hcn.auto.theme.xt88
+    persist.sys.launcher.theme.pkg: com.hcn.auto.theme.xt88
+    persist.sys.lic.dir: /apd/zlink/
+    persist.sys.linktype: zlink
+    persist.sys.locale: pt-BR
+    persist.sys.pms_sys_removable: 1
+    persist.sys.radio-mcu: 0
+    persist.sys.skin: xt88
+    persist.sys.splitscreen: 1
+    persist.sys.timezone: America/Recife
+    persist.sys.update.copy: normal
+    persist.sys.usb.config: none
+    persist.sys.video_on_switch: 2
+    persist.sys.webview.vmsize: 176379992
+    pm.dexopt.ab-ota: speed-profile
+    pm.dexopt.bg-dexopt: speed-profile
+    pm.dexopt.boot: verify
+    pm.dexopt.first-boot: quicken
+    pm.dexopt.inactive: verify
+    pm.dexopt.install: quicken
+    pm.dexopt.shared: speed
+    qemu.hw.mainkeys: 1
+    rild.mark_switchuser: 0
+    ro.adb.secure: 1
+    ro.aee.enforcing: no
+    ro.aee.enperf: off
+    ro.ap_info_monitor: 0
+    ro.atc.aosp_enhancement: 1
+    ro.atc.disable_android_bt: 1
+    ro.atc.disable_battery: 1
+    ro.atc.storage.shared.sdcard: yes
+    ro.atc_adoptable_disk: ext_sdcard2
+    ro.atc_maxsavearm2logfile: 5
+    ro.atc_qb_support: 1
+    ro.atc_savelastarm2log: 1
+    ro.audio.silent: 0
+    ro.baseband: unknown
+    ro.board.platform: ac8227l
+    ro.boot.bootreason: wdt_by_pass_pwk
+    ro.boot.hardware: ac8227l
+    ro.boot.phandle: (vazio)
+    ro.boot.verifiedbootstate: green
+    ro.boot.veritymode: disabled
+    ro.bootimage.build.date: Fri Apr 17 10:56:15 CST 2026
+    ro.bootimage.build.date.utc: 1776394575
+    ro.bootimage.build.fingerprint: alps/full_8227L_demo/8227L_demo:8.1.0/O11019/1776394618:user/release-keys
+    ro.bootloader: unknown
+    ro.bootmode: unknown
+    ro.btstack: blueangel
+    ro.build.characteristics: default
+    ro.build.date: Fri Apr 17 10:56:15 CST 2026
+    ro.build.date.utc: 1776394575
+    ro.build.description: full_8227L_demo-user 8.1.0 O11019 1776394618 release-keys
+    ro.build.display.id: O11019 release-keys
+    ro.build.fingerprint: alps/full_8227L_demo/8227L_demo:8.1.0/O11019/1776394618:user/release-keys
+    ro.build.flavor: full_8227L_demo-user
+    ro.build.host: ubuntu128
+    ro.build.id: O11019
+    ro.build.product: 8227L_demo
+    ro.build.tags: release-keys
+    ro.build.type: user
+    ro.build.user: publisher28
+    ro.build.version.all_codenames: REL
+    ro.build.version.base_os: (vazio)
+    ro.build.version.codename: REL
+    ro.build.version.incremental: 1776394618
+    ro.build.version.preview_sdk: 0
+    ro.build.version.release: 8.1.0
+    ro.build.version.sdk: 27
+    ro.build.version.security_patch: 2018-07-05
+    ro.carrier: unknown
+    ro.com.android.mobiledata: true
+    ro.com.google.gmsversion: 8.1_201812
+    ro.config.alarm_alert: Alarm_Classic.ogg
+    ro.config.notification_sound: pixiedust.ogg
+    ro.config.ringtone: Ring_Synth_04.ogg
+    ro.control_privapp_permissions: log
+    ro.crypto.state: unencrypted
+    ro.dalvik.vm.native.bridge: 0
+    ro.debuggable: 0
+    ro.email_support_ucs2: 0
+    ro.expect.recovery_id: 0x843356df913109e1fe8d70bb806312a0f3a951c6000000000000000000000000
+    ro.fota.app: 5
+    ro.fota.device: CVD1926-WJ
+    ro.fota.id: mac
+    ro.fota.oem: hcn8167_8.1
+    ro.fota.platform: MTK8167_8.1
+    ro.fota.type: pad
+    ro.fota.version: WJ_2026.04.17.10
+    ro.frp.pst: /dev/block/platform/soc/11230000.mmc/by-name/FRP
+    ro.hardware: ac8227l
+    ro.have_aacencode_feature: 1
+    ro.have_aee_feature: 1
+    ro.hw.arm2.version: V2.0_13/Jun/2025
+    ro.hw.dsp.chip: cd3313
+    ro.hw.lcm.name: YT090IBNK12018-A12
+    ro.hw.radio.chip: mt6627
+    ro.hw.tp.fwresolution: GT9xx_1085x600
+    ro.internal.storage.size: 32G
+    ro.ksc5601_write: 0
+    ro.mediatek.aal: 1
+    ro.mediatek.chip_ver: S01
+    ro.mediatek.platform: AC8227L
+    ro.mediatek.version.branch: alps-mp-o1.mp5
+    ro.mediatek.version.release: WJ_2026.04.17.11
+    ro.mediatek.version.sdk: 4
+    ro.mediatek.wlan.p2p: 1
+    ro.mediatek.wlan.wsc: 1
+    ro.mount.fs: EXT4
+    ro.mtk_audio_alac_support: 1
+    ro.mtk_audio_ape_support: 1
+    ro.mtk_audio_change_support: 1
+    ro.mtk_audio_tuning_tool_ver: V1
+    ro.mtk_besloudness_support: 1
+    ro.mtk_bg_power_saving_support: 1
+    ro.mtk_bg_power_saving_ui: 1
+    ro.mtk_bsp_package: 1
+    ro.mtk_bt_support: 1
+    ro.mtk_cam_cfb: 1
+    ro.mtk_cam_mfb_support: 1
+    ro.mtk_config_max_dram_size: ro.mtk_f2fs_enable=0
+    ro.mtk_cta_set: 1
+    ro.mtk_default_ime: com.iflytek.inputmethod.FlyIME
+    ro.mtk_deinterlace_support: 1
+    ro.mtk_dual_mic_support: 0
+    ro.mtk_emmc_support: 1
+    ro.mtk_external_sim_only_slots: 0
+    ro.mtk_flight_mode_power_off_md: 1
+    ro.mtk_flv_playback_support: 1
+    ro.mtk_gps_support: 1
+    ro.mtk_in_house_tee_support: true
+    ro.mtk_is_tablet: 1
+    ro.mtk_log_hide_gps: 0
+    ro.mtk_lte_support: 1
+    ro.mtk_matv_analog_support: 1
+    ro.mtk_mobile_management: 0
+    ro.mtk_multi_patition: 1
+    ro.mtk_owner_sdcard_support: 1
+    ro.mtk_owner_sim_support: 1
+    ro.mtk_pq_color_mode: 1
+    ro.mtk_protocol1_rat_config: Lf/Lt/W/T/G
+    ro.mtk_ril_mode: c6m_3rild
+    ro.mtk_runtime_permission: 1
+    ro.mtk_search_db_support: 1
+    ro.mtk_send_rr_support: 1
+    ro.mtk_shared_sdcard: 1
+    ro.mtk_sim_hot_swap: 1
+    ro.mtk_subtitle_support: 1
+    ro.mtk_support_mp2_playback: 1
+    ro.mtk_wappush_support: 1
+    ro.mtk_wfd_support: 1
+    ro.mtk_widevine_drm_l3_support: 1
+    ro.mtk_wlan_support: 1
+    ro.mtk_wmv_playback_support: 1
+    ro.mtkrc.path: /vendor/etc/init/hw/
+    ro.num_md_protocol: 2
+    ro.opa.eligible_device: true
+    ro.opengles.version: 131072
+    ro.product.board: (vazio)
+    ro.product.brand: alps
+    ro.product.cpu.abi: armeabi-v7a
+    ro.product.cpu.abi2: armeabi
+    ro.product.cpu.abilist: armeabi-v7a,armeabi
+    ro.product.cpu.abilist32: armeabi-v7a,armeabi
+    ro.product.cpu.abilist64: (vazio)
+    ro.product.device: 8227L_demo
+    ro.product.locale: en-US
+    ro.product.manufacturer: alps
+    ro.product.model: 8227L_demo
+    ro.product.name: full_8227L_demo
+    ro.property_service.version: 2
+    ro.recovery_id: 0xb1dc725e1f348479337a6d908ec4bdbb128a238d000000000000000000000000
+    ro.redstone.brand: alps
+    ro.redstone.model: 8227L_demo
+    ro.redstone.version: CVD1926-WJ_WJ_2026.04.17.10
+    ro.revision: 0
+    ro.secure: 1
+    ro.setupwizard.mode: OPTIONAL
+    ro.sf.hwrotation: 90
+    ro.sim_me_lock_mode: 0
+    ro.sys.sdcardfs: 1
+    ro.sys.usb.bicr: no
+    ro.sys.usb.charging.only: yes
+    ro.sys.usb.storage.type: mtp
+    ro.telephony.default_network: 9
+    ro.treble.enabled: true
+    ro.ussd_ksc5601: 0
+    ro.vendor.build.date: Fri Apr 17 11:14:06 CST 2026
+    ro.vendor.build.date.utc: 1776395646
+    ro.vendor.build.fingerprint: alps/full_8227L_demo/8227L_demo:8.1.0/O11019/1776395653:user/release-keys
+    ro.vendor.product.brand: alps
+    ro.vendor.product.device: 8227L_demo
+    ro.vendor.product.manufacturer: alps
+    ro.vendor.product.model: 8227L_demo
+    ro.vendor.product.name: full_8227L_demo
+    ro.vendor.sys.skin_support: 1
+    ro.wifi.channels: (vazio)
+    ro.wlan.gen: gen2
+    ro.wlan.mtk.wifi.5g: 0
+    ro.zygote: zygote32
+    runtime.arm2.exit: true
+    runtime.home.screen.ready: y
+    runtime.rearservice.start.status: true
+    runtime.savearm2log.stop.save: 1
+    runtime.watermark.config: 0
+    rw.cp.link.state: 1
+    security.perf_harden: 1
+    service.adb.tcp.port: 8555
+    service.bootanim.exit: 1
+    service.nvram_init: Ready
+    service.sf.present_timestamp: 0
+    service.wcn.driver.ready: yes
+    service.wcn.formeta.ready: yes
+    service.zlink.enable: 1
+    sys.audio.percentage: 100
+    sys.boot_completed: 1
+    sys.ipo.disable: 1
+    sys.ipowin.done: 1
+    sys.logbootcomplete: 1
+    sys.nonsystem.callstate: 0
+    sys.oem_unlock_allowed: 0
+    sys.radio.rds: 0
+    sys.rescue_boot_count: 1
+    sys.retaildemo.enabled: 0
+    sys.running.phase: completed
+    sys.sourcing.package: (vazio)
+    sys.suspend.state: 1
+    sys.sysctl.extra_free_kbytes: 10800
+    sys.sysctl.tcp_def_init_rwnd: 60
+    sys.systemui.interacting: 0
+    sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    sys.usb.config: mtp
+    sys.usb.configfs: 2
+    sys.usb.controller: musb-hdrc.0.auto
+    sys.usb.ffs.ready: 0
+    sys.usb.state: mtp
+    sys.usb.vid: 0E8D
+    sys.user.0.ce_available: true
+    sys.wifitracing.started: 1
+    vold.atc.emmc_total_size: 61472768
+    vold.has_adoptable: 1
+    vold.has_quota: 1
+    vold.post_fs_data_done: 1
+    wfd.dummy.enable: 1
+    wfd.iframesize.level: 0
+    wifi.direct.interface: p2p0
+    wifi.interface: wlan0
+    wifi.tethering.interface: ap0
+    Obs.: 7 propriedades com possíveis identificadores (serial, MAC, IMEI, rede etc.) foram omitidas.
+
+========================================================================
+DESEMPENHO
+========================================================================
+
+## Home em Views: aberturas a frio
+[*] Mediana (3 aberturas): 579 ms · PSS 10,1 MB
+    10/11 07:08: 462 ms · PSS 12,5 MB (Java 1,4 MB · nativo 5,1 MB)
+    09/11 22:16: 590 ms · PSS 10,1 MB (Java 1,4 MB · nativo 3,0 MB)
+    09/11 21:00: 579 ms · PSS 10,0 MB (Java 1,3 MB · nativo 3,0 MB)
+    Obs.: Tempo do início do processo até o primeiro quadro; memória medida 3 s depois. A primeira abertura após instalar é mais lenta.
+
+## Inicialização deste processo
+    Primeira tela aberta: Home (Views)
+    Processo → Application.onCreate: 125 ms
+    Processo → Activity.onCreate: 141 ms
+[*] Processo → primeiro quadro: 462 ms
+    Tipo de build: release otimizado (R8)
+    Obs.: A primeira abertura após instalar é mais lenta (código ainda não compilado). Feche o app pela tela de Recentes e abra novamente 2 ou 3 vezes para obter números estáveis.
+
+## Memória deste processo (agora)
+[*] Total (PSS): 21,8 MB
+    Heap Java: 3,0 MB
+    Heap nativo: 8,8 MB
+    Gráficos: 0,0 MB
