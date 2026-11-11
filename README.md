@@ -5,11 +5,7 @@ RAM), com visual inspirado nas interfaces premium: fundo grafite, superfícies e
 destaque turquesa. É **leve** e **independente**: não altera firmware, ZLINK nem o
 launcher original.
 
-Chamava-se **Premium Car** até a versão 0.4.2. O nome mudou em 11/11/2026; o identificador
-interno do app (`com.premiumcar.launcher`) continua o mesmo, para a atualização entrar por
-cima ([ARCHITECTURE.md](ARCHITECTURE.md), D19).
-
-## Situação atual: Fase 4 — funcionalidades (etapa 0.4.3 validada no carro; próximos passos em decisão)
+## Situação atual: Fase 4 — funcionalidades (etapa 0.4.4 validada no carro)
 
 - **Fase 1 (concluída):** o diagnóstico na central mostrou Android 8.1 real (rotulado
   como 13), 4× Cortex-A7 a 1,1 GHz, GPU Mali-450 e tela a 160 dpi com área útil de
@@ -33,16 +29,17 @@ cima ([ARCHITECTURE.md](ARCHITECTURE.md), D19).
   conectar o pendrive (o usuário desligou "Reprodução automática" nas Configurações do
   Veículo), e a `0.4.2` remove o atalho dele e acaba com o "pulo" da Home ao voltar do
   CarPlay. **0.4.1 e 0.4.2 validadas no carro em 11/11/2026.** A `0.4.3` põe a **Play Store**
-  no lugar vazio de Aplicativos e traz o novo nome, **Nyx Car** (validada em 11/11/2026). Roteiro de teste no [BUILD.md](BUILD.md), seção 6.
+  no lugar vazio de Aplicativos e traz o novo nome, **Nyx Car** (validada em 11/11/2026). A
+  `0.4.4` divide Aplicativos em **Favoritos | Todos**: 12 favoritos escolhidos pelo usuário
+  (botão Editar) e a lista de todos os apps da central, com ícones de traço. Roteiro de teste no [BUILD.md](BUILD.md), seção 6.
 
-| Documento | Conteúdo |
-|---|---|
-| [PROJECT_PLAN.md](PROJECT_PLAN.md) | Plano completo e status das fases |
-| [HARDWARE.md](HARDWARE.md) | O que se sabe da central: fatos, hipóteses e resultados medidos |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | Decisões técnicas, dependências e riscos |
-| [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) | Cores, tipografia, medidas, componentes e regras visuais |
-| [BUILD.md](BUILD.md) | Ambiente, compilação, testes, instalação via pendrive, desinstalação e recuperação |
-| [CHANGELOG.md](CHANGELOG.md) | Histórico de versões |
+| Documento                            | Conteúdo                                                                           |
+| ------------------------------------ | ---------------------------------------------------------------------------------- |
+| [HARDWARE.md](HARDWARE.md)           | O que se sabe da central: fatos, hipóteses e resultados medidos                    |
+| [ARCHITECTURE.md](ARCHITECTURE.md)   | Decisões técnicas, dependências e riscos                                           |
+| [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) | Cores, tipografia, medidas, componentes e regras visuais                           |
+| [BUILD.md](BUILD.md)                 | Ambiente, compilação, testes, instalação via pendrive, desinstalação e recuperação |
+| [CHANGELOG.md](CHANGELOG.md)         | Histórico de versões                                                               |
 
 ## Comandos rápidos
 
