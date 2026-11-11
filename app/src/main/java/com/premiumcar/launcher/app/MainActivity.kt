@@ -30,12 +30,12 @@ import com.premiumcar.launcher.system.BluetoothStatus
 import com.premiumcar.launcher.system.WifiStatus
 import com.premiumcar.launcher.ui.Destination
 import com.premiumcar.launcher.ui.StableSystemBars
+import com.premiumcar.launcher.ui.apps.AppsScreen
 import com.premiumcar.launcher.ui.components.BottomNavBar
 import com.premiumcar.launcher.ui.components.ShortcutTile
 import com.premiumcar.launcher.ui.components.SwipeTabsLayout
 import com.premiumcar.launcher.ui.music.MusicScreen
 import com.premiumcar.launcher.ui.screens.ScreenBuilder
-import com.premiumcar.launcher.ui.screens.Shortcut
 import com.premiumcar.launcher.ui.screens.ShortcutAction
 import com.premiumcar.launcher.ui.screens.TabContent
 import java.util.EnumMap
@@ -73,6 +73,7 @@ class MainActivity : Activity() {
     private var availability: Map<AppTarget, AppLauncher.Availability> = emptyMap()
 
     private var musicScreen: MusicScreen? = null
+    private var appsScreen: AppsScreen? = null
     private var started = false
     private val playerListener: () -> Unit = { renderPlayer() }
 
@@ -145,6 +146,7 @@ class MainActivity : Activity() {
         super.onRestart()
         // Ao voltar de outro app: algo pode ter sido instalado ou removido.
         refreshAvailability()
+        appsScreen?.refresh()
     }
 
     override fun onStop() {
@@ -197,13 +199,19 @@ class MainActivity : Activity() {
         }
         screens[current]?.visibility = View.GONE
         screen.visibility = View.VISIBLE
+        // A aba Aplicativos sempre abre na página "Favoritos" (e sai da edição, se estava nela).
+        if (destination == Destination.APPS) appsScreen?.showFavorites()
         current = destination
         nav.selected = destination
         musicScreen?.setActive(started && destination == Destination.MUSIC)
     }
 
-    /** Voltar: das abas, para a Home; na Home, nada (como em qualquer launcher). */
+    /**
+     * Voltar: na edição dos favoritos, um passo para trás; nas abas, para a Home; na Home, nada
+     * (como em qualquer launcher).
+     */
     private fun handleBack() {
+        if (current == Destination.APPS && appsScreen?.onBack() == true) return
         if (current != Destination.HOME) show(Destination.HOME)
     }
 
@@ -251,7 +259,7 @@ class MainActivity : Activity() {
     // ---------- Abas ----------
 
     private fun buildScreen(destination: Destination): View {
-        val builder = ScreenBuilder(this) { tile, shortcut -> registerTile(tile, shortcut) }
+        val builder = ScreenBuilder(this) { tile, shortcut -> registerTile(tile, shortcut.action) }
         return when (destination) {
             Destination.HOME -> error("A Home faz parte do layout principal")
             Destination.MUSIC -> MusicScreen(this, TabContent.musicSources) { view, shortcut ->
@@ -259,10 +267,7 @@ class MainActivity : Activity() {
                 // Ex.: player original desativado: o atalho "Música USB" some.
                 if (target != null) registerShortcut(view, target, getString(shortcut.label), hideWhenUnavailable = true)
             }.also { musicScreen = it }.view
-            Destination.APPS -> builder.screen(R.string.nav_apps) {
-                TabContent.apps.forEach { tiles(it, columns = TabContent.APPS_COLUMNS) }
-                caption(R.string.apps_more_soon)
-            }
+            Destination.APPS -> AppsScreen(this, launcher, appsHost, builder).also { appsScreen = it }.view
             Destination.CONNECTIVITY -> builder.screen(R.string.nav_connectivity) {
                 tiles(TabContent.connectivity)
                 val card = infoCard(builder, getString(R.string.connectivity_status_title))
@@ -303,8 +308,17 @@ class MainActivity : Activity() {
 
     // ---------- Atalhos ----------
 
-    private fun registerTile(tile: ShortcutTile, shortcut: Shortcut) {
-        when (val action = shortcut.action) {
+    /** Os favoritos da aba Aplicativos são refeitos ao editar: os atalhos antigos saem da lista. */
+    private val appsHost = object : AppsScreen.Host {
+        override fun registerTile(tile: ShortcutTile, action: ShortcutAction) = this@MainActivity.registerTile(tile, action)
+        override fun forgetTiles(tiles: Collection<View>) {
+            appShortcuts.removeAll { it.view in tiles }
+        }
+        override fun refreshAvailability() = this@MainActivity.refreshAvailability()
+    }
+
+    private fun registerTile(tile: ShortcutTile, action: ShortcutAction) {
+        when (action) {
             is ShortcutAction.Open -> registerTile(tile, action.target)
             is ShortcutAction.Go -> tile.setOnClickListener { show(action.destination) }
             ShortcutAction.Diagnostics -> tile.setOnClickListener {

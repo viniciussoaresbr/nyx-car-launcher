@@ -59,12 +59,6 @@ class ScreenBuilder(
         /** Um cartão ou outro bloco ocupando [weight] partes da altura. */
         fun block(view: View, weight: Float) = add(view, weight)
 
-        /** Texto de apoio no fim da tela, na altura do próprio texto. */
-        fun caption(@StringRes text: Int) {
-            val view = TextView(context, null, 0, R.style.PcText_Caption).apply { setText(text) }
-            add(view, weight = 0f)
-        }
-
         private fun add(view: View, weight: Float) {
             val height = if (weight > 0f) 0 else ViewGroup.LayoutParams.WRAP_CONTENT
             body.addView(

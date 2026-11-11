@@ -40,13 +40,7 @@ class AppLauncher(context: Context) {
 
     /** Intent pronta para abrir [target], ou `null` se ele não existe nesta central. */
     fun resolve(target: AppTarget): Intent? = when (target) {
-        is AppTarget.App -> EntrySelection.choose(entries(target.packageName), target)?.let { entry ->
-            Intent(Intent.ACTION_MAIN)
-                .addCategory(Intent.CATEGORY_LAUNCHER)
-                .setComponent(ComponentName(entry.packageName, entry.className))
-                // Como um launcher: traz a tarefa existente (ex.: CarPlay já conectado) para a frente.
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED)
-        }
+        is AppTarget.App -> EntrySelection.choose(entries(target.packageName), target)?.let(::intentFor)
         is AppTarget.SystemScreen -> (listOf(target.action) + target.alternatives)
             .map(::Intent)
             .firstOrNull { pm.resolveActivity(it, PackageManager.MATCH_DEFAULT_ONLY) != null }
@@ -84,8 +78,19 @@ class AppLauncher(context: Context) {
     }
 
     /** Abre [target]. Devolve `false` se ele não existe ou o sistema recusou. */
-    fun launch(target: AppTarget, from: Context): Boolean {
-        val intent = resolve(target) ?: return false
+    fun launch(target: AppTarget, from: Context): Boolean = start(resolve(target), from)
+
+    /** Abre uma entrada da lista "Todos" (0.4.4). */
+    fun launch(entry: LauncherEntry, from: Context): Boolean = start(intentFor(entry), from)
+
+    /**
+     * Todas as entradas com ícone na lista de apps (MAIN/LAUNCHER), com o nome do sistema.
+     * Apps desativados não aparecem. Rápido: só lê nomes, nenhum ícone é carregado.
+     */
+    fun allEntries(): List<LauncherEntry> = query(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER))
+
+    private fun start(intent: Intent?, from: Context): Boolean {
+        if (intent == null) return false
         return try {
             from.startActivity(intent)
             true
@@ -96,11 +101,17 @@ class AppLauncher(context: Context) {
         }
     }
 
-    private fun entries(packageName: String): List<LauncherEntry> {
-        val query = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER).setPackage(packageName)
-        return pm.queryIntentActivities(query, 0).map { info ->
-            LauncherEntry(info.activityInfo.packageName, info.activityInfo.name, info.loadLabel(pm).toString())
-        }
+    // Como um launcher: traz a tarefa existente (ex.: CarPlay já conectado) para a frente.
+    private fun intentFor(entry: LauncherEntry): Intent = Intent(Intent.ACTION_MAIN)
+        .addCategory(Intent.CATEGORY_LAUNCHER)
+        .setComponent(ComponentName(entry.packageName, entry.className))
+        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED)
+
+    private fun entries(packageName: String): List<LauncherEntry> =
+        query(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER).setPackage(packageName))
+
+    private fun query(intent: Intent): List<LauncherEntry> = pm.queryIntentActivities(intent, 0).map { info ->
+        LauncherEntry(info.activityInfo.packageName, info.activityInfo.name, info.loadLabel(pm).toString())
     }
 
     companion object {

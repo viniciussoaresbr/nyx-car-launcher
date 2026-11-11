@@ -56,6 +56,16 @@ object CarApps {
     val FILES = AppTarget.App("com.mediatek.filemanager")
     val PLAY_STORE = AppTarget.App("com.android.vending")
 
+    // Só na lista "Todos" da aba Aplicativos (0.4.4), com ícone de traço próprio.
+    val ANDROID_SETTINGS_APP = AppTarget.App("com.android.settings")
+    val CHROME = AppTarget.App("com.android.chrome")
+    val GOOGLE = AppTarget.App("com.google.android.googlequicksearchbox")
+    val USER_GUIDE = AppTarget.App("com.hcn.autouserguide")
+    val GALLERY = AppTarget.App("com.hcn.gallery")
+
+    /** O próprio Nyx Diagnóstico na lista de apps (mesmo pacote do Nyx Car, pacote fixo: D19). */
+    val DIAGNOSTICS = AppTarget.App("com.premiumcar.launcher", labelHints = listOf("diagn"))
+
     val ANDROID_SETTINGS = AppTarget.SystemScreen(Settings.ACTION_SETTINGS)
     val WIFI_SETTINGS = AppTarget.SystemScreen(Settings.ACTION_WIFI_SETTINGS)
     val SOUND_SETTINGS = AppTarget.SystemScreen(Settings.ACTION_SOUND_SETTINGS)

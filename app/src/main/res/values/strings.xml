@@ -78,6 +78,10 @@
     <string name="app_steering">Comandos de volante</string>
     <string name="app_files">Arquivos</string>
     <string name="app_play_store">Play Store</string>
+    <string name="app_chrome">Chrome</string>
+    <string name="app_google">Google</string>
+    <string name="app_user_guide">Instruções</string>
+    <string name="app_gallery">Scan de imagens</string>
     <string name="app_wifi">Wi-Fi</string>
     <string name="settings_android">Configurações do Android</string>
     <string name="settings_sound">Som</string>
@@ -90,7 +94,15 @@
     <string name="settings_original_launcher">Launcher original</string>
 
     <!-- Abas. -->
-    <string name="apps_more_soon">A lista completa de aplicativos chega na próxima versão.</string>
+    <string name="apps_tab_favorites">Favoritos</string>
+    <string name="apps_tab_all">Todos</string>
+    <string name="apps_edit_title">Editar favoritos</string>
+    <string name="apps_restore">Restaurar padrão</string>
+    <string name="apps_done">Concluir</string>
+    <string name="apps_cancel">Cancelar</string>
+    <string name="apps_pick_title">Trocar “%1$s” por…</string>
+    <string name="tile_swap">Trocar</string>
+    <string name="tile_favorite">Favorito</string>
     <string name="connectivity_status_title">Estado</string>
     <string name="connectivity_wifi_on">Wi-Fi: conectado</string>
     <string name="connectivity_wifi_off">Wi-Fi: desconectado</string>

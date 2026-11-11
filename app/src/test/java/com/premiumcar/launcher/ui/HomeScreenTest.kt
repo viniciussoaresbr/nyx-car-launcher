@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.view.WindowInsets
 import android.widget.ImageButton
 import android.widget.ListView
+import android.widget.ScrollView
 import android.widget.TextView
 import com.github.takahirom.roborazzi.captureRoboImage
 import com.premiumcar.launcher.R
@@ -593,6 +594,205 @@ class HomeScreenTest {
         assertEquals("Play Store", labels.last())
         assertTrue(activity.tile("Play Store").isEnabled)
     }
+
+    // ---------- Aplicativos → Todos (0.4.4) ----------
+
+    /** Os apps com ícone da central, com os nomes do sistema (relatório de 11/11/2026). */
+    private fun installCentralApps() {
+        val pm = shadowOf(RuntimeEnvironment.getApplication().packageManager)
+        listOf(
+            Triple("com.hcn.screensaver", "ScreenSaver", ""),
+            Triple("com.hcn.autoupdate", "Update", "atualização"),
+            Triple("com.hcn.canupgrade", "CanUpgrade", "Atualização de Rede Can"),
+            Triple("com.hcn.mcuupgrade", "McuUpgrade", "Atualização Mcu"),
+            Triple("com.auto.hcamera", "VideoInActivity", "Av In"),
+            Triple("com.autochips.bluetooth", "MainBluetoothActivity", "Bluetooth"),
+            Triple("com.autochips.bluetooth", "BtMusicActivity", "BT Música"),
+            Triple("com.android.chrome", "Main", "Chrome"),
+            Triple("com.hcn.swc", "MainActivity", "Comandos de volante"),
+            Triple("com.android.settings", "Settings", "Configurar"),
+            Triple("com.hcn.autosetting", "SettingActivity", "Configurações Do Veículo"),
+            Triple("com.hcn.autoeq", "MainActivity", "DSP"),
+            Triple("com.mediatek.filemanager", "FileManagerOperationActivity", "Gerenciador de arquivos"),
+            Triple("com.google.android.googlequicksearchbox", "SearchActivity", "Google"),
+            Triple("com.hcn.autocan", "CanActivity", "Informaçãodocarro"),
+            Triple("com.hcn.autouserguide", "MainActivity", "Instruções"),
+            Triple("com.google.android.apps.maps", "MapsActivity", "Maps"),
+            Triple("com.hcn.AutoMediaPlayer", "MusicPlayerUiActivity", "Música"),
+            Triple("com.android.vending", "AssetBrowserActivity", "Play Store"),
+            Triple("com.hcn.autoradio", "RadioMain", "Rádio"),
+            Triple("com.hcn.gallery", "MainActivity", "Scan de imagens"),
+            Triple("com.hcn.themepicker", "MainActivity", "Theme"),
+            Triple("com.hcn.AutoMediaPlayer", "VideoPlayerUiActivity", "Vídeo"),
+            Triple("com.google.android.youtube", "HomeActivity", "YouTube"),
+            Triple("com.zjinnova.zlink", "MainActivity", "ZLINK5"),
+        ).forEach { (pkg, cls, label) ->
+            val component = ComponentName(pkg, "$pkg.$cls")
+            pm.addActivityIfNotPresent(component).nonLocalizedLabel = label
+            pm.addIntentFilterForActivity(component, IntentFilter(Intent.ACTION_MAIN).apply { addCategory(Intent.CATEGORY_LAUNCHER) })
+        }
+    }
+
+    private val centralAllApps = listOf(
+        "Arquivos", "Bluetooth", "BT Música", "Câmera", "CarPlay", "Chrome",
+        "Comandos de volante", "Configurações do Android", "Equalizador", "Google", "Informações do carro", "Instruções",
+        "Maps", "Nyx Diagnóstico", "Play Store", "Rádio", "Scan de imagens", "Veículo",
+        "Vídeo", "YouTube",
+    )
+
+    @Test
+    fun `aba Aplicativos abre em Favoritos e Todos mostra os apps da central em ordem`() {
+        installCentralApps()
+        val activity = launch()
+        activity.go(Destination.APPS)
+        val favorites = activity.findViewById<View>(R.id.apps_tab_favorites)
+        val all = activity.findViewById<View>(R.id.apps_tab_all)
+        assertTrue("Abre na página Favoritos", favorites.isSelected)
+        assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.apps_edit).visibility)
+        assertEquals(12, activity.visibleTiles().size)
+        val favoriteSize = activity.tile("Rádio").let { it.width to it.height }
+
+        all.performClick()
+        idle()
+        assertTrue(all.isSelected)
+        assertEquals("Editar só aparece em Favoritos", View.GONE, activity.findViewById<View>(R.id.apps_edit).visibility)
+        assertEquals(
+            "Sem Música USB, Theme, atualizadores e o próprio Nyx Car; nomes do Nyx Car para os conhecidos",
+            centralAllApps,
+            activity.visibleTiles(),
+        )
+        val sizes = visibleViews(activity.findViewById(android.R.id.content)).filterIsInstance<ShortcutTile>()
+            .map { it.width to it.height }.distinct()
+        assertEquals("Atalhos do mesmo tamanho dos Favoritos", listOf(favoriteSize), sizes)
+        val list = activity.findViewById<View>(R.id.apps_all_list)
+        val page = activity.findViewById<ScrollView>(R.id.apps_all)
+        assertTrue("20 apps em 5 linhas: a lista rola (${list.height} de ${page.height} px)", list.height > page.height)
+        assertTrue("Barra de rolagem sempre visível", page.isVerticalScrollBarEnabled && !page.isScrollbarFadingEnabled)
+        assertTouchTargets(activity, "Aplicativos → Todos")
+        activity.findViewById<View>(android.R.id.content).captureRoboImage("build/outputs/roborazzi/tab_apps_all.png")
+        page.fullScroll(View.FOCUS_DOWN)
+        idle()
+        assertTrue("Rola até o fim", page.scrollY > 0)
+        activity.findViewById<View>(android.R.id.content).captureRoboImage("build/outputs/roborazzi/tab_apps_all_end.png")
+
+        activity.tile("CarPlay").performClick()
+        assertEquals(
+            ComponentName("com.zjinnova.zlink", "com.zjinnova.zlink.MainActivity"),
+            shadowOf(activity).nextStartedActivity.component,
+        )
+    }
+
+    @Test
+    fun `aba Aplicativos volta para Favoritos ao sair e entrar de novo`() {
+        installCentralApps()
+        val activity = launch()
+        activity.go(Destination.APPS)
+        activity.findViewById<View>(R.id.apps_tab_all).performClick()
+        idle()
+        activity.go(Destination.HOME)
+        activity.go(Destination.APPS)
+        assertTrue(activity.findViewById<View>(R.id.apps_tab_favorites).isSelected)
+        assertFalse(activity.findViewById<View>(R.id.apps_tab_all).isSelected)
+        assertEquals(View.GONE, activity.findViewById<View>(R.id.apps_all).visibility)
+    }
+
+    private val defaultFavorites = listOf(
+        "Rádio", "Vídeo", "Bluetooth", "CarPlay", "Maps", "YouTube",
+        "Câmera", "Informações do carro", "Equalizador", "Comandos de volante", "Arquivos", "Play Store",
+    )
+
+    private fun MainActivity.click(id: Int) {
+        findViewById<View>(id).performClick()
+        idle()
+    }
+
+    /** Título da aba visível (cada aba tem o seu `screen_title`). */
+    private fun MainActivity.title(): String =
+        visibleViews(findViewById(android.R.id.content)).filterIsInstance<TextView>().first { it.id == R.id.screen_title }.text.toString()
+
+    @Test
+    fun `editar favoritos troca um lugar, salva na hora e continua depois de reabrir`() {
+        installCentralApps()
+        val activity = launch()
+        activity.go(Destination.APPS)
+        assertEquals(defaultFavorites, activity.visibleTiles())
+
+        activity.click(R.id.apps_edit)
+        assertEquals("Editar favoritos", activity.title())
+        assertEquals(View.GONE, activity.findViewById<View>(R.id.apps_selector).visibility)
+        val editing = visibleViews(activity.findViewById(android.R.id.content)).filterIsInstance<ShortcutTile>()
+        assertEquals(12, editing.size)
+        assertTrue(editing.all { it.isSelected && it.caption == "Trocar" })
+        assertTouchTargets(activity, "Editar favoritos")
+        activity.findViewById<View>(android.R.id.content).captureRoboImage("build/outputs/roborazzi/tab_apps_edit.png")
+
+        activity.tile("Vídeo").performClick()
+        idle()
+        assertEquals("Trocar “Vídeo” por…", activity.title())
+        assertEquals(centralAllApps, activity.visibleTiles())
+        assertTrue("O lugar tocado fica marcado", activity.tile("Vídeo").isSelected)
+        assertEquals("Favorito", activity.tile("CarPlay").caption)
+        assertNull(activity.tile("Chrome").caption)
+        assertTouchTargets(activity, "Escolha do favorito")
+        activity.findViewById<View>(android.R.id.content).captureRoboImage("build/outputs/roborazzi/tab_apps_pick.png")
+
+        activity.tile("Chrome").performClick()
+        idle()
+        assertEquals("Editar favoritos", activity.title())
+        activity.click(R.id.apps_done)
+        val expected = defaultFavorites.toMutableList().apply { this[1] = "Chrome" }
+        assertEquals(expected, activity.visibleTiles())
+        assertTrue(activity.tile("Chrome").isEnabled)
+        activity.tile("Chrome").performClick()
+        assertEquals(ComponentName("com.android.chrome", "com.android.chrome.Main"), shadowOf(activity).nextStartedActivity.component)
+
+        // Outra abertura do app: os favoritos continuam.
+        val again = launch()
+        again.go(Destination.APPS)
+        assertEquals(expected, again.visibleTiles())
+    }
+
+    @Test
+    fun `escolher um favorito da grade troca os dois de lugar e restaurar volta ao padrao`() {
+        installCentralApps()
+        val activity = launch()
+        activity.go(Destination.APPS)
+        activity.click(R.id.apps_edit)
+        activity.tile("Rádio").performClick()
+        idle()
+        activity.tile("CarPlay").performClick()
+        idle()
+        assertEquals(listOf("CarPlay", "Vídeo", "Bluetooth", "Rádio"), activity.visibleTiles().take(4))
+
+        // Nome longo virando favorito: na escolha, com a legenda "Favorito", o atalho não cresce.
+        activity.tile("Bluetooth").performClick()
+        idle()
+        activity.tile("Configurações do Android").performClick()
+        idle()
+        activity.tile("Maps").performClick()
+        idle()
+        val longName = activity.tile("Configurações do Android")
+        assertEquals("Favorito", longName.caption)
+        assertEquals(activity.tile("Chrome").height, longName.height)
+        activity.click(R.id.apps_cancel)
+
+        // Voltar: da escolha para a edição; da edição para os favoritos.
+        activity.tile("Maps").performClick()
+        idle()
+        activity.onBackPressed()
+        idle()
+        assertEquals("Editar favoritos", activity.title())
+
+        activity.click(R.id.apps_restore)
+        assertEquals(defaultFavorites, activity.visibleTiles())
+        activity.onBackPressed()
+        idle()
+        assertTrue(activity.findViewById<View>(R.id.apps_tab_favorites).isSelected)
+        assertEquals(Destination.APPS, activity.selected())
+    }
+
+    private fun MainActivity.visibleTiles(): List<String> =
+        visibleViews(findViewById(android.R.id.content)).filterIsInstance<ShortcutTile>().map { it.labelText.toString() }
 
     // ---------- Barra de status (0.4.2) ----------
 
