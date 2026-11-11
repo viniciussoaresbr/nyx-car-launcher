@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">Nyx Car</string>
+    <string name="app_name_diagnostics">Nyx Diagnóstico</string>
+    <string name="benchmark_compose">Teste de fluidez (Compose)</string>
+    <string name="benchmark_views">Teste de fluidez (Views)</string>
+    <string name="design_catalog">Catálogo de componentes</string>
+    <string name="media_access_label">Nyx Car (teste de sessões de mídia)</string>
+
+    <!-- Relógio: 24 h (padrão brasileiro). O formato será configurável na Fase 4. -->
+    <string name="clock_format" translatable="false">HH:mm</string>
+    <string name="date_format" translatable="false">EEEE, d \'de\' MMMM</string>
+
+    <!-- Barra de navegação: só ícones na tela; os nomes servem à acessibilidade e aos títulos. -->
+    <string name="nav_home">Home</string>
+    <string name="nav_music">Música</string>
+    <string name="nav_apps">Aplicativos</string>
+    <string name="nav_connectivity">Conectividade</string>
+    <string name="nav_settings">Configurações</string>
+
+    <!-- Indicadores de conectividade. -->
+    <string name="status_bluetooth">Bluetooth</string>
+    <string name="status_wifi">Wi-Fi</string>
+
+    <!-- Atalhos da Home. O do CarPlay abre o ZLINK, que fica intacto: só o nome do atalho é nosso. -->
+    <string name="shortcut_bluetooth">Bluetooth</string>
+    <string name="shortcut_carplay">CarPlay</string>
+    <string name="shortcut_apps">Aplicativos</string>
+    <string name="shortcut_settings">Configurações</string>
+
+    <!-- Cartão de navegação: o padrão é o Waze pelo CarPlay (escolha do usuário). -->
+    <string name="card_navigation_title">Navegação</string>
+    <string name="card_navigation_app">Waze pelo CarPlay</string>
+    <string name="card_navigation_hint">Toque para abrir o CarPlay</string>
+    <string name="card_navigation_action">Abrir navegação</string>
+
+    <!--
+        Cartão de música: mostra a música do player próprio (pendrive). Tocar no cartão leva à
+        aba Música; os botões controlam o player.
+    -->
+    <string name="card_music_title">Música</string>
+    <string name="card_music_source">Músicas do pendrive</string>
+    <string name="card_music_hint">Toque para escolher uma música</string>
+    <string name="music_previous">Faixa anterior</string>
+    <string name="music_play">Reproduzir</string>
+    <string name="music_pause">Pausar</string>
+    <string name="music_next">Próxima faixa</string>
+
+    <!-- Player próprio (aba Música). -->
+    <string name="player_volume_default">Pendrive</string>
+    <string name="player_volumes_title">Pendrives</string>
+    <string name="player_up">Pasta anterior</string>
+    <string name="player_loading">Lendo o pendrive…</string>
+    <string name="player_no_volume">Nenhum pendrive encontrado.\nConecte um pendrive com músicas.</string>
+    <string name="player_empty_folder">Nenhuma música nesta pasta.</string>
+    <string name="player_permission_needed">Para ler as músicas do pendrive, o Nyx Car precisa de acesso ao armazenamento.</string>
+    <string name="player_permission_action">Permitir acesso</string>
+    <string name="player_permission_denied">O acesso ao armazenamento foi negado. Libere em Permissões → Armazenamento.</string>
+    <string name="player_permission_settings">Abrir permissões</string>
+    <string name="player_nothing_title">Nenhuma música escolhida</string>
+    <string name="player_nothing_hint">Escolha uma música na lista ao lado</string>
+    <string name="player_position">%1$s · %2$d de %3$d</string>
+    <string name="player_track_missing">Última música não encontrada. Confira se o pendrive está conectado.</string>
+    <string name="player_storage_removed">Pendrive removido. A música parou.</string>
+    <string name="player_cannot_play">Não foi possível tocar \"%1$s\".</string>
+    <string name="player_nothing_playable">Nenhuma música desta pasta pôde ser tocada.</string>
+    <string name="player_focus_denied">O som está em uso por outro app (ligação ou CarPlay).</string>
+    <string name="player_notification_channel">Reprodução de música</string>
+
+    <!-- Apps e telas abertos pelos atalhos. -->
+    <string name="app_bt_music">BT Música</string>
+    <string name="app_radio">Rádio</string>
+    <string name="app_youtube">YouTube</string>
+    <string name="app_video">Vídeo</string>
+    <string name="app_maps">Maps</string>
+    <string name="app_camera">Câmera</string>
+    <string name="app_car_info">Informações do carro</string>
+    <string name="app_equalizer">Equalizador</string>
+    <string name="app_steering">Comandos de volante</string>
+    <string name="app_files">Arquivos</string>
+    <string name="app_play_store">Play Store</string>
+    <string name="app_wifi">Wi-Fi</string>
+    <string name="settings_android">Configurações do Android</string>
+    <string name="settings_sound">Som</string>
+    <string name="settings_display">Tela</string>
+    <string name="settings_date">Data e hora</string>
+    <string name="settings_vehicle">Veículo</string>
+    <string name="settings_diagnostics">Nyx Diagnóstico</string>
+    <!-- Recuperação (PROJECT_PLAN.md, seção 9): o launcher original continua a um toque. -->
+    <string name="settings_home_choice">Tela inicial</string>
+    <string name="settings_original_launcher">Launcher original</string>
+
+    <!-- Abas. -->
+    <string name="apps_more_soon">A lista completa de aplicativos chega na próxima versão.</string>
+    <string name="connectivity_status_title">Estado</string>
+    <string name="connectivity_wifi_on">Wi-Fi: conectado</string>
+    <string name="connectivity_wifi_off">Wi-Fi: desconectado</string>
+    <string name="connectivity_bt_on">Bluetooth: ligado</string>
+    <string name="connectivity_bt_off">Bluetooth: desligado no Android (o app Bluetooth da central pode estar ativo)</string>
+    <string name="connectivity_bt_unknown">Bluetooth: controlado pelo app Bluetooth da central</string>
+    <string name="connectivity_carplay_hint">CarPlay: abre sozinho ao conectar o iPhone pelo cabo</string>
+    <string name="about_title">Nyx Car · versão %1$s</string>
+    <string name="about_home_hint">Para voltar ao launcher original como tela inicial: Tela inicial → Tela de início 3.</string>
+    <string name="about_soon">Favoritos, atalhos da Home e formato do relógio chegam nas próximas versões.</string>
+
+    <!-- Avisos. -->
+    <string name="app_not_found">%1$s não foi encontrado nesta central</string>
+    <string name="tile_not_found">Não encontrado</string>
+    <string name="tile_disabled">Desativado</string>
+</resources>

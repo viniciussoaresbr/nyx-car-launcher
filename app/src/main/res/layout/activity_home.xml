@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Janela principal (1280 × 655 dp na central): as telas trocam dentro de screen_container,
+    pela barra inferior (fixa) ou deslizando o dedo na horizontal (SwipeTabsLayout, 0.4.1).
+    A janela ocupa a tela toda; home_root recebe como margem a altura estável da barra de
+    status (ui/StableSystemBars, 0.4.2), para a Home não pular ao voltar do CarPlay.
+    A Home tem três colunas iguais:
+    [relógio, data, status e atalhos] [cartão de navegação] [cartão de música]
+    As outras abas são montadas na primeira visita (MainActivity).
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pc_background"
+    android:orientation="vertical">
+
+    <com.premiumcar.launcher.ui.components.SwipeTabsLayout
+        android:id="@+id/screen_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/home_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="@dimen/pc_screen_margin">
+
+            <!-- Coluna 1: relógio, data, conectividade e atalhos. -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextClock
+                    android:id="@+id/home_clock"
+                    style="@style/PcText.Clock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:format12Hour="@string/clock_format"
+                    android:format24Hour="@string/clock_format"
+                    android:includeFontPadding="false" />
+
+                <TextClock
+                    android:id="@+id/home_date"
+                    style="@style/PcText.BodyLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pc_space_s"
+                    android:format12Hour="@string/date_format"
+                    android:format24Hour="@string/date_format"
+                    android:textColor="@color/pc_text_secondary" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pc_space_m"
+                    android:orientation="horizontal">
+
+                    <!--
+                        Ativo: ícone em destaque e texto claro; inativo: secundários.
+                        Wi-Fi primeiro; o Bluetooth só aparece se o Android informar "ligado".
+                    -->
+                    <TextView
+                        android:id="@+id/status_wifi"
+                        style="@style/PcText.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_wifi"
+                        android:drawablePadding="@dimen/pc_space_s"
+                        android:drawableTint="@color/pc_text_secondary"
+                        android:gravity="center_vertical"
+                        android:text="@string/status_wifi" />
+
+                    <TextView
+                        android:id="@+id/status_bluetooth"
+                        style="@style/PcText.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/pc_space_l"
+                        android:drawableStart="@drawable/ic_bluetooth"
+                        android:drawablePadding="@dimen/pc_space_s"
+                        android:drawableTint="@color/pc_accent"
+                        android:gravity="center_vertical"
+                        android:text="@string/status_bluetooth"
+                        android:textColor="@color/pc_text_primary"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.premiumcar.launcher.ui.components.ShortcutTile
+                        android:id="@+id/shortcut_bluetooth"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/pc_tile_height"
+                        android:layout_weight="1"
+                        app:tileIcon="@drawable/ic_bluetooth"
+                        app:tileLabel="@string/shortcut_bluetooth" />
+
+                    <com.premiumcar.launcher.ui.components.ShortcutTile
+                        android:id="@+id/shortcut_carplay"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/pc_tile_height"
+                        android:layout_marginStart="@dimen/pc_gutter"
+                        android:layout_weight="1"
+                        app:tileIcon="@drawable/ic_carplay"
+                        app:tileLabel="@string/shortcut_carplay" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pc_gutter"
+                    android:orientation="horizontal">
+
+                    <com.premiumcar.launcher.ui.components.ShortcutTile
+                        android:id="@+id/shortcut_apps"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/pc_tile_height"
+                        android:layout_weight="1"
+                        app:tileIcon="@drawable/ic_apps"
+                        app:tileLabel="@string/shortcut_apps" />
+
+                    <com.premiumcar.launcher.ui.components.ShortcutTile
+                        android:id="@+id/shortcut_settings"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/pc_tile_height"
+                        android:layout_marginStart="@dimen/pc_gutter"
+                        android:layout_weight="1"
+                        app:tileIcon="@drawable/ic_settings"
+                        app:tileLabel="@string/shortcut_settings" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Coluna 2: cartão de navegação. -->
+            <LinearLayout
+                android:id="@+id/card_navigation"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/pc_gutter"
+                android:layout_weight="1"
+                android:background="@drawable/pc_bg_card_clickable"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:padding="@dimen/pc_card_padding">
+
+                <TextView
+                    style="@style/PcText.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_navigation"
+                    android:drawablePadding="@dimen/pc_space_m"
+                    android:drawableTint="@color/pc_accent"
+                    android:gravity="center_vertical"
+                    android:text="@string/card_navigation_title" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/pc_bg_icon_circle">
+
+                        <ImageView
+                            android:layout_width="@dimen/pc_icon_l"
+                            android:layout_height="@dimen/pc_icon_l"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_navigation"
+                            android:tint="@color/pc_accent" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/PcText.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/pc_space_l"
+                        android:text="@string/card_navigation_app" />
+
+                    <TextView
+                        style="@style/PcText.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/pc_space_xs"
+                        android:text="@string/card_navigation_hint" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/navigation_open"
+                    style="@style/PcButton.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/card_navigation_action" />
+            </LinearLayout>
+
+            <!--
+                Coluna 3: cartão de música do player próprio (pendrive): música, artista e capa.
+                Tocar no cartão leva à aba Música; os botões controlam o player.
+            -->
+            <LinearLayout
+                android:id="@+id/card_music"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/pc_gutter"
+                android:layout_weight="1"
+                android:background="@drawable/pc_bg_card_clickable"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:padding="@dimen/pc_card_padding">
+
+                <TextView
+                    style="@style/PcText.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_music"
+                    android:drawablePadding="@dimen/pc_space_m"
+                    android:drawableTint="@color/pc_accent"
+                    android:gravity="center_vertical"
+                    android:text="@string/card_music_title" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/music_artwork"
+                        android:layout_width="@dimen/pc_artwork"
+                        android:layout_height="@dimen/pc_artwork"
+                        android:background="@drawable/pc_bg_artwork">
+
+                        <ImageView
+                            android:id="@+id/music_placeholder"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_music"
+                            android:tint="@color/pc_text_secondary" />
+
+                        <ImageView
+                            android:id="@+id/music_cover"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:importantForAccessibility="no"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/pc_space_m"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/music_source"
+                            style="@style/PcText.Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:text="@string/card_music_source" />
+
+                        <TextView
+                            android:id="@+id/music_hint"
+                            style="@style/PcText.Body"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/pc_space_xs"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:text="@string/card_music_hint" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/music_previous"
+                        style="@style/PcRoundButton"
+                        android:layout_width="@dimen/pc_media_button"
+                        android:layout_height="@dimen/pc_media_button"
+                        android:contentDescription="@string/music_previous"
+                        android:src="@drawable/ic_skip_previous" />
+
+                    <ImageButton
+                        android:id="@+id/music_play"
+                        style="@style/PcRoundButton.Primary"
+                        android:layout_width="@dimen/pc_media_button_primary"
+                        android:layout_height="@dimen/pc_media_button_primary"
+                        android:layout_marginStart="@dimen/pc_space_xl"
+                        android:contentDescription="@string/music_play"
+                        android:src="@drawable/ic_play" />
+
+                    <ImageButton
+                        android:id="@+id/music_next"
+                        style="@style/PcRoundButton"
+                        android:layout_width="@dimen/pc_media_button"
+                        android:layout_height="@dimen/pc_media_button"
+                        android:layout_marginStart="@dimen/pc_space_xl"
+                        android:contentDescription="@string/music_next"
+                        android:src="@drawable/ic_skip_next" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </com.premiumcar.launcher.ui.components.SwipeTabsLayout>
+
+    <com.premiumcar.launcher.ui.components.BottomNavBar
+        android:id="@+id/home_nav"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pc_nav_bar_height"
+        android:background="@drawable/pc_bg_nav_bar" />
+</LinearLayout>
