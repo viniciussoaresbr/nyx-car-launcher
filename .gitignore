@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+.kotlin/
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Configuração local da máquina (caminho do SDK)
+local.properties
+
+# Chaves de assinatura: nunca versionar
+*.jks
+*.keystore
+keystore.properties
+
+# Sistema
+.DS_Store
+
+# Cópia da pasta Android da central: tem identificador da central e cache de mapas
+diagnostico/Android-copia/
