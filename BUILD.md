@@ -40,7 +40,8 @@ Se o espaço fizer falta, o emulador e as imagens (~3 GB) podem ser removidos:
 ## 2. Compilar
 
 ```bash
-cd premium-car-launcher
+git clone https://github.com/viniciussoaresbr/nyx-car-launcher.git
+cd nyx-car-launcher
 ./gradlew assembleRelease
 ```
 

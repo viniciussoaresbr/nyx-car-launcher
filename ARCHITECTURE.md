@@ -363,9 +363,12 @@ arquivo do relatório (`nyx-car-diagnostico-*.txt`) e nome do APK
 ### D11 — Assinatura
 - Fase 1: o APK release é assinado com a chave de **debug** desta máquina
   (`~/.android/debug.keystore`), apenas para testes.
-- Fase 6: chave de release própria do projeto. **Atenção:** trocar a chave obriga a
-  desinstalar a versão anterior uma vez (o Android não aceita atualizar um app assinado
-  com outra chave).
+- **Decisão do usuário (11/11/2026):** continuar com essa chave, sem chave própria e sem
+  cópias de segurança, para não reinstalar o launcher. Trocar a chave obrigaria a desinstalar
+  a versão anterior (o Android não aceita atualizar um app assinado com outra chave) e a
+  escolher de novo a tela inicial e as permissões.
+- **Consequência aceita:** o código está no GitHub, mas a chave fica só neste PC. Um APK
+  compilado em outro PC não atualiza o instalado: seria preciso desinstalar e instalar de novo.
 
 ### D12 — Medir sempre com build release
 Builds de debug do Compose são muito mais lentos (sem R8, sem otimizações do ART) e
@@ -423,7 +426,7 @@ Nada além disso. Qualquer nova dependência precisa de justificativa registrada
 | ~~Player original abre sozinho ao conectar o pendrive~~ | — | **Resolvido pelo usuário (11/11/2026):** "Reprodução automática" desligada em Configurações do Veículo → Geral. O atalho dele saiu do launcher na 0.4.2 |
 | Deslize trocar de aba sem querer (solavanco) | Aba errada com o carro em movimento | Só arrasto claramente horizontal e de 154 px (ou gesto rápido). Aprovado pelo usuário no teste da 0.4.1 (11/11/2026); limites ajustáveis se aparecer problema |
 | Relógio voltar para a data do firmware numa partida do zero (visto em 11/11/2026) | Hora e data erradas na Home (e no diário) até a central acertar o relógio (~3 h nesse dia) | O launcher só mostra a hora do sistema. A 0.4.3 informa no relatório se a hora automática está ligada; a correção, se precisar, é um ajuste comum de data e hora |
-| Perda da chave de assinatura | Atualizar exige desinstalar | Backup da chave (Fase 6) |
+| Perda da chave de assinatura (só neste PC) | Atualizar exige desinstalar e configurar de novo | Aceito pelo usuário (11/11/2026, D11): sem cópia da chave; o código está no GitHub |
 | ~~Toque com conversão 1085×600 → 1280×720~~ | — | **Teste de precisão aprovado na central** |
 
 ## 6. Pendências técnicas
