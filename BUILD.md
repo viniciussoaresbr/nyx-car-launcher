@@ -93,6 +93,14 @@ APK gerado: **`app/build/outputs/apk/release/nyx-car-launcher-release.apk`**
   (volta do CarPlay) e usa a altura visível se o firmware não informar a estável.
 - Aplicativos com a grade completa, Play Store no último lugar (0.4.3), e o aviso de relógio
   na data do firmware no relatório.
+- Aplicativos → Todos (0.4.4): com os apps reais da central (nomes do relatório), a lista
+  sai em ordem, sem Música USB, Theme, atualizadores e o próprio Nyx Car, com atalhos do
+  mesmo tamanho dos Favoritos, rola até o fim com a barra sempre visível, respeita 64 dp e abre o app certo; a aba volta para "Favoritos" ao entrar de novo. Regras da
+  lista testadas também na JVM (`AllAppsTest`).
+- Favoritos (0.4.4): editar troca um lugar, salva na hora e continua depois de reabrir o app;
+  escolher um favorito troca os dois de lugar; "Restaurar padrão"; Voltar na escolha e na
+  edição; nome longo com a legenda "Favorito" em uma linha. Regras na JVM (`FavoritesTest`):
+  sempre 12, sem repetição, lista guardada inválida completada com o padrão.
 - As capturas aprovadas de cada versão ficam em `docs/design/`.
 - Relatório HTML: `app/build/reports/tests/testDebugUnitTest/index.html`.
 
@@ -128,44 +136,53 @@ APK gerado: **`app/build/outputs/apk/release/nyx-car-launcher-release.apk`**
 Se aparecer **"App não instalado"** ou **"Erro ao analisar o pacote"**, anote a mensagem
 exata. Isso indica que o Android real é anterior ao 6.0, um dado importante para o diagnóstico.
 
-## 6. Roteiro de teste na central (versão 0.4.3)
+## 6. Roteiro de teste na central (versão 0.4.4)
 
-Valida a Play Store em Aplicativos e a nova seção "Data e hora" do relatório (0.4.3). As
-versões 0.4.0 a 0.4.2 já foram validadas (player, tela inicial, deslize entre abas, atalhos
-sem o player USB e volta do CarPlay sem "pulo"); só a recuperação continua pendente. Instale
-**por cima** (toque em "Atualizar"): o app agora se chama **Nyx Car**, mas é o mesmo app, então
-continua como tela inicial e mantém as permissões e a última música. Anote as respostas das perguntas em **negrito**: elas
-não aparecem no relatório.
+Valida os **favoritos** e a página **Todos** da aba Aplicativos (0.4.4). As versões 0.4.0 a 0.4.3 já foram
+validadas; só a recuperação continua pendente. Instale **por cima** (toque em "Atualizar").
+Anote as respostas das perguntas em **negrito**: elas não aparecem no relatório.
 
-**A. Nome e Play Store (0.4.3)**
+**A. Aplicativos: Favoritos | Todos (0.4.4)**
 
-1. Depois de instalar, toque no Home da central: **abre o Nyx Car direto, sem perguntar qual
-   tela inicial usar?** Em Configurações, o cartão da versão mostra "Nyx Car · versão 0.4.3".
-2. Em Aplicativos, o último lugar da terceira linha agora é **Play Store**, com ícone no
-   mesmo estilo dos outros. A grade fica com 12 apps, sem espaço vazio.
-3. Toque nela: **a Play Store abre?** Se pedir conta Google ou atualização, é do app do
-   Google, não do launcher. Volte com o Home da central.
-4. **O ícone combina com os outros?**
+1. Abra a aba Aplicativos: no alto, à direita, aparecem o botão de **lápis** (Editar) e o
+   seletor **Favoritos | Todos**, com **Favoritos** marcado e os mesmos 12 atalhos de antes.
+2. Toque em **Todos**: aparecem os apps da central em ordem alfabética, com ícones de traço e
+   atalhos do **mesmo tamanho** dos Favoritos. À direita há uma barra de rolagem: role até o
+   fim (20 apps, 5 linhas). **Não** devem aparecer Música USB, Theme, "atualização",
+   Atualização Mcu, Atualização de Rede Can nem o próprio Nyx Car.
+3. Abra 2 ou 3 apps pela lista (por exemplo, Chrome, Instruções, Scan de imagens) e volte
+   com o Home da central. **Abriram o app certo?**
+4. Vá para outra aba e volte para Aplicativos: abre de novo em **Favoritos**.
+5. **Os ícones novos (Chrome, Google, Instruções, Scan de imagens) combinam com os outros?**
+   **Algum nome ficou cortado?**
 
-**B. Relógio (só se fizer uma reinicialização completa)**
+**B. Editar favoritos (0.4.4)**
 
-5. Não precisa reiniciar só para isso. Se a central partir do zero (reinicialização completa
-   ou depois de 3 dias parada), **o relógio da Home aparece certo?** Se não, anote quanto
-   tempo levou para acertar e se o Wi-Fi ou o CarPlay estavam conectados.
+6. Em Favoritos, toque no **lápis**: o título vira "Editar favoritos", os 12 ganham borda
+   turquesa e a legenda "Trocar", e aparecem **Restaurar padrão** e **Concluir**.
+7. Toque num favorito (por exemplo, Vídeo): abre a lista "Trocar “Vídeo” por…", com os
+   favoritos marcados (role para ver todos). Escolha um app que **não** é favorito (por exemplo, Chrome): ele entra
+   no lugar do Vídeo.
+8. Toque noutro favorito e escolha um app que **já** é favorito: os dois trocam de lugar.
+9. Toque em **Concluir** e abra um dos favoritos novos. Depois desligue e ligue o carro:
+   **os favoritos continuam como você deixou?**
+10. Se quiser voltar ao início: **Editar → Restaurar padrão → Concluir**.
+11. **A edição ficou fácil de entender? Algo para mudar?**
 
 **C. Recuperação (pendente desde a 0.4.0)**
 
-6. **Configurações → Launcher original** abre a tela de início original? O Home da central
-   traz de volta o Nyx Car?
+12. **Configurações → Launcher original** abre a tela de início original? O Home da central
+    traz de volta o Nyx Car?
 
 **D. Relatório (atenção aos 0 bytes)**
 
-7. No Nyx Diagnóstico, com o pendrive conectado, toque em **Salvar em…** e escolha o
+13. No Nyx Diagnóstico, com o pendrive conectado, toque em **Salvar em…** e escolha o
    **pendrive**. Espere a mensagem **"Relatório salvo e conferido (N KB). Já pode remover o
    pendrive."** antes de removê-lo. Se o seletor não mostrar o pendrive, use **Salvar em
    Download** e copie com o gerenciador de arquivos (espere uns 30 s antes de remover).
-8. Traga o `.txt` (agora `nyx-car-diagnostico-….txt`) para a pasta `diagnostico/`, junto
-   com as anotações. A seção **Data e hora** mostra se a hora automática está ligada.
+14. Traga o `.txt` para a pasta `diagnostico/`, junto com as anotações. Em "Atalhos e
+    indicadores do launcher", o relatório lista os favoritos e o que aparece e o que fica
+    escondido em Todos.
 
 O relatório omite identificadores (número de série, MAC, IMEI, dados de rede). O diário do
 app não tem nomes de músicas; avisos de outros players podem ter: revise o arquivo antes

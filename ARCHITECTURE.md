@@ -19,12 +19,13 @@ app/src/main/java/com/premiumcar/launcher/
 ├── ui/            Destinos da navegação
 │   ├── components/  ShortcutTile, BottomNavBar (componentes do Design System)
 │   ├── screens/     Conteúdo e montagem das abas (TabContent, ScreenBuilder)
+│   ├── apps/        Aba Aplicativos: Favoritos | Todos e edição dos favoritos (AppsScreen, 0.4.4)
 │   ├── music/       Aba Música: navegação por pastas e música atual (MusicScreen)
 │   └── catalog/     Catálogo de componentes (ferramenta de desenvolvimento)
 ├── diagnostics/   Coleta de informações do sistema e relatório
 │   └── ui/        Painel de diagnóstico (Compose, ícone "Nyx Diagnóstico")
 ├── perf/          Medições: abertura, quadros, memória, registro da Home, testes de fluidez
-└── settings/      (Fase 4) Preferências do usuário
+└── settings/      Preferências do usuário: favoritos da aba Aplicativos (FavoritesStore, 0.4.4)
 
 app/src/main/res/  Design System em recursos: colors, dimens, styles (tipografia e
                    componentes), color/ (cores por estado), drawable/ (fundos e ícones),
@@ -153,17 +154,31 @@ for desproporcional, a alternativa é `SharedPreferences` (nativo).
   título/artista) em **`SharedPreferences`** (`player/PlayerMemory`), com `apply()`
   assíncrono. Para isso o DataStore (mais coroutines e protobuf) seria desproporcional. A
   decisão do DataStore fica para quando houver configurações de verdade.
+- **0.4.4:** os 12 favoritos da aba Aplicativos também ficam em `SharedPreferences`
+  (`settings/FavoritesStore`, 12 linhas curtas, gravadas na hora com `apply()`). Cada favorito
+  é o **id estável** de um app conhecido (`TabContent.knownApps`: "radio", "carplay"…) ou, para
+  um app que o Nyx Car não conhece, pacote, classe e nome. Nada de ids de recursos (mudam entre
+  versões). Ao ler, a lista é validada (`launcher/Favorites.normalize`): ids desconhecidos e
+  repetidos saem, e o padrão completa até 12. Com isso a grade é montada na hora, sem consultar
+  o `PackageManager`.
 
 ### D8 — Relógio eficiente
 `TextClock` da plataforma: ele mesmo escuta `ACTION_TIME_TICK` (uma vez por minuto),
 `TIME_SET` e `TIMEZONE_CHANGED`, e para de escutar quando a tela sai de vista. Sem
 atualização por segundo, sem loops, sem código próprio.
 
-### D9 — Lista de apps eficiente (Fase 4)
-- Consulta ao `PackageManager`/`LauncherApps` fora da thread principal.
-- Ícones convertidos **uma vez** para o tamanho exibido e guardados em cache (`LruCache`)
-  dimensionado pela memória medida (`memoryClass`).
-- Atualização por `LauncherApps.Callback` (instalação/remoção), sem varreduras periódicas.
+### D9 — Lista de apps eficiente (implementada na 0.4.4)
+- Consulta ao `PackageManager` (MAIN/LAUNCHER) fora da thread principal, só no primeiro toque
+  em "Todos"; a lista fica na memória.
+- **Nenhum ícone de outro app é carregado:** por decisão do usuário, cada app conhecido usa o
+  ícone de traço do Nyx Car e os desconhecidos, um ícone genérico. Por isso o cache de ícones
+  previsto (`LruCache`) não foi necessário.
+- Atualização ao voltar de outro app (`onRestart`), sem varreduras periódicas nem callbacks:
+  o usuário não pretende instalar apps.
+- Regras (`launcher/AllApps`, lógica pura): ordem alfabética sem diferenciar acentos; nomes e
+  ícones dos atalhos para os apps conhecidos; escondidos o próprio Nyx Car, entradas sem nome,
+  os atualizadores de firmware, MCU e CAN (um toque errado levaria a uma atualização, proibida
+  pela seção 9), o Theme e a Música USB (pedidos do usuário).
 
 ### D10 — ZLINK: apenas atalho, exibido como "CarPlay"
 Abertura pela Intent de lançamento padrão, com o nome de pacote descoberto pelo

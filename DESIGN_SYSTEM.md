@@ -89,18 +89,24 @@ Fonte do sistema (Roboto), aprovada na calibração.
 | Cartão informativo | `layout/view_info_card` (título + linhas) | estático |
 | Barra inferior | `ui/components/BottomNavBar` + `ui/Destination` | só ícones; selecionado (ícone turquesa sobre pílula `pc_accent_container`, 88 × 48 dp), pressionado |
 | Atalho compacto (0.4.0) | `layout/view_source_button` (ícone 24 dp + rótulo lado a lado, 64 dp de altura) | normal, pressionado; some quando o app está ausente ou desativado (0.4.1) |
+| Seletor de segmentos (0.4.4, "Favoritos \| Todos") | `layout/screen_apps` + `pc_bg_segmented` (trilho) e `pc_bg_segment` (opção de 128 × 64 dp; a selecionada ganha a pílula `pc_accent_container` e o texto turquesa, como a barra inferior) | normal, pressionado, selecionado |
+| Botão de ícone (0.4.4, Editar) | `ImageButton` 64 × 64 dp com `pc_bg_button` e ícone de 24 dp em turquesa; o nome vai em `contentDescription` | normal, pressionado |
+| Barra de rolagem (0.4.4, "Todos") | `pc_scrollbar_thumb` (cinza `pc_text_secondary`) sobre `pc_scrollbar_track` (`pc_surface_high`), 6 dp de largura no meio da margem direita de 24 dp; sempre visível quando há o que rolar | — |
+| Atalho em edição (0.4.4) | `ShortcutTile` selecionado (borda turquesa de `pc_bg_tile`) com a legenda "Trocar" ou "Favorito" | normal, pressionado |
 | Contêiner das abas (0.4.1) | `ui/components/SwipeTabsLayout` (`screen_container`) | parado; arrastando (a aba segue o dedo a 35%, até 120 dp, com até 30% de transparência; 10% nas pontas); entrando (96 dp → 0 e transparência 40% → 0 em 160 ms) |
 | Linha de lista (0.4.0) | `layout/view_browser_item` + `pc_bg_list_item` (64 dp) | normal, pressionada; música atual em turquesa com ícone de alto-falante |
 | Barra de progresso (0.4.0) | `pc_progress_bar` (trilho `pc_outline`, preenchimento turquesa, 4 dp, sem animação) | — |
 
 **Ícones** (`drawable/ic_*.xml`, 24 × 24, traço de 2 dp com pontas arredondadas, ou
-preenchidos para os controles de mídia), 33 no total:
+preenchidos para os controles de mídia), 39 no total:
 - navegação e status: home, music, apps, connectivity, settings, bluetooth, wifi,
   navigation, carplay, chevron_right, chevron_left (0.4.0), restore (0.4.0, "Launcher
   original");
 - mídia: play, pause, skip_previous, skip_next;
 - apps e telas (Fase 3): usb, radio, video, movie, map, camera, car, gauge, equalizer,
-  steering, folder, gear, volume, display, clock, diagnostics, store (0.4.3, Play Store).
+  steering, folder, gear, volume, display, clock, diagnostics, store (0.4.3, Play Store);
+- lista "Todos" (0.4.4): browser (Chrome, globo), search (Google, lupa), book (Instruções),
+  image (Scan de imagens), app_generic (apps sem ícone próprio), edit (botão Editar).
 
 São desenhos próprios, sem marcas de terceiros (o atalho do YouTube usa o ícone genérico
 `video`). O ícone `carplay` (anel com o
@@ -150,14 +156,14 @@ por peso, sem rolagem (`ui/screens/ScreenBuilder`). A aba Música tem layout pr�
 | Aba | Conteúdo |
 |---|---|
 | Música (0.4.0) | metade esquerda: pastas e músicas do pendrive (lista com rolagem rápida) · metade direita: capa 160 dp, título, artista, "pasta · 2 de 3", progresso, ⏮ ▶ ⏭ · linha de atalhos compactos: BT Música e Rádio (o player USB do fabricante saiu na 0.4.2) |
-| Aplicativos | grade de 4 colunas com 12 apps (Rádio, Vídeo, Bluetooth, CarPlay · Maps, YouTube, Câmera, Informações do carro · Equalizador, Comandos de volante, Arquivos, Play Store; a Play Store ocupa desde a 0.4.3 o lugar que ficou vazio) · legenda |
+| Aplicativos | botão **Editar** (só o ícone de lápis) e seletor **Favoritos \| Todos** ao lado do título (0.4.4). **Favoritos:** grade 3 × 4 com os 12 favoritos (padrão: Rádio, Vídeo, Bluetooth, CarPlay · Maps, YouTube, Câmera, Informações do carro · Equalizador, Comandos de volante, Arquivos, Play Store). **Todos:** os apps da central em ordem alfabética, ícones de traço, nos mesmos atalhos dos Favoritos (4 colunas, 3 linhas por tela) com barra de rolagem; 20 apps = 5 linhas. **Editar favoritos:** os 12 com borda turquesa e a legenda "Trocar", botões Restaurar padrão e Concluir (primário); tocar num lugar abre "Trocar “X” por…" (a lista de Todos com a legenda "Favorito" e o lugar tocado com borda) e Cancelar |
 | Conectividade | Bluetooth, Wi-Fi, CarPlay · cartão "Estado" (2/3 da altura) |
 | Configurações | grade 4 × 2 (Android, Som, Tela, Data e hora, Veículo, Tela inicial, Launcher original, Nyx Diagnóstico) · cartão com a versão e o caminho de volta ao launcher original |
 
 Capturas: `docs/design/home-v0.4.0.png`, `home-tocando-v0.4.0.png`,
 `aba-music-tocando-v0.4.0.png`, `aba-music-permissao-v0.4.0.png`,
 `aba-settings-v0.4.3.png` (novo nome), `aba-music-tocando-v0.4.2.png` (sem o atalho Música USB),
-`aba-apps-v0.4.3.png` (com a Play Store) e, das abas sem mudança, `aba-*-v0.3.0.png`. O deslize não aparece em capturas:
+`aba-apps-v0.4.4.png`, `aba-apps-todos-v0.4.4.png`, `aba-apps-todos-fim-v0.4.4.png` (rolada até o fim), `aba-apps-editar-v0.4.4.png` e `aba-apps-trocar-v0.4.4.png` (Favoritos | Todos e edição) e, das abas sem mudança, `aba-*-v0.3.0.png`. O deslize não aparece em capturas:
 é verificado pelos testes de toque (BUILD.md, seção 3).
 
 ## 8. Como verificar

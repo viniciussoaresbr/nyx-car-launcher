@@ -2,6 +2,34 @@
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
+## [0.4.4] — 2026-11-11
+
+Validada no carro em 11/11/2026 (rolagem de "Todos" e botão de lápis aprovados pelo usuário).
+
+### Adicionado
+- **Aplicativos: seletor Favoritos | Todos.** "Favoritos" mostra 12 apps em 3 linhas de 4 (a
+  aba sempre abre nele); o padrão são os 12 atalhos de antes. "Todos" lista os apps da
+  central em ordem alfabética, com **ícones de traço** do Nyx Car e os mesmos nomes dos atalhos
+  ("CarPlay" em vez de "ZLINK5"), nos **mesmos atalhos dos Favoritos** (4 colunas, 3 linhas por
+  tela; pedido do usuário depois de testar no carro) e com **barra de rolagem** sempre visível
+  na margem direita: os 20 apps ficam em 5 linhas. A lista é
+  montada no primeiro toque e refeita ao voltar de outro app.
+- **Editar favoritos** (botão só com o ícone de lápis, no alto, só em Favoritos): toque num favorito e escolha o app
+  que vai no lugar dele; um app que já é favorito troca de lugar com o tocado, então são
+  sempre 12, sem repetição. Cada troca já fica salva; "Restaurar padrão" volta aos 12 de
+  antes e "Concluir" sai da edição. Voltar sai da escolha e depois da edição.
+- Ícones novos: `browser` (Chrome), `search` (Google), `book` (Instruções), `image` (Scan de
+  imagens), `app_generic` (apps instalados no futuro) e `edit` (botão Editar).
+- Componentes novos: seletor de segmentos ("Favoritos | Todos"), botão de ícone (Editar) e
+  barra de rolagem (`pc_scrollbar_thumb`/`pc_scrollbar_track`).
+- Nyx Diagnóstico: o relatório lista os favoritos (só nomes) e o que aparece e o que fica
+  escondido em "Todos".
+
+### Alterado
+- Ficam fora de "Todos": o próprio Nyx Car, entradas sem nome, os atualizadores de firmware,
+  MCU e CAN (seção 9 do plano), o **Theme** e a **Música USB** (pedidos do usuário).
+- Sai o aviso "A lista completa de aplicativos chega na próxima versão".
+
 ## [0.4.3] — 2026-11-11
 
 Pedidos do usuário depois de validar a 0.4.1 e a 0.4.2 no carro.

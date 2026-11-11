@@ -7,7 +7,7 @@
 | 1 — Diagnóstico | **Concluída** | Diagnóstico rodado na central em 09/11/2026. Resultados em [HARDWARE.md](HARDWARE.md). Decisão: Views nativas ([ARCHITECTURE.md](ARCHITECTURE.md), D2). ADB via Wi-Fi: bloqueado pelo fabricante; o trabalho segue por pendrive. |
 | 2 — Design System | **Concluída** | Design System em Views e Home de referência aprovados na central em 09/11/2026 (versão 0.2.1-ref: atalho "CarPlay", barra inferior só com ícones, Navegação pelo CarPlay). Ver [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md). |
 | 3 — Interface principal | **Em andamento** | 0.3.0 validada: atalhos e abas funcionam. Player USB: a limitação é do player do fabricante; decisão do usuário pendente (player próprio, de terceiros ou só abrir o player; ARCHITECTURE.md, D16). Tela de espera do ZLINK: medição dos sinais repetida na 0.3.2 (roteiro em [BUILD.md](BUILD.md), seção 6). |
-| 4 — Funcionalidades | **Em andamento** | Etapa 0.4.0 (tela inicial e player próprio) **validada no carro em 10/11/2026**. Etapas 0.4.1 (deslizar entre abas) e 0.4.2 (sem o atalho do player USB, Home sem "pulo" ao voltar do CarPlay) **validadas no carro em 11/11/2026**. Etapa 0.4.3 (novo nome Nyx Car, Play Store em Aplicativos, data e hora no relatório) **validada no carro em 11/11/2026**. Próximos passos em decisão. O player original não abre mais sozinho (Reprodução automática desligada pelo usuário). |
+| 4 — Funcionalidades | **Em andamento** | Etapa 0.4.0 (tela inicial e player próprio) **validada no carro em 10/11/2026**. Etapas 0.4.1 (deslizar entre abas) e 0.4.2 (sem o atalho do player USB, Home sem "pulo" ao voltar do CarPlay) **validadas no carro em 11/11/2026**. Etapa 0.4.3 (novo nome Nyx Car, Play Store em Aplicativos, data e hora no relatório) **validada no carro em 11/11/2026**. Etapa 0.4.4 (Aplicativos com Favoritos editáveis e lista de todos os apps) **validada no carro em 11/11/2026**. O player original não abre mais sozinho (Reprodução automática desligada pelo usuário). |
 | 5 — Otimização | Não iniciada | Linha de base de desempenho vem do diagnóstico. |
 | 6 — Distribuição | Em andamento | Código no GitHub (público): https://github.com/viniciussoaresbr/nyx-car-launcher (11/11/2026). Chave de assinatura: continua a deste PC, sem cópia (decisão do usuário; ARCHITECTURE.md, D11). |
 | 7 — Testes na multimídia | Não iniciada | |
@@ -202,6 +202,47 @@ por **Nyx Car**.
 
 **Riscos da 0.4.3:** a Play Store pode pedir uma conta Google ou atualizações ao abrir; isso é
 do app do Google, não do launcher. Nenhuma configuração da central é alterada.
+
+### Etapa 0.4.4: favoritos e lista de todos os aplicativos (aprovada em 11/11/2026)
+
+Primeiros itens dos próximos passos (o código já está no GitHub; a chave e o identificador do
+app ficam como estão). Itens "Lista de aplicativos" e "Favoritos" da Fase 4 do plano original.
+
+**Decisões do usuário:**
+- Seletor **Favoritos | Todos** na aba Aplicativos; a aba abre sempre em "Favoritos".
+- **Favoritos sempre 12**, para a grade 3 × 4 ficar completa. Edição pelo botão **Editar** (só o ícone de lápis)
+  (só na página Favoritos), com **troca por lugar**: toque num favorito → escolha o app na
+  lista; escolher um app que já é favorito troca os dois de lugar. Cada troca **vale na hora**;
+  "Restaurar padrão" volta aos 12 atalhos de antes e "Concluir" sai da edição.
+- **Ícones de traço** desenhados para cada app instalado; apps instalados no futuro recebem um
+  ícone de traço genérico (o usuário não pretende instalar outros apps, para não pesar a
+  central).
+- **Música USB nunca aparece.** O **Theme** também fica escondido.
+
+**Checklist**
+- [x] Lista em ordem alfabética, com os mesmos atalhos dos Favoritos (4 colunas, 3 linhas por
+  tela) e barra de rolagem sempre visível: os 20 apps ficam em 5 linhas. Primeira versão tinha
+  atalhos menores em 6 colunas; o usuário pediu o mesmo tamanho dos Favoritos (11/11/2026)
+- [x] Nomes e ícones do Nyx Car para os apps conhecidos ("CarPlay", "Equalizador",
+  "Informações do carro"…); 4 ícones novos: Chrome (globo), Google (lupa), Instruções
+  (livro), Scan de imagens (moldura); ícone genérico para apps desconhecidos
+- [x] Escondidos: Nyx Car, entradas sem nome, atualizadores de firmware, MCU e CAN (seção 9),
+  Theme e Música USB
+- [x] Montada em segundo plano no primeiro toque em "Todos" e refeita ao voltar de outro app;
+  não carrega ícones de outros apps
+- [x] Favoritos: edição por lugar, sem repetição, salvos no aparelho (`SharedPreferences`);
+  Voltar sai da escolha e depois da edição; qualquer app de "Todos" pode ser favorito
+- [x] Relatório: os favoritos (só nomes) e o que aparece e fica escondido em "Todos"
+- [x] Testes (103) e capturas `aba-apps-v0.4.4.png`, `aba-apps-todos-v0.4.4.png`,
+  `aba-apps-todos-fim-v0.4.4.png`, `aba-apps-editar-v0.4.4.png` e `aba-apps-trocar-v0.4.4.png`
+- [x] Teste no carro (11/11/2026, relatório `nyx-car-diagnostico-20261111-192835.txt`):
+  aprovado pelo usuário, inclusive a rolagem de "Todos" e o botão de lápis; o relatório mostra
+  os 20 apps esperados em "Todos", nenhum com ícone genérico, e os 7 escondidos
+
+**Riscos da 0.4.4:** um app de fábrica pode ter um nome diferente do visto no relatório e
+aparecer com o ícone genérico (o relatório mostra quais); abrir apps pela lista não muda
+nenhuma configuração da central. Os favoritos ficam guardados no app: desinstalá-lo os
+apaga (volta o padrão).
 
 **Riscos da 0.4.1:**
 - deslize trocar de aba sem querer (solavanco) ou exigir arrasto longo demais: os limites

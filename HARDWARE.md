@@ -162,6 +162,15 @@ Outros números:
     sem alterar o sistema; o relatório avisa quando isso acontecer.
   - Home: mediana de **790 ms** na abertura a frio e ~14 MB de PSS. Nenhum erro do app.
 
+- **Teste da 0.4.4 no carro (11/11/2026)**, relatório
+  `diagnostico/nyx-car-diagnostico-20261111-192835.txt`:
+  - "Todos" lista os **20 apps** previstos, todos reconhecidos (nenhum com ícone genérico). Os
+    nomes de sistema batem com os do relatório de 11/11 (ex.: "Configurar", "DSP",
+    "Informaçãodocarro", "ZLINK5").
+  - Escondidos de "Todos": Música (player original), atualização, Atualização de Rede Can,
+    Atualização Mcu, a proteção de tela sem nome (`com.hcn.screensaver`), Theme e o Nyx Car.
+  - Home: mediana de **623 ms** na abertura a frio (~12,6 MB de PSS). Nenhum erro do app.
+
 - **Medição da conexão do CarPlay (0.3.2, 10/11/2026)**, relatório
   `diagnostico/premium-car-diagnostico-20261110-165729.txt`: 6 gravações, 3 pelo cabo e 3
   sem fio (numa delas nada mudou em 17 s). Tempos contados a partir do primeiro sinal de
