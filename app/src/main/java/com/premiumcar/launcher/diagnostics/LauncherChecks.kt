@@ -4,11 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.AudioManager
+import com.premiumcar.launcher.R
+import com.premiumcar.launcher.app.MainActivity
+import com.premiumcar.launcher.launcher.AllApps
 import com.premiumcar.launcher.launcher.AppLauncher
 import com.premiumcar.launcher.launcher.AppTarget
 import com.premiumcar.launcher.launcher.CarApps
+import com.premiumcar.launcher.launcher.FavoriteKey
+import com.premiumcar.launcher.settings.FavoritesStore
 import com.premiumcar.launcher.system.BluetoothStatus
 import com.premiumcar.launcher.system.WifiStatus
+import com.premiumcar.launcher.ui.screens.TabContent
 
 /**
  * O que o launcher enxerga nesta central: para onde cada atalho leva e os estados usados
@@ -74,7 +80,27 @@ object LauncherChecks {
                 else -> warn("Atalho: $name", "não encontrado")
             }
         }
+        // Favoritos da aba Aplicativos (0.4.4): só os nomes, na ordem da grade.
+        val favoritesStore = FavoritesStore.create(context)
+        val favorites = favoritesStore.load()
+        val favoriteNames = favorites.map { key ->
+            when (key) {
+                is FavoriteKey.Known -> TabContent.knownApp(key.appId)?.let { context.getString(it.shortcut.label) } ?: key.appId
+                is FavoriteKey.Other -> key.label
+            }
+        }
+        add("Aplicativos → Favoritos (${favorites.size})", favoriteNames.joinToString(" · "))
+        add("Favoritos personalizados", if (favorites == favoritesStore.defaultList) "não (padrão)" else "sim")
+        // Lista "Todos" da aba Aplicativos (0.4.4): o que aparece e o que fica escondido.
+        val entries = launcher.allEntries()
+        val all = AllApps.build(entries, TabContent.appLooks(context), MainActivity::class.java.name, R.drawable.ic_app_generic)
+        add("Aplicativos → Todos (${all.size})", all.joinToString(" · ") { it.label })
+        val generic = all.filter { it.icon == R.drawable.ic_app_generic }
+        add("Todos com ícone genérico", if (generic.isEmpty()) "nenhum" else generic.joinToString(" · ") { it.label })
+        val hidden = entries.filter { AllApps.isHidden(it, MainActivity::class.java.name) }
+        add("Escondidos de Todos", hidden.joinToString(" · ") { it.label.ifBlank { it.packageName } }.ifEmpty { "nenhum" })
         note = "Cada atalho mostra a tela que será aberta. \"Não encontrado\" ou \"app desativado\" deixa o atalho " +
-            "desativado no launcher."
+            "desativado no launcher. Em \"Todos\" ficam escondidos o Nyx Car, os atualizadores de firmware, MCU e " +
+            "CAN, o Theme e a Música USB."
     }
 }
