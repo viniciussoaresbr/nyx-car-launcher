@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Aba Música: o player das músicas do pendrive (etapa 0.4.0).
+    [pastas e músicas do pendrive] [música atual + controles / atalhos de outras fontes]
+    Montada e ligada ao player em ui/music/MusicScreen.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/pc_screen_margin">
+
+    <TextView
+        style="@style/PcText.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nav_music" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/pc_space_m"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <!-- Coluna 1: navegação por pastas. -->
+        <LinearLayout
+            android:id="@+id/music_browser"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/pc_bg_card"
+            android:orientation="vertical"
+            android:padding="@dimen/pc_space_s">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pc_touch_min"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/music_up"
+                    style="@style/PcRoundButton"
+                    android:layout_width="@dimen/pc_touch_min"
+                    android:layout_height="@dimen/pc_touch_min"
+                    android:contentDescription="@string/player_up"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_chevron_left"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/music_path"
+                    style="@style/PcText.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/pc_space_m"
+                    android:layout_marginEnd="@dimen/pc_space_s"
+                    android:layout_weight="1"
+                    android:ellipsize="start"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/pc_space_s"
+                android:layout_weight="1">
+
+                <ListView
+                    android:id="@+id/music_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:fastScrollEnabled="true"
+                    android:listSelector="@android:color/transparent"
+                    android:overScrollMode="never"
+                    android:scrollbarStyle="outsideOverlay" />
+
+                <!-- Sem lista: permissão, nenhum pendrive, pasta vazia ou leitura em andamento. -->
+                <LinearLayout
+                    android:id="@+id/music_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/pc_space_l"
+                    android:paddingEnd="@dimen/pc_space_l"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/music_empty_icon"
+                        android:layout_width="@dimen/pc_icon_l"
+                        android:layout_height="@dimen/pc_icon_l"
+                        android:importantForAccessibility="no"
+                        android:tint="@color/pc_text_secondary" />
+
+                    <TextView
+                        android:id="@+id/music_empty_text"
+                        style="@style/PcText.Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/pc_space_m"
+                        android:gravity="center" />
+
+                    <Button
+                        android:id="@+id/music_empty_action"
+                        style="@style/PcButton.Primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/pc_space_l"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Coluna 2: música atual e outras fontes de áudio. -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/pc_gutter"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/music_now_playing"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/pc_bg_card"
+                android:orientation="vertical"
+                android:padding="@dimen/pc_card_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/player_artwork"
+                        android:layout_width="@dimen/pc_artwork_large"
+                        android:layout_height="@dimen/pc_artwork_large"
+                        android:background="@drawable/pc_bg_artwork">
+
+                        <ImageView
+                            android:id="@+id/player_placeholder"
+                            android:layout_width="@dimen/pc_icon_l"
+                            android:layout_height="@dimen/pc_icon_l"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_music"
+                            android:tint="@color/pc_text_secondary" />
+
+                        <ImageView
+                            android:id="@+id/player_cover"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:importantForAccessibility="no"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/pc_space_l"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/player_title"
+                            style="@style/PcText.Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="2" />
+
+                        <TextView
+                            android:id="@+id/player_artist"
+                            style="@style/PcText.Body"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/pc_space_xs"
+                            android:ellipsize="end"
+                            android:maxLines="1" />
+
+                        <TextView
+                            android:id="@+id/player_details"
+                            style="@style/PcText.Caption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/pc_space_s"
+                            android:ellipsize="end"
+                            android:maxLines="1" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/player_message"
+                    style="@style/PcText.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pc_space_m"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@color/pc_warning"
+                    android:visibility="gone" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <ProgressBar
+                    android:id="@+id/player_progress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/pc_progress_height"
+                    android:max="1"
+                    android:progressDrawable="@drawable/pc_progress_bar" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pc_space_s"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/player_elapsed"
+                        style="@style/PcText.Caption"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/player_total"
+                        style="@style/PcText.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/player_previous"
+                        style="@style/PcRoundButton"
+                        android:layout_width="@dimen/pc_media_button_primary"
+                        android:layout_height="@dimen/pc_media_button_primary"
+                        android:contentDescription="@string/music_previous"
+                        android:src="@drawable/ic_skip_previous" />
+
+                    <ImageButton
+                        android:id="@+id/player_play"
+                        style="@style/PcRoundButton.Primary"
+                        android:layout_width="@dimen/pc_media_button_large"
+                        android:layout_height="@dimen/pc_media_button_large"
+                        android:layout_marginStart="@dimen/pc_space_xxl"
+                        android:contentDescription="@string/music_play"
+                        android:src="@drawable/ic_play" />
+
+                    <ImageButton
+                        android:id="@+id/player_next"
+                        style="@style/PcRoundButton"
+                        android:layout_width="@dimen/pc_media_button_primary"
+                        android:layout_height="@dimen/pc_media_button_primary"
+                        android:layout_marginStart="@dimen/pc_space_xxl"
+                        android:contentDescription="@string/music_next"
+                        android:src="@drawable/ic_skip_next" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Outras fontes: abrem os apps da central (BT Música, Rádio, player original). -->
+            <LinearLayout
+                android:id="@+id/music_sources"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pc_touch_min"
+                android:layout_marginTop="@dimen/pc_gutter"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <include
+                    android:id="@+id/source_1"
+                    layout="@layout/view_source_button"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <include
+                    android:id="@+id/source_2"
+                    layout="@layout/view_source_button"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/pc_gutter"
+                    android:layout_weight="1" />
+
+                <include
+                    android:id="@+id/source_3"
+                    layout="@layout/view_source_button"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/pc_gutter"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

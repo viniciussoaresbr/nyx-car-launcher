@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Atalho compacto (64 dp de altura): ícone e rótulo lado a lado. Usado na linha de outras
+    fontes da aba Música. Estados como o do atalho grande (pc_bg_tile e listas de cores).
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/pc_touch_min"
+    android:background="@drawable/pc_bg_tile"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/pc_space_s"
+    android:paddingEnd="@dimen/pc_space_s">
+
+    <ImageView
+        android:id="@+id/source_icon"
+        android:layout_width="@dimen/pc_icon_s"
+        android:layout_height="@dimen/pc_icon_s"
+        android:duplicateParentState="true"
+        android:importantForAccessibility="no"
+        android:tint="@color/pc_content_accent" />
+
+    <TextView
+        android:id="@+id/source_label"
+        style="@style/PcText.Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/pc_space_s"
+        android:duplicateParentState="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/pc_content_primary" />
+</LinearLayout>
