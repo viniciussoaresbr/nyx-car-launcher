@@ -1,0 +1,13 @@
+<resources>
+    <!--
+        Tema de plataforma (sem AppCompat): só define o fundo da janela para evitar
+        o "flash" branco na abertura. O visual real vem do Compose (NyxCarTheme).
+    -->
+    <style name="Theme.NyxCar" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/pc_background</item>
+        <item name="android:colorBackground">@color/pc_background</item>
+        <item name="android:colorAccent">@color/pc_accent</item>
+        <item name="android:statusBarColor">@color/pc_background</item>
+        <item name="android:navigationBarColor">@color/pc_background</item>
+    </style>
+</resources>

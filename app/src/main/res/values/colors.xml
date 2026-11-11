@@ -1,0 +1,26 @@
+<resources>
+    <!--
+        Paleta do Design System, aprovada na calibração feita na central em 09/11/2026.
+        Fonte principal das cores. PcPalette.kt espelha estes valores para o código
+        (um teste automatizado garante que os dois continuem iguais).
+    -->
+    <color name="pc_background">#FF0E1116</color>
+    <color name="pc_surface">#FF161B21</color>
+    <color name="pc_surface_high">#FF1E252D</color>
+    <color name="pc_surface_highest">#FF27303A</color>
+    <color name="pc_outline">#FF2F3943</color>
+
+    <color name="pc_text_primary">#FFE8ECEF</color>
+    <color name="pc_text_secondary">#FF8D9AA6</color>
+    <color name="pc_text_disabled">#FF5A6672</color>
+
+    <color name="pc_accent">#FF2CC8D8</color>
+    <color name="pc_accent_dim">#FF1A7F8A</color>
+    <!-- Destaque misturado à superfície (20%), opaco: evita transparência na GPU. -->
+    <color name="pc_accent_container">#FF1A3E46</color>
+    <color name="pc_on_accent">#FF00262B</color>
+
+    <color name="pc_warning">#FFE3B341</color>
+    <color name="pc_error">#FFE5534B</color>
+    <color name="pc_success">#FF3FB950</color>
+</resources>

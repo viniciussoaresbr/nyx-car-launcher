@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ícone "Wi-Fi" (Design System Nyx Car). Branco: a cor vem do tint de quem usa. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M8.82,14.82 A4.5,4.5 0 0,1 15.18,14.82 M5.64,11.64 A9,9 0 0,1 18.36,11.64 M2.45,8.45 A13.5,13.5 0 0,1 21.55,8.45"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M10.5,18 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0 Z" />
+</vector>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ícone e rótulo da barra de navegação: o destino atual fica em destaque. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/pc_accent" android:state_selected="true" />
+    <item android:color="@color/pc_text_secondary" />
+</selector>

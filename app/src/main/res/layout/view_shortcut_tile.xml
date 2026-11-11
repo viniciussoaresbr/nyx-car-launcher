@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Conteúdo do atalho (ShortcutTile): ícone de destaque + rótulo + legenda opcional. -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/tile_icon"
+        android:layout_width="@dimen/pc_icon_m"
+        android:layout_height="@dimen/pc_icon_m"
+        android:duplicateParentState="true"
+        android:importantForAccessibility="no"
+        android:tint="@color/pc_content_accent" />
+
+    <TextView
+        android:id="@+id/tile_label"
+        style="@style/PcText.Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pc_space_s"
+        android:duplicateParentState="true"
+        android:maxLines="1"
+        android:textColor="@color/pc_content_primary" />
+
+    <TextView
+        android:id="@+id/tile_caption"
+        style="@style/PcText.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pc_space_xs"
+        android:maxLines="1"
+        android:visibility="gone" />
+</merge>

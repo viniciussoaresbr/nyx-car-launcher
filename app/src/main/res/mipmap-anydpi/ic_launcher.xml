@@ -1,0 +1,23 @@
+<!-- Ícone para Android 6–7.1 (sem ícones adaptativos): quadrado arredondado + mostrador. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#0E1116"
+        android:pathData="M30,6 H78 A24,24 0 0,1 102,30 V78 A24,24 0 0,1 78,102 H30 A24,24 0 0,1 6,78 V30 A24,24 0 0,1 30,6 Z" />
+    <path
+        android:pathData="M37.03,70.97 A24,24 0 1,1 70.97,70.97"
+        android:strokeWidth="4"
+        android:strokeColor="#2CC8D8"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M54,54 L65,43"
+        android:strokeWidth="4"
+        android:strokeColor="#E8ECEF"
+        android:strokeLineCap="round" />
+    <path
+        android:fillColor="#E8ECEF"
+        android:pathData="M50,54 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0 Z" />
+</vector>

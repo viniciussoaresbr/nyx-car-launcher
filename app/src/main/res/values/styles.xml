@@ -1,0 +1,89 @@
+<resources>
+    <!--
+        Tipografia (fonte do sistema, Roboto, aprovada na calibração).
+        Tamanhos em sp; na central, 1 sp = 1 px. Mínimo de 16 sp para qualquer texto.
+    -->
+    <style name="PcText">
+        <item name="android:textColor">@color/pc_text_primary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Relógio da Home. -->
+    <style name="PcText.Clock">
+        <item name="android:textSize">112sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <!-- Títulos de tela. -->
+    <style name="PcText.Headline">
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <!-- Títulos de cartão e informação principal. -->
+    <style name="PcText.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- Texto de leitura principal. -->
+    <style name="PcText.BodyLarge">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <!-- Texto de apoio. -->
+    <style name="PcText.Body">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/pc_text_secondary</item>
+    </style>
+
+    <!-- Rótulos de botões, atalhos e navegação. -->
+    <style name="PcText.Label">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- Legendas e informação secundária. O menor tamanho permitido. -->
+    <style name="PcText.Caption">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/pc_text_secondary</item>
+    </style>
+
+    <!--
+        Botões. Sem sombra nem animação de elevação (stateListAnimator nulo): a GPU
+        Mali-450 e o teto de ~26 quadros/s pedem respostas instantâneas e baratas.
+    -->
+    <style name="PcButton" parent="android:Widget.Material.Button">
+        <item name="android:background">@drawable/pc_bg_button</item>
+        <item name="android:textColor">@color/pc_content_primary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/pc_touch_min</item>
+        <item name="android:minWidth">@dimen/pc_touch_min</item>
+        <item name="android:paddingStart">@dimen/pc_space_l</item>
+        <item name="android:paddingEnd">@dimen/pc_space_l</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="PcButton.Primary">
+        <item name="android:background">@drawable/pc_bg_button_primary</item>
+        <item name="android:textColor">@color/pc_content_on_accent</item>
+    </style>
+
+    <!-- Botões redondos (controles de mídia). -->
+    <style name="PcRoundButton" parent="android:Widget.Material.ImageButton">
+        <item name="android:background">@drawable/pc_bg_round</item>
+        <item name="android:tint">@color/pc_content_primary</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:padding">18dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="PcRoundButton.Primary">
+        <item name="android:background">@drawable/pc_bg_round_primary</item>
+        <item name="android:tint">@color/pc_content_on_accent</item>
+        <item name="android:padding">22dp</item>
+    </style>
+</resources>

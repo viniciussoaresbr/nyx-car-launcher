@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Barra de progresso da música: trilho e preenchimento do Design System (sem animação). -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@android:id/background"
+        android:drawable="@drawable/pc_progress_track" />
+    <item android:id="@android:id/progress">
+        <clip
+            android:clipOrientation="horizontal"
+            android:drawable="@drawable/pc_progress_fill"
+            android:gravity="start" />
+    </item>
+</layer-list>

@@ -1,0 +1,7 @@
+<resources>
+    <!-- Atalho da Home: ícone + rótulo. -->
+    <declare-styleable name="ShortcutTile">
+        <attr name="tileIcon" format="reference" />
+        <attr name="tileLabel" format="string" />
+    </declare-styleable>
+</resources>

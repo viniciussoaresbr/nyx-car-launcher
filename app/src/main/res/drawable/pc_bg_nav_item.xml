@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Item da barra inferior: só reage ao toque (a seleção é mostrada pela cor e pelo indicador). -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/pc_surface_high" />
+        </shape>
+    </item>
+    <item android:drawable="@android:color/transparent" />
+</selector>

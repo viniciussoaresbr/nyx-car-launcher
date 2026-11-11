@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ícone "Veículo" (Design System Nyx Car). Branco: a cor vem do tint de quem usa. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M5,11 L6.6,6.6 A1.6,1.6 0 0,1 8.1,5.5 H15.9 A1.6,1.6 0 0,1 17.4,6.6 L19,11 M4.5,11 H19.5 A1.5,1.5 0 0,1 21,12.5 V17 H3 V12.5 A1.5,1.5 0 0,1 4.5,11 Z M6,17 V19.5 M18,17 V19.5 M6.5,14 H8.5 M15.5,14 H17.5"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

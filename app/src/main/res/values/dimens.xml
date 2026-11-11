@@ -1,0 +1,46 @@
+<resources>
+    <!--
+        Medidas do Design System. Na central (160 dpi), 1 dp = 1 px.
+        Área útil para o launcher: 1280 × 655 dp (barra do sistema de 65 px no topo).
+    -->
+
+    <!-- Espaçamentos: grade de 8 dp (4 dp só para ajustes finos). -->
+    <dimen name="pc_space_xs">4dp</dimen>
+    <dimen name="pc_space_s">8dp</dimen>
+    <dimen name="pc_space_m">16dp</dimen>
+    <dimen name="pc_space_l">24dp</dimen>
+    <dimen name="pc_space_xl">32dp</dimen>
+    <dimen name="pc_space_xxl">48dp</dimen>
+
+    <!-- Estrutura da tela. -->
+    <dimen name="pc_screen_margin">24dp</dimen>
+    <dimen name="pc_gutter">16dp</dimen>
+    <dimen name="pc_card_padding">24dp</dimen>
+    <dimen name="pc_nav_bar_height">80dp</dimen>
+
+    <!-- Cantos arredondados moderados. -->
+    <dimen name="pc_radius_s">8dp</dimen>
+    <dimen name="pc_radius_m">12dp</dimen>
+    <dimen name="pc_radius_l">16dp</dimen>
+
+    <!-- Toque: nada clicável menor que isto (uso com o carro em movimento). -->
+    <dimen name="pc_touch_min">64dp</dimen>
+
+    <!-- Ícones. -->
+    <dimen name="pc_icon_s">24dp</dimen>
+    <dimen name="pc_icon_m">32dp</dimen>
+    <dimen name="pc_icon_l">56dp</dimen>
+
+    <!-- Componentes. -->
+    <dimen name="pc_tile_height">116dp</dimen>
+    <dimen name="pc_media_button">64dp</dimen>
+    <dimen name="pc_media_button_primary">80dp</dimen>
+    <dimen name="pc_media_button_large">96dp</dimen>
+    <dimen name="pc_artwork">128dp</dimen>
+    <!-- Capa no player da aba Música. -->
+    <dimen name="pc_artwork_large">160dp</dimen>
+    <dimen name="pc_progress_height">4dp</dimen>
+    <!-- Pílula atrás do ícone do destino selecionado (a barra não tem rótulos). -->
+    <dimen name="pc_nav_indicator_width">88dp</dimen>
+    <dimen name="pc_nav_indicator_height">48dp</dimen>
+</resources>
