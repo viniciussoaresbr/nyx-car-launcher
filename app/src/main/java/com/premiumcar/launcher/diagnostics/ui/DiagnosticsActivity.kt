@@ -7,6 +7,7 @@ import com.premiumcar.launcher.design.NyxCarTheme
 import com.premiumcar.launcher.diagnostics.cartest.CarTestLog
 import com.premiumcar.launcher.perf.StartupTimeline
 import com.premiumcar.launcher.player.MusicPlayer
+import com.premiumcar.launcher.ui.StableSystemBars
 
 /**
  * Painel de diagnóstico (ferramenta de desenvolvimento, em Compose).
@@ -27,6 +28,9 @@ class DiagnosticsActivity : ComponentActivity() {
                 DiagnosticsApp(activity = this)
             }
         }
+        // Como na Home (0.4.2): ao voltar do CarPlay (tela cheia, sem barra de status), o
+        // conteúdo não desce quando a barra reaparece. Relatado pelo usuário em 12/11/2026.
+        StableSystemBars.apply(window, findViewById(android.R.id.content))
     }
 
     companion object {

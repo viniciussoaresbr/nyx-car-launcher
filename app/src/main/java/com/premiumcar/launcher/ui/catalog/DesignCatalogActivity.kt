@@ -17,6 +17,7 @@ import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StyleRes
 import com.premiumcar.launcher.R
+import com.premiumcar.launcher.ui.StableSystemBars
 import com.premiumcar.launcher.ui.Destination
 import com.premiumcar.launcher.ui.components.BottomNavBar
 import com.premiumcar.launcher.ui.components.ShortcutTile
@@ -54,6 +55,7 @@ class DesignCatalogActivity : Activity() {
                 addView(content)
             },
         )
+        StableSystemBars.apply(window, findViewById(android.R.id.content)) // sem "pulo" ao voltar do CarPlay
     }
 
     // ---------- Seções ----------

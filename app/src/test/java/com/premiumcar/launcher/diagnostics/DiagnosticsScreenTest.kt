@@ -19,6 +19,8 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
+import org.robolectric.util.ReflectionHelpers
+import org.robolectric.util.ReflectionHelpers.ClassParameter
 
 /**
  * Teste de fumaça do painel na JVM (sem emulador): abre a DiagnosticsActivity real,
@@ -80,5 +82,24 @@ class DiagnosticsScreenTest {
                 }
             }
         }
+    }
+
+    @Test
+    @Config(qualifiers = "w1280dp-h720dp-land-mdpi")
+    fun `diagnostico nao pula quando o CarPlay esconde a barra de status`() {
+        val content = compose.activity.findViewById<android.view.View>(android.R.id.content)
+        fun insets(visibleTop: Int, stableTop: Int): android.view.WindowInsets = ReflectionHelpers.callConstructor(
+            android.view.WindowInsets::class.java,
+            ClassParameter.from(android.graphics.Rect::class.java, android.graphics.Rect(0, visibleTop, 0, 0)),
+            ClassParameter.from(android.graphics.Rect::class.java, null),
+            ClassParameter.from(android.graphics.Rect::class.java, android.graphics.Rect(0, stableTop, 0, 0)),
+            ClassParameter.from(Boolean::class.javaPrimitiveType, false),
+            ClassParameter.from(Boolean::class.javaPrimitiveType, false),
+        )
+        content.dispatchApplyWindowInsets(insets(visibleTop = 65, stableTop = 65))
+        assertEquals(65, content.paddingTop)
+        // Saindo do CarPlay direto para o diagnóstico: o primeiro quadro chega sem a barra.
+        content.dispatchApplyWindowInsets(insets(visibleTop = 0, stableTop = 65))
+        assertEquals("O conteúdo fica no mesmo lugar", 65, content.paddingTop)
     }
 }
