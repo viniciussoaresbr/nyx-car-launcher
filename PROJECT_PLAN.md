@@ -7,7 +7,7 @@
 | 1 — Diagnóstico | **Concluída** | Diagnóstico rodado na central em 09/11/2026. Resultados em [HARDWARE.md](HARDWARE.md). Decisão: Views nativas ([ARCHITECTURE.md](ARCHITECTURE.md), D2). ADB via Wi-Fi: bloqueado pelo fabricante; o trabalho segue por pendrive. |
 | 2 — Design System | **Concluída** | Design System em Views e Home de referência aprovados na central em 09/11/2026 (versão 0.2.1-ref: atalho "CarPlay", barra inferior só com ícones, Navegação pelo CarPlay). Ver [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md). |
 | 3 — Interface principal | **Em andamento** | 0.3.0 validada: atalhos e abas funcionam. Player USB: a limitação é do player do fabricante; decisão do usuário pendente (player próprio, de terceiros ou só abrir o player; ARCHITECTURE.md, D16). Tela de espera do ZLINK: medição dos sinais repetida na 0.3.2 (roteiro em [BUILD.md](BUILD.md), seção 6). |
-| 4 — Funcionalidades | **Em andamento** | Etapa 0.4.0 (tela inicial e player próprio) **validada no carro em 10/11/2026**. Etapas 0.4.1 (deslizar entre abas) e 0.4.2 (sem o atalho do player USB, Home sem "pulo" ao voltar do CarPlay) **validadas no carro em 11/11/2026**. Etapa 0.4.3 (novo nome Nyx Car, Play Store em Aplicativos, data e hora no relatório) **validada no carro em 11/11/2026**. Etapa 0.4.4 (Aplicativos com Favoritos editáveis e lista de todos os apps) **validada no carro em 11/11/2026**. O player original não abre mais sozinho (Reprodução automática desligada pelo usuário). |
+| 4 — Funcionalidades | **Em andamento** | Etapa 0.4.0 (tela inicial e player próprio) **validada no carro em 10/11/2026**. Etapas 0.4.1 (deslizar entre abas) e 0.4.2 (sem o atalho do player USB, Home sem "pulo" ao voltar do CarPlay) **validadas no carro em 11/11/2026**. Etapa 0.4.3 (novo nome Nyx Car, Play Store em Aplicativos, data e hora no relatório) **validada no carro em 11/11/2026**. Etapa 0.4.4 (Aplicativos com Favoritos editáveis e lista de todos os apps) **validada no carro em 11/11/2026**. Etapa 0.4.5 (volta automática do CarPlay e medição do "CarPlay pronto") testada no carro em 12/11/2026: medição concluída. Etapa 0.4.6 (correções; volta automática) **validada no carro em 12/11/2026**. Próximo: B1 (tela do Nyx Car durante a conexão), aguardando decisão do usuário. O player original não abre mais sozinho (Reprodução automática desligada pelo usuário). |
 | 5 — Otimização | Não iniciada | Linha de base de desempenho vem do diagnóstico. |
 | 6 — Distribuição | Em andamento | Código no GitHub (público): https://github.com/viniciussoaresbr/nyx-car-launcher (11/11/2026). Chave de assinatura: continua a deste PC, sem cópia (decisão do usuário; ARCHITECTURE.md, D11). |
 | 7 — Testes na multimídia | Não iniciada | |
@@ -56,7 +56,7 @@
 - [x] Validação na central (0.3.0, 10/11/2026): todos os atalhos abrem o app certo
 - [x] Investigação do player USB (0.3.1): o player do fabricante só toca e aceita comandos com a própria tela aberta, também no launcher original (D16)
 - [x] **Botões de mídia × player USB**: o usuário escolheu um **player próprio** (10/11/2026); vai para a etapa 0.4.0 (D16)
-- [ ] **Tela de espera do ZLINK**: tempos medidos (cabo 11 a 14 s, sem fio cerca de 16 s). Medição da 0.3.2: início da conexão pelo cabo identificado por sinal público; momento "CarPlay pronto" ainda sem sinal confiável (D10)
+- [ ] **Tela de espera do ZLINK**: tempos medidos (cabo 11 a 14 s, sem fio cerca de 16 s). Medição da 0.3.2: início da conexão pelo cabo identificado por sinal público; momento "CarPlay pronto" ainda sem sinal confiável (D10). Retomada na etapa 0.4.5 (D20)
 - [x] Indicador de Bluetooth: o relatório da 0.3.2 mostra "ligado (indicador visível)"
 
 ### Etapa 0.4.0: tela inicial padrão e player próprio (aprovada em 10/11/2026)
@@ -80,7 +80,8 @@ toque** para retomar; as músicas do pendrive estão soltas (sem pastas), mas o 
 - [x] Teste no carro (10/11/2026, relatório 20261110-203535): o som sai nos alto-falantes,
   o CarPlay pausa a música, ao ligar o carro a última música volta pausada e só toca com um
   toque, e o Nyx Car continua como tela inicial depois de desligar e ligar
-- [ ] Recuperação (Launcher original, Tela de início 3): não relatada
+- [x] Recuperação: **Configurações → Launcher original** abre a Tela de início 3 e o Home da
+  central traz o Nyx Car de volta (testado pelo usuário em 11/11/2026)
 - Achado: o player original abre sozinho ao conectar o pendrive. O usuário decidiu
   desativá-lo à mão (exceção à seção 9) e descartou contornar (etapa 0.4.1)
 - [ ] Nova medição do ZLINK com os sinais extras
@@ -158,7 +159,7 @@ pendrive.
 - [x] Testes (85)
 - [x] Teste no carro (11/11/2026): deslize aprovado pelo usuário ("está bem bacana"). Desativar
   o player original deixou de ser necessário (ver a atualização abaixo)
-- [ ] Recuperação (pendente desde a 0.4.0)
+- [x] Recuperação (validada em 11/11/2026; ver a etapa 0.4.0)
 
 **Atualização (11/11/2026):** o usuário encontrou a causa da abertura automática: a opção
 **Reprodução automática** em Configurações do Veículo → Geral (ajuste comum, não de fábrica).
@@ -198,7 +199,7 @@ por **Nyx Car**.
 - [x] Teste no carro (11/11/2026, relatório `nyx-car-diagnostico-20261111-171950.txt`):
   instalada por cima, "está tudo certo" segundo o usuário; o Nyx Car continuou como tela
   inicial depois da troca de nome; a Play Store abre; hora e fuso automáticos ligados
-- [ ] Recuperação (pendente desde a 0.4.0)
+- [x] Recuperação (validada em 11/11/2026; ver a etapa 0.4.0)
 
 **Riscos da 0.4.3:** a Play Store pode pedir uma conta Google ou atualizações ao abrir; isso é
 do app do Google, não do launcher. Nenhuma configuração da central é alterada.
@@ -243,6 +244,57 @@ app ficam como estão). Itens "Lista de aplicativos" e "Favoritos" da Fase 4 do 
 aparecer com o ícone genérico (o relatório mostra quais); abrir apps pela lista não muda
 nenhuma configuração da central. Os favoritos ficam guardados no app: desinstalá-lo os
 apaga (volta o padrão).
+
+### Etapa 0.4.5: volta automática do CarPlay e medição do "CarPlay pronto" (aprovada em 11/11/2026)
+
+**Pedido do usuário:** a tela de espera do ZLINK "quebra toda a imersão". Proposta dele: abrir o
+ZLINK só quando o iPhone aparecer no USB (Apple `05ac`) e voltar sozinho para o launcher quando
+o iPhone for desconectado. Análise com os dados (ARCHITECTURE.md, D20): o ZLINK já abre sozinho
+~3 s depois de o iPhone aparecer, e a tela feia é a da conexão (~8 s), que o launcher não
+acelera; a volta automática é viável.
+
+**Decisões do usuário:** fazer a 0.4.5 (volta automática + medição) e **estudar o B1** (janela
+do Nyx Car por cima do ZLINK durante a conexão), com autorização para quebrar regras iniciais do
+projeto (seção 9, terceira exceção). B2 (empurrar o ZLINK para trás) descartado.
+
+**Checklist**
+- [x] Volta automática: com o ZLINK na tela, o fim do CarPlay (cabo fora por 1,5 s ou o
+  Bluetooth da central religando depois de ter sido desligado pelo CarPlay) traz o Nyx Car
+  para a frente, como o botão Home; com outro app na tela, nada muda
+- [x] Diário: iPhone no USB, cabo conectado, Bluetooth desligado pelo CarPlay, fim da sessão e
+  o que foi feito (sem nome nem endereço de aparelho)
+- [x] Gravação dos testes: tráfego de rede por interface (só faixas de bytes por segundo) e as
+  decisões da volta automática na linha do tempo; instruções novas (apertar o Home da central
+  quando o CarPlay aparecer marca o momento real)
+- [x] Testes (119)
+- [x] Teste no carro (12/11/2026, relatório `nyx-car-diagnostico-20261112-164448.txt`): sinal de
+  "CarPlay pronto" encontrado (tráfego de rede do vídeo, ~10 s); sinais do fim confirmados
+  (Bluetooth religa, depois o USB cai). A volta com o ZLINK na tela ainda não foi exercitada:
+  em todas as desconexões o Nyx Car já estava na tela
+- [x] Com os dados: sinal escolhido e B1 proposto (ARCHITECTURE.md, D20)
+
+### Etapa 0.4.6: correções do teste da 0.4.5 (12/11/2026)
+
+- [x] Nyx Diagnóstico sem "pulo" ao voltar do ZLINK (relatado pelo usuário): barra de status
+  estável também no diagnóstico e no catálogo
+- [x] Relatório: "Testes no carro" (com o diário) lidos na hora de salvar
+- [x] Volta automática: espera de 2 s para qualquer sinal de fim, cancelada se o iPhone
+  reaparecer no USB (mau contato)
+- [x] Testes (124)
+- [x] Teste no carro (12/11/2026, relatório `nyx-car-diagnostico-20261112-172549.txt`): **a
+  volta automática funciona**, pelo cabo e ao desligar o Bluetooth (sem fio), ~2 s depois; 5
+  voltas no diário. Com outro app na tela (Configurações do Veículo) e com o Nyx Car na tela,
+  nada mudou, como previsto. O diário do relatório já inclui as gravações
+- [x] "Pulo" do Nyx Diagnóstico ao voltar do ZLINK: **sumiu** (confirmado pelo usuário)
+- [ ] Mau contato: não testado (não é urgente, segundo o usuário; fica para depois)
+
+**Riscos da 0.4.5:**
+- a volta pode não acontecer se nenhum dos dois sinais chegar ao desconectar (nenhuma
+  gravação pegou uma desconexão); o diário vai mostrar;
+- um mau contato maior que 1,5 s traz o Nyx Car para a frente; ao reconectar, o ZLINK abre
+  sozinho de novo;
+- o CarPlay sem fio depende só do sinal do Bluetooth (hipótese);
+- se o Android encerrar o processo do Nyx Car durante o CarPlay, não há volta automática.
 
 **Riscos da 0.4.1:**
 - deslize trocar de aba sem querer (solavanco) ou exigir arrasto longo demais: os limites
@@ -536,6 +588,19 @@ Nyx Car. Regras desta exceção:
   (licença), restauração de fábrica e atualização de firmware;
 - o código de ativação e outros identificadores não são registrados nem compartilhados.
 As demais regras desta seção continuam valendo.
+
+**Terceira exceção autorizada pelo usuário (11/11/2026): ZLINK e regras iniciais.** Ao aprovar a
+etapa 0.4.5, o usuário autorizou estudar uma janela do Nyx Car **sobreposta à tela de espera
+do ZLINK** (B1; seção 6: "não substituir componentes proprietários") e disse: "está autorizado
+quebrar regras que foram definidas inicialmente no projeto". Interpretação adotada:
+- vale para as regras de integração com o ZLINK (seção 6) e de comportamento do launcher
+  (por exemplo, a volta automática para a frente), no que for preciso para a tela de espera;
+- **cada quebra continua sendo explicada antes**, com risco e caminho de volta, e o usuário
+  confirma;
+- não são tocados sem um pedido específico: root, bootloader, firmware e suas atualizações,
+  partições, comandos destrutivos, desinstalação de apps originais ou do ZLINK, e o que a
+  segunda exceção proíbe no menu de fábrica;
+- o APK do ZLINK continua sem modificação.
 
 ## 10. Organização sugerida do projeto
 

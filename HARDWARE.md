@@ -171,6 +171,68 @@ Outros números:
     Atualização Mcu, a proteção de tela sem nome (`com.hcn.screensaver`), Theme e o Nyx Car.
   - Home: mediana de **623 ms** na abertura a frio (~12,6 MB de PSS). Nenhum erro do app.
 
+- **Teste da 0.4.6 no carro (12/11/2026)**, relatório
+  `diagnostico/nyx-car-diagnostico-20261112-172549.txt`: **a volta automática funciona.**
+  - 5 voltas ao Nyx Car com o ZLINK na tela de espera depois do fim do CarPlay: 3 tirando o
+    cabo e 2 no sem fio, desligando o Bluetooth do iPhone. Nos dois casos o primeiro sinal é o
+    Bluetooth da central religando; pelo cabo, o estado USB cai junto ou logo depois.
+  - Tempo: o Nyx Car volta ~2,5 s depois de o Bluetooth religar (2 s de espera contra mau
+    contato + leitura da tela). O usuário percebeu ~2 s.
+  - Sem volta, como previsto: com as Configurações do Veículo na tela
+    (`com.hcn.autosetting`) e com o cabo tirado antes de o CarPlay ficar pronto, com o Nyx Car
+    na tela.
+  - O tráfego do vídeo voltou a subir para ~1,1 a 1,2 MB/s cerca de 1,2 s depois de o
+    Bluetooth desligar e caiu em 1 a 2 s, mesmo com o ZLINK na tela (a tela parada do CarPlay
+    manda pouco vídeo): para o B1, vale a **primeira subida**.
+
+- **Teste da 0.4.5 no carro (12/11/2026)**, relatório
+  `diagnostico/nyx-car-diagnostico-20261112-164448.txt`: 5 gravações pelo cabo e 2 sem fio.
+  Tempos contados do momento em que o iPhone aparece no USB:
+
+  | Cabo | ZLINK na frente | Bluetooth da central desligando | Tráfego ≥ 1 MB/s (vídeo) | Usuário sai do ZLINK |
+  |---|---|---|---|---|
+  | 1 | +2,9 s | +8,6 s | +10,1 s | +12,2 s |
+  | 2 | +2,9 s | +8,5 s | +9,8 s | +12,0 s |
+  | 3 | +3,0 s | +8,6 s | +10,2 s (294 KB/s em +8,9 s) | +11,8 s |
+  | 4 | +3,4 s | +8,7 s | +10,3 s | +13,2 s |
+  | 5 | +2,9 s | +8,4 s | +9,7 s | +12,9 s |
+
+  - **Tráfego de rede:** os contadores por interface (`/sys/class/net`) não são legíveis por
+    apps nesta central; só o total do Android (`TrafficStats`). Mesmo assim o vídeo aparece
+    claramente: de ~0 para **1,2 a 1,4 MB/s recebidos** (e 0,6 a 0,9 MB/s enviados), sempre
+    ~1,3 s depois de o Bluetooth desligar e ~2 s antes de o usuário sair do ZLINK. Com o ZLINK
+    fora da tela, cai para ~250 KB/s (o vídeo para). É o melhor candidato a "CarPlay pronto".
+    Leitura a cada ~1 s: precisão de ~1 s.
+  - **Sem fio:** o tráfego subiu bem menos (247 a 428 KB/s); o sinal do vídeo não ficou claro.
+  - **Fim do CarPlay (cabo tirado):** chegam os dois sinais, primeiro o **Bluetooth da central
+    religando** e ~0,5 s depois o **estado USB caindo** (`connected` some). Em todas as
+    gravações o usuário já tinha voltado ao Nyx Diagnóstico antes de tirar o cabo, então a
+    volta automática corretamente não agiu ("na tela estava com.premiumcar.launcher").
+  - **Mau contato:** no diário, um cabo posto de volta logo fez o iPhone reaparecer no USB no
+    mesmo segundo em que a sessão foi dada por encerrada. Corrigido na 0.4.6 (espera de 2 s,
+    cancelada quando o iPhone reaparece).
+  - A marca do botão Home não foi usada (o usuário voltou ao diagnóstico pelo Voltar).
+  - **Comportamento do ZLINK ao tirar o cabo** (relato do usuário, 12/11/2026): com o CarPlay
+    pronto na tela, tirar o cabo faz o ZLINK **voltar para a tela de espera e ficar nela**; só
+    sai tocando no botão de voltar, no canto superior esquerdo da tela dele. É o caso que a
+    volta automática (0.4.5) resolve: o ZLINK continua na tela, então o Nyx Car volta para a
+    frente.
+  - **"Pulo" no Nyx Diagnóstico** ao voltar do ZLINK direto para ele (relato do usuário):
+    corrigido na 0.4.6.
+
+- **Conexão do CarPlay pelo cabo: as 5 gravações juntas (análise de 11/11/2026, 0.3.2 e
+  0.4.0)**, contando do momento em que o iPhone aparece no USB:
+  - o iPhone some da lista USB em 0,6 a 1,2 s e a central vira "aparelho" (estado USB
+    `connected` e `configured`) em 1,8 a 2,3 s;
+  - **o ZLINK abre sozinho em 2,7 a 3,4 s** (todas as vezes, com o Nyx Diagnóstico na tela);
+  - a central desliga o próprio Bluetooth em **8,3 a 8,6 s** (as duas gravações da 0.4.0, que
+    registram o Bluetooth) e também no CarPlay sem fio;
+  - o usuário voltou ao app em **11,4 a 11,8 s**, logo depois de o CarPlay aparecer (pedido da
+    gravação); coerente com o cronômetro dele (~11 s);
+  - **nenhuma propriedade do sistema** muda quando o CarPlay aparece (a gravação compara todas
+    a cada segundo), nem os tipos de áudio tocando;
+  - **nenhuma gravação pegou uma desconexão** (todas terminaram com o iPhone conectado): os
+    sinais do fim do CarPlay ainda são hipóteses (estado USB caindo, Bluetooth religando).
 - **Medição da conexão do CarPlay (0.3.2, 10/11/2026)**, relatório
   `diagnostico/premium-car-diagnostico-20261110-165729.txt`: 6 gravações, 3 pelo cabo e 3
   sem fio (numa delas nada mudou em 17 s). Tempos contados a partir do primeiro sinal de

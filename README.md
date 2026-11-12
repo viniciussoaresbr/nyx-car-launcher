@@ -5,7 +5,7 @@ RAM), com visual inspirado nas interfaces premium: fundo grafite, superfícies e
 destaque turquesa. É **leve** e **independente**: não altera firmware, ZLINK nem o
 launcher original.
 
-## Situação atual: Fase 4 — funcionalidades (etapa 0.4.4 validada no carro)
+## Situação atual: Fase 4 — funcionalidades (etapa 0.4.6 validada no carro)
 
 - **Fase 1 (concluída):** o diagnóstico na central mostrou Android 8.1 real (rotulado
   como 13), 4× Cortex-A7 a 1,1 GHz, GPU Mali-450 e tela a 160 dpi com área útil de
@@ -31,7 +31,9 @@ launcher original.
   CarPlay. **0.4.1 e 0.4.2 validadas no carro em 11/11/2026.** A `0.4.3` põe a **Play Store**
   no lugar vazio de Aplicativos e traz o novo nome, **Nyx Car** (validada em 11/11/2026). A
   `0.4.4` divide Aplicativos em **Favoritos | Todos**: 12 favoritos escolhidos pelo usuário
-  (botão Editar) e a lista de todos os apps da central, com ícones de traço. Roteiro de teste no [BUILD.md](BUILD.md), seção 6.
+  (botão Editar) e a lista de todos os apps da central, com ícones de traço (validada em
+  11/11/2026). A `0.4.5` traz o Nyx Car de volta sozinho quando o CarPlay termina e mede o
+  momento em que o CarPlay fica pronto. Roteiro de teste no [BUILD.md](BUILD.md), seção 6.
 
 | Documento                            | Conteúdo                                                                           |
 | ------------------------------------ | ---------------------------------------------------------------------------------- |

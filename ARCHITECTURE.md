@@ -10,7 +10,8 @@ Um único módulo Gradle (`app`), organizado por pacotes:
 ```
 app/src/main/java/com/premiumcar/launcher/
 ├── app/           Application e MainActivity (janela única: Home + abas, em Views)
-├── launcher/      Abertura de apps e telas do sistema (AppLauncher), apps da central (CarApps)
+├── launcher/      Abertura de apps e telas do sistema (AppLauncher), apps da central (CarApps),
+│                  lista Todos e favoritos (0.4.4), volta automática do CarPlay (CarPlayReturn, 0.4.5)
 ├── player/        (0.4.0) Player do pendrive: MusicPlayer, PlaybackService, leitura por
 │                  pastas (MusicStorage), etiquetas (TrackReader), memória e diário
 ├── system/        Leituras do sistema para a interface: Wi-Fi, Bluetooth, thread de
@@ -89,7 +90,8 @@ extra.
   `SYSTEM_UI_FLAG_LAYOUT_STABLE` no 8.1, `getInsetsIgnoringVisibility` no 11+), ou a visível,
   se for maior. Antes, ao voltar do CarPlay (tela cheia, sem barra de status), a Home descia
   65 px quando a barra reaparecia. Mudanças nessa margem vão para o diário do app.
-  **Confirmado no carro em 11/11/2026.**
+  **Confirmado no carro em 11/11/2026.** Na 0.4.6 também no Nyx Diagnóstico e no catálogo
+  de componentes (o usuário viu o mesmo pulo ao voltar do ZLINK direto para o diagnóstico).
 - **Voltar:** numa aba, volta para a Home; na Home, não faz nada (comportamento de
   launcher). No Android 13+ via `OnBackInvokedCallback`; até o 12 (a central), via
   `onBackPressed`.
@@ -242,6 +244,9 @@ diagnóstico. Nada de interceptar, modificar ou depender de componentes internos
     AVRCP, HFP do lado carro, enlace ACL; nunca nome nem endereço), os tipos de áudio tocando
     (`AudioPlaybackCallback`: mídia, navegação, chamada…) e o modo de áudio. Nenhuma tela por
     cima do ZLINK nesta etapa.
+  - **0.4.5 (11/11/2026):** o usuário pediu de novo, como o ponto mais importante para a
+    imersão, e autorizou quebrar as regras iniciais (plano, seção 9, terceira exceção). Ver
+    **D20**: volta automática ao Nyx Car e estudo da sobreposição (B1).
 
 ### D15 — Atalhos para os apps da central (Fase 3)
 - Os pacotes vêm do diagnóstico (`launcher/CarApps`). A abertura usa a entrada padrão
@@ -358,6 +363,66 @@ nosso (sem ADB não há logcat).
 - **R8 com `-dontobfuscate` e números de linha:** sem ADB, um erro ofuscado não poderia ser
   traduzido de volta. Remoção de código e otimizações continuam; o APK cresce ~33 KB.
 
+### D20 — CarPlay: volta automática e tela de espera do ZLINK (0.4.5)
+Pedido do usuário (11/11/2026): o launcher detectar o iPhone no USB (Apple, `05ac`) e só então
+abrir o ZLINK, para ele aparecer já conectando; e voltar sozinho para o launcher quando o iPhone
+for desconectado.
+
+**O que as gravações mostram** (5 conexões pelo cabo; HARDWARE.md, seção 5), contando do
+momento em que o iPhone aparece no USB:
+
+| Tempo | O que acontece |
+|---|---|
+| 0 s | o iPhone aparece no USB (Apple `05ac`): sinal público, que o Nyx Car consegue ver |
+| ~1 s | ele some da lista: a central vira "aparelho" USB do iPhone (inversão de papéis do CarPlay) |
+| 2,7 a 3,4 s | **o ZLINK abre sozinho**, já com a tela "conectando" (quem faz é o sistema do fabricante) |
+| 8,3 a 8,6 s | a central desliga o próprio Bluetooth |
+| ~11 s | o CarPlay aparece (cronômetro do usuário; a volta ao app nas gravações foi a 11,4 a 11,8 s) |
+
+- **Abrir o ZLINK ao detectar o iPhone: não resolve.** O ZLINK já abre sozinho ~3 s depois; o
+  launcher só anteciparia a tela feia. O que se vê são os ~8 s da conexão entre o iPhone e o
+  ZLINK, que nada no launcher acelera. Não implementado.
+- **Volta automática ao desconectar: implementada** (`launcher/CarPlaySession`, regras puras;
+  `launcher/CarPlayReturn`, escuta do Android, instalada no `Application` só no processo
+  principal):
+  - sinais públicos: estado da porta USB (`USB_STATE`, extra `connected`: cai quando o cabo do
+    iPhone sai) e estado do Bluetooth da central (desligado com o ZLINK na tela = CarPlay
+    entrando; religado = CarPlay saindo, o que cobre também o sem fio). Nenhuma gravação pegou
+    uma desconexão, então os dois são hipóteses a confirmar; o diário registra qual chegou;
+  - o cabo precisa ficar 1,5 s desconectado (mau contato não conta); cada sessão termina uma
+    vez só; um "Bluetooth religou" atrasado da sessão anterior não encerra a nova;
+  - só volta se o **ZLINK estiver na tela** (`sys.top.activity`, lida com `getprop` em segundo
+    plano); com outro app na tela (Maps, por exemplo) ou sem conseguir ler, nada muda;
+  - volta como o botão Home (`ACTION_MAIN` + `CATEGORY_HOME` para a `MainActivity`). No
+    Android 8.1 um app em segundo plano pode abrir uma tela; a restrição só veio no 10;
+  - sem serviço: são receptores registrados enquanto o processo existe (a Home quase sempre
+    está). Se o Android encerrar o processo durante o CarPlay, não há volta automática.
+- **Tela de espera (estudo do B1, autorizado em 11/11/2026):** uma janela do Nyx Car
+  sobreposta ao ZLINK ("Conectando ao CarPlay…" no padrão da interface), do iPhone aparecer
+  até o CarPlay ficar pronto. O ZLINK continua na frente, por baixo, sem nenhuma mudança na
+  conexão. Exige a permissão "Sobrepor a outros apps" e sairia por: CarPlay pronto, tempo
+  máximo (~20 s), toque, cabo desconectado ou o ZLINK deixar a tela. **Falta o sinal de
+  "CarPlay pronto"**:
+  - todas as propriedades do sistema são comparadas a cada segundo nas gravações, e nenhuma
+    muda quando o CarPlay aparece; os tipos de áudio tocando também não;
+  - o Bluetooth da central desligando vem ~2,5 s antes da imagem (cedo demais); a sessão de
+    música Bluetooth do iPhone sumindo coincide, mas só existe com o iPhone no Bluetooth;
+  - **0.4.5:** a gravação passa a medir o tráfego de rede por interface (`NetTraffic`; só
+    bytes por segundo): o vídeo do CarPlay chega pelo cabo, e o começo desse fluxo pode
+    marcar a imagem aparecendo. No carro, o usuário aperta o Home da central assim que o
+    CarPlay aparece, o que marca o momento real na linha do tempo.
+- **Resultado da medição (0.4.5, 12/11/2026):** o tráfego de rede total (os contadores por
+  interface não são legíveis) sobe de ~0 para 1,2 a 1,4 MB/s entre 9,7 e 10,3 s depois de o
+  iPhone aparecer no USB, sempre ~1,3 s depois de o Bluetooth da central desligar e ~2 s antes
+  de o usuário sair do ZLINK. **Proposta para o B1:** retirar a janela quando, depois de o
+  Bluetooth desligar com o ZLINK na tela, o tráfego passar de ~512 KB/s, lido a cada 250 ms
+  enquanto a janela estiver na tela; com tempo máximo de 20 s. Só pelo cabo (sem fio, o
+  tráfego sobe pouco). Na 0.4.6, a volta automática passou a esperar 2 s por qualquer sinal
+  de fim e a cancelar se o iPhone reaparecer no USB (mau contato visto no diário).
+- **B2 descartado:** trazer o Nyx Car para a frente quando o ZLINK abre sozinho e reabri-lo
+  depois. Piscaria o ZLINK e pode impedir a conexão de seguir com ele escondido (risco para a
+  navegação do usuário).
+
 ### D19 — Nome: Nyx Car (11/11/2026)
 O usuário trocou o nome "Premium Car", genérico demais, por **Nyx Car**. Muda tudo o que
 aparece: nome do app e do ícone de diagnóstico ("Nyx Diagnóstico"), textos, título e nome do
@@ -439,6 +504,7 @@ Nada além disso. Qualquer nova dependência precisa de justificativa registrada
 | ~~Som de app comum não sair nos alto-falantes~~ | — | **Sai normalmente (0.4.0)** |
 | ~~Central só "dormir" ao desligar o carro~~ | — | **Ela dorme, mas fecha os apps:** a música volta pausada, como decidido (0.4.0) |
 | ~~Player original abre sozinho ao conectar o pendrive~~ | — | **Resolvido pelo usuário (11/11/2026):** "Reprodução automática" desligada em Configurações do Veículo → Geral. O atalho dele saiu do launcher na 0.4.2 |
+| Volta automática ao Nyx Car disparar sem querer (mau contato no cabo, Bluetooth religando durante o CarPlay) | O Nyx Car vem para a frente com o CarPlay ainda ativo | Só com o ZLINK na tela; o cabo precisa ficar 1,5 s fora; uma volta por sessão; o diário registra o sinal que disparou (0.4.5, a confirmar no carro) |
 | Deslize trocar de aba sem querer (solavanco) | Aba errada com o carro em movimento | Só arrasto claramente horizontal e de 154 px (ou gesto rápido). Aprovado pelo usuário no teste da 0.4.1 (11/11/2026); limites ajustáveis se aparecer problema |
 | Relógio voltar para a data do firmware numa partida do zero (visto em 11/11/2026) | Hora e data erradas na Home (e no diário) até a central acertar o relógio (~3 h nesse dia) | O launcher só mostra a hora do sistema. A 0.4.3 informa no relatório se a hora automática está ligada; a correção, se precisar, é um ajuste comum de data e hora |
 | Perda da chave de assinatura (só neste PC) | Atualizar exige desinstalar e configurar de novo | Aceito pelo usuário (11/11/2026, D11): sem cópia da chave; o código está no GitHub |

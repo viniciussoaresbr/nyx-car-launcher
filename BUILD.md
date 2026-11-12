@@ -101,6 +101,15 @@ APK gerado: **`app/build/outputs/apk/release/nyx-car-launcher-release.apk`**
   escolher um favorito troca os dois de lugar; "Restaurar padrão"; Voltar na escolha e na
   edição; nome longo com a legenda "Favorito" em uma linha. Regras na JVM (`FavoritesTest`):
   sempre 12, sem repetição, lista guardada inválida completada com o padrão.
+- CarPlay (0.4.5), com avisos USB e Bluetooth simulados: cabo fora com o ZLINK na tela traz o
+  Nyx Car de volta (como o Home); mau contato curto não faz nada; com outro app na tela nada
+  muda; sem fio pelo Bluetooth; fim pelo cabo e pelo Bluetooth volta uma vez só. Regras na
+  JVM (`CarPlaySessionTest`), inclusive o Bluetooth atrasado da sessão anterior, e o tráfego
+  de rede da gravação (`NetTrafficTest`).
+- 0.4.6: a sequência real do cabo tirado (Bluetooth religa, depois o USB cai) volta uma vez
+  só; mau contato com o iPhone reaparecendo no USB não encerra; o Nyx Diagnóstico mantém a
+  margem da barra de status quando o CarPlay a esconde; o diário entra no relatório com o que
+  aconteceu depois de abrir o diagnóstico.
 - As capturas aprovadas de cada versão ficam em `docs/design/`.
 - Relatório HTML: `app/build/reports/tests/testDebugUnitTest/index.html`.
 
@@ -136,53 +145,34 @@ APK gerado: **`app/build/outputs/apk/release/nyx-car-launcher-release.apk`**
 Se aparecer **"App não instalado"** ou **"Erro ao analisar o pacote"**, anote a mensagem
 exata. Isso indica que o Android real é anterior ao 6.0, um dado importante para o diagnóstico.
 
-## 6. Roteiro de teste na central (versão 0.4.4)
+## 6. Roteiro de teste na central (versão 0.4.6)
 
-Valida os **favoritos** e a página **Todos** da aba Aplicativos (0.4.4). As versões 0.4.0 a 0.4.3 já foram
-validadas; só a recuperação continua pendente. Instale **por cima** (toque em "Atualizar").
-Anote as respostas das perguntas em **negrito**: elas não aparecem no relatório.
+Valida as correções do teste da 0.4.5 e o caso da volta automática que ainda não aconteceu no
+carro: **tirar o cabo com o CarPlay na tela**. Instale **por cima** (toque em "Atualizar"). Faça
+com o **carro parado**. Anote as respostas das perguntas em **negrito**.
 
-**A. Aplicativos: Favoritos | Todos (0.4.4)**
+**A. Nyx Diagnóstico sem "pulo"**
 
-1. Abra a aba Aplicativos: no alto, à direita, aparecem o botão de **lápis** (Editar) e o
-   seletor **Favoritos | Todos**, com **Favoritos** marcado e os mesmos 12 atalhos de antes.
-2. Toque em **Todos**: aparecem os apps da central em ordem alfabética, com ícones de traço e
-   atalhos do **mesmo tamanho** dos Favoritos. À direita há uma barra de rolagem: role até o
-   fim (20 apps, 5 linhas). **Não** devem aparecer Música USB, Theme, "atualização",
-   Atualização Mcu, Atualização de Rede Can nem o próprio Nyx Car.
-3. Abra 2 ou 3 apps pela lista (por exemplo, Chrome, Instruções, Scan de imagens) e volte
-   com o Home da central. **Abriram o app certo?**
-4. Vá para outra aba e volte para Aplicativos: abre de novo em **Favoritos**.
-5. **Os ícones novos (Chrome, Google, Instruções, Scan de imagens) combinam com os outros?**
-   **Algum nome ficou cortado?**
+1. No Nyx Diagnóstico → Testes no carro, toque em **Iniciar gravação** e conecte o iPhone pelo
+   cabo. Com o CarPlay na tela, volte direto para o Nyx Diagnóstico (Voltar). **A tela ainda
+   desce e sobe?**
 
-**B. Editar favoritos (0.4.4)**
+**B. Volta automática com o CarPlay na tela (repita 2 vezes)**
 
-6. Em Favoritos, toque no **lápis**: o título vira "Editar favoritos", os 12 ganham borda
-   turquesa e a legenda "Trocar", e aparecem **Restaurar padrão** e **Concluir**.
-7. Toque num favorito (por exemplo, Vídeo): abre a lista "Trocar “Vídeo” por…", com os
-   favoritos marcados (role para ver todos). Escolha um app que **não** é favorito (por exemplo, Chrome): ele entra
-   no lugar do Vídeo.
-8. Toque noutro favorito e escolha um app que **já** é favorito: os dois trocam de lugar.
-9. Toque em **Concluir** e abra um dos favoritos novos. Depois desligue e ligue o carro:
-   **os favoritos continuam como você deixou?**
-10. Se quiser voltar ao início: **Editar → Restaurar padrão → Concluir**.
-11. **A edição ficou fácil de entender? Algo para mudar?**
+2. Abra o CarPlay e espere ele aparecer. **Com o CarPlay na tela**, desconecte o cabo do
+   iPhone. **O Nyx Car voltou sozinho em 2 a 3 s?**
+3. **Mau contato:** com o CarPlay na tela, tire o cabo e ponha de volta bem rápido. O Nyx Car
+   **não** deve aparecer; o ZLINK reconecta sozinho.
+4. **Outro app na tela:** com o CarPlay conectado, abra outro app (por exemplo, Maps) e tire o
+   cabo. O Nyx Car **não** deve aparecer por cima.
 
-**C. Recuperação (pendente desde a 0.4.0)**
+**C. Relatório (atenção aos 0 bytes)**
 
-12. **Configurações → Launcher original** abre a tela de início original? O Home da central
-    traz de volta o Nyx Car?
-
-**D. Relatório (atenção aos 0 bytes)**
-
-13. No Nyx Diagnóstico, com o pendrive conectado, toque em **Salvar em…** e escolha o
-   **pendrive**. Espere a mensagem **"Relatório salvo e conferido (N KB). Já pode remover o
-   pendrive."** antes de removê-lo. Se o seletor não mostrar o pendrive, use **Salvar em
-   Download** e copie com o gerenciador de arquivos (espere uns 30 s antes de remover).
-14. Traga o `.txt` para a pasta `diagnostico/`, junto com as anotações. Em "Atalhos e
-    indicadores do launcher", o relatório lista os favoritos e o que aparece e o que fica
-    escondido em Todos.
+5. No Nyx Diagnóstico, pare a gravação se ainda estiver ligada, toque em **Salvar em…** e
+   escolha o **pendrive**. Espere a mensagem **"Relatório salvo e conferido (N KB). Já pode
+   remover o pendrive."** antes de removê-lo.
+6. Traga o `.txt` para a pasta `diagnostico/`. Agora o diário do relatório inclui o que
+   aconteceu depois de abrir o diagnóstico (cada volta automática e o sinal que a disparou).
 
 O relatório omite identificadores (número de série, MAC, IMEI, dados de rede). O diário do
 app não tem nomes de músicas; avisos de outros players podem ter: revise o arquivo antes

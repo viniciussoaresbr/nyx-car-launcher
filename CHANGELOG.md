@@ -2,6 +2,54 @@
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
+## [0.4.6] — 2026-11-12
+
+Correções depois do teste da 0.4.5 no carro (relatório `nyx-car-diagnostico-20261112-164448.txt`).
+**Validada no carro em 12/11/2026:** a volta automática funciona pelo cabo e no sem fio.
+
+### Corrigido
+- **Nyx Diagnóstico "pulando" ao voltar do CarPlay** (relatado pelo usuário): o mesmo problema
+  que a Home tinha antes da 0.4.2. O diagnóstico e o catálogo de componentes passam a reservar
+  sempre a altura estável da barra de status (`ui/StableSystemBars`).
+- **Diário desatualizado no relatório:** a parte "Testes no carro" era lida quando o Nyx
+  Diagnóstico abria; o que acontecia depois (as gravações) só aparecia na linha do tempo. Agora
+  é lida de novo na hora de salvar.
+
+### Alterado
+- **Volta automática mais resistente a mau contato**, com base nas gravações: ao tirar o cabo,
+  o Bluetooth da central religa ~0,5 s antes de o USB cair. Os dois sinais agora esperam 2 s, e
+  o iPhone reaparecendo no USB (ou a porta voltando a conectar) nesse intervalo cancela o fim.
+  Antes, um cabo tirado e posto de volta rápido encerrava a sessão.
+
+### Documentação
+- Resultado da medição da 0.4.5: o tráfego de rede do vídeo começa ~10 s depois de o iPhone
+  aparecer no USB, ~1,3 s depois de o Bluetooth da central desligar, logo antes de o CarPlay
+  aparecer: é o candidato ao sinal de "CarPlay pronto" para o B1 (HARDWARE.md, seção 5;
+  ARCHITECTURE.md, D20).
+
+## [0.4.5] — 2026-11-11
+
+Pedido do usuário: a tela de espera do ZLINK "quebra toda a imersão". Primeiro passo
+(ARCHITECTURE.md, D20).
+
+### Adicionado
+- **Volta automática ao Nyx Car quando o CarPlay termina:** com o ZLINK na tela, tirar o cabo
+  do iPhone (fora por 1,5 s, para um mau contato não contar) ou o Bluetooth da central religar
+  depois do CarPlay traz o Nyx Car para a frente, como o botão Home. Com outro app na tela,
+  nada muda. Só avisos públicos do Android, sem serviço em segundo plano e sem mexer no ZLINK.
+- Diário do app: iPhone no USB, cabo conectado, Bluetooth desligado pelo CarPlay e o fim de
+  cada sessão, com o que foi feito.
+- Nyx Diagnóstico → Testes no carro: a gravação mede o **tráfego de rede por interface** (só
+  bytes por segundo), em busca do momento em que o CarPlay fica pronto, e registra as decisões
+  da volta automática. Instruções novas: apertar o Home da central quando o CarPlay aparecer.
+
+### Documentação
+- Recuperação pelo **launcher original validada** pelo usuário (11/11/2026).
+- Análise das 5 conexões pelo cabo: o ZLINK já abre sozinho ~3 s depois de o iPhone aparecer
+  no USB; abrir o ZLINK pelo launcher não encurtaria a espera (HARDWARE.md, seção 5).
+- Terceira exceção às regras do plano (seção 9): estudo de uma tela do Nyx Car por cima do
+  ZLINK durante a conexão (B1).
+
 ## [0.4.4] — 2026-11-11
 
 Validada no carro em 11/11/2026 (rolagem de "Todos" e botão de lápis aprovados pelo usuário).
