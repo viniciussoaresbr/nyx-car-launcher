@@ -55,7 +55,7 @@ object PlayerChecks {
         }
     }
 
-    private fun events(context: Context) = section("Diário de eventos (player e erros do app)") {
+    private fun events(context: Context) = section("Diário de eventos (player, CarPlay e erros do app)") {
         val lines = PlayerLog.read(context)
         if (lines.isEmpty()) add("Registros", "nenhum ainda: abra o Nyx Car e toque uma música")
         lines.forEach { (time, text) ->

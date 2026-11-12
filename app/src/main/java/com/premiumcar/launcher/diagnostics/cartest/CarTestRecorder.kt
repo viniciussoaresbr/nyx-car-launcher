@@ -34,6 +34,8 @@ import com.premiumcar.launcher.diagnostics.UsbDevices
  * - (0.4.0) conexões Bluetooth por perfil, sem nome nem endereço do aparelho; tipos de áudio
  *   tocando (mídia, navegação, chamada…); modo de áudio (normal, em chamada…). Em busca de um
  *   sinal confiável de "CarPlay pronto" (ARCHITECTURE.md, D10).
+ * - (0.4.5) tráfego de rede por interface ([NetTraffic]): só faixas de bytes por segundo. E as
+ *   decisões da volta automática ao Nyx Car (CarPlayReturn) entram na mesma linha do tempo.
  *
  * Somente leitura e por tempo limitado: começa e termina por ação do usuário (ou ao fim
  * dos 3 minutos). Não envia nada ao iPhone, ao ZLINK ou ao player.
@@ -61,6 +63,9 @@ object CarTestRecorder {
     private var lastUsb: List<String>? = null
     private var lastMode: Int? = null
     private var lastPlayback: String? = null
+    private var lastNet: Map<String, NetTraffic.Bytes>? = null
+    private var lastNetAt = 0L
+    private val netLevels = mutableMapOf<String, Int>()
     private var playbackCallback: Any? = null // AudioManager.AudioPlaybackCallback (Android 8+)
 
     val elapsedMillis: Long get() = if (running) SystemClock.uptimeMillis() - startedAt else 0L
@@ -77,6 +82,8 @@ object CarTestRecorder {
         lastUsb = null
         lastMode = null
         lastPlayback = null
+        lastNet = null
+        netLevels.clear()
         startedAt = SystemClock.uptimeMillis()
         running = true
         CarTestLog.markOrigin(startedAt)
@@ -143,6 +150,7 @@ object CarTestRecorder {
             runCatching { pollMusic(app) }
             runCatching { pollSessions(app) }
             runCatching { pollUsb(app) }
+            runCatching { pollNetwork() }
             if (!running) return
             CarTestLog.changed() // atualiza o contador de tempo na tela
             worker?.postDelayed(this, POLL_MS)
@@ -189,6 +197,22 @@ object CarTestRecorder {
             log("Lista USB do Android: ${if (devices.isEmpty()) "vazia" else devices.joinToString(" | ")}")
         }
         lastUsb = devices
+    }
+
+    private fun pollNetwork() {
+        val now = SystemClock.uptimeMillis()
+        val current = NetTraffic.read()
+        val previous = lastNet
+        val seconds = (now - lastNetAt) / 1000.0
+        lastNet = current
+        lastNetAt = now
+        if (previous == null) {
+            val names = current.keys.joinToString(", ").ifEmpty { "nenhuma legível" }
+            val source = if (current.keys == setOf(NetTraffic.TOTAL)) "só o total do Android" else "por interface"
+            log("Início: interfaces de rede ($source): $names")
+            return
+        }
+        NetTraffic.changes(previous, current, seconds, netLevels).forEach(::log)
     }
 
     /** Registra só se a gravação ainda estiver ativa (a leitura em andamento pode terminar depois do "parar"). */

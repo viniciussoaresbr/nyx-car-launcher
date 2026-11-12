@@ -54,9 +54,10 @@ internal fun CarTestsPanel(sections: List<InfoSection>?, onRefresh: () -> Unit, 
         item {
             TestCard(
                 title = "1. Gravação (até ${CarTestRecorder.DURATION_MS / 1000} s)",
-                text = "CarPlay: inicie, conecte o iPhone pelo cabo e espere o CarPlay aparecer; conte os " +
-                    "segundos. Player USB: inicie, toque uma música do pendrive, saia do player e volte " +
-                    "aqui. A gravação continua com o Nyx Diagnóstico em segundo plano.",
+                text = "CarPlay (0.4.5): inicie e conecte o iPhone pelo cabo. Assim que o CarPlay aparecer, " +
+                    "aperte o botão Home da central: isso marca o momento. Depois toque em CarPlay no Nyx " +
+                    "Car e desconecte o cabo: o Nyx Car deve voltar sozinho. Volte aqui e pare a gravação. " +
+                    "A gravação continua com o Nyx Diagnóstico em segundo plano.",
             ) {
                 if (running) {
                     Button(onClick = { CarTestRecorder.stop("pelo usuário") }) { Text("Parar gravação") }
