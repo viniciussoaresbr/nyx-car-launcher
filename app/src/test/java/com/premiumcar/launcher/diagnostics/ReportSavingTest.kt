@@ -3,6 +3,8 @@ package com.premiumcar.launcher.diagnostics
 import android.net.Uri
 import androidx.test.core.app.ApplicationProvider
 import com.premiumcar.launcher.diagnostics.cartest.CarTestLog
+import com.premiumcar.launcher.player.PlayerLog
+import com.premiumcar.launcher.system.Background
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -68,5 +70,17 @@ class ReportSavingTest {
         assertFalse(CarTestLog.wasInterrupted(listOf("Comando Play/Pause via sistema: enviado")))
         // Uma gravação antiga encerrada não esconde uma nova que ficou pela metade.
         assertTrue(CarTestLog.wasInterrupted(listOf(started, "${CarTestLog.ENDED} (pelo usuário)", started)))
+    }
+
+    @Test
+    fun `diario no relatorio e lido na hora de salvar, nao na abertura do diagnostico`() {
+        Background.executor = java.util.concurrent.Executor { it.run() }
+        PlayerLog.resetForTests()
+        PlayerLog.attach(context)
+        // Coleta feita ao abrir o diagnóstico, antes do teste no carro.
+        val opened = DiagnosticReport(mapOf(DiagnosticTab.CAR_TESTS to PlayerChecks.sections(context)))
+        PlayerLog.add("CarPlay: terminou (cabo desconectado): o Nyx Car voltou para a frente")
+        val text = ReportExporter.buildText(context, opened, emptyList())
+        assertTrue(text.contains("CarPlay: terminou (cabo desconectado): o Nyx Car voltou para a frente"))
     }
 }

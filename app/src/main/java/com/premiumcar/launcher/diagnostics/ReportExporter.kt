@@ -12,6 +12,7 @@ import android.os.ParcelFileDescriptor
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import com.premiumcar.launcher.diagnostics.cartest.CarTestLog
+import com.premiumcar.launcher.diagnostics.cartest.PlayerInfo
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
@@ -120,6 +121,10 @@ object ReportExporter {
         pendingFile(context).delete()
     }
 
+    /** Seções dos testes no carro lidas agora, ou nulo se a leitura falhar (vale a da abertura). */
+    private fun carTests(context: Context): List<InfoSection>? =
+        runCatching { PlayerChecks.sections(context) + PlayerInfo.sections(context) + CarTestLog.section() }.getOrNull()
+
     fun buildText(context: Context, report: DiagnosticReport, performance: List<InfoSection>): String = buildString {
         val now = SimpleDateFormat("dd/MM/yyyy HH:mm:ss (zzz)", Locale.forLanguageTag("pt-BR")).format(Date())
         appendLine("NYX CAR LAUNCHER — RELATÓRIO DE DIAGNÓSTICO")
@@ -129,7 +134,9 @@ object ReportExporter {
         DiagnosticTab.entries.forEach { tab ->
             val sections = when (tab) {
                 DiagnosticTab.PERFORMANCE -> performance
-                DiagnosticTab.CAR_TESTS -> report.sections[tab].orEmpty() + CarTestLog.section()
+                // Lidos de novo na hora de salvar (0.4.5): o diário e o player mudam durante os
+                // testes, depois de a tela do diagnóstico ter sido aberta.
+                DiagnosticTab.CAR_TESTS -> carTests(context) ?: report.sections[tab].orEmpty() + CarTestLog.section()
                 else -> report.sections[tab].orEmpty()
             }
             if (sections.isEmpty()) return@forEach
