@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Tela de espera do CarPlay do Nyx Car (B1, 0.4.7): janela sobreposta à tela de espera do
+    ZLINK enquanto o CarPlay conecta (launcher/CarPlayWaitScreen). Sem animação: só o texto muda.
+    Um toque em qualquer lugar responde (na 0.4.10, "Conectando" volta ao Nyx Car). O fundo é pintado aqui porque uma janela sobreposta não tem
+    o fundo do tema (não há pintura dupla).
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pc_background"
+    android:clickable="true"
+    android:focusable="true"
+    tools:ignore="Overdraw">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:background="@drawable/pc_bg_icon_circle">
+
+            <ImageView
+                android:layout_width="@dimen/pc_icon_l"
+                android:layout_height="@dimen/pc_icon_l"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_carplay"
+                android:tint="@color/pc_accent" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/carplay_wait_title"
+            style="@style/PcText.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/pc_space_xl"
+            android:text="@string/carplay_wait_title_connecting" />
+
+        <TextView
+            android:id="@+id/carplay_wait_status"
+            style="@style/PcText.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/pc_space_s"
+            android:text="@string/carplay_wait_status_cable" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/carplay_wait_hint"
+        style="@style/PcText.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/pc_space_xxl"
+        android:text="@string/carplay_wait_hint" />
+</FrameLayout>
