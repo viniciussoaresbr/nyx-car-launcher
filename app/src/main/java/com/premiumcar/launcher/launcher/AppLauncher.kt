@@ -91,6 +91,10 @@ class AppLauncher(context: Context) {
 
     private fun start(intent: Intent?, from: Context): Boolean {
         if (intent == null) return false
+        // CarPlay sem iPhone conectado: "Aguardando o iPhone" no lugar da tela parada do ZLINK (0.4.8).
+        if (intent.component?.packageName == CarApps.CARPLAY.packageName && CarPlayReturn.interceptCarPlay()) return true
+        // O ZLINK aberto pelo usuário não é o ZLINK abrindo sozinho (tela de espera do Nyx Car, 0.4.7).
+        CarPlayReturn.markUserLaunch()
         return try {
             from.startActivity(intent)
             true

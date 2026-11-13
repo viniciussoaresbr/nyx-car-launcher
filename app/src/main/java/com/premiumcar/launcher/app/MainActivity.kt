@@ -20,6 +20,7 @@ import com.premiumcar.launcher.diagnostics.ui.DiagnosticsActivity
 import com.premiumcar.launcher.launcher.AppLauncher
 import com.premiumcar.launcher.launcher.AppTarget
 import com.premiumcar.launcher.launcher.CarApps
+import com.premiumcar.launcher.launcher.CarPlayReturn
 import com.premiumcar.launcher.perf.HomeMetrics
 import com.premiumcar.launcher.perf.StartupTimeline
 import com.premiumcar.launcher.player.MusicPlayer
@@ -147,6 +148,17 @@ class MainActivity : Activity() {
         // Ao voltar de outro app: algo pode ter sido instalado ou removido.
         refreshAvailability()
         appsScreen?.refresh()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        CarPlayReturn.onLauncherResumed() // a tela de espera do CarPlay sai quando a Home volta
+    }
+
+    override fun onPause() {
+        // Se for o ZLINK abrindo sozinho, a tela de espera do Nyx Car cobre a dele (0.4.7/0.4.8).
+        CarPlayReturn.onLauncherPaused()
+        super.onPause()
     }
 
     override fun onStop() {

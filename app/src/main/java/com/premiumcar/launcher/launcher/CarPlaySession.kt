@@ -13,7 +13,9 @@ package com.premiumcar.launcher.launcher
  *
  * Um sinal de fim só vale se nada indicar reconexão em [END_GRACE_MS]: num mau contato (cabo
  * tirado e posto de volta), o iPhone reaparece no USB ([appleAttached]) ou a porta volta a
- * ficar conectada, e a sessão continua. Cada sessão termina uma vez só.
+ * ficar conectada, e a sessão continua. Cada sessão termina uma vez só. Na 0.4.8, a pedido do
+ * usuário, a espera é zero: o Nyx Car volta na hora, e um mau contato é tratado como uma
+ * conexão nova (o ZLINK abre sozinho de novo).
  */
 class CarPlaySession {
 
@@ -22,7 +24,11 @@ class CarPlaySession {
         BLUETOOTH("Bluetooth da central ligou de novo"),
     }
 
+    // Lidos também pela thread principal (CarPlayReturn.interceptCarPlay).
+    @Volatile
     private var cable = false
+
+    @Volatile
     private var ended = true
     private var pending: Signal? = null
 
@@ -103,9 +109,10 @@ class CarPlaySession {
 
     companion object {
         /**
-         * Espera antes de dar a sessão por encerrada. Nas gravações, um cabo posto de volta faz o
-         * iPhone reaparecer no USB em ~1 s; um cabo tirado de vez nunca faz.
+         * Espera antes de dar a sessão por encerrada. Era 2 s na 0.4.6 (um cabo posto de volta faz
+         * o iPhone reaparecer no USB em ~1 s); na 0.4.8 é zero, a pedido do usuário: a volta ao
+         * Nyx Car vale mais que a proteção contra mau contato.
          */
-        const val END_GRACE_MS = 2_000L
+        const val END_GRACE_MS = 0L
     }
 }
