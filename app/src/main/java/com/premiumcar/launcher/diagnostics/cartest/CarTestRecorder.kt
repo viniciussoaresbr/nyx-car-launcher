@@ -23,6 +23,7 @@ import android.os.SystemClock
 import androidx.annotation.RequiresApi
 import com.premiumcar.launcher.diagnostics.SystemProperties
 import com.premiumcar.launcher.diagnostics.UsbDevices
+import com.premiumcar.launcher.system.FastProperty
 
 /**
  * Gravação de até 3 minutos para os testes no carro. Registra, com horário:
@@ -36,6 +37,9 @@ import com.premiumcar.launcher.diagnostics.UsbDevices
  *   sinal confiável de "CarPlay pronto" (ARCHITECTURE.md, D10).
  * - (0.4.5) tráfego de rede por interface ([NetTraffic]): só faixas de bytes por segundo. E as
  *   decisões da volta automática ao Nyx Car (CarPlayReturn) entram na mesma linha do tempo.
+ * - (0.4.9) [FastSignals] a cada 100 ms, numa thread separada da leitura lenta (o `getprop`
+ *   de todas as propriedades leva quase 1 s): o app na tela e a porta USB com o horário exato.
+ *   Os avisos do sistema também chegam por essa thread, para o horário de cada um ser o real.
  *
  * Somente leitura e por tempo limitado: começa e termina por ação do usuário (ou ao fim
  * dos 3 minutos). Não envia nada ao iPhone, ao ZLINK ou ao player.
@@ -44,6 +48,7 @@ object CarTestRecorder {
 
     const val DURATION_MS = 180_000L
     private const val POLL_MS = 1_000L
+    private const val FAST_POLL_MS = 100L
 
     @Volatile
     var running = false
@@ -56,6 +61,8 @@ object CarTestRecorder {
     private var thread: HandlerThread? = null
     private var worker: Handler? = null
     private var receiver: BroadcastReceiver? = null
+    private var fastThread: HandlerThread? = null
+    private var fast: Handler? = null
 
     private var lastProps: Map<String, String>? = null
     private var lastMusic: Boolean? = null
@@ -67,6 +74,9 @@ object CarTestRecorder {
     private var lastNetAt = 0L
     private val netLevels = mutableMapOf<String, Int>()
     private var playbackCallback: Any? = null // AudioManager.AudioPlaybackCallback (Android 8+)
+
+    // Leitura rápida (só na thread dela).
+    private val lastFast = mutableMapOf<String, String>()
 
     val elapsedMillis: Long get() = if (running) SystemClock.uptimeMillis() - startedAt else 0L
 
@@ -84,6 +94,7 @@ object CarTestRecorder {
         lastPlayback = null
         lastNet = null
         netLevels.clear()
+        lastFast.clear()
         startedAt = SystemClock.uptimeMillis()
         running = true
         CarTestLog.markOrigin(startedAt)
@@ -93,6 +104,10 @@ object CarTestRecorder {
         val handler = Handler(looperThread.looper)
         thread = looperThread
         worker = handler
+        val fastLooper = HandlerThread("pc-car-test-fast").also { it.start() }
+        val fastHandler = Handler(fastLooper.looper)
+        fastThread = fastLooper
+        fast = fastHandler
 
         val broadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
@@ -101,9 +116,9 @@ object CarTestRecorder {
         }
         val filter = IntentFilter().apply { Broadcasts.ACTIONS.forEach(::addAction) }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            app.registerReceiver(broadcastReceiver, filter, null, handler, Context.RECEIVER_EXPORTED)
+            app.registerReceiver(broadcastReceiver, filter, null, fastHandler, Context.RECEIVER_EXPORTED)
         } else {
-            app.registerReceiver(broadcastReceiver, filter, null, handler)
+            app.registerReceiver(broadcastReceiver, filter, null, fastHandler)
         }
         receiver = broadcastReceiver
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -112,12 +127,13 @@ object CarTestRecorder {
                 val callback = object : AudioManager.AudioPlaybackCallback() {
                     override fun onPlaybackConfigChanged(configs: MutableList<AudioPlaybackConfiguration>) = logPlayback(configs)
                 }
-                audio.registerAudioPlaybackCallback(callback, handler)
+                audio.registerAudioPlaybackCallback(callback, fastHandler)
                 playbackCallback = callback
-                handler.post { logPlayback(audio.activePlaybackConfigurations) }
+                fastHandler.post { logPlayback(audio.activePlaybackConfigurations) }
             }.onFailure { CarTestLog.add("Tipos de áudio tocando: indisponível (${it.javaClass.simpleName})") }
         }
         handler.post(poll)
+        fastHandler.post(fastPoll)
         handler.postDelayed({ stop("tempo esgotado") }, DURATION_MS)
     }
 
@@ -137,6 +153,10 @@ object CarTestRecorder {
         thread?.quitSafely()
         thread = null
         worker = null
+        fast?.removeCallbacksAndMessages(null)
+        fastThread?.quitSafely()
+        fastThread = null
+        fast = null
         // Os últimos valores lidos só são zerados no próximo início: uma leitura que já estava
         // em andamento ao parar não deve registrar tudo de novo como "Início".
         CarTestLog.add("${CarTestLog.ENDED} ($reason)")
@@ -165,7 +185,29 @@ object CarTestRecorder {
             WATCHED.forEach { key -> log("Início: $key = ${current[key]?.ifEmpty { "(vazio)" } ?: "(não existe)"}") }
             return
         }
-        PropertyDiff.diff(previous, current).forEach { log("Propriedade $it") }
+        // As da leitura rápida já aparecem com o horário exato.
+        val skip = if (FastProperty.available) FastSignals.PROPERTIES.toSet() else emptySet()
+        PropertyDiff.diff(previous - skip, current - skip).forEach { log("Propriedade $it") }
+    }
+
+    private val fastPoll = object : Runnable {
+        override fun run() {
+            if (!running) return
+            runCatching { pollFast() }
+            fast?.postDelayed(this, FAST_POLL_MS)
+        }
+    }
+
+    /** Leitura rápida (0.4.9): só registra o que mudou (a primeira leitura sai no "Início"). */
+    private fun pollFast() {
+        if (!FastProperty.available) return
+        FastSignals.PROPERTIES.forEach { key ->
+            val value = FastProperty.get(key).orEmpty()
+            val before = lastFast.put(key, value)
+            if (before != null && before != value) {
+                log("Propriedade $key: ${before.ifEmpty { "(vazio)" }} → ${value.ifEmpty { "(vazio)" }}")
+            }
+        }
     }
 
     private fun pollMusic(app: Context) {

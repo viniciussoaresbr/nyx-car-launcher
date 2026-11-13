@@ -76,7 +76,7 @@ object CarTestLog {
     fun add(text: String) {
         val now = SystemClock.uptimeMillis()
         val line = Line(
-            clock = SimpleDateFormat("HH:mm:ss.S", Locale.US).format(Date()),
+            clock = SimpleDateFormat("HH:mm:ss.SSS", Locale.US).format(Date()),
             sinceStart = if (origin != 0L) now - origin else null,
             text = text,
         )
