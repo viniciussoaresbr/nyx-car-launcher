@@ -11,6 +11,8 @@ import com.premiumcar.launcher.launcher.AppLauncher
 import com.premiumcar.launcher.launcher.AppTarget
 import com.premiumcar.launcher.launcher.CarApps
 import com.premiumcar.launcher.launcher.FavoriteKey
+import com.premiumcar.launcher.launcher.ZlinkScreenService
+import com.premiumcar.launcher.launcher.ZlinkScreenStore
 import com.premiumcar.launcher.settings.FavoritesStore
 import com.premiumcar.launcher.system.BluetoothStatus
 import com.premiumcar.launcher.system.WifiStatus
@@ -80,6 +82,18 @@ object LauncherChecks {
                 else -> warn("Atalho: $name", "não encontrado")
             }
         }
+        // Tela de espera do CarPlay (B1, 0.4.7).
+        add(
+            "Tela de espera do CarPlay (sobrepor a outros apps)",
+            if (android.provider.Settings.canDrawOverlays(context)) "permitida" else "não permitida (Testes no carro → cartão 5)",
+        )
+        // Fim do CarPlay pela tela do ZLINK (0.4.11): serviço de acessibilidade e o que já aprendeu.
+        val (waitScreens, carPlayScreens) = ZlinkScreenStore.counts(context)
+        add(
+            "Fim do CarPlay pela tela do ZLINK (acessibilidade)",
+            (if (ZlinkScreenService.isEnabled(context)) "ligado" else "desligado (Testes no carro → cartão 6)") +
+                " · telas aprendidas: $waitScreens de espera, $carPlayScreens do CarPlay",
+        )
         // Favoritos da aba Aplicativos (0.4.4): só os nomes, na ordem da grade.
         val favoritesStore = FavoritesStore.create(context)
         val favorites = favoritesStore.load()

@@ -33,6 +33,8 @@ import com.premiumcar.launcher.diagnostics.cartest.CarTestRecorder
 import com.premiumcar.launcher.diagnostics.cartest.MediaCommands
 import com.premiumcar.launcher.diagnostics.cartest.MediaSessionAccess
 import com.premiumcar.launcher.launcher.AppLauncher
+import com.premiumcar.launcher.launcher.CarPlayWaitScreen
+import com.premiumcar.launcher.launcher.ZlinkScreenService
 
 /** Aba "Testes no carro": gravação (CarPlay/USB, player) e comandos de mídia de teste. */
 @Composable
@@ -49,6 +51,8 @@ internal fun CarTestsPanel(sections: List<InfoSection>?, onRefresh: () -> Unit, 
     val hasReceiver = remember(sections) { MediaCommands.playerReceivers(context).isNotEmpty() }
     val sessionsGranted = remember(sections) { MediaSessionAccess.isGranted(context) }
     val stockPlayerDisabled = remember(sections) { AppLauncher(context).isDisabled(MediaCommands.PLAYER_PACKAGE) }
+    val overlayAllowed = remember(sections) { android.provider.Settings.canDrawOverlays(context) }
+    val screenServiceOn = remember(sections) { ZlinkScreenService.isEnabled(context) }
 
     SectionList(all) {
         item {
@@ -129,6 +133,31 @@ internal fun CarTestsPanel(sections: List<InfoSection>?, onRefresh: () -> Unit, 
                     }.isSuccess
                     if (!opened) onStatus("Não foi possível abrir a página do player original")
                 }) { Text("Abrir página do player original") }
+                OutlinedButton(onClick = onRefresh) { Text("Atualizar") }
+            }
+        }
+        item {
+            TestCard(
+                title = "5. Tela de espera do CarPlay",
+                text = "Enquanto o CarPlay conecta (pelo cabo ou sem fio), o Nyx Car cobre a tela de espera do " +
+                    "ZLINK e sai quando o vídeo do CarPlay começa. Precisa da permissão \"Sobrepor a outros " +
+                    "apps\": na página que abre, ative para o Nyx Car e volte aqui. Para desfazer, desative na " +
+                    "mesma página. Situação: ${if (overlayAllowed) "permitida" else "não permitida"}.",
+            ) {
+                Button(onClick = { onStatus(CarPlayWaitScreen.openPermission(context)) }) { Text("Abrir permissão") }
+                OutlinedButton(onClick = { onStatus(CarPlayWaitScreen.preview(context)) }) { Text("Ver a tela (5 s)") }
+                OutlinedButton(onClick = onRefresh) { Text("Atualizar") }
+            }
+        }
+        item {
+            TestCard(
+                title = "6. Fim do CarPlay pela tela do ZLINK",
+                text = "Para o Nyx Car cobrir a tela de espera do ZLINK assim que o CarPlay termina, ative " +
+                    "\"Nyx Car — fim do CarPlay\" em Acessibilidade e confirme. O serviço só observa o ZLINK: vê " +
+                    "quais elementos a tela dele tem, sem guardar textos, e não toca em nada. Para desfazer, " +
+                    "desative na mesma página. Situação: ${if (screenServiceOn) "ligado" else "desligado"}.",
+            ) {
+                Button(onClick = { onStatus(ZlinkScreenService.openSettings(context)) }) { Text("Abrir acessibilidade") }
                 OutlinedButton(onClick = onRefresh) { Text("Atualizar") }
             }
         }
