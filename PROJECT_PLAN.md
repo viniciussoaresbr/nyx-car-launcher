@@ -7,7 +7,7 @@
 | 1 — Diagnóstico | **Concluída** | Diagnóstico rodado na central em 09/11/2026. Resultados em [HARDWARE.md](HARDWARE.md). Decisão: Views nativas ([ARCHITECTURE.md](ARCHITECTURE.md), D2). ADB via Wi-Fi: bloqueado pelo fabricante; o trabalho segue por pendrive. |
 | 2 — Design System | **Concluída** | Design System em Views e Home de referência aprovados na central em 09/11/2026 (versão 0.2.1-ref: atalho "CarPlay", barra inferior só com ícones, Navegação pelo CarPlay). Ver [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md). |
 | 3 — Interface principal | **Em andamento** | 0.3.0 validada: atalhos e abas funcionam. Player USB: a limitação é do player do fabricante; decisão do usuário pendente (player próprio, de terceiros ou só abrir o player; ARCHITECTURE.md, D16). Tela de espera do ZLINK: medição dos sinais repetida na 0.3.2 (roteiro em [BUILD.md](BUILD.md), seção 6). |
-| 4 — Funcionalidades | **Em andamento** | Etapa 0.4.0 (tela inicial e player próprio) **validada no carro em 10/11/2026**. Etapas 0.4.1 (deslizar entre abas) e 0.4.2 (sem o atalho do player USB, Home sem "pulo" ao voltar do CarPlay) **validadas no carro em 11/11/2026**. Etapa 0.4.3 (novo nome Nyx Car, Play Store em Aplicativos, data e hora no relatório) **validada no carro em 11/11/2026**. Etapa 0.4.4 (Aplicativos com Favoritos editáveis e lista de todos os apps) **validada no carro em 11/11/2026**. Etapa 0.4.5 (volta automática do CarPlay e medição do "CarPlay pronto") testada no carro em 12/11/2026: medição concluída. Etapa 0.4.6 (correções; volta automática) **validada no carro em 12/11/2026**. Próximo: B1 (tela do Nyx Car durante a conexão), aguardando decisão do usuário. O player original não abre mais sozinho (Reprodução automática desligada pelo usuário). |
+| 4 — Funcionalidades | **Em andamento** | Etapa 0.4.0 (tela inicial e player próprio) **validada no carro em 10/11/2026**. Etapas 0.4.1 (deslizar entre abas) e 0.4.2 (sem o atalho do player USB, Home sem "pulo" ao voltar do CarPlay) **validadas no carro em 11/11/2026**. Etapa 0.4.3 (novo nome Nyx Car, Play Store em Aplicativos, data e hora no relatório) **validada no carro em 11/11/2026**. Etapa 0.4.4 (Aplicativos com Favoritos editáveis e lista de todos os apps) **validada no carro em 11/11/2026**. Etapa 0.4.5 (volta automática do CarPlay e medição do "CarPlay pronto") testada no carro em 12/11/2026: medição concluída. Etapa 0.4.6 (correções; volta automática) **validada no carro em 12/11/2026**. Etapa 0.4.7 (B1: tela de espera do CarPlay do Nyx Car, cabo e sem fio) testada no carro em 12/11/2026. Etapa 0.4.8 (ajustes do B1 e CarPlay sem iPhone) testada no carro em 12/11/2026. Etapa 0.4.9 (conexão interrompida, "CarPlay desconectado" por 2 s, mais rapidez) testada no carro em 12/11/2026. Etapas 0.4.10 (toque na tela de espera fecha também o ZLINK) e 0.4.11 (fim do CarPlay pela tela do ZLINK, com o serviço de acessibilidade) testadas no carro em 12/11/2026. Etapa 0.4.12 (fim pela imagem do CarPlay já na primeira vez; conexão lenta pelo cabo) implementada; **aguardando o teste no carro**. O player original não abre mais sozinho (Reprodução automática desligada pelo usuário). |
 | 5 — Otimização | Não iniciada | Linha de base de desempenho vem do diagnóstico. |
 | 6 — Distribuição | Em andamento | Código no GitHub (público): https://github.com/viniciussoaresbr/nyx-car-launcher (11/11/2026). Chave de assinatura: continua a deste PC, sem cópia (decisão do usuário; ARCHITECTURE.md, D11). |
 | 7 — Testes na multimídia | Não iniciada | |
@@ -287,6 +287,195 @@ projeto (seção 9, terceira exceção). B2 (empurrar o ZLINK para trás) descar
   nada mudou, como previsto. O diário do relatório já inclui as gravações
 - [x] "Pulo" do Nyx Diagnóstico ao voltar do ZLINK: **sumiu** (confirmado pelo usuário)
 - [ ] Mau contato: não testado (não é urgente, segundo o usuário; fica para depois)
+
+### Etapa 0.4.7: tela de espera do CarPlay do Nyx Car, o B1 (pedida em 12/11/2026)
+
+**Decisão do usuário:** seguir com o B1 **pelo cabo e também sem fio** (a proposta era só o
+cabo). Commit e push da 0.4.5 e da 0.4.6 feitos antes.
+
+**Checklist**
+- [x] Janela sobreposta "Conectando ao CarPlay" no padrão do Nyx Car, sem animação; um toque
+  fecha; não recebe o foco (Voltar e Home vão para o app de baixo)
+- [x] Abre pelo cabo quando o iPhone aparece no USB; sem fio, quando o ZLINK cobre a Home sem
+  o usuário ter aberto um app e com o Bluetooth da central ainda ligado
+- [x] Fecha quando o vídeo chega (tráfego total, lido a cada 250 ms só com a tela aberta:
+  ≥ 512 KB/s pelo cabo, ≥ 160 KB/s sem fio, depois de o Bluetooth da central desligar), por
+  tempo máximo (20 s / 25 s), com um toque ou quando a Home volta
+- [x] Na desconexão, "CarPlay desconectado" cobre a tela de espera do ZLINK até a volta
+  automática; num mau contato, volta para "Conectando"
+- [x] Permissão "Sobrepor a outros apps" pelo Nyx Diagnóstico (cartão 5), com prévia de 5 s;
+  relatório mostra a situação
+- [x] Testes (139) e capturas `docs/design/carplay-*-v0.4.7.png`
+- [x] Teste no carro (12/11/2026, relatório `nyx-car-diagnostico-20261112-181412.txt`): pelo
+  cabo funciona (vídeo detectado de 9,0 a 9,7 s; num teste o ZLINK apareceu ~1 s no fim); sem
+  fio, a tela só entrou com a Home na tela e o ZLINK aparecia ~1 s antes dela; a desconexão
+  mostrava ~2 s de espera. Pedidos do usuário: ver a etapa 0.4.8
+
+### Etapa 0.4.8: ajustes do B1 e CarPlay sem iPhone (pedidos em 12/11/2026)
+
+**Pedidos do usuário:** fechar a tela de espera 2 s depois do sinal de CarPlay pronto; voltar
+ao Nyx Car na hora ao desconectar (sem a proteção contra mau contato); a tela de espera sem
+fio também fora da Home e sem o ZLINK aparecendo antes; e, ao tocar em CarPlay (ou no cartão
+de Navegação) sem nada conectado, não cair na tela parada do ZLINK.
+
+**Checklist**
+- [x] Tela de espera fecha 2 s depois do vídeo
+- [x] Volta ao Nyx Car na hora; "CarPlay desconectado" cobre a espera do ZLINK até a Home
+- [x] Leitura rápida do app na tela (propriedade do sistema, sem `getprop`); vigia do ZLINK a
+  cada 200 ms por 2,5 s quando a Home sai da tela (`onPause`) e por 20 s quando o iPhone se
+  conecta pelo Bluetooth ou o ponto de acesso Wi-Fi liga
+- [x] "Aguardando o iPhone" ao tocar em CarPlay sem nada conectado (todas as entradas passam
+  pelo `AppLauncher`); toque volta, toque longo abre o ZLINK, 1 min de tempo máximo; o iPhone
+  conectando troca para "Conectando"
+- [x] Testes (144) e captura `docs/design/carplay-aguardando-iphone-v0.4.8.png`
+- [x] Teste no carro (12/11/2026, relatório `nyx-car-diagnostico-20261112-193615.txt`): pelo
+  cabo, preciso (vídeo de 8,3 a 10,8 s depois de a tela abrir); sem fio com o Nyx Diagnóstico
+  na tela, o ZLINK ainda aparecia ~1 s antes da tela; na desconexão, a espera do ZLINK aparecia
+  por um instante antes de "CarPlay desconectado"; um cabo tirado logo depois de conectado
+  deixava a tela até o tempo máximo (20 s) e depois o ZLINK parado. Pedidos do usuário: ver a
+  etapa 0.4.9
+
+### Etapa 0.4.9: conexão interrompida e fim mais rápido (pedidos em 12/11/2026)
+
+**Pedidos do usuário:** se a conexão cair enquanto o CarPlay carrega, manter a nossa tela por
+algum tempo e, se nada acontecer, fechar a tela e o ZLINK; na desconexão, mostrar "CarPlay
+desconectado" na hora, antes da tela do ZLINK, por ~2 s, e então fechar a tela e o ZLINK; e
+acabar com o ZLINK aparecendo ~1 s antes da nossa tela no sem fio com outro app aberto.
+
+**Checklist**
+- [x] "Conexão interrompida — Aguardando o iPhone voltar…" por 5 s quando a conexão cai antes
+  do CarPlay aparecer (cabo ou Bluetooth da central religando antes do vídeo; pelo cabo, também
+  sem "cabo conectado" em 6 s); o iPhone voltando segue a conexão; sem volta, o Nyx Car volta
+  para a frente (o ZLINK sai) e a tela fecha quando ele aparece
+- [x] "CarPlay desconectado" na hora e por 2 s, com o Nyx Car voltando por baixo
+- [x] Tempo máximo sem o CarPlay começar (Bluetooth da central não desligou): a tela e o ZLINK
+  saem
+- [x] Thread própria do CarPlay, com prioridade de tela; leitura do app na tela sem passar pela
+  fila de baixa prioridade; vigia a cada 100 ms
+- [x] Janela reservada (1 px, transparente, sem toque) durante o CarPlay e por 20 s depois de o
+  iPhone se conectar pelo Bluetooth
+- [x] Gravação: horário em milissegundos, sinais a cada 100 ms (`FastSignals`) e avisos do
+  sistema numa thread separada
+- [x] Testes (156) e captura `docs/design/carplay-interrompida-v0.4.9.png`
+- [x] Teste no carro (12/11/2026, relatório `nyx-car-diagnostico-20261112-205612.txt`): fim
+  percebido 50 a 65 ms depois do Bluetooth religar; sem fio, a tela cobre o ZLINK até 50 ms
+  depois de ele chegar; "Conexão interrompida" entrou no mau contato, mas virou "Conectando
+  (sem fio)" 4 s depois; nenhum arquivo de sinal do USB ou da rede é legível. Pedido do
+  usuário: ver a etapa 0.4.10
+
+### Etapa 0.4.10: toque na tela de espera fecha o ZLINK (pedido em 12/11/2026)
+
+**Pedido do usuário:** num mau contato ou ao conectar e desconectar rápido, tocar em "Toque
+para fechar" deve fechar também o ZLINK, e não só a nossa tela, deixando a espera do ZLINK.
+
+**Checklist**
+- [x] Toque em "Conectando ao CarPlay" (e "Preparando…"): o Nyx Car volta e o ZLINK sai da
+  frente; tocar e segurar fecha só a nossa tela
+- [x] Vigia do sem fio armada só com o iPhone conectado pelo Bluetooth (não com as tentativas
+  da central) e disparada só quando o ZLINK chega à tela
+- [x] Nada substitui "Conexão interrompida" e "CarPlay desconectado"; o CarPlay entrando de
+  novo durante "Conexão interrompida" segue a conexão
+- [x] Leitura de arquivos do sistema retirada da gravação (não legíveis)
+- [x] Testes (158) e captura `docs/design/carplay-espera-cabo-v0.4.10.png`
+- [x] Teste no carro (junto com a 0.4.11): o toque em "Conectando" trouxe a Home
+
+### Etapa 0.4.11: fim do CarPlay pela tela do ZLINK (pedida em 12/11/2026)
+
+**Pedido do usuário:** "a tela de espera do ZLINK ainda aparece antes de CarPlay desconectado
+por alguns segundos [...] eu autorizo o caminho do serviço de acessibilidade restrito ao
+zlink". Quarta exceção da seção 9.
+
+**Checklist**
+- [x] Serviço de acessibilidade "Nyx Car — fim do CarPlay", só com avisos do ZLINK
+  (`packageNames`), sem gestos nem ações; lê a estrutura da tela, nunca o conteúdo dos textos
+- [x] Aprende as telas de espera do ZLINK com o Bluetooth da central ligado; reconhece a tela
+  do CarPlay (Bluetooth desligado pelo CarPlay, ≥ 1,5 s); o ZLINK voltando para a espera
+  durante o CarPlay mostra "CarPlay desconectado" na hora; na dúvida, nada muda
+- [x] O fim pelo Bluetooth, segundos depois, não repete a volta e registra quanto antes a tela
+  avisou
+- [x] Nyx Diagnóstico: cartão 6 (abrir a Acessibilidade, situação) e linha no relatório
+- [x] Testes (172)
+- [x] Teste no carro (12/11/2026, relatório `nyx-car-diagnostico-20261112-222525.txt`): a
+  Acessibilidade existe e o serviço ligou; o fim pela tela funcionou 1 vez (0,14 s depois da
+  troca de tela do ZLINK, 1,1 s antes do cabo); nas 4 primeiras, a tela de espera do fim ainda
+  não era conhecida e o fim veio pelo Bluetooth, ~0,6 s depois da troca. Numa conexão lenta
+  pelo cabo, o tempo máximo tirou o ZLINK da frente com ele ainda "conectando". Ver a etapa
+  0.4.12
+
+### Etapa 0.4.12: fim pela imagem do CarPlay (12/11/2026)
+
+**Motivo:** o teste da 0.4.11 mostrou que o fim pela tela só funcionava depois de a tela de
+espera do fim ser aprendida, e que as telas do CarPlay têm um elemento próprio (a imagem do
+CarPlay, `phone_content_event_delegate`) que nenhuma tela de espera tem.
+
+**Checklist**
+- [x] A imagem do CarPlay sumindo durante o CarPlay (conferida de novo 100 ms depois) é o fim,
+  mesmo numa tela nunca vista; a tela fica aprendida como espera
+- [x] As piscadas da tela do CarPlay sem fio (a cada ~6 s, com a imagem) não contam
+- [x] A imagem do CarPlay nunca é aprendida como espera; uma tela sem ela nunca vira tela do
+  CarPlay
+- [x] Pelo cabo, com o ZLINK "conectando", o tempo máximo espera até 1 min no total
+- [x] Testes (179)
+- [ ] Teste no carro (BUILD.md, seção 6). Na primeira tentativa (12/11/2026, relatório
+  `nyx-car-diagnostico-20261112-225020.txt`) o serviço de acessibilidade estava desligado,
+  provavelmente pelo carro desligando (HARDWARE.md, seção 5): a regra nova não foi exercitada
+
+**Riscos da 0.4.12:**
+- depende do nome interno de um elemento do ZLINK (`phone_content…`); se o ZLINK mudar, a
+  regra deixa de valer sozinha e volta o aprendizado da 0.4.11, e depois o Bluetooth;
+- o tempo entre tirar o cabo e o ZLINK trocar de tela é do ZLINK e não aparece em nenhum
+  aviso: nesse intervalo, a última imagem do CarPlay continua na tela.
+
+**Riscos da 0.4.11:**
+- **a Acessibilidade pode não existir** nas Configurações deste firmware; sem ela, o serviço
+  não pode ser ligado (sem ADB não há outro caminho) e tudo continua como na 0.4.10;
+- se a tela de espera depois do fim for diferente da de antes da conexão, o primeiro fim ainda
+  vem pelo Bluetooth; a linha do tempo mostra as telas para ajustar;
+- com qualquer serviço de acessibilidade ligado, os apps passam a gerar avisos de
+  acessibilidade (um pouco mais de trabalho para a central); o Android filtra e só entrega ao
+  Nyx Car os do ZLINK;
+- se o ZLINK mostrar uma tela de espera conhecida com o CarPlay ainda conectado, o Nyx Car
+  volta para a frente; tocar em CarPlay reabre o ZLINK direto (o Bluetooth ainda desligado
+  indica o CarPlay conectado).
+
+**Riscos da 0.4.10:**
+- tocar em "Conectando" com o CarPlay quase pronto também tira o ZLINK da frente; o CarPlay
+  continua conectando por baixo e abre direto pelo atalho CarPlay;
+- o fim do CarPlay continua chegando depois de o ZLINK trocar de tela (nenhum aviso mais cedo
+  é legível): se a espera do ZLINK ainda aparecer por um instante, o único caminho conhecido é
+  o serviço de acessibilidade restrito ao ZLINK, que depende de autorização.
+
+**Riscos da 0.4.9:**
+- o fim do CarPlay ainda é percebido pelo Bluetooth da central religando ou pelo cabo caindo,
+  que chegam **depois** de o ZLINK trocar de tela: a 0.4.9 tira o atraso do Nyx Car, mas a
+  espera do ZLINK ainda pode aparecer por um instante. A gravação procura um aviso mais cedo;
+  se não houver, o próximo passo seria um serviço de acessibilidade restrito ao ZLINK (depende
+  de autorização: ver ARCHITECTURE.md, D20);
+- o tempo máximo agora fecha o ZLINK quando o CarPlay não começou: se o iPhone estiver
+  esperando uma confirmação na tela dele (primeira conexão), o Nyx Car volta antes; tocar em
+  CarPlay de novo abre o ZLINK direto (o cabo está conectado);
+- a janela reservada pode fazer o Android 8 mostrar a notificação "Nyx Car está sendo exibido
+  sobre outros apps" enquanto o CarPlay estiver em uso.
+
+**Riscos da 0.4.8:**
+- "CarPlay conectado" é deduzido do Bluetooth da central desligado (o ZLINK o desliga durante o
+  CarPlay) ou do cabo conectado; se o Bluetooth da central for desligado à mão, o CarPlay abre
+  o ZLINK direto, como antes;
+- sem fio fora da Home, a vigia depende de o iPhone se conectar pelo Bluetooth (ou de o ponto
+  de acesso ligar) no começo; se o iPhone já estava conectado, só a Home saindo da tela arma
+  a vigia;
+- sem a proteção contra mau contato, um cabo frouxo traz o Nyx Car para a frente e o ZLINK
+  reabre sozinho em seguida.
+
+
+**Riscos da 0.4.7:**
+- o tráfego usado é o total do aparelho: um download pelo Wi-Fi durante a conexão poderia
+  fechar a tela cedo (a regra exige antes o Bluetooth da central desligado pelo CarPlay);
+- se o vídeo vier com menos tráfego que o medido, a tela fica até o tempo máximo (20 a 25 s),
+  cobrindo o CarPlay já pronto; um toque fecha;
+- sem fio, a tela só entra se o Nyx Car estiver na tela quando o ZLINK abrir sozinho;
+- a permissão "Sobrepor a outros apps" pode não existir neste firmware (a página das
+  informações do app abre no lugar); sem ela, tudo fica como na 0.4.6.
 
 **Riscos da 0.4.5:**
 - a volta pode não acontecer se nenhum dos dois sinais chegar ao desconectar (nenhuma
@@ -600,6 +789,18 @@ quebrar regras que foram definidas inicialmente no projeto". Interpretação ado
 - não são tocados sem um pedido específico: root, bootloader, firmware e suas atualizações,
   partições, comandos destrutivos, desinstalação de apps originais ou do ZLINK, e o que a
   segunda exceção proíbe no menu de fábrica;
+- o APK do ZLINK continua sem modificação.
+
+**Quarta exceção autorizada pelo usuário (12/11/2026): serviço de acessibilidade restrito ao
+ZLINK.** Depois do teste da 0.4.9, o usuário escreveu: "a tela de espera do ZLINK ainda aparece
+antes de CarPlay desconectado por alguns segundos e como isso me incomoda eu autorizo o caminho
+do serviço de acessibilidade restrito ao zlink". Regras desta exceção (etapa 0.4.11):
+- o serviço só recebe avisos do ZLINK e só lê a janela dele;
+- lê só a estrutura da tela (tipos e nomes internos dos elementos, se têm texto, se são
+  tocáveis); o conteúdo dos textos não é guardado, registrado nem enviado;
+- não executa gestos nem ações, não toca no ZLINK nem no CarPlay;
+- quem liga e desliga é o usuário, em Configurações → Acessibilidade; desligado, o Nyx Car
+  funciona como na 0.4.10;
 - o APK do ZLINK continua sem modificação.
 
 ## 10. Organização sugerida do projeto

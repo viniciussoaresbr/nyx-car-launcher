@@ -5,7 +5,7 @@ RAM), com visual inspirado nas interfaces premium: fundo grafite, superfícies e
 destaque turquesa. É **leve** e **independente**: não altera firmware, ZLINK nem o
 launcher original.
 
-## Situação atual: Fase 4 — funcionalidades (etapa 0.4.6 validada no carro)
+## Situação atual: Fase 4 — funcionalidades (etapa 0.4.12 pronta para teste no carro)
 
 - **Fase 1 (concluída):** o diagnóstico na central mostrou Android 8.1 real (rotulado
   como 13), 4× Cortex-A7 a 1,1 GHz, GPU Mali-450 e tela a 160 dpi com área útil de
@@ -33,7 +33,14 @@ launcher original.
   `0.4.4` divide Aplicativos em **Favoritos | Todos**: 12 favoritos escolhidos pelo usuário
   (botão Editar) e a lista de todos os apps da central, com ícones de traço (validada em
   11/11/2026). A `0.4.5` traz o Nyx Car de volta sozinho quando o CarPlay termina e mede o
-  momento em que o CarPlay fica pronto. Roteiro de teste no [BUILD.md](BUILD.md), seção 6.
+  momento em que o CarPlay fica pronto (0.4.6 validada em 12/11/2026). A `0.4.7` cobre a tela de
+  espera do ZLINK com uma tela do Nyx Car enquanto o CarPlay conecta, a `0.4.8` mostra
+  "Aguardando o iPhone" ao tocar em CarPlay sem nada conectado, e a `0.4.9` trata a conexão
+  interrompida e mostra "CarPlay desconectado" por 2 s no fim. Na `0.4.10`, tocar na tela de
+  espera volta ao Nyx Car e tira o ZLINK da frente, e a `0.4.11` percebe o fim do CarPlay
+  pela tela do ZLINK (serviço de acessibilidade restrito a ele, ligado pelo usuário); a
+  `0.4.12` usa a imagem do CarPlay sumindo da tela do ZLINK, já na primeira vez. Roteiro de
+  teste no [BUILD.md](BUILD.md), seção 6.
 
 | Documento                            | Conteúdo                                                                           |
 | ------------------------------------ | ---------------------------------------------------------------------------------- |

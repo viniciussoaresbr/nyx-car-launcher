@@ -110,6 +110,35 @@ APK gerado: **`app/build/outputs/apk/release/nyx-car-launcher-release.apk`**
   só; mau contato com o iPhone reaparecendo no USB não encerra; o Nyx Diagnóstico mantém a
   margem da barra de status quando o CarPlay a esconde; o diário entra no relatório com o que
   aconteceu depois de abrir o diagnóstico.
+- Tela de espera do CarPlay (0.4.7), com tráfego e avisos simulados: pelo cabo abre no iPhone
+  no USB e fecha com o vídeo (o controle de 294 KB/s não fecha); tempo máximo; toque; sem
+  permissão nada aparece; sem fio abre quando o ZLINK cobre a Home e fecha com 247 KB/s; não
+  abre com o CarPlay aberto pelo usuário, já conectado ou com outro app; "desconectado" até a
+  volta automática; mau contato volta para "Conectando". Regra do vídeo na JVM
+  (`VideoStartDetectorTest`) e capturas de cada estado (`CarPlayWaitScreenTest`).
+- 0.4.8: a tela fica 2 s depois do vídeo; volta na hora ao desconectar; vigia do ZLINK depois
+  de a Home sair da tela e depois de o iPhone se conectar pelo Bluetooth (com outro app na
+  tela), terminando sozinha; "Aguardando o iPhone" ao tocar em CarPlay sem nada conectado
+  (toque, tempo máximo, toque longo abre o ZLINK, o iPhone conectando troca a tela) e o ZLINK
+  direto com o CarPlay conectado ou sem a permissão.
+- 0.4.9: "CarPlay desconectado" por 2 s com a Home por baixo (a Home voltando não fecha antes;
+  um toque fecha); "Conexão interrompida" pelo cabo sem "cabo conectado" em 6 s e com o fim
+  antes do vídeo; o iPhone voltando segue a conexão; sem volta, a Home e a tela fecha quando
+  ela aparece; tempo máximo sem o CarPlay começar traz a Home e, com o CarPlay já entrando, só
+  fecha a tela; janela reservada durante o CarPlay e pela vigia do Bluetooth, saindo no fim.
+- 0.4.10: o toque em "Conectando" traz o Nyx Car (com outro app na frente, só fecha a tela);
+  tocar e segurar fecha só a tela; "Conexão interrompida" continua com as tentativas de
+  Bluetooth da central; o CarPlay entrando de novo durante ela segue a conexão; o Bluetooth só
+  "conectando" não arma a vigia; o ZLINK que já estava na tela não abre a tela de espera.
+- 0.4.11: fim pela tela do ZLINK (com a tela de espera aprendida antes, "CarPlay desconectado"
+  na hora e o fim pelo Bluetooth depois não repete a volta); tela nunca vista não muda nada e o
+  Bluetooth continua valendo; sem CarPlay, as telas só são aprendidas e guardadas. Regras na JVM
+  (`ZlinkScreensTest`): aprendizado, tela do CarPlay estável, telas intermediárias, um fim por
+  sessão, a imagem do CarPlay nunca vira espera, Bluetooth desligado sem sessão.
+- 0.4.12: a imagem do CarPlay sumindo é fim já na primeira vez (conferida 100 ms depois e
+  aprendida); voltando na conferência, não é; pelo cabo, o ZLINK "conectando" segura a tela até
+  1 min. Na JVM: fim provável e confirmação, piscadas com a imagem, a imagem nunca vira espera,
+  tela sem a imagem nunca vira tela do CarPlay.
 - As capturas aprovadas de cada versão ficam em `docs/design/`.
 - Relatório HTML: `app/build/reports/tests/testDebugUnitTest/index.html`.
 
@@ -145,34 +174,34 @@ APK gerado: **`app/build/outputs/apk/release/nyx-car-launcher-release.apk`**
 Se aparecer **"App não instalado"** ou **"Erro ao analisar o pacote"**, anote a mensagem
 exata. Isso indica que o Android real é anterior ao 6.0, um dado importante para o diagnóstico.
 
-## 6. Roteiro de teste na central (versão 0.4.6)
+## 6. Roteiro de teste na central (versão 0.4.12)
 
-Valida as correções do teste da 0.4.5 e o caso da volta automática que ainda não aconteceu no
-carro: **tirar o cabo com o CarPlay na tela**. Instale **por cima** (toque em "Atualizar"). Faça
-com o **carro parado**. Anote as respostas das perguntas em **negrito**.
+Valida o fim do CarPlay pela imagem do CarPlay sumindo da tela do ZLINK, já na primeira vez. O
+serviço "Nyx Car — fim do CarPlay" continua ligado (confira no cartão 6: "Situação: ligado").
+Instale **por cima** (toque em "Atualizar"). Faça com o **carro parado**. Grave cada teste no
+Nyx Diagnóstico → Testes no carro. Anote as respostas das perguntas em **negrito**.
 
-**A. Nyx Diagnóstico sem "pulo"**
+**A. Desconexão**
 
-1. No Nyx Diagnóstico → Testes no carro, toque em **Iniciar gravação** e conecte o iPhone pelo
-   cabo. Com o CarPlay na tela, volte direto para o Nyx Diagnóstico (Voltar). **A tela ainda
-   desce e sobe?**
+1. Pelo cabo: conecte, espere o CarPlay e tire o cabo. **A tela de espera do ZLINK ainda
+   aparece antes de "CarPlay desconectado"? Por quanto tempo, mais ou menos?** Repita 3
+   vezes.
+2. Sem fio: com o CarPlay na tela, desligue o Bluetooth do iPhone. Mesmas perguntas, 2 vezes.
+3. **Durante o CarPlay (pelo cabo e sem fio, alguns minutos), o Nyx Car voltou para a frente
+   sozinho alguma vez sem você desconectar?** (não deveria)
 
-**B. Volta automática com o CarPlay na tela (repita 2 vezes)**
+**B. Conexão lenta (se acontecer)**
 
-2. Abra o CarPlay e espere ele aparecer. **Com o CarPlay na tela**, desconecte o cabo do
-   iPhone. **O Nyx Car voltou sozinho em 2 a 3 s?**
-3. **Mau contato:** com o CarPlay na tela, tire o cabo e ponha de volta bem rápido. O Nyx Car
-   **não** deve aparecer; o ZLINK reconecta sozinho.
-4. **Outro app na tela:** com o CarPlay conectado, abra outro app (por exemplo, Maps) e tire o
-   cabo. O Nyx Car **não** deve aparecer por cima.
+4. Se o CarPlay demorar para entrar pelo cabo, a tela "Conectando ao CarPlay" deve continuar
+   enquanto o ZLINK estiver conectando, até 1 min.
 
 **C. Relatório (atenção aos 0 bytes)**
 
-5. No Nyx Diagnóstico, pare a gravação se ainda estiver ligada, toque em **Salvar em…** e
-   escolha o **pendrive**. Espere a mensagem **"Relatório salvo e conferido (N KB). Já pode
-   remover o pendrive."** antes de removê-lo.
-6. Traga o `.txt` para a pasta `diagnostico/`. Agora o diário do relatório inclui o que
-   aconteceu depois de abrir o diagnóstico (cada volta automática e o sinal que a disparou).
+5. Salve o relatório no pendrive pelo Nyx Diagnóstico (**Salvar em…**) e espere a mensagem
+   **"Relatório salvo e conferido"** antes de remover o pendrive.
+
+**Para desligar o serviço:** cartão 6 → Abrir acessibilidade → desative "Nyx Car — fim do
+CarPlay". O Nyx Car volta a perceber o fim pelo Bluetooth, como na 0.4.10.
 
 O relatório omite identificadores (número de série, MAC, IMEI, dados de rede). O diário do
 app não tem nomes de músicas; avisos de outros players podem ter: revise o arquivo antes
