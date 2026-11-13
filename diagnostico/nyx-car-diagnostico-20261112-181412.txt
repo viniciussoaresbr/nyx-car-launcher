@@ -1,0 +1,1519 @@
+NYX CAR LAUNCHER — RELATÓRIO DE DIAGNÓSTICO
+Versão do app: 0.4.7
+Gerado em: 12/11/2026 18:14:11 (BRT)
+Legenda: [*] destaque · [!] atenção. Identificadores (serial, MAC, IMEI, rede) foram omitidos.
+
+========================================================================
+TESTES NO CARRO
+========================================================================
+
+## Player próprio (pendrive)
+    Permissão de leitura das músicas: concedida
+    Estado do player: pausado
+    Música atual: fila ainda não lida (.mp3)
+[*] Pendrives encontrados: 1
+    Como foram encontrados: lista de volumes do Android
+    Pendrive 1 (PENDRIVE 16): raiz: 0 pastas, 0 músicas
+
+## Diário de eventos (player, CarPlay e erros do app)
+    12/11 17:53:30: Armazenamento: media_eject
+    12/11 17:53:30: Armazenamento: media_unmounted
+    12/11 17:53:30: Armazenamento: media_bad_removal
+    12/11 17:53:37: CarPlay: iPhone apareceu no USB (Apple)
+    12/11 17:53:37: CarPlay: tela de espera do Nyx Car desligada: falta a permissão "Sobrepor a outros apps"
+    12/11 17:53:39: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    12/11 17:53:46: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 17:53:58: CarPlay: terminou (Bluetooth da central ligou de novo); na tela estava com.premiumcar.launcher, nada mudou
+    12/11 17:54:19: Armazenamento: media_mounted
+    12/11 17:54:38: Player iniciado (sistema ligado há 1740 min, acordado há 125 min): última música pausada em 0:23, aguardando toque
+    12/11 17:54:44: Armazenamento: media_eject
+    12/11 17:54:44: Armazenamento: media_unmounted
+    12/11 17:54:44: Armazenamento: media_bad_removal
+    12/11 17:54:59: CarPlay: iPhone apareceu no USB (Apple)
+    12/11 17:54:59: CarPlay: tela de espera do Nyx Car desligada: falta a permissão "Sobrepor a outros apps"
+    12/11 17:55:00: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    12/11 17:55:07: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 17:55:14: CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    12/11 17:56:09: Player iniciado (sistema ligado há 1741 min, acordado há 127 min): última música pausada em 0:23, aguardando toque
+    12/11 17:57:59: Tela acesa
+    12/11 17:58:24: Armazenamento: media_mounted
+    12/11 17:59:45: Player iniciado (sistema ligado há 1745 min, acordado há 129 min): última música pausada em 0:23, aguardando toque
+    12/11 17:59:50: Armazenamento: media_eject
+    12/11 17:59:51: Armazenamento: media_unmounted
+    12/11 17:59:51: Armazenamento: media_bad_removal
+    12/11 17:59:54: CarPlay: iPhone apareceu no USB (Apple)
+    12/11 17:59:54: CarPlay: tela de espera do Nyx Car desligada: falta a permissão "Sobrepor a outros apps"
+    12/11 17:59:56: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    12/11 18:00:03: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 18:00:10: CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    12/11 18:00:29: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 18:00:55: CarPlay: terminou (Bluetooth da central ligou de novo); na tela estava com.premiumcar.launcher, nada mudou
+    12/11 18:03:34: CarPlay: iPhone apareceu no USB (Apple)
+    12/11 18:03:34: CarPlay: tela de espera do Nyx Car aberta (cabo)
+    12/11 18:03:36: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    12/11 18:03:43: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 18:03:44: CarPlay: vídeo do CarPlay chegou 9,6 s depois de a tela de espera abrir: ela fecha
+    12/11 18:03:57: CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    12/11 18:04:04: CarPlay: iPhone apareceu no USB (Apple)
+    12/11 18:04:04: CarPlay: tela de espera do Nyx Car aberta (cabo)
+    12/11 18:04:06: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    12/11 18:04:13: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 18:04:13: CarPlay: vídeo do CarPlay chegou 9,0 s depois de a tela de espera abrir: ela fecha
+    12/11 18:04:21: CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    12/11 18:04:38: CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    12/11 18:04:45: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 18:04:46: CarPlay: vídeo do CarPlay chegou 7,3 s depois de a tela de espera abrir: ela fecha
+    12/11 18:05:11: CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    12/11 18:06:29: CarPlay: iPhone apareceu no USB (Apple)
+    12/11 18:06:29: CarPlay: tela de espera do Nyx Car aberta (cabo)
+    12/11 18:06:31: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    12/11 18:06:39: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 18:06:39: CarPlay: vídeo do CarPlay chegou 9,7 s depois de a tela de espera abrir: ela fecha
+    12/11 18:06:50: CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    12/11 18:06:59: CarPlay: iPhone apareceu no USB (Apple)
+    12/11 18:06:59: CarPlay: tela de espera do Nyx Car aberta (cabo)
+    12/11 18:07:01: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    12/11 18:07:08: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 18:07:09: CarPlay: vídeo do CarPlay chegou 9,2 s depois de a tela de espera abrir: ela fecha
+    12/11 18:07:18: CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    12/11 18:07:33: CarPlay: iPhone apareceu no USB (Apple)
+    12/11 18:07:33: CarPlay: tela de espera do Nyx Car aberta (cabo)
+    12/11 18:07:35: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    12/11 18:07:42: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 18:07:43: CarPlay: vídeo do CarPlay chegou 9,2 s depois de a tela de espera abrir: ela fecha
+    12/11 18:07:49: CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    12/11 18:08:16: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 18:08:38: CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    12/11 18:08:58: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 18:09:20: CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    12/11 18:09:33: CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    12/11 18:09:37: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    12/11 18:09:38: CarPlay: vídeo do CarPlay chegou 4,4 s depois de a tela de espera abrir: ela fecha
+    12/11 18:10:01: CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    12/11 18:10:53: CarPlay: iPhone apareceu no USB (Apple)
+    12/11 18:10:53: CarPlay: tela de espera do Nyx Car aberta (cabo)
+    12/11 18:10:55: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    12/11 18:11:13: CarPlay: tempo máximo (20,0 s) sem o vídeo do CarPlay: tela de espera fechada
+    12/11 18:11:34: CarPlay: terminou (cabo desconectado): o Nyx Car voltou para a frente
+    12/11 18:14:07: Armazenamento: media_mounted
+    Obs.: Sem nomes de músicas. "Player iniciado" marca cada vez que o Nyx Car foi aberto do zero e mostra há quanto tempo o sistema está ligado (se a central reiniciou ou só acordou). Sem um "Erro do app" logo antes, quem fechou o Nyx Car foi a central, não um erro do app.
+
+## Player USB (com.hcn.AutoMediaPlayer)
+    Versão: 1.3.20260202-ac8227l
+    Situação: ativado
+[*] Receptor de botões de mídia: com.hcn.media.local.event.MusicIntentReceiver
+    Serviço de navegação de mídia (MediaBrowserService): não
+    Serviços declarados (3): com.hcn.media.local.LocalService · exportado
+        com.hcn.media.external.ReceptionService · exportado
+        androidx.room.MultiInstanceInvalidationService
+    Obs.: Sem serviço, um player normalmente não consegue tocar com a tela dele fechada. Sem receptor nem sessão de mídia, ele não recebe comandos de outros apps.
+
+## Receptores de botões de mídia no sistema
+    Receptor 1: com.auto.hcamera/com.auto.tv.TVKeyIntentReceiver
+    Receptor 2: com.auto.hcamera/com.auto.hcamera.local.AuxKeyIntentReceiver
+    Receptor 3: com.autochips.bluetooth/com.autochips.bluetooth.receiver.MediaButtonReceiver
+    Receptor 4: com.google.android.youtube/com.google.android.libraries.youtube.player.ui.mediasession.MediaButtonIntentReceiverProvider$DefaultMediaButtonIntentReceiver
+    Receptor 5: com.hcn.AutoMediaPlayer/com.hcn.media.local.event.MusicIntentReceiver
+    Receptor 6: com.hcn.audioinputsource/com.hcn.audioinputsource.local.AuxKeyIntentReceiver
+    Receptor 7: com.hcn.autoradio/com.hcn.autoradio.RadioMediaButtonReceiver
+    Receptor 8: com.zjinnova.zlink/com.zjinnova.android.zlink.features.broadcast.MediaButtonReceiver
+    Obs.: Apps que aceitam teclas de mídia (volante, fones) pelo caminho antigo do Android.
+
+## Sessões de mídia ativas
+    Acesso a notificações: concedido
+    Sessões agora: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    Obs.: Com o acesso, dá para saber se o player USB, o Bluetooth e o CarPlay publicam estado e faixa, o que permite sincronizar o cartão de música.
+
+## Linha do tempo dos testes
+    16:42:00.7 (t+5,2 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    16:42:00.7 (t+5,2 s): Propriedade sys.usb.config: mtp → none
+    16:42:00.7 (t+5,2 s): Propriedade sys.usb.state: mtp → none
+    16:42:02.8 (t+7,3 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    16:42:06.2 (t+10,7 s): Bluetooth: adaptador ligado → desligando
+    16:42:06.6 (t+11,1 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    16:42:07.5 (t+12,0 s): Rede total: recebendo 1,2 MB/s, enviando 604 KB/s (subiu)
+    16:42:08.4 (t+12,9 s): Bluetooth: adaptador desligando → desligado
+    16:42:09.5 (t+14,0 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    16:42:09.5 (t+14,0 s): Rede total: recebendo 230 KB/s, enviando 118 KB/s (caiu)
+    16:42:10.7 (t+15,2 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    16:42:12.3 (t+16,8 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo); na tela estava com.premiumcar.launcher, nada mudou
+    16:42:12.8 (t+17,3 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    16:42:12.8 (t+17,3 s): Rede total: recebendo 2 KB/s, enviando 3 KB/s (caiu)
+    16:42:12.8 (t+17,3 s): Bluetooth: adaptador desligado → ligando
+    16:42:12.8 (t+17,3 s): Bluetooth: adaptador ligando → ligado
+    16:42:12.8 (t+17,3 s): USB (central como aparelho): host_connected, mtp
+    16:42:12.8 (t+17,3 s): USB (central como aparelho): config_changed, host_connected, mtp
+    16:42:12.8 (t+17,3 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    16:42:12.8 (t+17,3 s): Bluetooth: conexão geral desconectado → conectando
+    16:42:12.8 (t+17,3 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    16:42:14.0 (t+18,5 s): Propriedade sys.usb.config: none → mtp
+    16:42:14.0 (t+18,5 s): Propriedade sys.usb.state: none → mtp
+    16:42:14.6 (t+19,1 s): Gravação encerrada (pelo usuário)
+    16:42:30.2 (t+0,0 s): Gravação iniciada (até 180 s)
+    16:42:30.2 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    16:42:30.2 (t+0,0 s): Tipos de áudio tocando: nenhum
+    16:42:30.4 (t+0,3 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    16:42:30.4 (t+0,3 s): Início: sys.usb.state = mtp
+    16:42:30.4 (t+0,3 s): Início: sys.usb.config = mtp
+    16:42:30.5 (t+0,3 s): Início: sys.usb.configfs = 2
+    16:42:30.5 (t+0,3 s): Início: rw.cp.link.state = 1
+    16:42:30.5 (t+0,3 s): Música tocando: não
+    16:42:30.5 (t+0,3 s): Modo de áudio: normal
+    16:42:30.5 (t+0,3 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    16:42:30.5 (t+0,3 s): Lista USB do Android: vazia
+    16:42:30.5 (t+0,3 s): Início: interfaces de rede (só o total do Android): total
+    16:42:30.8 (t+0,7 s): Bluetooth HFP (ligações do celular): conectando → conectado
+    16:42:30.9 (t+0,7 s): Bluetooth: conexão geral conectando → conectado
+    16:42:32.9 (t+2,8 s): Propriedade init.svc.hostapd: stopped → running
+    16:42:36.9 (t+6,8 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    16:42:44.0 (t+13,9 s): Bluetooth: adaptador ligado → desligando
+    16:42:44.2 (t+14,0 s): Bluetooth HFP (ligações do celular): conectado → desconectado
+    16:42:44.3 (t+14,2 s): Bluetooth: conexão geral conectado → desconectado
+    16:42:45.0 (t+14,9 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    16:42:46.0 (t+15,9 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    16:42:46.0 (t+15,9 s): Rede total: recebendo 247 KB/s, enviando 123 KB/s (subiu)
+    16:42:46.0 (t+15,9 s): Bluetooth: enlace com um aparelho desconectado (ACL)
+    16:42:46.0 (t+15,9 s): Bluetooth: adaptador desligando → desligado
+    16:42:47.2 (t+17,1 s): Rede total: recebendo 1 KB/s, enviando 0 KB/s (caiu)
+    16:42:48.4 (t+18,3 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    16:42:48.4 (t+18,3 s): Rede total: recebendo 102 KB/s, enviando 52 KB/s (subiu)
+    16:42:49.7 (t+19,5 s): Rede total: recebendo 0 KB/s, enviando 0 KB/s (caiu)
+    16:42:53.9 (t+23,8 s): Gravação encerrada (pelo usuário)
+    16:42:59.1 (t+0,0 s): Gravação iniciada (até 180 s)
+    16:42:59.1 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    16:42:59.1 (t+0,0 s): Tipos de áudio tocando: nenhum
+    16:42:59.5 (t+0,4 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    16:42:59.5 (t+0,4 s): Início: sys.usb.state = mtp
+    16:42:59.5 (t+0,4 s): Início: sys.usb.config = mtp
+    16:42:59.5 (t+0,4 s): Início: sys.usb.configfs = 2
+    16:42:59.5 (t+0,4 s): Início: rw.cp.link.state = 1
+    16:42:59.5 (t+0,4 s): Música tocando: não
+    16:42:59.5 (t+0,5 s): Modo de áudio: normal
+    16:42:59.5 (t+0,5 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    16:42:59.5 (t+0,5 s): Lista USB do Android: vazia
+    16:42:59.5 (t+0,5 s): Início: interfaces de rede (só o total do Android): total
+    16:43:00.4 (t+1,3 s): Bluetooth: adaptador desligado → ligando
+    16:43:00.9 (t+1,8 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo); na tela estava com.premiumcar.launcher, nada mudou
+    16:43:01.8 (t+2,8 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    16:43:01.9 (t+2,8 s): Bluetooth: adaptador ligando → ligado
+    16:43:01.9 (t+2,8 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    16:43:01.9 (t+2,8 s): Bluetooth: conexão geral desconectado → conectando
+    16:43:01.9 (t+2,8 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    16:43:03.2 (t+4,1 s): Bluetooth: enlace com um aparelho conectado (ACL)
+    16:43:04.0 (t+4,9 s): Bluetooth HFP (ligações do celular): conectando → conectado
+    16:43:04.0 (t+5,0 s): Bluetooth: conexão geral conectando → conectado
+    16:43:04.5 (t+5,5 s): Bluetooth A2DP sink: tocando → parado
+    16:43:04.5 (t+5,5 s): Bluetooth A2DP sink (música do celular): conectando → conectado
+    16:43:04.7 (t+5,7 s): Bluetooth AVRCP (controles do celular): desconectado → conectado
+    16:43:05.7 (t+6,6 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (pausado; dados: título+artista; comandos: play, pause, próxima, anterior)
+    16:43:07.3 (t+8,3 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    16:43:07.3 (t+8,3 s): Rede total: recebendo 8 KB/s, enviando 8 KB/s (subiu)
+    16:43:08.7 (t+9,6 s): Rede total: recebendo 4 KB/s, enviando 3 KB/s (caiu)
+    16:43:10.5 (t+11,5 s): Bluetooth: adaptador ligado → desligando
+    16:43:10.7 (t+11,6 s): Bluetooth HFP (ligações do celular): conectado → desconectado
+    16:43:11.4 (t+12,3 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    16:43:12.0 (t+12,9 s): Rede total: recebendo 428 KB/s, enviando 209 KB/s (subiu)
+    16:43:12.8 (t+13,8 s): Bluetooth: adaptador desligando → desligado
+    16:43:13.8 (t+14,7 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    16:43:13.8 (t+14,7 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    16:43:15.0 (t+15,9 s): Rede total: recebendo 0 KB/s, enviando 0 KB/s (caiu)
+    16:43:18.7 (t+19,7 s): Gravação encerrada (pelo usuário)
+    17:21:44.6 (t+0,0 s): Gravação iniciada (até 180 s)
+    17:21:44.6 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    17:21:44.7 (t+0,0 s): Tipos de áudio tocando: nenhum
+    17:21:45.0 (t+0,4 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    17:21:45.0 (t+0,4 s): Início: sys.usb.state = mtp
+    17:21:45.0 (t+0,4 s): Início: sys.usb.config = mtp
+    17:21:45.0 (t+0,4 s): Início: sys.usb.configfs = 2
+    17:21:45.0 (t+0,4 s): Início: rw.cp.link.state = 1
+    17:21:45.0 (t+0,4 s): Música tocando: não
+    17:21:45.0 (t+0,4 s): Modo de áudio: normal
+    17:21:45.0 (t+0,4 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    17:21:45.0 (t+0,4 s): Lista USB do Android: vazia
+    17:21:45.0 (t+0,4 s): Início: interfaces de rede (só o total do Android): total
+    17:21:46.3 (t+1,7 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    17:21:48.2 (t+3,5 s): Nyx Car — CarPlay: iPhone apareceu no USB (Apple)
+    17:21:48.2 (t+3,6 s): USB: aparelho conectado — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/066
+    17:21:48.7 (t+4,1 s): Lista USB do Android: Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/066
+    17:21:49.3 (t+4,6 s): USB: aparelho removido — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/066
+    17:21:49.6 (t+4,9 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    17:21:50.3 (t+5,7 s): Nyx Car — CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    17:21:50.8 (t+6,1 s): Propriedade sys.usb.config: mtp → none
+    17:21:50.8 (t+6,1 s): Propriedade sys.usb.state: mtp → none
+    17:21:50.8 (t+6,2 s): Lista USB do Android: vazia
+    17:21:50.9 (t+6,3 s): USB (central como aparelho): connected, host_connected, mtp
+    17:21:51.0 (t+6,3 s): USB (central como aparelho): configured, connected, host_connected, mtp
+    17:21:52.3 (t+7,7 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    17:21:52.9 (t+8,2 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    17:21:57.0 (t+12,4 s): Bluetooth: adaptador ligado → desligando
+    17:21:57.5 (t+12,8 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    17:21:58.9 (t+14,2 s): Rede total: recebendo 1,2 MB/s, enviando 584 KB/s (subiu)
+    17:21:59.3 (t+14,7 s): Bluetooth: adaptador desligando → desligado
+    17:22:00.1 (t+15,5 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    17:22:00.1 (t+15,5 s): Rede total: recebendo 88 KB/s, enviando 45 KB/s (caiu)
+    17:22:01.0 (t+16,4 s): Bluetooth: adaptador desligado → ligando
+    17:22:02.2 (t+17,6 s): Propriedade sys.usb.config: none → mtp
+    17:22:02.2 (t+17,6 s): Propriedade sys.usb.state: none → mtp
+    17:22:02.2 (t+17,6 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    17:22:02.2 (t+17,6 s): Rede total: recebendo 2 KB/s, enviando 3 KB/s (caiu)
+    17:22:02.2 (t+17,6 s): Bluetooth: adaptador ligando → ligado
+    17:22:02.2 (t+17,6 s): USB (central como aparelho): host_connected, mtp
+    17:22:02.2 (t+17,6 s): USB (central como aparelho): config_changed, host_connected, mtp
+    17:22:02.2 (t+17,6 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    17:22:02.2 (t+17,6 s): Bluetooth: conexão geral desconectado → conectando
+    17:22:02.2 (t+17,6 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    17:22:03.7 (t+19,1 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    17:22:04.7 (t+20,1 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    17:22:08.4 (t+23,7 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    17:22:10.8 (t+26,2 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    17:22:11.3 (t+26,7 s): Gravação encerrada (pelo usuário)
+    17:23:47.5 (t+0,0 s): Gravação iniciada (até 180 s)
+    17:23:47.5 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    17:23:47.5 (t+0,0 s): Tipos de áudio tocando: nenhum
+    17:23:47.7 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    17:23:47.7 (t+0,2 s): Início: sys.usb.state = mtp
+    17:23:47.7 (t+0,2 s): Início: sys.usb.config = mtp
+    17:23:47.7 (t+0,2 s): Início: sys.usb.configfs = 2
+    17:23:47.7 (t+0,2 s): Início: rw.cp.link.state = 1
+    17:23:47.7 (t+0,2 s): Música tocando: não
+    17:23:47.7 (t+0,2 s): Modo de áudio: normal
+    17:23:47.7 (t+0,3 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    17:23:47.7 (t+0,3 s): Lista USB do Android: vazia
+    17:23:47.7 (t+0,3 s): Início: interfaces de rede (só o total do Android): total
+    17:23:49.4 (t+1,9 s): Bluetooth: enlace com um aparelho conectado (ACL)
+    17:23:52.6 (t+5,1 s): Bluetooth A2DP sink (música do celular): conectando → conectado
+    17:23:52.6 (t+5,2 s): Bluetooth: conexão geral conectando → conectado
+    17:23:52.6 (t+5,2 s): Bluetooth A2DP sink: tocando → parado
+    17:23:53.1 (t+5,7 s): Bluetooth AVRCP (controles do celular): desconectado → conectado
+    17:23:55.2 (t+7,8 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    17:23:58.6 (t+11,2 s): Bluetooth: adaptador ligado → desligando
+    17:23:59.2 (t+11,7 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    17:24:00.1 (t+12,7 s): Rede total: recebendo 247 KB/s, enviando 125 KB/s (subiu)
+    17:24:00.8 (t+13,4 s): Bluetooth: adaptador desligando → desligado
+    17:24:01.3 (t+13,9 s): Rede total: recebendo 2 KB/s, enviando 0 KB/s (caiu)
+    17:24:12.1 (t+24,7 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    17:24:12.1 (t+24,7 s): Bluetooth: adaptador desligado → ligando
+    17:24:12.1 (t+24,7 s): Bluetooth: adaptador ligando → ligado
+    17:24:12.1 (t+24,7 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    17:24:12.1 (t+24,7 s): Bluetooth: conexão geral desconectado → conectando
+    17:24:12.1 (t+24,7 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    17:24:13.1 (t+25,7 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    17:24:13.9 (t+26,4 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    17:24:15.4 (t+27,9 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    17:24:15.9 (t+28,5 s): Gravação encerrada (pelo usuário)
+    17:24:34.1 (t+0,0 s): Gravação iniciada (até 180 s)
+    17:24:34.1 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    17:24:34.1 (t+0,0 s): Tipos de áudio tocando: nenhum
+    17:24:34.3 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    17:24:34.3 (t+0,2 s): Início: sys.usb.state = mtp
+    17:24:34.3 (t+0,2 s): Início: sys.usb.config = mtp
+    17:24:34.3 (t+0,2 s): Início: sys.usb.configfs = 2
+    17:24:34.3 (t+0,2 s): Início: rw.cp.link.state = 1
+    17:24:34.3 (t+0,2 s): Música tocando: não
+    17:24:34.3 (t+0,2 s): Modo de áudio: normal
+    17:24:34.3 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    17:24:34.3 (t+0,2 s): Lista USB do Android: vazia
+    17:24:34.3 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    17:24:36.5 (t+2,4 s): Nyx Car — CarPlay: iPhone apareceu no USB (Apple)
+    17:24:36.5 (t+2,4 s): USB: aparelho conectado — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/067
+    17:24:36.8 (t+2,7 s): Lista USB do Android: Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/067
+    17:24:37.6 (t+3,5 s): USB: aparelho removido — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/067
+    17:24:38.2 (t+4,1 s): Lista USB do Android: vazia
+    17:24:38.2 (t+4,1 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    17:24:38.2 (t+4,1 s): Bluetooth: conexão geral desconectado → conectando
+    17:24:38.2 (t+4,1 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    17:24:38.6 (t+4,5 s): Nyx Car — CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    17:24:38.6 (t+4,5 s): USB (central como aparelho): connected, host_connected, mtp
+    17:24:38.6 (t+4,5 s): USB (central como aparelho): configured, connected, host_connected, mtp
+    17:24:39.4 (t+5,3 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    17:24:39.5 (t+5,3 s): Propriedade sys.usb.config: mtp → none
+    17:24:39.5 (t+5,3 s): Propriedade sys.usb.state: mtp → none
+    17:24:44.6 (t+10,5 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    17:24:45.0 (t+10,9 s): Bluetooth: adaptador ligado → desligando
+    17:24:45.6 (t+11,5 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    17:24:46.6 (t+12,5 s): Rede total: recebendo 1,1 MB/s, enviando 552 KB/s (subiu)
+    17:24:47.3 (t+13,2 s): Bluetooth: adaptador desligando → desligado
+    17:24:47.8 (t+13,7 s): Rede total: recebendo 140 KB/s, enviando 73 KB/s (caiu)
+    17:24:49.0 (t+14,9 s): Rede total: recebendo 1 KB/s, enviando 0 KB/s (caiu)
+    17:24:52.5 (t+18,4 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    17:24:52.5 (t+18,4 s): Bluetooth: adaptador desligado → ligando
+    17:24:52.5 (t+18,4 s): Bluetooth: adaptador ligando → ligado
+    17:24:52.5 (t+18,4 s): USB (central como aparelho): host_connected, mtp
+    17:24:52.5 (t+18,4 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    17:24:52.5 (t+18,4 s): Bluetooth: conexão geral desconectado → conectando
+    17:24:52.5 (t+18,4 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    17:24:52.5 (t+18,4 s): USB (central como aparelho): config_changed, host_connected, mtp
+    17:24:53.7 (t+19,6 s): Propriedade sys.usb.config: none → mtp
+    17:24:53.7 (t+19,6 s): Propriedade sys.usb.state: none → mtp
+    17:24:54.0 (t+19,9 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    17:24:55.0 (t+20,8 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    17:24:58.7 (t+24,6 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    17:25:02.1 (t+28,0 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    17:25:04.7 (t+30,6 s): Gravação encerrada (pelo usuário)
+    17:25:08.6 (t+0,0 s): Gravação iniciada (até 180 s)
+    17:25:08.6 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    17:25:08.6 (t+0,0 s): Tipos de áudio tocando: nenhum
+    17:25:08.8 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    17:25:08.8 (t+0,2 s): Início: sys.usb.state = mtp
+    17:25:08.8 (t+0,2 s): Início: sys.usb.config = mtp
+    17:25:08.8 (t+0,2 s): Início: sys.usb.configfs = 2
+    17:25:08.8 (t+0,2 s): Início: rw.cp.link.state = 1
+    17:25:08.8 (t+0,2 s): Música tocando: não
+    17:25:08.8 (t+0,2 s): Modo de áudio: normal
+    17:25:08.8 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    17:25:08.8 (t+0,2 s): Lista USB do Android: vazia
+    17:25:08.8 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    17:25:11.1 (t+2,5 s): Nyx Car — CarPlay: iPhone apareceu no USB (Apple)
+    17:25:11.3 (t+2,7 s): Lista USB do Android: Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/068
+    17:25:11.3 (t+2,7 s): USB: aparelho conectado — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/068
+    17:25:11.7 (t+3,1 s): USB: aparelho removido — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/068
+    17:25:12.0 (t+3,4 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    17:25:12.1 (t+3,5 s): Bluetooth: conexão geral conectando → desconectado
+    17:25:12.1 (t+3,5 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    17:25:12.2 (t+3,6 s): Bluetooth: conexão geral desconectado → conectando
+    17:25:12.2 (t+3,6 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    17:25:12.6 (t+4,0 s): Propriedade sys.usb.config: mtp → none
+    17:25:12.6 (t+4,0 s): Propriedade sys.usb.state: mtp → none
+    17:25:12.6 (t+4,0 s): Lista USB do Android: vazia
+    17:25:12.9 (t+4,3 s): Nyx Car — CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    17:25:12.9 (t+4,3 s): USB (central como aparelho): connected, host_connected, mtp
+    17:25:12.9 (t+4,3 s): USB (central como aparelho): configured, connected, host_connected, mtp
+    17:25:13.9 (t+5,3 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    17:25:19.4 (t+10,8 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    17:25:19.7 (t+11,1 s): Rede total: recebendo 351 KB/s, enviando 13 KB/s (subiu)
+    17:25:19.7 (t+11,1 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    17:25:19.7 (t+11,1 s): Bluetooth: adaptador ligado → desligando
+    17:25:21.0 (t+12,4 s): Rede total: recebendo 1,5 MB/s, enviando 1008 KB/s (subiu)
+    17:25:21.5 (t+12,9 s): Bluetooth: adaptador desligando → desligado
+    17:25:22.2 (t+13,6 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    17:25:22.2 (t+13,6 s): Rede total: recebendo 141 KB/s, enviando 73 KB/s (caiu)
+    17:25:23.1 (t+14,5 s): Bluetooth: adaptador desligado → ligando
+    17:25:24.3 (t+15,7 s): Propriedade sys.usb.config: none → mtp
+    17:25:24.3 (t+15,7 s): Propriedade sys.usb.state: none → mtp
+    17:25:24.3 (t+15,7 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    17:25:24.3 (t+15,7 s): Rede total: recebendo 2 KB/s, enviando 3 KB/s (caiu)
+    17:25:24.3 (t+15,7 s): Bluetooth: adaptador ligando → ligado
+    17:25:24.3 (t+15,7 s): USB (central como aparelho): host_connected, mtp
+    17:25:24.3 (t+15,7 s): USB (central como aparelho): config_changed, host_connected, mtp
+    17:25:24.3 (t+15,7 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    17:25:24.3 (t+15,7 s): Bluetooth: conexão geral desconectado → conectando
+    17:25:24.3 (t+15,7 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    17:25:25.7 (t+17,1 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    17:25:26.8 (t+18,2 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    17:25:28.0 (t+19,4 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    17:25:28.2 (t+19,6 s): Gravação encerrada (pelo usuário)
+    18:06:26.2 (t+0,0 s): Gravação iniciada (até 180 s)
+    18:06:26.2 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    18:06:26.2 (t+0,0 s): Tipos de áudio tocando: nenhum
+    18:06:26.4 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    18:06:26.4 (t+0,2 s): Início: sys.usb.state = mtp
+    18:06:26.4 (t+0,2 s): Início: sys.usb.config = mtp
+    18:06:26.4 (t+0,2 s): Início: sys.usb.configfs = 2
+    18:06:26.4 (t+0,2 s): Início: rw.cp.link.state = 1
+    18:06:26.4 (t+0,2 s): Música tocando: não
+    18:06:26.4 (t+0,2 s): Modo de áudio: normal
+    18:06:26.4 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:06:26.4 (t+0,2 s): Lista USB do Android: vazia
+    18:06:26.4 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    18:06:29.8 (t+3,7 s): Nyx Car — CarPlay: iPhone apareceu no USB (Apple)
+    18:06:29.8 (t+3,7 s): USB: aparelho conectado — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/078
+    18:06:29.9 (t+3,7 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (cabo)
+    18:06:30.1 (t+4,0 s): Lista USB do Android: Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/078
+    18:06:30.1 (t+4,0 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:06:30.5 (t+4,3 s): USB: aparelho removido — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/078
+    18:06:31.4 (t+5,2 s): Propriedade sys.usb.config: mtp → none
+    18:06:31.4 (t+5,2 s): Propriedade sys.usb.state: mtp → none
+    18:06:31.4 (t+5,2 s): Lista USB do Android: vazia
+    18:06:31.7 (t+5,5 s): Nyx Car — CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    18:06:31.7 (t+5,6 s): USB (central como aparelho): connected, host_connected, mtp
+    18:06:31.7 (t+5,6 s): USB (central como aparelho): configured, connected, host_connected, mtp
+    18:06:32.7 (t+6,5 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    18:06:33.3 (t+7,1 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:06:36.6 (t+10,5 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    18:06:38.5 (t+12,4 s): Bluetooth: adaptador ligado → desligando
+    18:06:39.0 (t+12,9 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    18:06:39.6 (t+13,4 s): Nyx Car — CarPlay: vídeo do CarPlay chegou 9,7 s depois de a tela de espera abrir: ela fecha
+    18:06:40.7 (t+14,5 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:06:40.8 (t+14,6 s): Rede total: recebendo 982 KB/s, enviando 486 KB/s (subiu)
+    18:06:40.8 (t+14,6 s): Bluetooth: adaptador desligando → desligado
+    18:06:42.0 (t+15,8 s): Rede total: recebendo 2 KB/s, enviando 0 KB/s (caiu)
+    18:06:48.9 (t+22,7 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:06:48.9 (t+22,7 s): Bluetooth: adaptador desligado → ligando
+    18:06:48.9 (t+22,7 s): Bluetooth: adaptador ligando → ligado
+    18:06:49.0 (t+22,8 s): USB (central como aparelho): host_connected, mtp
+    18:06:49.0 (t+22,8 s): USB (central como aparelho): config_changed, host_connected, mtp
+    18:06:49.0 (t+22,9 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:06:49.0 (t+22,9 s): Bluetooth: conexão geral desconectado → conectando
+    18:06:49.1 (t+22,9 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    18:06:50.1 (t+23,9 s): Propriedade sys.usb.config: none → mtp
+    18:06:50.1 (t+23,9 s): Propriedade sys.usb.state: none → mtp
+    18:06:50.9 (t+24,7 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    18:06:51.6 (t+25,4 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    18:06:53.1 (t+26,9 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    18:06:53.7 (t+27,5 s): Gravação encerrada (pelo usuário)
+    18:06:57.5 (t+0,0 s): Gravação iniciada (até 180 s)
+    18:06:57.5 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    18:06:57.5 (t+0,0 s): Tipos de áudio tocando: nenhum
+    18:06:57.7 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    18:06:57.7 (t+0,2 s): Início: sys.usb.state = mtp
+    18:06:57.7 (t+0,2 s): Início: sys.usb.config = mtp
+    18:06:57.7 (t+0,2 s): Início: sys.usb.configfs = 2
+    18:06:57.7 (t+0,2 s): Início: rw.cp.link.state = 1
+    18:06:57.7 (t+0,2 s): Música tocando: não
+    18:06:57.7 (t+0,2 s): Modo de áudio: normal
+    18:06:57.7 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:06:57.7 (t+0,2 s): Lista USB do Android: vazia
+    18:06:57.7 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    18:06:59.1 (t+1,6 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:06:59.8 (t+2,3 s): Nyx Car — CarPlay: iPhone apareceu no USB (Apple)
+    18:06:59.8 (t+2,3 s): USB: aparelho conectado — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/079
+    18:06:59.8 (t+2,3 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (cabo)
+    18:07:00.2 (t+2,7 s): Lista USB do Android: Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/079
+    18:07:00.9 (t+3,4 s): USB: aparelho removido — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/079
+    18:07:01.5 (t+4,0 s): Propriedade sys.usb.config: mtp → none
+    18:07:01.5 (t+4,0 s): Propriedade sys.usb.state: mtp → none
+    18:07:01.5 (t+4,0 s): Lista USB do Android: vazia
+    18:07:01.8 (t+4,2 s): Nyx Car — CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    18:07:01.8 (t+4,2 s): USB (central como aparelho): connected, host_connected, mtp
+    18:07:01.8 (t+4,3 s): USB (central como aparelho): configured, connected, host_connected, mtp
+    18:07:02.4 (t+4,9 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    18:07:02.9 (t+5,4 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    18:07:08.4 (t+10,9 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    18:07:08.5 (t+11,0 s): Rede total: recebendo 330 KB/s, enviando 14 KB/s (subiu)
+    18:07:08.5 (t+11,0 s): Bluetooth: adaptador ligado → desligando
+    18:07:09.0 (t+11,5 s): Nyx Car — CarPlay: vídeo do CarPlay chegou 9,2 s depois de a tela de espera abrir: ela fecha
+    18:07:09.1 (t+11,6 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:07:09.4 (t+11,9 s): Bluetooth: conexão geral conectando → desconectado
+    18:07:10.6 (t+13,1 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:07:10.6 (t+13,1 s): Rede total: recebendo 936 KB/s, enviando 596 KB/s (subiu)
+    18:07:10.6 (t+13,1 s): Bluetooth: adaptador desligando → desligado
+    18:07:11.8 (t+14,3 s): Rede total: recebendo 1 KB/s, enviando 0 KB/s (caiu)
+    18:07:15.7 (t+18,2 s): Bluetooth: adaptador desligado → ligando
+    18:07:16.0 (t+18,5 s): Bluetooth: adaptador ligando → ligado
+    18:07:16.3 (t+18,8 s): USB (central como aparelho): host_connected, mtp
+    18:07:16.4 (t+18,9 s): USB (central como aparelho): config_changed, host_connected, mtp
+    18:07:16.5 (t+19,0 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:07:16.6 (t+19,0 s): Bluetooth: conexão geral desconectado → conectando
+    18:07:17.3 (t+19,8 s): Propriedade sys.usb.config: none → mtp
+    18:07:17.3 (t+19,8 s): Propriedade sys.usb.state: none → mtp
+    18:07:17.3 (t+19,8 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:07:17.3 (t+19,8 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    18:07:18.8 (t+21,2 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    18:07:19.7 (t+22,2 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    18:07:23.3 (t+25,8 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:07:26.7 (t+29,1 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:07:29.9 (t+32,4 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    18:07:33.8 (t+36,3 s): Nyx Car — CarPlay: iPhone apareceu no USB (Apple)
+    18:07:33.8 (t+36,3 s): USB: aparelho conectado — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/080
+    18:07:33.9 (t+36,3 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (cabo)
+    18:07:34.3 (t+36,7 s): Lista USB do Android: Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/080
+    18:07:34.4 (t+36,9 s): USB: aparelho removido — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/080
+    18:07:35.5 (t+38,0 s): Propriedade sys.usb.config: mtp → none
+    18:07:35.5 (t+38,0 s): Propriedade sys.usb.state: mtp → none
+    18:07:35.5 (t+38,0 s): Lista USB do Android: vazia
+    18:07:35.6 (t+38,1 s): USB (central como aparelho): connected, host_connected, mtp
+    18:07:35.7 (t+38,1 s): USB (central como aparelho): configured, connected, host_connected, mtp
+    18:07:35.7 (t+38,2 s): Nyx Car — CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    18:07:37.1 (t+39,6 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    18:07:37.2 (t+39,7 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:07:37.2 (t+39,7 s): Bluetooth: conexão geral conectando → desconectado
+    18:07:37.2 (t+39,7 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:07:37.2 (t+39,7 s): Bluetooth: conexão geral desconectado → conectando
+    18:07:37.2 (t+39,7 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    18:07:41.9 (t+44,4 s): Bluetooth: adaptador ligado → desligando
+    18:07:42.6 (t+45,0 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    18:07:43.1 (t+45,6 s): Nyx Car — CarPlay: vídeo do CarPlay chegou 9,2 s depois de a tela de espera abrir: ela fecha
+    18:07:43.8 (t+46,3 s): Rede total: recebendo 955 KB/s, enviando 475 KB/s (subiu)
+    18:07:43.8 (t+46,3 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:07:44.3 (t+46,7 s): Bluetooth: adaptador desligando → desligado
+    18:07:45.0 (t+47,5 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:07:45.0 (t+47,5 s): Rede total: recebendo 102 KB/s, enviando 52 KB/s (caiu)
+    18:07:46.3 (t+48,8 s): Rede total: recebendo 2 KB/s, enviando 2 KB/s (caiu)
+    18:07:46.5 (t+48,9 s): Bluetooth: adaptador desligado → ligando
+    18:07:46.9 (t+49,4 s): Bluetooth: adaptador ligando → ligado
+    18:07:47.0 (t+49,4 s): USB (central como aparelho): host_connected, mtp
+    18:07:47.1 (t+49,6 s): USB (central como aparelho): config_changed, host_connected, mtp
+    18:07:47.3 (t+49,8 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:07:47.3 (t+49,8 s): Bluetooth: conexão geral desconectado → conectando
+    18:07:47.4 (t+49,8 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    18:07:48.0 (t+50,5 s): Propriedade sys.usb.config: none → mtp
+    18:07:48.0 (t+50,5 s): Propriedade sys.usb.state: none → mtp
+    18:07:48.0 (t+50,5 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:07:49.1 (t+51,6 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    18:07:49.7 (t+52,2 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    18:07:53.9 (t+56,4 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:07:57.0 (t+59,5 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    18:07:57.3 (t+59,8 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:08:00.6 (t+63,1 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    18:08:02.1 (t+64,6 s): Gravação encerrada (pelo usuário)
+    18:08:05.8 (t+0,0 s): Gravação iniciada (até 180 s)
+    18:08:05.8 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    18:08:05.8 (t+0,0 s): Tipos de áudio tocando: nenhum
+    18:08:06.0 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    18:08:06.0 (t+0,2 s): Início: sys.usb.state = mtp
+    18:08:06.0 (t+0,2 s): Início: sys.usb.config = mtp
+    18:08:06.0 (t+0,2 s): Início: sys.usb.configfs = 2
+    18:08:06.0 (t+0,2 s): Início: rw.cp.link.state = 1
+    18:08:06.0 (t+0,2 s): Música tocando: não
+    18:08:06.0 (t+0,2 s): Modo de áudio: normal
+    18:08:06.0 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:08:06.0 (t+0,2 s): Lista USB do Android: vazia
+    18:08:06.0 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    18:08:07.3 (t+1,5 s): Bluetooth HFP (ligações do celular): conectando → conectado
+    18:08:07.3 (t+1,5 s): Bluetooth: conexão geral conectando → conectado
+    18:08:09.8 (t+4,1 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    18:08:15.6 (t+9,9 s): Bluetooth: adaptador ligado → desligando
+    18:08:15.8 (t+10,0 s): Bluetooth HFP (ligações do celular): conectado → desconectado
+    18:08:15.8 (t+10,1 s): Bluetooth: conexão geral conectado → desconectado
+    18:08:16.6 (t+10,9 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    18:08:17.5 (t+11,7 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:08:17.5 (t+11,7 s): Rede total: recebendo 207 KB/s, enviando 104 KB/s (subiu)
+    18:08:17.5 (t+11,7 s): Bluetooth: enlace com um aparelho desconectado (ACL)
+    18:08:17.5 (t+11,7 s): Bluetooth: adaptador desligando → desligado
+    18:08:18.7 (t+12,9 s): Rede total: recebendo 1 KB/s, enviando 0 KB/s (caiu)
+    18:08:36.0 (t+30,2 s): Bluetooth: adaptador desligado → ligando
+    18:08:36.4 (t+30,6 s): Bluetooth: adaptador ligando → ligado
+    18:08:36.8 (t+31,1 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:08:37.5 (t+31,7 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:08:37.5 (t+31,7 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    18:08:37.5 (t+31,7 s): Bluetooth: conexão geral desconectado → conectando
+    18:08:38.1 (t+32,3 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    18:08:38.9 (t+33,1 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    18:08:42.5 (t+36,8 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    18:08:42.8 (t+37,0 s): Gravação encerrada (pelo usuário)
+    18:08:48.0 (t+0,0 s): Gravação iniciada (até 180 s)
+    18:08:48.0 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    18:08:48.0 (t+0,0 s): Tipos de áudio tocando: nenhum
+    18:08:48.2 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    18:08:48.2 (t+0,2 s): Início: sys.usb.state = mtp
+    18:08:48.2 (t+0,2 s): Início: sys.usb.config = mtp
+    18:08:48.2 (t+0,2 s): Início: sys.usb.configfs = 2
+    18:08:48.2 (t+0,2 s): Início: rw.cp.link.state = 1
+    18:08:48.2 (t+0,2 s): Música tocando: não
+    18:08:48.2 (t+0,2 s): Modo de áudio: normal
+    18:08:48.2 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:08:48.2 (t+0,2 s): Lista USB do Android: vazia
+    18:08:48.2 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    18:08:48.4 (t+0,4 s): Bluetooth: enlace com um aparelho conectado (ACL)
+    18:08:52.4 (t+4,4 s): Bluetooth A2DP sink (música do celular): conectando → conectado
+    18:08:52.4 (t+4,4 s): Bluetooth A2DP sink: tocando → parado
+    18:08:52.4 (t+4,4 s): Bluetooth: conexão geral conectando → conectado
+    18:08:53.3 (t+5,3 s): Bluetooth AVRCP (controles do celular): desconectado → conectado
+    18:08:54.1 (t+6,1 s): Bluetooth HFP (ligações do celular): conectando → conectado
+    18:08:54.6 (t+6,6 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    18:08:54.7 (t+6,6 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (pausado; dados: título+artista; comandos: play, pause, próxima, anterior)
+    18:08:54.7 (t+6,6 s): Rede total: recebendo 9 KB/s, enviando 9 KB/s (subiu)
+    18:08:55.9 (t+7,9 s): Rede total: recebendo 3 KB/s, enviando 5 KB/s (caiu)
+    18:08:57.5 (t+9,5 s): Bluetooth: adaptador ligado → desligando
+    18:08:57.7 (t+9,7 s): Bluetooth HFP (ligações do celular): conectado → desconectado
+    18:08:58.4 (t+10,4 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    18:08:59.4 (t+11,4 s): Rede total: recebendo 429 KB/s, enviando 212 KB/s (subiu)
+    18:08:59.8 (t+11,7 s): Bluetooth: adaptador desligando → desligado
+    18:09:00.6 (t+12,6 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:09:00.6 (t+12,6 s): Rede total: recebendo 0 KB/s, enviando 0 KB/s (caiu)
+    18:09:03.1 (t+15,0 s): Rede total: recebendo 17 KB/s, enviando 9 KB/s (subiu)
+    18:09:04.3 (t+16,2 s): Rede total: recebendo 0 KB/s, enviando 0 KB/s (caiu)
+    18:09:06.8 (t+18,8 s): Rede total: recebendo 76 KB/s, enviando 39 KB/s (subiu)
+    18:09:08.0 (t+20,0 s): Rede total: recebendo 9 KB/s, enviando 5 KB/s (caiu)
+    18:09:18.3 (t+30,3 s): Bluetooth: adaptador desligado → ligando
+    18:09:18.8 (t+30,7 s): Bluetooth: adaptador ligando → ligado
+    18:09:19.9 (t+31,8 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:09:19.9 (t+31,9 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:09:19.9 (t+31,9 s): Bluetooth: conexão geral desconectado → conectando
+    18:09:19.9 (t+31,9 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    18:09:20.4 (t+32,4 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    18:09:21.2 (t+33,2 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    18:09:23.4 (t+35,4 s): Gravação encerrada (pelo usuário)
+    18:09:28.9 (t+0,0 s): Gravação iniciada (até 180 s)
+    18:09:28.9 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    18:09:28.9 (t+0,0 s): Tipos de áudio tocando: nenhum
+    18:09:29.1 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    18:09:29.1 (t+0,2 s): Início: sys.usb.state = mtp
+    18:09:29.1 (t+0,2 s): Início: sys.usb.config = mtp
+    18:09:29.1 (t+0,2 s): Início: sys.usb.configfs = 2
+    18:09:29.1 (t+0,2 s): Início: rw.cp.link.state = 1
+    18:09:29.1 (t+0,2 s): Música tocando: não
+    18:09:29.1 (t+0,2 s): Modo de áudio: normal
+    18:09:29.1 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:09:29.1 (t+0,2 s): Lista USB do Android: vazia
+    18:09:29.1 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    18:09:29.5 (t+0,6 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:09:29.8 (t+1,0 s): Bluetooth A2DP sink (música do celular): conectando → conectado
+    18:09:29.9 (t+1,0 s): Bluetooth A2DP sink: tocando → parado
+    18:09:29.9 (t+1,0 s): Bluetooth: conexão geral conectando → conectado
+    18:09:30.1 (t+1,2 s): Bluetooth AVRCP (controles do celular): desconectado → conectado
+    18:09:30.5 (t+1,7 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (pausado; dados: nenhum; comandos: play, pause, próxima, anterior)
+    18:09:30.5 (t+1,7 s): Bluetooth HFP (ligações do celular): conectando → conectado
+    18:09:31.7 (t+2,9 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (pausado; dados: título+artista; comandos: play, pause, próxima, anterior)
+    18:09:33.5 (t+4,7 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.premiumcar.launcher/.app.MainActivity
+    18:09:33.6 (t+4,7 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    18:09:34.9 (t+6,0 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    18:09:37.0 (t+8,1 s): Bluetooth: adaptador ligado → desligando
+    18:09:37.1 (t+8,2 s): Bluetooth HFP (ligações do celular): conectado → desconectado
+    18:09:37.4 (t+8,5 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    18:09:37.8 (t+9,0 s): Rede total: recebendo 138 KB/s, enviando 3 KB/s (subiu)
+    18:09:38.0 (t+9,1 s): Nyx Car — CarPlay: vídeo do CarPlay chegou 4,4 s depois de a tela de espera abrir: ela fecha
+    18:09:39.4 (t+10,5 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:09:39.4 (t+10,5 s): Bluetooth: adaptador desligando → desligado
+    18:09:40.6 (t+11,7 s): Rede total: recebendo 1 KB/s, enviando 0 KB/s (caiu)
+    18:09:49.1 (t+20,2 s): Rede total: recebendo 42 KB/s, enviando 21 KB/s (subiu)
+    18:09:50.4 (t+21,5 s): Rede total: recebendo 0 KB/s, enviando 0 KB/s (caiu)
+    18:09:59.6 (t+30,8 s): Bluetooth: adaptador desligado → ligando
+    18:10:00.1 (t+31,2 s): Bluetooth: adaptador ligando → ligado
+    18:10:01.0 (t+32,1 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:10:01.0 (t+32,1 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:10:01.0 (t+32,1 s): Bluetooth: conexão geral desconectado → conectando
+    18:10:01.0 (t+32,1 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    18:10:01.7 (t+32,8 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo): o Nyx Car voltou para a frente
+    18:10:02.5 (t+33,6 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    18:10:04.0 (t+35,1 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    18:10:07.2 (t+38,3 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:10:07.8 (t+39,0 s): Gravação encerrada (pelo usuário)
+    18:10:49.8 (t+0,0 s): Gravação iniciada (até 180 s)
+    18:10:49.8 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    18:10:49.8 (t+0,0 s): Tipos de áudio tocando: nenhum
+    18:10:50.1 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    18:10:50.1 (t+0,2 s): Início: sys.usb.state = mtp
+    18:10:50.1 (t+0,2 s): Início: sys.usb.config = mtp
+    18:10:50.1 (t+0,2 s): Início: sys.usb.configfs = 2
+    18:10:50.1 (t+0,2 s): Início: rw.cp.link.state = 1
+    18:10:50.1 (t+0,3 s): Música tocando: não
+    18:10:50.1 (t+0,3 s): Modo de áudio: normal
+    18:10:50.1 (t+0,3 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    18:10:50.1 (t+0,3 s): Lista USB do Android: vazia
+    18:10:50.1 (t+0,3 s): Início: interfaces de rede (só o total do Android): total
+    18:10:53.4 (t+3,6 s): Nyx Car — CarPlay: iPhone apareceu no USB (Apple)
+    18:10:53.4 (t+3,6 s): USB: aparelho conectado — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/081
+    18:10:53.5 (t+3,6 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (cabo)
+    18:10:53.8 (t+4,0 s): Lista USB do Android: Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/081
+    18:10:54.0 (t+4,1 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:10:54.1 (t+4,2 s): USB: aparelho removido — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/081
+    18:10:55.0 (t+5,2 s): Lista USB do Android: vazia
+    18:10:55.5 (t+5,7 s): USB (central como aparelho): connected, host_connected, mtp
+    18:10:55.5 (t+5,7 s): Nyx Car — CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    18:10:55.5 (t+5,7 s): USB (central como aparelho): configured, connected, host_connected, mtp
+    18:10:56.5 (t+6,7 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    18:10:56.5 (t+6,7 s): Propriedade sys.usb.config: mtp → none
+    18:10:56.5 (t+6,7 s): Propriedade sys.usb.state: mtp → none
+    18:10:57.3 (t+7,5 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:11:00.6 (t+10,8 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    18:11:07.3 (t+17,5 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:11:07.4 (t+17,5 s): Bluetooth: conexão geral conectando → desconectado
+    18:11:07.5 (t+17,7 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:11:07.5 (t+17,7 s): Bluetooth: conexão geral desconectado → conectando
+    18:11:07.6 (t+17,7 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    18:11:09.3 (t+19,5 s): Rede total: recebendo 8 KB/s, enviando 10 KB/s (subiu)
+    18:11:10.6 (t+20,8 s): Rede total: recebendo 1 KB/s, enviando 2 KB/s (caiu)
+    18:11:13.5 (t+23,7 s): Nyx Car — CarPlay: tempo máximo (20,0 s) sem o vídeo do CarPlay: tela de espera fechada
+    18:11:14.4 (t+24,6 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:11:17.6 (t+27,7 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:11:19.5 (t+29,6 s): Rede total: recebendo 9 KB/s, enviando 9 KB/s (subiu)
+    18:11:20.8 (t+31,0 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    18:11:22.0 (t+32,2 s): Rede total: recebendo 3 KB/s, enviando 4 KB/s (caiu)
+    18:11:27.5 (t+37,7 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:11:27.6 (t+37,7 s): Bluetooth: conexão geral conectando → desconectado
+    18:11:27.7 (t+37,8 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:11:27.7 (t+37,9 s): Bluetooth: conexão geral desconectado → conectando
+    18:11:27.7 (t+37,9 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    18:11:32.3 (t+42,5 s): USB (central como aparelho): host_connected, mtp
+    18:11:32.3 (t+42,5 s): USB (central como aparelho): config_changed, host_connected, mtp
+    18:11:33.5 (t+43,7 s): Propriedade sys.usb.config: none → mtp
+    18:11:33.5 (t+43,7 s): Propriedade sys.usb.state: none → mtp
+    18:11:34.2 (t+44,3 s): Nyx Car — CarPlay: terminou (cabo desconectado): o Nyx Car voltou para a frente
+    18:11:34.4 (t+44,6 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    18:11:35.0 (t+45,1 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    18:11:37.7 (t+47,9 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    18:11:39.8 (t+50,0 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    18:11:40.3 (t+50,5 s): Gravação encerrada (pelo usuário)
+    Obs.: 425 registros mais antigos foram descartados (limite de 600).
+
+========================================================================
+SISTEMA
+========================================================================
+
+## Versão do sistema
+    Android declarado: 13
+[*] Nível de API real (SDK_INT): 27 — corresponde ao Android 8.1
+[!] Consistência: INCOERENTE: o sistema se apresenta como Android 13, mas a API real é 27 (Android 8.1)
+    API de lançamento (first_api_level): indisponível
+    Patch de segurança: 2018-07-05
+[*] Kernel: 3.18.79+
+    /proc/version: indisponível
+    Máquina virtual: ART 2.1.0
+    Treble / VNDK: true / —
+    Modo low-RAM (Android Go): não
+    Build: full_8227L_demo-user 13 O11019 1776394618 release-keys
+    Fingerprint: alps/full_8227L_demo/8227L_demo:13/O11019/1776394618:user/release-keys
+    Tipo / tags: user / release-keys
+
+## Data e hora
+    Data e hora automáticas (pela rede): ligado
+    Fuso horário automático: ligado
+    Fuso horário: America/Recife
+    Sistema ligado há: 1758 min
+    Relógio: acertado (posterior à data do firmware, 16/04/2026)
+
+## Aparelho
+    Fabricante / marca: alps / alps
+    Modelo: 8227L_demo
+    Produto / dispositivo: full_8227L_demo / 8227L_demo
+    Placa / hardware: unknown / ac8227l
+[*] Plataforma (ro.board.platform): ac8227l
+    Característica do build: default
+[*] ABIs suportadas: armeabi-v7a, armeabi
+    Executa apps de 64 bits: não (somente 32 bits)
+
+## Processador
+    Núcleos ativos: 4
+    Núcleos existentes (sysfs): 0-3
+[*] Núcleos identificados: 4× Cortex-A7 (0xc07)
+    Hardware (cpuinfo): AC8227L
+    Modelo (cpuinfo): ARMv7 Processor rev 3 (v7l)
+    Arquitetura: 7
+    Recursos: half thumb fastmult vfp edsp thumbee neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm
+[*] Frequência máxima: 1118 MHz
+
+## Memória
+[*] RAM total: 1,90 GB
+    Disponível agora: 1,04 GB
+    Limiar de memória baixa: 144,0 MB
+    Sistema em memória baixa agora: não
+    Swap / zRAM: 1024,0 MB
+[*] Heap por app (memoryClass): 128 MB · grande: 256 MB
+    Heap máximo deste processo: 128,0 MB
+    dalvik.vm.heapgrowthlimit / heapsize: 128m / 256m
+
+## Gráficos
+    OpenGL ES (sistema): 2.0
+[*] GPU (GL_RENDERER): Mali-450 MP
+    Fabricante da GPU: ARM
+    Versão do driver GL: OpenGL ES 2.0 58bf738
+    Vulkan: não suportado
+    Renderizador da interface (HWUI): padrão do sistema
+
+## Armazenamento interno
+    Total: 25,29 GB
+    Livre: 23,17 GB
+
+========================================================================
+TELA E TOQUE
+========================================================================
+
+## Tela
+[*] Resolução física: 1280 × 720 px
+[*] Densidade: 160 dpi (mdpi) · 1 dp = 1,00 px
+    Densidade de fábrica (ro.sf.lcd_density): indisponível
+[*] Área lógica disponível: 1280 × 655 dp
+    Menor largura (sw): 720 dp
+    DPI físico informado (x / y): 160,0 / 160,0
+    Diagonal estimada: 9,2" (depende do DPI informado; pode ser impreciso)
+[*] Taxa de atualização: 60,0 Hz
+    Modos de vídeo: 1280×720 @ 60,0 Hz
+    Orientação: horizontal · rotação 0°
+    Modo de interface (uiMode): normal · diurno
+    Escala de fonte do sistema: 1,00
+
+## Janela do aplicativo
+    Janela: 1280 × 720 px (1280 × 720 dp)
+[*] Área útil para a interface: 1280 × 720 px (1280 × 720 dp)
+[*] Barra superior: 65 px (65 dp)
+    Barra inferior: 0 px (0 dp)
+    Barras laterais (esq. / dir.): 0 px (0 dp) / 0 px (0 dp)
+    Obs.: A área útil é o espaço real disponível para o launcher, já descontadas as barras do sistema.
+
+## Toque e entrada
+    Multitoque: 5 ou mais pontos
+[*] Tela de toque: TS_GT9xx: faixa X 0–1279 · Y 0–719
+    Dispositivos de entrada: Virtual
+        TS_GT9xx
+        mtk-kpd
+    Obs.: Use a aba Calibração para testar a precisão do toque.
+
+========================================================================
+APPS E ATALHOS
+========================================================================
+
+## Atalhos e indicadores do launcher
+[*] Nyx Car como tela inicial: SIM (padrão)
+    Wi-Fi (indicador da Home): desconectado
+    Bluetooth segundo o Android: ligado (indicador visível)
+    Música tocando agora (qualquer app): não
+    Atalho: CarPlay (ZLINK): com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    Atalho: Bluetooth: com.autochips.bluetooth/.MainBluetoothActivity
+    Atalho: BT Música: com.autochips.bluetooth/.BtMusicActivity
+    Atalho: Música USB: com.hcn.AutoMediaPlayer/com.hcn.MediaActivity.MusicPlayerUiActivity
+    Atalho: Vídeo: com.hcn.AutoMediaPlayer/com.hcn.MediaActivity.VideoPlayerUiActivity
+    Atalho: Rádio: com.hcn.autoradio/.RadioMain
+    Atalho: Maps: com.google.android.apps.maps/com.google.android.maps.MapsActivity
+    Atalho: YouTube: com.google.android.youtube/.app.honeycomb.Shell$HomeActivity
+    Atalho: Câmera: com.auto.hcamera/.VideoInActivity
+    Atalho: Informações do carro: com.hcn.autocan/.activity.CanActivity
+    Atalho: Veículo: com.hcn.autosetting/.ui.SettingActivity
+    Atalho: Comandos de volante: com.hcn.swc/.MainActivity
+    Atalho: Equalizador: com.hcn.autoeq/.MainActivity
+    Atalho: Arquivos: com.mediatek.filemanager/.FileManagerOperationActivity
+    Atalho: Play Store: com.android.vending/.AssetBrowserActivity
+    Atalho: Configurações do Android: android.settings.SETTINGS
+    Atalho: Wi-Fi: android.settings.WIFI_SETTINGS
+    Atalho: Som: android.settings.SOUND_SETTINGS
+    Atalho: Tela: android.settings.DISPLAY_SETTINGS
+    Atalho: Data e hora: android.settings.DATE_SETTINGS
+    Atalho: Tela inicial (escolher): android.settings.HOME_SETTINGS
+    Atalho: Launcher original: com.android.launcher3/.Launcher
+    Tela de espera do CarPlay (sobrepor a outros apps): permitida
+    Aplicativos → Favoritos (12): Rádio · Vídeo · Bluetooth · CarPlay · Maps · YouTube · Câmera · Informações do carro · Equalizador · Comandos de volante · Arquivos · Play Store
+    Favoritos personalizados: não (padrão)
+    Aplicativos → Todos (20): Arquivos · Bluetooth · BT Música · Câmera · CarPlay · Chrome · Comandos de volante · Configurações do Android · Equalizador · Google · Informações do carro · Instruções · Maps · Nyx Diagnóstico · Play Store · Rádio · Scan de imagens · Veículo · Vídeo · YouTube
+    Todos com ícone genérico: nenhum
+    Escondidos de Todos: Música · atualização · Atualização de Rede Can · Atualização Mcu · com.hcn.screensaver · Theme · Nyx Car
+    Obs.: Cada atalho mostra a tela que será aberta. "Não encontrado" ou "app desativado" deixa o atalho desativado no launcher. Em "Todos" ficam escondidos o Nyx Car, os atualizadores de firmware, MCU e CAN, o Theme e a Música USB.
+
+## Depuração (ADB)
+    Opções do desenvolvedor: desativadas
+    Depuração USB (ADB): desligada
+    Tela de opções do desenvolvedor: com.android.settings/com.android.settings.development.DevelopmentSettingsDisabledActivity
+    Obs.: Com a depuração ligada, o PC conecta pela rede na porta 8555 (ver BUILD.md, seção 9).
+
+## Tela inicial (launcher)
+[*] Launcher padrão atual: Nyx Car — com.premiumcar.launcher/.app.MainActivity
+    Launcher instalado 1: Tela de início 3 — com.android.launcher3/.Launcher · sistema
+    Launcher instalado 2: Nyx Car — com.premiumcar.launcher/.app.MainActivity
+    Launcher instalado 3:  — com.android.settings/.FallbackHome · sistema
+    Tela "Escolher tela inicial": disponível
+    Obs.: Anote o pacote do launcher original: ele é a referência para recuperação (ver BUILD.md).
+
+## Candidatos para atalhos
+[*] Projeção (CarPlay / Android Auto): ZLINK5 — com.zjinnova.zlink
+    Bluetooth / telefone: Bluetooth — com.autochips.bluetooth
+        BT Música — com.autochips.bluetooth
+    Música / mídia: BT Música — com.autochips.bluetooth
+        Música — com.hcn.AutoMediaPlayer
+        Vídeo — com.hcn.AutoMediaPlayer
+    Rádio: Rádio — com.hcn.autoradio
+    Navegação: Maps — com.google.android.apps.maps
+    Vídeo: Vídeo — com.hcn.AutoMediaPlayer
+        YouTube — com.google.android.youtube
+    Veículo / câmera: Atualização de Rede Can — com.hcn.canupgrade
+        Av In — com.auto.hcamera
+        Comandos de volante — com.hcn.swc
+    Configurações: Configurar — com.android.settings
+        Configurações Do Veículo — com.hcn.autosetting
+    Arquivos: Gerenciador de arquivos — com.mediatek.filemanager
+    Obs.: Classificação automática por nome e pacote; confirme na lista completa de aplicativos.
+
+## Atalhos do sistema (intents)
+    Configurações do Android: Configurar — com.android.settings/.Settings
+[!] Bluetooth: indisponível
+    Wi-Fi: Wi-Fi — com.android.settings/.Settings$WifiSettingsActivity
+    Data e hora: Data e hora — com.android.settings/.Settings$DateTimeSettingsActivity
+    Tela: Tela — com.android.settings/.Settings$DisplaySettingsActivity
+    Som: Som — com.android.settings/.Settings$SoundSettingsActivity
+    Lista de aplicativos: Informações do app — com.android.settings/.Settings$ManageApplicationsActivity
+    Escolher tela inicial: Apps padrão — com.android.settings/.Settings$AdvancedAppsActivity
+    Apps padrão: Apps padrão — com.android.settings/.Settings$AdvancedAppsActivity
+    Fontes desconhecidas: Instalar apps desconhecidos — com.android.settings/.Settings$ManageExternalSourcesActivity
+    Acesso a notificações: Acesso a notificações — com.android.settings/.Settings$NotificationAccessSettingsActivity
+    Acesso ao uso de apps: Apps com acesso ao uso — com.android.settings/.Settings$UsageAccessSettingsActivity
+[!] Player de música padrão: indisponível
+    App de mapas padrão: Maps — com.google.android.apps.maps/com.google.android.maps.MapsActivity
+    Navegação (geo:): Maps — com.google.android.apps.maps/com.google.android.maps.MapsActivity
+[!] Discador: indisponível
+    Navegador: Chrome — com.android.chrome/com.google.android.apps.chrome.Main
+    Seletor de arquivos ("Salvar em…"): Arquivos — com.android.documentsui/.picker.PickActivity
+    Obs.: "Indisponível" significa que o atalho não pode ser aberto por esta via neste firmware.
+
+## Mídia (cartão de música)
+    Apps com MediaBrowserService: Áudio Bluetooth — com.android.bluetooth/.a2dpsink.mbs.A2dpMediaBrowserService
+        Podcasts — com.google.android.googlequicksearchbox/com.google.android.apps.search.podcasts.browser.PodcastBrowserService
+        Google Notícias — com.google.android.googlequicksearchbox/com.google.android.libraries.assistant.auto.tng.media.mediabrowser.NewsMediaBrowserService
+        YouTube — com.google.android.youtube/com.google.android.apps.youtube.app.extensions.mediabrowser.impl.MainAppMediaBrowserService
+    Modo low-RAM (Android Go): não
+    Obs.: Mostrar a faixa que toca em outros apps exige "Acesso a notificações" (ver Atalhos do sistema). Em modo low-RAM o Android costuma bloquear esse acesso — a confirmar na Fase 4.
+
+## Aplicativos com ícone (27)
+    : com.hcn.screensaver · v1.0 · sistema
+    atualização: com.hcn.autoupdate · v1.0 · sistema
+    Atualização de Rede Can: com.hcn.canupgrade · v3.0.1.2026-01-12 11:51:39 · sistema
+    Atualização Mcu: com.hcn.mcuupgrade · v1.0 · sistema
+    Av In: com.auto.hcamera · v8.1.0 · sistema
+    Bluetooth: com.autochips.bluetooth · v2.1.2025-11-06 17:33:55 · sistema
+    BT Música: com.autochips.bluetooth · v2.1.2025-11-06 17:33:55 · sistema
+    Chrome: com.android.chrome · v138.0.7204.179 · sistema
+    Comandos de volante: com.hcn.swc · v1.0 · sistema
+    Configurar: com.android.settings · v8.1.0 · sistema
+    Configurações Do Veículo: com.hcn.autosetting · v1.0 · sistema
+    DSP: com.hcn.autoeq · v2025_11_07_17_40_23 · sistema
+    Gerenciador de arquivos: com.mediatek.filemanager · v1.0 · sistema
+    Google: com.google.android.googlequicksearchbox · v14.14.16.26.arm · sistema
+    Informaçãodocarro: com.hcn.autocan · v146.0.1.20251110 · sistema
+    Instruções: com.hcn.autouserguide · v1.0 · sistema
+    Maps: com.google.android.apps.maps · v25.32.00.790560726 · sistema
+    Música: com.hcn.AutoMediaPlayer · v1.3.20260202-ac8227l · sistema
+    Nyx Car: com.premiumcar.launcher · v0.4.7
+    Nyx Diagnóstico: com.premiumcar.launcher · v0.4.7
+    Play Store: com.android.vending · v50.3.27-24 [0] [PR] 875414499 · sistema
+    Rádio: com.hcn.autoradio · vV.1.0.2512171412 · sistema
+    Scan de imagens: com.hcn.gallery · v1.0 · sistema
+    Theme: com.hcn.themepicker · v1.0 · sistema
+    Vídeo: com.hcn.AutoMediaPlayer · v1.3.20260202-ac8227l · sistema
+    YouTube: com.google.android.youtube · v20.19.37 · sistema
+    ZLINK5: com.zjinnova.zlink · v5.4.23
+
+========================================================================
+RECURSOS
+========================================================================
+
+## Recursos principais
+    Bluetooth: sim
+    Bluetooth LE: não
+    Wi-Fi: sim
+    Wi-Fi Direct: sim
+    GPS: sim
+    USB host (pendrive): sim
+    USB acessório: sim
+    Câmera: sim
+    Microfone: sim
+    Telefonia (chip): não
+    Android Automotive oficial: não
+    Declarado como RAM baixa: não
+    Suporte a launchers: sim
+    Widgets de apps: sim
+    Papel de parede animado: sim
+    Picture-in-picture: sim
+    Apps em telas secundárias: sim
+    WebView: sim
+
+## Todos os recursos declarados (43)
+    android.hardware.audio.output: sim
+    android.hardware.bluetooth: sim
+    android.hardware.camera: sim
+    android.hardware.camera.any: sim
+    android.hardware.ethernet: sim
+    android.hardware.faketouch: sim
+    android.hardware.location: sim
+    android.hardware.location.gps: sim
+    android.hardware.location.network: sim
+    android.hardware.microphone: sim
+    android.hardware.nfc: sim
+    android.hardware.nfc.any: sim
+    android.hardware.nfc.hce: sim
+    android.hardware.nfc.hcef: sim
+    android.hardware.ram.normal: sim
+    android.hardware.screen.landscape: sim
+    android.hardware.screen.portrait: sim
+    android.hardware.touchscreen: sim
+    android.hardware.touchscreen.multitouch: sim
+    android.hardware.touchscreen.multitouch.distinct: sim
+    android.hardware.touchscreen.multitouch.jazzhand: sim
+    android.hardware.usb.accessory: sim
+    android.hardware.usb.host: sim
+    android.hardware.wifi: sim
+    android.hardware.wifi.direct: sim
+    android.software.activities_on_secondary_displays: sim
+    android.software.app_widgets: sim
+    android.software.autofill: sim
+    android.software.backup: sim
+    android.software.companion_device_setup: sim
+    android.software.connectionservice: sim
+    android.software.cts: sim
+    android.software.device_admin: sim
+    android.software.home_screen: sim
+    android.software.input_methods: sim
+    android.software.live_wallpaper: sim
+    android.software.managed_users: sim
+    android.software.midi: sim
+    android.software.picture_in_picture: sim
+    android.software.voice_recognizers: sim
+    android.software.webview: sim
+    com.google.android.feature.GMSEXPRESS_PLUS_BUILD: sim
+    com.nxp.mifare: sim
+
+========================================================================
+PROPRIEDADES
+========================================================================
+
+## Propriedades do sistema (448)
+    af.music.outputid: 2
+    audio.dualmic: 1
+    bt.profiles.avrcp.multiPlayer.enable: 0
+    bt_drv.ko: 1
+    camera.disable_zsl_mode: 1
+    dalvik.vm.appimageformat: lz4
+    dalvik.vm.dex2oat-Xms: 64m
+    dalvik.vm.dex2oat-Xmx: 512m
+    dalvik.vm.dexopt.secondary: true
+    dalvik.vm.heapgrowthlimit: 128m
+    dalvik.vm.heapsize: 256m
+    dalvik.vm.image-dex2oat-Xms: 64m
+    dalvik.vm.image-dex2oat-Xmx: 64m
+    dalvik.vm.isa.arm.features: default
+    dalvik.vm.isa.arm.variant: cortex-a7
+    dalvik.vm.stack-trace-dir: /data/anr
+    dalvik.vm.usejit: true
+    dalvik.vm.usejitprofiles: true
+    debug.MB.running: 0
+    debug.atrace.tags.enableflags: 0
+    debug.force_rtl: 0
+    debug.gpsdbglog.file: none
+    debug.mtk.aee.reinit: done
+    debug.mtk.aee.status: free
+    debug.mtk.aee.vstatus: free
+    debug.mtklog.netlog.Running: 0
+    debug.sf.disable_backpressure: 1
+    debug.sf.enable_hwc_vds: 1
+    debug.sf.latch_unsignaled: 1
+    dev.bootcomplete: 1
+    drm.service.enabled: true
+    fmradio_drv.ko: 1
+    gps.clock.type: 20
+    gps.gps.version: 0x8127
+    gps_drv.ko: 1
+    gsm.network.type: Unknown
+    gsm.operator.alpha: (vazio)
+    gsm.operator.iso-country: (vazio)
+    gsm.operator.isroaming: false
+    gsm.operator.numeric: (vazio)
+    gsm.sim.operator.alpha: (vazio)
+    gsm.sim.operator.iso-country: (vazio)
+    gsm.sim.operator.numeric: (vazio)
+    hw.sys.device.version: CVD1810-WJ_24.02.20_339
+    hw.sys.radio.region: 7
+    hwservicemanager.ready: true
+    init.svc.DMAgent: running
+    init.svc.NvRAMAgent: running
+    init.svc.adbd: stopped
+    init.svc.aee-reinit: stopped
+    init.svc.aee_aed: running
+    init.svc.aee_aedv: running
+    init.svc.aeev-reinit: stopped
+    init.svc.atc_hal_audhw: running
+    init.svc.audio-hal-2-0: running
+    init.svc.audioserver: running
+    init.svc.automated: stopped
+    init.svc.backcar_daemon: running
+    init.svc.bluetooth-1-0: running
+    init.svc.bootanim: stopped
+    init.svc.broadcastradio-hal: running
+    init.svc.camerad: running
+    init.svc.camerahalserver: running
+    init.svc.cameraserver: running
+    init.svc.cas-hal-1-0: running
+    init.svc.chg_mcu_val: stopped
+    init.svc.configstore-hal-1-0: running
+    init.svc.console: running
+    init.svc.drm: running
+    init.svc.drm-hal-1-0: running
+    init.svc.drm-widevine-hal-1-0: running
+    init.svc.fan: running
+    init.svc.gatekeeper-1-0: running
+    init.svc.gatekeeperd: running
+    init.svc.ged_srv: running
+    init.svc.gnss_service: running
+    init.svc.gralloc-2-0: running
+    init.svc.healthd: running
+    init.svc.hidl_memory: running
+    init.svc.hostapd: running
+    init.svc.hwcomposer-2-1: running
+    init.svc.hwservicemanager: running
+    init.svc.installd: running
+    init.svc.keymanage-1-0: running
+    init.svc.keymaster-3-0: running
+    init.svc.keystore: running
+    init.svc.kmesg: running
+    init.svc.lbs_hidl_service: running
+    init.svc.light-hal-2-0: running
+    init.svc.lmkd: running
+    init.svc.logcat: running
+    init.svc.logd: running
+    init.svc.logd-reinit: stopped
+    init.svc.mcud: running
+    init.svc.media: running
+    init.svc.mediacodec: running
+    init.svc.mediadrm: running
+    init.svc.mediaextractor: running
+    init.svc.mediametrics: running
+    init.svc.memtrack-hal-1-0: running
+    init.svc.metalogo_daemon: running
+    init.svc.mnld: running
+    init.svc.mobile_log_d: running
+    init.svc.mtkcodecservice-1-1: running
+    init.svc.netd: running
+    init.svc.netdagent: running
+    init.svc.netdiag: running
+    init.svc.nvram_daemon: stopped
+    init.svc.nvrom: running
+    init.svc.power-hal-1-1: running
+    init.svc.ril-3gddaemon: stopped
+    init.svc.servicemanager: running
+    init.svc.storaged: running
+    init.svc.surfaceflinger: running
+    init.svc.teststub: running
+    init.svc.thermal: running
+    init.svc.thermal_manager: stopped
+    init.svc.thermald: running
+    init.svc.thermalservice: running
+    init.svc.tombstoned: running
+    init.svc.ueventd: running
+    init.svc.usb-hal-1-1: running
+    init.svc.usbdongled: running
+    init.svc.vendor.nfc_hal_service: stopped
+    init.svc.vndservicemanager: running
+    init.svc.vold: running
+    init.svc.webview_zygote32: running
+    init.svc.wifi_hal_legacy: running
+    init.svc.wificond: running
+    init.svc.wmt_launcher: running
+    init.svc.wmt_loader: stopped
+    init.svc.wpa_supplicant: stopped
+    init.svc.z-link: running
+    init.svc.zygote: running
+    log.mcud.statistics: rx:8638,drop:0,err:0
+    log.tag: M
+    media.settings.xml: /vendor/etc/media_profiles.xml
+    media.wfd.portrait: 0
+    media.wfd.video-format: 5
+    mediatek.wlan.chip: mediatek.wlan.module.postfix=_
+    mediatek.wlan.ctia: 0
+    mtk.vdec.waitkeyframeforplay: 1
+    mtk_in_house_tee_support: true
+    net.bt.name: Android
+    net.qtaguid_enabled: 1
+    net.tcp.default_init_rwnd: 60
+    persist.aee.core.direct: enable
+    persist.aee.core.dump: enable
+    persist.aee.mode: 3
+    persist.atc.bt.callfilter: enable
+    persist.atc.bt.inbandringtone: disable
+    persist.atc.bt.pan: enable
+    persist.atc.bt.transToPinyin: true
+    persist.atc.bt.volumesync: enable
+    persist.atc.fsckexternaldevice: false
+    persist.audio.get.hpoffset: 0
+    persist.demo.hdmirotates: true
+    persist.dis.force_direct: 1
+    persist.dm.lock: false
+    persist.log.tag.CdmaMoSms: I
+    persist.log.tag.CdmaMtSms: I
+    persist.log.tag.DCT: D
+    persist.log.tag.RILMUXD: I
+    persist.mediascan.foldcnt: 256
+    persist.mediascan.foldlevel: 8
+    persist.mediascanner.audio.cnt: 3000
+    persist.mediascanner.fileCnt: 0
+    persist.mediascanner.image.cnt: 1500
+    persist.mediascanner.slpTimeMs: 0
+    persist.mediascanner.thread.run: 1
+    persist.mediascanner.video.cnt: 500
+    persist.meta.dumpdata: 0
+    persist.mtk.connsys.poweron.ctl: 0
+    persist.mtk.wcn.combo.chipid: 0x8127
+    persist.mtk.wcn.coredump.mode: 0
+    persist.mtk.wcn.dynamic.dump: 0
+    persist.mtk.wcn.patch.version: 20180907200225a
+    persist.mtk_vilte_support: 0
+    persist.mtk_viwifi_support: 0
+    persist.nfc_cfg.nfc_chip_type: (vazio)
+    persist.nfc_cfg.nfc_fw_version: (vazio)
+    persist.nfc_cfg.nfc_fwupdate: (vazio)
+    persist.operator.optr: OP01
+    persist.operator.seg: SEGC
+    persist.operator.spec: SPEC0200
+    persist.radio.combo.chipid: -1
+    persist.radio.mobile.data: 0,0
+    persist.radio.mtk_ps2_rat: G
+    persist.radio.mtk_ps3_rat: G
+    persist.service.acm.enable: 0
+    persist.sys.autoplay: 0
+    persist.sys.bt.reverse_name: disable
+    persist.sys.customer: WJ
+    persist.sys.dalvik.vm.lib.2: libart.so
+    persist.sys.etheme_god: 400
+    persist.sys.gps.time: 0
+    persist.sys.launcher.skin: AutoTheme_XT88.apk
+    persist.sys.launcher.skin.pkg: com.hcn.auto.theme.xt88
+    persist.sys.launcher.theme.pkg: com.hcn.auto.theme.xt88
+    persist.sys.lic.dir: /apd/zlink/
+    persist.sys.linktype: zlink
+    persist.sys.locale: pt-BR
+    persist.sys.logo_checked_path: /apd/logo/Logo215.png
+    persist.sys.pms_sys_removable: 1
+    persist.sys.radio-mcu: 0
+    persist.sys.skin: xt88
+    persist.sys.splitscreen: 1
+    persist.sys.timezone: America/Recife
+    persist.sys.tv_type: 0
+    persist.sys.update.copy: normal
+    persist.sys.usb.config: none
+    persist.sys.video_on_switch: 2
+    persist.sys.voice_assis: 1
+    persist.sys.webview.vmsize: 176379992
+    pm.dexopt.ab-ota: speed-profile
+    pm.dexopt.bg-dexopt: speed-profile
+    pm.dexopt.boot: verify
+    pm.dexopt.first-boot: quicken
+    pm.dexopt.inactive: verify
+    pm.dexopt.install: quicken
+    pm.dexopt.shared: speed
+    qemu.hw.mainkeys: 1
+    rild.mark_switchuser: 0
+    ro.adb.secure: 1
+    ro.aee.enforcing: no
+    ro.aee.enperf: off
+    ro.ap_info_monitor: 0
+    ro.atc.aosp_enhancement: 1
+    ro.atc.disable_android_bt: 1
+    ro.atc.disable_battery: 1
+    ro.atc.storage.shared.sdcard: yes
+    ro.atc_adoptable_disk: ext_sdcard2
+    ro.atc_maxsavearm2logfile: 5
+    ro.atc_qb_support: 1
+    ro.atc_savelastarm2log: 1
+    ro.audio.silent: 0
+    ro.baseband: unknown
+    ro.board.platform: ac8227l
+    ro.boot.bootreason: power_key
+    ro.boot.hardware: ac8227l
+    ro.boot.phandle: (vazio)
+    ro.boot.verifiedbootstate: green
+    ro.boot.veritymode: disabled
+    ro.bootimage.build.date: Fri Apr 17 10:56:15 CST 2026
+    ro.bootimage.build.date.utc: 1776394575
+    ro.bootimage.build.fingerprint: alps/full_8227L_demo/8227L_demo:8.1.0/O11019/1776394618:user/release-keys
+    ro.bootloader: unknown
+    ro.bootmode: unknown
+    ro.btstack: blueangel
+    ro.build.characteristics: default
+    ro.build.date: Fri Apr 17 10:56:15 CST 2026
+    ro.build.date.utc: 1776394575
+    ro.build.description: full_8227L_demo-user 8.1.0 O11019 1776394618 release-keys
+    ro.build.display.id: O11019 release-keys
+    ro.build.fingerprint: alps/full_8227L_demo/8227L_demo:8.1.0/O11019/1776394618:user/release-keys
+    ro.build.flavor: full_8227L_demo-user
+    ro.build.host: ubuntu128
+    ro.build.id: O11019
+    ro.build.product: 8227L_demo
+    ro.build.tags: release-keys
+    ro.build.type: user
+    ro.build.user: publisher28
+    ro.build.version.all_codenames: REL
+    ro.build.version.base_os: (vazio)
+    ro.build.version.codename: REL
+    ro.build.version.incremental: 1776394618
+    ro.build.version.preview_sdk: 0
+    ro.build.version.release: 8.1.0
+    ro.build.version.sdk: 27
+    ro.build.version.security_patch: 2018-07-05
+    ro.carrier: unknown
+    ro.com.android.mobiledata: true
+    ro.com.google.gmsversion: 8.1_201812
+    ro.config.alarm_alert: Alarm_Classic.ogg
+    ro.config.notification_sound: pixiedust.ogg
+    ro.config.ringtone: Ring_Synth_04.ogg
+    ro.control_privapp_permissions: log
+    ro.crypto.state: unencrypted
+    ro.dalvik.vm.native.bridge: 0
+    ro.debuggable: 0
+    ro.email_support_ucs2: 0
+    ro.expect.recovery_id: 0x843356df913109e1fe8d70bb806312a0f3a951c6000000000000000000000000
+    ro.fota.app: 5
+    ro.fota.device: CVD1926-WJ
+    ro.fota.id: mac
+    ro.fota.oem: hcn8167_8.1
+    ro.fota.platform: MTK8167_8.1
+    ro.fota.type: pad
+    ro.fota.version: WJ_2026.04.17.10
+    ro.frp.pst: /dev/block/platform/soc/11230000.mmc/by-name/FRP
+    ro.hardware: ac8227l
+    ro.have_aacencode_feature: 1
+    ro.have_aee_feature: 1
+    ro.hw.arm2.version: V2.0_13/Jun/2025
+    ro.hw.dsp.chip: cd3313
+    ro.hw.lcm.name: YT090IBNK12018-A12
+    ro.hw.radio.chip: mt6627
+    ro.hw.tp.fwresolution: GT9xx_1085x600
+    ro.internal.storage.size: 32G
+    ro.ksc5601_write: 0
+    ro.mediatek.aal: 1
+    ro.mediatek.chip_ver: S01
+    ro.mediatek.platform: AC8227L
+    ro.mediatek.version.branch: alps-mp-o1.mp5
+    ro.mediatek.version.release: WJ_2026.04.17.11
+    ro.mediatek.version.sdk: 4
+    ro.mediatek.wlan.p2p: 1
+    ro.mediatek.wlan.wsc: 1
+    ro.mount.fs: EXT4
+    ro.mtk_audio_alac_support: 1
+    ro.mtk_audio_ape_support: 1
+    ro.mtk_audio_change_support: 1
+    ro.mtk_audio_tuning_tool_ver: V1
+    ro.mtk_besloudness_support: 1
+    ro.mtk_bg_power_saving_support: 1
+    ro.mtk_bg_power_saving_ui: 1
+    ro.mtk_bsp_package: 1
+    ro.mtk_bt_support: 1
+    ro.mtk_cam_cfb: 1
+    ro.mtk_cam_mfb_support: 1
+    ro.mtk_config_max_dram_size: ro.mtk_f2fs_enable=0
+    ro.mtk_cta_set: 1
+    ro.mtk_default_ime: com.iflytek.inputmethod.FlyIME
+    ro.mtk_deinterlace_support: 1
+    ro.mtk_dual_mic_support: 0
+    ro.mtk_emmc_support: 1
+    ro.mtk_external_sim_only_slots: 0
+    ro.mtk_flight_mode_power_off_md: 1
+    ro.mtk_flv_playback_support: 1
+    ro.mtk_gps_support: 1
+    ro.mtk_in_house_tee_support: true
+    ro.mtk_is_tablet: 1
+    ro.mtk_log_hide_gps: 0
+    ro.mtk_lte_support: 1
+    ro.mtk_matv_analog_support: 1
+    ro.mtk_mobile_management: 0
+    ro.mtk_multi_patition: 1
+    ro.mtk_owner_sdcard_support: 1
+    ro.mtk_owner_sim_support: 1
+    ro.mtk_pq_color_mode: 1
+    ro.mtk_protocol1_rat_config: Lf/Lt/W/T/G
+    ro.mtk_ril_mode: c6m_3rild
+    ro.mtk_runtime_permission: 1
+    ro.mtk_search_db_support: 1
+    ro.mtk_send_rr_support: 1
+    ro.mtk_shared_sdcard: 1
+    ro.mtk_sim_hot_swap: 1
+    ro.mtk_subtitle_support: 1
+    ro.mtk_support_mp2_playback: 1
+    ro.mtk_wappush_support: 1
+    ro.mtk_wfd_support: 1
+    ro.mtk_widevine_drm_l3_support: 1
+    ro.mtk_wlan_support: 1
+    ro.mtk_wmv_playback_support: 1
+    ro.mtkrc.path: /vendor/etc/init/hw/
+    ro.num_md_protocol: 2
+    ro.opa.eligible_device: true
+    ro.opengles.version: 131072
+    ro.product.board: (vazio)
+    ro.product.brand: alps
+    ro.product.cpu.abi: armeabi-v7a
+    ro.product.cpu.abi2: armeabi
+    ro.product.cpu.abilist: armeabi-v7a,armeabi
+    ro.product.cpu.abilist32: armeabi-v7a,armeabi
+    ro.product.cpu.abilist64: (vazio)
+    ro.product.device: 8227L_demo
+    ro.product.locale: en-US
+    ro.product.manufacturer: alps
+    ro.product.model: 8227L_demo
+    ro.product.name: full_8227L_demo
+    ro.property_service.version: 2
+    ro.recovery_id: 0xb1dc725e1f348479337a6d908ec4bdbb128a238d000000000000000000000000
+    ro.redstone.brand: alps
+    ro.redstone.model: 8227L_demo
+    ro.redstone.version: CVD1926-WJ_WJ_2026.04.17.10
+    ro.revision: 0
+    ro.secure: 1
+    ro.setupwizard.mode: OPTIONAL
+    ro.sf.hwrotation: 90
+    ro.sim_me_lock_mode: 0
+    ro.sys.sdcardfs: 1
+    ro.sys.usb.bicr: no
+    ro.sys.usb.charging.only: yes
+    ro.sys.usb.storage.type: mtp
+    ro.telephony.default_network: 9
+    ro.treble.enabled: true
+    ro.ussd_ksc5601: 0
+    ro.vendor.build.date: Fri Apr 17 11:14:06 CST 2026
+    ro.vendor.build.date.utc: 1776395646
+    ro.vendor.build.fingerprint: alps/full_8227L_demo/8227L_demo:8.1.0/O11019/1776395653:user/release-keys
+    ro.vendor.product.brand: alps
+    ro.vendor.product.device: 8227L_demo
+    ro.vendor.product.manufacturer: alps
+    ro.vendor.product.model: 8227L_demo
+    ro.vendor.product.name: full_8227L_demo
+    ro.vendor.sys.skin_support: 1
+    ro.wifi.channels: (vazio)
+    ro.wlan.gen: gen2
+    ro.wlan.mtk.wifi.5g: 0
+    ro.zygote: zygote32
+    runtime.arm2.exit: true
+    runtime.home.screen.ready: y
+    runtime.rearservice.start.status: true
+    runtime.savearm2log.stop.save: 1
+    runtime.watermark.config: 0
+    rw.cp.link.state: 1
+    security.perf_harden: 1
+    service.adb.tcp.port: 8555
+    service.bootanim.exit: 1
+    service.nvram_init: Ready
+    service.sf.present_timestamp: 0
+    service.wcn.driver.ready: yes
+    service.wcn.formeta.ready: yes
+    service.zlink.enable: 1
+    sys.audio.percentage: 100
+    sys.boot_completed: 1
+    sys.ipo.disable: 1
+    sys.ipowin.done: 1
+    sys.logbootcomplete: 1
+    sys.nonsystem.callstate: 0
+    sys.oem_unlock_allowed: 0
+    sys.radio.rds: 0
+    sys.rescue_boot_count: 1
+    sys.retaildemo.enabled: 0
+    sys.running.phase: completed
+    sys.sourcing.package: (vazio)
+    sys.suspend.state: 1
+    sys.sysctl.extra_free_kbytes: 10800
+    sys.sysctl.tcp_def_init_rwnd: 60
+    sys.systemui.interacting: 0
+    sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    sys.usb.config: mtp
+    sys.usb.configfs: 2
+    sys.usb.controller: musb-hdrc.0.auto
+    sys.usb.ffs.ready: 0
+    sys.usb.state: mtp
+    sys.usb.vid: 0E8D
+    sys.user.0.ce_available: true
+    sys.wifitracing.started: 1
+    vold.atc.emmc_total_size: 61472768
+    vold.has_adoptable: 1
+    vold.has_quota: 1
+    vold.post_fs_data_done: 1
+    wfd.dummy.enable: 1
+    wfd.iframesize.level: 0
+    wifi.direct.interface: p2p0
+    wifi.interface: wlan0
+    wifi.tethering.interface: ap0
+    Obs.: 7 propriedades com possíveis identificadores (serial, MAC, IMEI, rede etc.) foram omitidas.
+
+========================================================================
+DESEMPENHO
+========================================================================
+
+## Home em Views: aberturas a frio
+[*] Mediana (5 aberturas): 687 ms · PSS 13,5 MB
+    Mediana com o processo já aberto (5): 649 ms · PSS 17,6 MB
+    12/11 17:59: 722 ms · PSS 44,0 MB (Java 1,7 MB · nativo 6,0 MB) · processo já aberto
+    12/11 17:56: 681 ms · PSS 13,7 MB (Java 0,9 MB · nativo 5,5 MB)
+    12/11 17:54: 480 ms · PSS 18,6 MB (Java 2,5 MB · nativo 5,9 MB) · processo já aberto
+    12/11 17:53: 645 ms · PSS 14,8 MB (Java 2,5 MB · nativo 5,9 MB) · processo já aberto
+    12/11 17:26: 811 ms · PSS 12,4 MB (Java 0,9 MB · nativo 4,3 MB)
+    12/11 17:20: 649 ms · PSS 13,7 MB (Java 2,7 MB · nativo 4,9 MB) · processo já aberto
+    12/11 16:45: 734 ms · PSS 13,4 MB (Java 0,9 MB · nativo 5,4 MB)
+    12/11 16:37: 677 ms · PSS 13,5 MB (Java 0,9 MB · nativo 5,3 MB)
+    12/11 16:34: 684 ms · PSS 17,6 MB (Java 1,9 MB · nativo 6,9 MB) · processo já aberto
+    12/11 14:43: 687 ms · PSS 15,0 MB (Java 0,9 MB · nativo 6,8 MB)
+    Obs.: Tempo do início do processo até o primeiro quadro; memória medida 3 s depois. "Processo já aberto": o Android tinha reaberto o app em segundo plano (por exemplo, depois de a central fechá-lo ao desligar o carro); o tempo conta da criação da tela. A primeira abertura após instalar é mais lenta.
+
+## Inicialização deste processo
+    Primeira tela aberta: Home (Views)
+    Processo → Application.onCreate: 313 ms
+    Processo → Activity.onCreate: 48416 ms
+[*] Processo → primeiro quadro: 49138 ms
+    Processo aberto antes da tela: sim: o Android reabriu o app em segundo plano
+    Tela → primeiro quadro: 722 ms
+    Tipo de build: release otimizado (R8)
+    Obs.: A primeira abertura após instalar é mais lenta (código ainda não compilado). Feche o app pela tela de Recentes e abra novamente 2 ou 3 vezes para obter números estáveis.
+
+## Memória deste processo (agora)
+[*] Total (PSS): 28,5 MB
+    Heap Java: 7,4 MB
+    Heap nativo: 9,4 MB
+    Gráficos: 0,0 MB
