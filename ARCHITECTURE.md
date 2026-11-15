@@ -341,7 +341,35 @@ soltas na raiz do pendrive, que vira a primeira "pasta").
   a música; ao ligar o carro, a última música volta pausada. A central não reinicia ao
   desligar o carro: ela dorme e fecha os apps, e o Android reabre o Nyx Car (tela
   inicial) do zero. O player original abre sozinho ao conectar o pendrive (HARDWARE.md).
-- **Fora da v1:** aleatório, repetir, artistas/álbuns, busca, listas de reprodução.
+- **Fora da v1:** repetir, artistas/álbuns, busca, listas de reprodução. O aleatório veio na
+  0.4.24 (abaixo).
+- **Player grande e aleatório (0.4.24, pedidos do usuário em 14/11/2026).** Antes do
+  desenvolvimento, o usuário escolheu a interface: capa à esquerda, o ⇄ junto dos controles, o
+  alcance "pasta e subpastas" e o cartão da Home abrindo o player grande.
+  - **Player grande** (`ui/music/MusicScreen`, `layout/view_player_expanded`): a mesma aba, com
+    a lista escondida. Ele não é uma tela nova, e a barra inferior e o deslize continuam
+    valendo. O cartão da aba e o player grande são dois conjuntos de vistas do mesmo player,
+    atualizados juntos. Abre pelo cartão da aba, pelo cartão da Home e pela notificação. Pela
+    barra e pelo deslize, a aba abre na lista, e Voltar fecha só o player grande.
+  - **Ordem de reprodução** (`player/PlayOrder`): a fila continua na ordem natural; a ordem
+    é uma lista de posições à parte. Sem aleatório, é a natural. Com aleatório, é uma
+    permutação (Fisher-Yates) sorteada a partir de uma semente, com a música que estava
+    tocando na frente. Assim cada música toca uma vez antes de repetir, e "anterior" volta à
+    que tocou antes. No fim, um sorteio novo, que não começa pela última música, pausado como
+    sem o aleatório.
+  - **Continuidade:** o modo, a semente e a música da frente ficam nas preferências
+    (`PlayerMemory.Mode`). Depois de ligar a central, a pasta relida e a mesma semente refazem
+    a mesma ordem, e o aleatório continua sem repetir as músicas que já tocaram. A semente
+    usa `java.util.Random`, cuja sequência é fixada pela especificação do Java. Guardar a
+    ordem inteira pesaria até 10 mil caminhos nas preferências.
+  - **Pasta e subpastas** (`MusicStorage.allTracks`): primeiro as músicas da pasta, depois cada
+    subpasta, em ordem natural. A leitura desce até 8 níveis e para em 10 mil músicas, em
+    segundo plano, com "Lendo o pendrive…" no player. A leitura que termina depois de outro
+    pedido do usuário é descartada.
+  - **Capa:** uma leitura, dois tamanhos em 16 bits. A de 256 px vai para os cartões, a sessão
+    de mídia e a notificação; a de 440 px, só para o player grande. Ampliar a de 256 px
+    deixaria a capa borrada, e mandar a de 440 px (≈ 380 KB) à notificação a cada mudança
+    pesaria na comunicação com o sistema.
 - **Riscos (conferidos no teste do carro):** o som de um app comum pode não sair nos
   alto-falantes como o do player do fabricante (a central pode rotear áudio por fonte); formatos
   dependem dos decodificadores da central; o caminho do pendrive no 8.1; o player original
@@ -522,6 +550,230 @@ momento em que o iPhone aparece no USB:
   fim e aprende a tela como espera. Com a tela já aprendida, o fim é imediato (`END`). As telas
   sem a imagem nunca viram "tela do CarPlay", e a imagem nunca vira espera. Também pelo cabo, o
   tempo máximo é estendido (até 60 s) enquanto o ZLINK mostra `state_connecting`.
+- **O serviço de acessibilidade não sobrevive ao carro desligar (13/11/2026):** a central
+  força o fechamento dos apps (Quick Boot), e o Android 8.1 tira da lista de serviços ligados os
+  de um app parado à força. Sem ADB, o Nyx Car não pode religá-lo. Na 0.4.13, o
+  `MediaAccessListenerService` (leitor de notificações, cujo acesso sobrevive) passa a
+  repassar ao `ZlinkNotifications` as notificações do ZLINK (só a forma e um CRC32 do texto),
+  para medir se alguma muda antes do Bluetooth religar.
+- **Leitor de notificações e som (0.4.14):** o teste da 0.4.13 mostrou o leitor de
+  notificações desligado, com o acesso dado: o Android não o religa depois do fechamento
+  forçado. `ZlinkNotifications.ensureBound`, 5 s depois de o app abrir, desativa e reativa o
+  componente `MediaAccessListenerService` (`PackageManager.setComponentEnabledSetting`, com
+  `DONT_KILL_APP`), o que faz o Android religar os leitores aprovados do pacote, sem mexer na
+  aprovação. O `CarPlayReturn` também registra um `AudioPlaybackCallback` (Android 8+) e
+  anota quando os sons do tipo mídia vão a zero; o diário mostra quanto antes de cada fim isso
+  aconteceu. Ainda só medição.
+- **Saída sem o ZLINK no meio (0.4.15):** o `onResume` da Home vem antes do primeiro quadro
+  dela; fechar a janela ali mostrava o ZLINK por um instante. A `MainActivity` chama
+  `CarPlayReturn.onLauncherShown` dois quadros depois (`Choreographer` e `post`), só se a Home
+  continuar na frente, e o `bringHome` usa `FLAG_ACTIVITY_NO_ANIMATION` e
+  `ActivityOptions.makeCustomAnimation(0, 0)`. Depois de fechar uma conexão que caiu, por 5 s, o
+  ZLINK chegando sozinho (vigia) é coberto ("Conexão interrompida") e a Home volta de novo. Os
+  textos dizem "celular"; "iPhone" só no estado `CONNECTING_IPHONE`, quando o aviso do USB veio
+  de um aparelho da Apple (`05ac`).
+- **Cobrir primeiro (0.4.17):** no teste da 0.4.16, o fim pela tela do ZLINK registrava
+  "CarPlay desconectado" 87 a 145 ms depois de a tela do ZLINK ser lida. Nesse meio-tempo, a
+  thread do CarPlay pedia a Home ao Android (`startActivity`, chamada que espera a resposta) antes
+  de a janela, desenhada nessa mesma thread, poder entrar. E a janela saía da reserva com 1 px,
+  então precisava ser redimensionada e desenhada na hora. Agora:
+  - a janela reservada tem o tamanho da tela, fica fora dela (`x` à direita, com
+    `FLAG_LAYOUT_NO_LIMITS`), com `alpha` 0 e `FLAG_NOT_TOUCHABLE`, já desenhada com a próxima
+    mensagem ("CarPlay desconectado" durante o CarPlay). Para aparecer, só mudam a posição, a
+    transparência e o toque. Fora da tela, nenhum toque do CarPlay cai sobre ela;
+  - a Home só é pedida depois do próximo quadro da janela (`CarPlayWaitView.afterNextFrame`:
+    `Choreographer.postFrameCallback` e `post`, que roda depois do desenho do mesmo quadro,
+    com 100 ms de garantia).
+
+  A gravação registra o tempo do aviso do ZLINK (`AccessibilityEvent.eventTime`) até a tela ser
+  lida e até a janela ficar desenhada. A leitura da tela é atendida pela thread de interface do
+  ZLINK, então ela só termina depois de ele desenhar a espera; pela tela do ZLINK, sempre sobra
+  pelo menos um ou dois quadros.
+- **Bluetooth falso e sessão retomada (0.4.17):** no mesmo teste, a central religou o Bluetooth
+  2,3 s depois de o vídeo do CarPlay chegar pelo cabo e o desligou de novo 1,4 s depois. O Nyx Car deu o
+  fim e trouxe a Home; o ZLINK voltou sozinho com o CarPlay, e o fim de verdade passou sem
+  cobertura (a espera do ZLINK ficou 7 s na tela). Com o serviço de acessibilidade ligado, o
+  Bluetooth religando com a imagem do CarPlay ainda na tela do ZLINK não é fim
+  (`CarPlaySession.cancelEnd`). E a imagem do CarPlay na tela, com o Bluetooth desligado e sem
+  a sessão registrada, retoma a sessão (`resumeCarPlay`). Isso não vale com uma tela de espera
+  ou mensagem do Nyx Car em andamento, porque esse caso segue o caminho normal.
+- **Leitor de notificações (0.4.17):** o pedido para religar da 0.4.14 não adiantou. No teste
+  da 0.4.16, o leitor continuou desligado depois de dois pedidos. O pedido saiu; o leitor só
+  registra algo se o Android o religar sozinho.
+- **Resultado da 0.4.17 e medição por etapas (0.4.18):** no teste de 13/11/2026 (6 fins pelo
+  cabo, 5 medidos), a janela ficou desenhada **77 a 111 ms** depois do aviso do ZLINK (192 e
+  313 ms em dois fins). A leitura da tela levou 33 a 38 ms (125 e 268 ms), e a janela, mais 44
+  a 73 ms. Numa das vezes, os registros do diário, feitos entre o pedido da janela e o quadro
+  dela, seguraram a thread 31 ms. O som de mídia do ZLINK parou só 8 a 17 ms antes do aviso, e
+  sumiu 1,4 s no fim de uma ligação ou da Siri com o CarPlay continuando: não serve para
+  antecipar o fim, e a medição dele saiu. O aviso de conteúdo do fim sai na hora (o intervalo
+  de ~100 ms do Android só vale para avisos seguidos). Na 0.4.18:
+  - antes do quadro da janela, só o indispensável: guardar e registrar a tela do ZLINK e o
+    diário vêm depois (`screenEnded(afterCover)`, dentro de `afterNextFrame`);
+  - a thread `nyx-carplay` passa para `THREAD_PRIORITY_URGENT_DISPLAY` (−8), com a de tela
+    (−4) de reserva se o Android recusar;
+  - a gravação mede cada etapa, em ms depois de `AccessibilityEvent.eventTime`: aviso recebido
+    (thread principal), início e fim da leitura, janela pedida, início do quadro
+    (`Choreographer`), janela no lugar (`OnPreDrawListener`, depois de o Android aplicar a
+    posição nova) e desenho (`FrameMarks`). Também conta os tipos de aviso do ZLINK com o
+    CarPlay na tela (`ZlinkScreenService.eventKind`: janela ou conteúdo, tipo do elemento, o
+    que mudou; nunca textos). Se o aviso do fim tiver um tipo que nunca aparece com o CarPlay
+    na tela, ele sozinho poderá cobrir a espera, sem esperar a leitura.
+- **Resultado da 0.4.18 e janela no lugar na hora (0.4.19):** no teste de 13/11/2026 (3 fins
+  pelo cabo, 2 sem fio), a prioridade −8 foi aceita. Em ms depois do aviso do ZLINK: aviso
+  recebido em 2 a 9 (277 uma vez), leitura de 22 a 34 ms, depois **11 a 37 ms esperando o
+  próximo quadro** e 9 a 27 ms até o Android pôr a janela no lugar (53 a 101 no total). O aviso
+  do fim é do tipo mais comum durante o CarPlay (`conteúdo/ViewGroup/subárvore`); a cada ~6 s
+  o ZLINK manda um `ImageView` e, 0,1 a 0,4 s depois, um `ViewGroup`. Na 0.4.19:
+  - `CarPlayWaitScreen.show`, saindo da reserva, chama na hora `ViewRootImpl.doTraversal` (o
+    passo que o quadro chamaria; oculto no SDK, por reflexão, só até o Android 8.1, na thread
+    da janela). O `ViewRootImpl` é o `parent` da vista raiz. O quadro seguinte não repete nada
+    (`mTraversalScheduled` já falso). Se a reflexão falhar, fica o quadro normal. O teste com o
+    Robolectric (código do Android 8.1) confirma que o método existe;
+  - a thread principal (onde o Android entrega os avisos do serviço) passa para −8 com o
+    CarPlay na tela (`boostMainThread`, conferida a cada tela do CarPlay lida, porque o Android
+    a põe no normal quando o Nyx Car sai da frente);
+  - a gravação conta à parte os avisos que vêm depois de 1 s sem avisos. Se, com o CarPlay na
+    tela, eles forem sempre `ImageView`, um `ViewGroup` depois de uma pausa só pode ser o fim,
+    e poderá cobrir a espera sem esperar a leitura.
+- **Resultado da 0.4.19 e correções da 0.4.20:** no teste de 13/11/2026 (3 fins pelo cabo, 3
+  sem fio), o usuário viu uma piscada quase imperceptível. Mas a medição mostrou "janela no
+  lugar ?" e nenhuma colocação "na hora". O `doTraversal` forçado chegava a pôr a janela no
+  lugar (`relayoutWindow`), mas o desenho, fora de um quadro, chama
+  `Choreographer.getFrameTimeNanos`, que lança `IllegalStateException`. O erro saía de
+  `performTraversals` no meio (`mIsInTraversal` ficava ligado) e a reflexão o contava como
+  falha. No Robolectric isso não aparece, porque a superfície não é válida e o desenho volta
+  antes. Na 0.4.20:
+  - um `OnPreDrawListener` de uma vez devolve `false` no passo forçado. O Android cancela o
+    desenho e agenda outro quadro (`scheduleTraversals`), que desenha a mesma mensagem já à
+    vista. O passo termina sem erro, e a hora do `onPreDraw` (logo depois de a janela ir para
+    o lugar) entra na medição;
+  - só quando a mensagem não mudou (`bindOnce` devolve se mudou). Com outra mensagem, fica o
+    quadro normal, que desenha antes de mostrar;
+  - se o passo não chegar ao fim, `updateViewLayout` é chamado de novo, para o quadro normal
+    aplicar a mudança inteira;
+  - **aviso atrasado:** em 4 dos 5 fins medidos, o aviso do ZLINK chegou à thread principal do
+    Nyx Car 165 a 219 ms depois de sair do ZLINK, já com a thread a −8. Na gravação,
+    `MainThreadWatch` usa o registro de mensagens do `Looper` principal
+    (`setMessageLogging`) e anota as mensagens de 40 ms ou mais com o CarPlay na tela, só com
+    as classes. Se nada aparecer perto do fim, o atraso é do Android (o
+    `AccessibilityManagerService` despacha os avisos na thread principal do sistema);
+  - **avisos depois de uma pausa:** com o CarPlay na tela, foram `ImageView` (6 a 12 por
+    sessão), mas também `ViewGroup` (1 ou 2, contando o do fim), `ViewGroup` com texto (3,
+    numa sessão) e `janela/MainActivity` (2, numa sessão). Cobrir só pelo aviso cobriria o
+    CarPlay em funcionamento: descartado;
+  - **vídeo pela tela do ZLINK:** pelo cabo, com o CarPlay parado na tela inicial dele, o
+    tráfego não passou de 512 KB/s, e "Conectando" ficou até o tempo máximo. Com o serviço
+    ligado, uma tela do ZLINK com a imagem do CarPlay e sem `state_connecting`, durante a
+    espera pelo vídeo, conta como vídeo chegando (`videoStarted(byScreen = true)`). Ela
+    aparece 1,5 a 2 s depois de o Bluetooth desligar; o tráfego, quando passa do limite,
+    costuma vir antes.
+- **Decisão do usuário (13/11/2026): o serviço de acessibilidade fica opcional.** Religá-lo à
+  mão a cada partida não é viável para o usuário, e não há como o Nyx Car religá-lo sozinho:
+  - **ADB:** a permissão `WRITE_SECURE_SETTINGS` (que deixaria o Nyx Car religar o serviço)
+    só pode ser dada pelo ADB, e as opções do desenvolvedor estão bloqueadas pelo fabricante
+    (HARDWARE.md, seção 5; a porta 8555 só abre com a "Depuração USB");
+  - **tráfego de rede:** com o CarPlay parado na tela, cai a 0–2 KB/s várias vezes no meio da
+    sessão, como no fim;
+  - **captura de tela** (`MediaProjection`, cuja autorização com "Não mostrar novamente"
+    sobrevive ao carro desligar): recusada pelo usuário em 13/11, pelo custo e por ver a tela do
+    CarPlay; em 14/11, chegou a ser implementada e foi descartada antes do teste (abaixo);
+  - procurar o ADB no EngineerMode ou no menu de fábrica: nenhuma opção de ADB nas fotos, e o
+    EngineerMode exige as opções do desenvolvedor.
+
+  O uso normal passa a ser **sem o serviço**: no fim, a espera do ZLINK fica à vista até o
+  Bluetooth religar (~0,6 a 1,4 s), e então "CarPlay desconectado" entra e traz a Home, o que
+  o usuário aceita. O código do serviço continua: ligado pelo cartão 6, tudo o que depende
+  dele volta a valer. Sem ele, também não valem a imagem do CarPlay fechando "Conectando"
+  (fica o tráfego e o tempo máximo) nem a proteção contra o fim falso quando a central religa
+  o Bluetooth no meio do CarPlay sem fio.
+- **Fim pelo som (0.4.21; pedido do usuário em 14/11/2026: sem acessibilidade nem captura da
+  tela).** A captura chegou a ser implementada (miniatura de 64 × 36 durante o CarPlay,
+  aprendendo a espera do ZLINK) e foi descartada pelo usuário antes do teste, pelo risco de pesar
+  no CarPlay; o código saiu. No lugar dela:
+  - o `CarPlayReturn` registra um `AudioPlaybackCallback` (Android 8+, sem permissão), entregue na
+    thread do CarPlay. Cada aviso traz só os usos dos sons tocando, sem app nem conteúdo;
+    `CarPlaySound` os reduz a mídia, fala (chamada, sinal de chamada, assistente) e outros;
+  - **fim provável:** todo o som parou, a mídia parou até 0,5 s antes e tinha tocado pelo menos
+    1 s. Não é fim se a fala parou até 2 s antes ou se `sys.nonsystem.callstate` = 1 (ligação ou
+    Siri; no teste, o som caiu com o CarPlay continuando nesses casos), nem se o player do Nyx
+    Car estava tocando;
+  - com a sessão ativa, o Bluetooth desligado, o ZLINK na frente e nenhuma tela do Nyx Car à
+    vista, "CarPlay desconectado" entra na hora (janela reservada, `hold = DISCONNECTED`), sem
+    chamar a Home. O Bluetooth ou o cabo (`endSignal`) confirmam: a Home vem por baixo, e a
+    mensagem fica até completar 2 s (pelo menos 0,8 s depois). Sem confirmação em 3 s, ou com a
+    música voltando, a janela volta para a reserva;
+  - **fim falso pelo Bluetooth:** com a mídia tocando quando o Bluetooth religa, a sessão
+    continua (`cancelEnd`); nos fins de verdade, a música parou 0,6 a 1,8 s antes. Se a mídia
+    parar depois, com o Bluetooth ligado, `CarPlaySession.soundStopped` dá o fim;
+  - **"Conectando" sem o tráfego:** `preparingOver` fecha a tela 4 s depois de o Bluetooth
+    desligar (com a acessibilidade mostrando "conectando", espera mais);
+  - **limites:** sem música desde que o CarPlay conectou, nada muda (Bluetooth ou cabo, ~1 s de
+    espera do ZLINK à vista). Um silêncio que não seja o fim mostra "CarPlay desconectado" por
+    até 3 s por cima do CarPlay.
+- **Resultado da 0.4.21 e correções da 0.4.22:** no teste de 14/11/2026, o fim pelo som
+  cobriu as 7 desconexões com música: janela no lugar 11 a 16 ms e desenhada 16 a 43 ms depois
+  do aviso do som. O Bluetooth confirmou 0,7 a 1,0 s depois, sem nenhuma cobertura falsa. A
+  desconexão durante uma ligação continuou pelo Bluetooth, porque a fala e a música param
+  juntas, como no fim de uma ligação. Numa conexão, a espera do ZLINK apareceu antes do CarPlay:
+  - **causa provável:** em todas as gravações, a thread principal ficou ocupada ~11 s depois de
+    o Bluetooth desligar (40 quadros de 100 a 516 ms, o limite do `MainThreadWatch`). O
+    `CarTestsPanel` (Compose) recompunha a lista inteira a cada linha do `CarTestLog`, mesmo com
+    o ZLINK na frente (o Nyx Diagnóstico provavelmente fica pausado, não parado, atrás dele), e
+    cada quadro demorado virava mais uma linha. Com a thread a −8 (`boostMainThread`, 0.4.19),
+    isso disputava o processador com o ZLINK no começo do CarPlay;
+  - **margem:** "Conectando" fecha 2 s depois do vídeo, ~2,35 s depois de o Bluetooth desligar;
+    pela acessibilidade, a imagem do CarPlay sem "conectando" apareceu 1,3 a 2,4 s depois (três
+    vezes 2,9 a 4,3 s), sem o usuário ver a espera do ZLINK nessas versões;
+  - **0.4.22:** o `CarTestsPanel` só reage ao `CarTestLog` com a atividade em `RESUMED` e se
+    atualiza no `ON_RESUME`; o `MainThreadWatch` saiu; `boostMainThread` só age com o serviço de
+    acessibilidade conectado;
+  - **medição:** a janela reservada ganhou um `OnSystemUiVisibilityChangeListener`, e com ele
+    (`hasSystemUiListeners`) o Android a avisa de toda mudança global das barras do sistema. Na
+    gravação, cada mudança entra na linha do tempo com o app na frente. Se o ZLINK mostrar a
+    barra de status na espera e escondê-la com a imagem do CarPlay, esse aviso marca o começo e o
+    fim do CarPlay, também sem música (retirada na 0.4.23: não marca).
+- **Resultado da 0.4.22 e mudanças da 0.4.23:** no teste de 14/11/2026 (à tarde), o usuário
+  não viu mais a espera do ZLINK na conexão, e o fim pelo som cobriu as 9 desconexões com
+  música (janela desenhada 20 a 50 ms depois do aviso do som).
+  - **barras do sistema:** o aviso só veio com o ZLINK abrindo do zero, 6 s antes do CarPlay. O
+    ZLINK, o Nyx Car e o Nyx Diagnóstico ficam sempre em tela cheia, então as barras não marcam
+    o começo nem o fim do CarPlay. A medição saiu;
+  - **CarPlay que entra por trás:** `CarPlaySession.bluetooth` só contava o Bluetooth desligando
+    com o ZLINK na tela (`zlinkOnTop`, desde a 0.4.5). Sem fio, depois de o tempo máximo (25 s)
+    tirar o ZLINK da frente, o CarPlay entrou 5 a 29 s depois, sem sessão registrada. O usuário
+    o abriu pelo Nyx Car, e o fim não foi coberto. Na 0.4.23, o Bluetooth desligando conta com
+    qualquer app na tela: a central só o desliga para o CarPlay, e as gravações não mostram
+    nenhum caso diferente. Se o Bluetooth for desligado à mão, a sessão falsa só deixa a janela
+    reservada; se o ZLINK estiver na frente quando ele religar, aparece "CarPlay desconectado";
+  - **o CarPlay volta (pedido do usuário):** com outro app na tela, `bringCarPlayBack` mostra
+    "Conectando" (`PREPARING`) e abre o ZLINK depois do quadro da janela. Daí em diante segue
+    como uma conexão comum: fecha 2 s depois do vídeo, ou 4 s depois sem o tráfego. Vale quando
+    o CarPlay entra até `LATE_START_MS` (60 s) depois do tempo máximo, ou com uma tela do Nyx
+    Car à vista: "Aguardando o celular", "Conexão interrompida", "Conectando" ou "CarPlay
+    desconectado". O último caso é o fim falso: a central religa o Bluetooth e o desliga de
+    novo ~1 s depois (três vezes em 13/11, uma às 13:18 e duas no teste da 0.4.19). Com música,
+    o som já desmentia esse fim (0.4.21). Sem música, o Nyx Car voltava e o CarPlay ficava no
+    fundo. Depois de um toque em "Conectando", nada volta sozinho;
+  - **diferença do B2 (abaixo):** o B2 esconderia o ZLINK durante toda conexão. Aqui o ZLINK só
+    é reaberto quando o CarPlay já entrou.
+- **Resultado da 0.4.23 e da 0.4.24 e correções da 0.4.25** (testes de 14 e 15/11/2026;
+  HARDWARE.md, seção 5):
+  - **CarPlay de novo logo depois do fim:** o ZLINK voltou para a frente, coberto. O caso
+    "depois do tempo máximo" não ocorreu nos testes;
+  - **cabo durante o CarPlay sem fio:** `onAppleAttached` abria a espera do cabo por cima da
+    sessão sem fio, e `cableLinkMissing` a tratava como queda, fechando o ZLINK com o CarPlay na
+    tela. Na 0.4.25, o iPhone no USB com o Bluetooth da central desligado e sem o cabo
+    conectado só vai para o diário, e `cableLinkMissing` não age com o Bluetooth desligado. No
+    teste, o próprio iPhone encerrou a sessão sem fio 14 s depois e conectou pelo cabo: o Nyx
+    Car acompanha esse fim real ("CarPlay desconectado") e cobre a conexão nova;
+  - **Nyx Car aberto do zero:** a sessão vive só na memória do processo, e a central o fecha
+    quando falta memória (o CarPlay entrando) e ao dormir. Na 0.4.25, `resumeAfterRestart`
+    confere o Bluetooth da central ao abrir: desligado, a sessão volta a valer. Ao dormir, a
+    central também desliga o Bluetooth, e a sessão aberta assim termina quando ele religa ao
+    ligar o carro, com o Nyx Car na frente: nada muda na tela. Com o cabo conectado, o aviso
+    fixo do USB já abre a sessão antes dessa conferência; sem o Bluetooth marcado, esse fim vem
+    pelo cabo, sem o aviso do som.
 - **B2 descartado:** trazer o Nyx Car para a frente quando o ZLINK abre sozinho e reabri-lo
   depois. Piscaria o ZLINK e pode impedir a conexão de seguir com ele escondido (risco para a
   navegação do usuário).
@@ -607,14 +859,21 @@ Nada além disso. Qualquer nova dependência precisa de justificativa registrada
 | ~~Som de app comum não sair nos alto-falantes~~ | — | **Sai normalmente (0.4.0)** |
 | ~~Central só "dormir" ao desligar o carro~~ | — | **Ela dorme, mas fecha os apps:** a música volta pausada, como decidido (0.4.0) |
 | ~~Player original abre sozinho ao conectar o pendrive~~ | — | **Resolvido pelo usuário (11/11/2026):** "Reprodução automática" desligada em Configurações do Veículo → Geral. O atalho dele saiu do launcher na 0.4.2 |
-| Volta automática ao Nyx Car disparar sem querer (mau contato no cabo, Bluetooth religando durante o CarPlay) | O Nyx Car vem para a frente com o CarPlay ainda ativo | Só com o ZLINK na tela; o cabo precisa ficar 1,5 s fora; uma volta por sessão; o diário registra o sinal que disparou (0.4.5, a confirmar no carro) |
+| Volta automática ao Nyx Car disparar sem querer (mau contato no cabo, Bluetooth religando durante o CarPlay) | O Nyx Car vem para a frente com o CarPlay ainda ativo | O fim só vale com o Bluetooth religando ou o cabo saindo; o Bluetooth religando com a música do CarPlay tocando não conta (0.4.21); "CarPlay desconectado" pelo som sai em 3 s sem confirmação; um fim falso seguido do CarPlay de volta traz o ZLINK de novo (0.4.23). No teste da 0.4.25 (15/11/2026), nenhuma volta indevida |
 | Deslize trocar de aba sem querer (solavanco) | Aba errada com o carro em movimento | Só arrasto claramente horizontal e de 154 px (ou gesto rápido). Aprovado pelo usuário no teste da 0.4.1 (11/11/2026); limites ajustáveis se aparecer problema |
 | Relógio voltar para a data do firmware numa partida do zero (visto em 11/11/2026) | Hora e data erradas na Home (e no diário) até a central acertar o relógio (~3 h nesse dia) | O launcher só mostra a hora do sistema. A 0.4.3 informa no relatório se a hora automática está ligada; a correção, se precisar, é um ajuste comum de data e hora |
 | Perda da chave de assinatura (só neste PC) | Atualizar exige desinstalar e configurar de novo | Aceito pelo usuário (11/11/2026, D11): sem cópia da chave; o código está no GitHub |
 | ~~Toque com conversão 1085×600 → 1280×720~~ | — | **Teste de precisão aprovado na central** |
 
-## 6. Pendências técnicas
+## 6. Pendências técnicas (depois da 1.0.0)
 
 - **Métrica de "quadros atrasados":** hoje é calculada contra os 60 Hz informados pelo
   sistema. Nesta central a cadência real é de ~38,7 ms, o que faz a métrica superestimar
-  os atrasos. Corrigir para usar a cadência observada antes das medições da Fase 5.
+  os atrasos. Corrigir para usar a cadência observada se essa métrica voltar a ser usada.
+- **CarPlay depois do tempo máximo (0.4.23):** coberto pelos testes na JVM, mas não ocorreu
+  nos testes no carro.
+- **Troca do CarPlay sem fio para o cabo:** passa por "CarPlay desconectado" e pela Home por
+  ~12 s, o tempo da troca no iPhone. Manter o ZLINK coberto por "Conectando" durante a troca
+  exigiria um teste no carro.
+- **Cabo que conecta sem o CarPlay começar:** depois do tempo máximo, tirar o cabo mostra
+  "CarPlay desconectado" por 2 s, embora o CarPlay não tenha entrado.

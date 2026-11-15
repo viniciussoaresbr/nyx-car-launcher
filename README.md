@@ -5,42 +5,40 @@ RAM), com visual inspirado nas interfaces premium: fundo grafite, superfícies e
 destaque turquesa. É **leve** e **independente**: não altera firmware, ZLINK nem o
 launcher original.
 
-## Situação atual: Fase 4 — funcionalidades (etapa 0.4.12 pronta para teste no carro)
+## Situação: versão final 1.0.0 (15/11/2026)
 
-- **Fase 1 (concluída):** o diagnóstico na central mostrou Android 8.1 real (rotulado
-  como 13), 4× Cortex-A7 a 1,1 GHz, GPU Mali-450 e tela a 160 dpi com área útil de
-  1280 × 655. No teste A/B, as **Views nativas** venceram o Compose com folga, e a
-  interface passou a ser feita em Views.
-- **Fase 2 (concluída):** o Design System e a **Home de referência** (versão `0.2.1-ref`:
-  atalho "CarPlay", barra inferior só com ícones, Navegação pelo CarPlay) foram aprovados
-  na central. A Home abre em ~0,6 s e usa ~10 MB.
-- **Fase 3 (em andamento):** na `0.3.0`, os atalhos abrem os apps da central e a barra
-  inferior troca entre Home, Música, Aplicativos, Conectividade e Configurações. Capturas
-  em [`docs/design/`](docs/design/) (`home-v0.3.0.png` e `aba-*-v0.3.0.png`). A `0.3.1`
-  mostrou que o player USB do fabricante só funciona com a própria tela aberta (decisão do
-  próximo passo pendente). A `0.3.2` corrige os relatórios que chegavam com 0 bytes e repete
-  a medição da tela de espera do ZLINK.
-- **Fase 4 (em andamento):** a `0.4.0` traz o **player próprio** das músicas do pendrive
-  (aba Música por pastas; o cartão da Home mostra e controla a música; ao ligar, a última
-  música volta pausada e só toca com um toque) e permite escolher o Nyx Car como
-  **tela inicial**, com o launcher original a um toque em Configurações. Capturas em
-  `docs/design/*-v0.4.0.png`. **Validada no carro em 10/11/2026.** A `0.4.1` permite
-  **trocar de aba deslizando o dedo**. O player original deixou de abrir sozinho ao
-  conectar o pendrive (o usuário desligou "Reprodução automática" nas Configurações do
-  Veículo), e a `0.4.2` remove o atalho dele e acaba com o "pulo" da Home ao voltar do
-  CarPlay. **0.4.1 e 0.4.2 validadas no carro em 11/11/2026.** A `0.4.3` põe a **Play Store**
-  no lugar vazio de Aplicativos e traz o novo nome, **Nyx Car** (validada em 11/11/2026). A
-  `0.4.4` divide Aplicativos em **Favoritos | Todos**: 12 favoritos escolhidos pelo usuário
-  (botão Editar) e a lista de todos os apps da central, com ícones de traço (validada em
-  11/11/2026). A `0.4.5` traz o Nyx Car de volta sozinho quando o CarPlay termina e mede o
-  momento em que o CarPlay fica pronto (0.4.6 validada em 12/11/2026). A `0.4.7` cobre a tela de
-  espera do ZLINK com uma tela do Nyx Car enquanto o CarPlay conecta, a `0.4.8` mostra
-  "Aguardando o iPhone" ao tocar em CarPlay sem nada conectado, e a `0.4.9` trata a conexão
-  interrompida e mostra "CarPlay desconectado" por 2 s no fim. Na `0.4.10`, tocar na tela de
-  espera volta ao Nyx Car e tira o ZLINK da frente, e a `0.4.11` percebe o fim do CarPlay
-  pela tela do ZLINK (serviço de acessibilidade restrito a ele, ligado pelo usuário); a
-  `0.4.12` usa a imagem do CarPlay sumindo da tela do ZLINK, já na primeira vez. Roteiro de
-  teste no [BUILD.md](BUILD.md), seção 6.
+O Nyx Car está pronto e em uso na central, como tela inicial. A `1.0.0` é o mesmo código da
+`0.4.25`, testada no carro em 15/11/2026. O histórico das versões está no
+[CHANGELOG.md](CHANGELOG.md), e o das fases, no [PROJECT_PLAN.md](PROJECT_PLAN.md).
+
+**O que ele faz**
+
+- **Home:** relógio, data, indicadores de Wi-Fi e Bluetooth, cartão de música e atalhos
+  (CarPlay, Bluetooth, Aplicativos, Configurações). A barra inferior troca entre Home, Música,
+  Aplicativos, Conectividade e Configurações, também deslizando o dedo.
+- **Música:** player próprio das músicas do pendrive, por pastas, com player grande, aleatório
+  (da pasta, ou da pasta com as subpastas) e a última música de volta, pausada, ao ligar o
+  carro.
+- **Aplicativos:** favoritos editáveis e a lista de todos os apps da central.
+- **CarPlay:** a tela de espera do ZLINK fica coberta por "Conectando" na conexão e por
+  "CarPlay desconectado" no fim. Quando o CarPlay termina, pelo cabo ou sem fio, o Nyx Car
+  volta sozinho para a frente.
+- **Nyx Diagnóstico:** relatório da central e gravação dos testes no carro, sem
+  identificadores nem nomes de músicas.
+
+**Na central** (Android 8.1 real, rotulado como 13; 4× Cortex-A7 a 1,1 GHz; GPU Mali-450): a
+interface é feita em Views nativas, que venceram o Compose no teste A/B. A Home abre a frio em
+~0,7 s, com ~15 MB de memória. Capturas em [`docs/design/`](docs/design/).
+
+**Limitações conhecidas**
+
+- Sem ADB (bloqueado pelo fabricante): a instalação e os relatórios vão pelo pendrive.
+- Sem internet, a central volta à data do firmware quando parte do zero: acerte em
+  Configurações → Data e hora.
+- Na troca do CarPlay sem fio para o cabo, a tela passa ~12 s pela Home, com "CarPlay
+  desconectado", até o iPhone conectar pelo cabo.
+- A chave de assinatura fica só neste PC: um APK compilado em outro PC não atualiza o
+  instalado (ARCHITECTURE.md, D11).
 
 | Documento                            | Conteúdo                                                                           |
 | ------------------------------------ | ---------------------------------------------------------------------------------- |
@@ -61,5 +59,6 @@ launcher original.
 
 Sem root, sem desbloqueio de bootloader e sem alterações de firmware, partições ou apps
 originais. Única exceção, autorizada pelo usuário: desativar à mão o player original
-(reversível; ver PROJECT_PLAN.md, seção 9). O ZLINK nunca é modificado, só aberto por
-atalho. Toda operação na central é explicada e autorizada antes.
+(reversível; ver PROJECT_PLAN.md, seção 9). O ZLINK nunca é modificado: o Nyx Car só o
+abre, o traz para a frente e cobre a tela de espera dele com uma janela própria. Toda
+operação na central é explicada e autorizada antes.

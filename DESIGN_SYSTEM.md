@@ -26,7 +26,8 @@ Implementação: **Views nativas** (decisão D2), com recursos XML em `app/src/m
 4. **Sem animações contínuas.** O retorno ao toque é uma troca instantânea de cor
    (estado "pressionado"), sem ondulação nem elevação. Única transição: o **deslize entre
    abas** (0.4.1), em que a aba acompanha o dedo e a nova entra em 160 ms ao soltar, com
-   transparência só durante o gesto.
+   transparência só durante o gesto. O player grande da aba Música (0.4.24) abre e fecha
+   sem transição.
 5. **O destaque turquesa é para o que é ativo ou importante:** destino selecionado,
    ação principal, ícones de atalho e status ligado. Não usar como decoração.
 6. Ícones são **brancos no arquivo**; a cor vem de quem usa (`tint`).
@@ -59,6 +60,7 @@ Fonte do sistema (Roboto), aprovada na calibração.
 | Estilo | Tamanho | Peso | Uso |
 |---|---|---|---|
 | `PcText.Clock` | 112 sp | leve | Relógio da Home |
+| `PcText.TitleLarge` (0.4.24) | 32 sp | médio | Título da música no player grande |
 | `PcText.Headline` | 28 sp | normal | Título de tela |
 | `PcText.Title` | 24 sp | médio | Título de cartão, informação principal |
 | `PcText.BodyLarge` | 22 sp | normal | Leitura principal (ex.: data) |
@@ -75,7 +77,7 @@ Fonte do sistema (Roboto), aprovada na calibração.
 | Cantos | `s` 8 · `m` 12 (botões) · `l` 16 (cartões e atalhos) dp |
 | Toque | mínimo 64 dp |
 | Ícones | 24 · 32 · 56 dp |
-| Capa | 128 dp (cartão da Home) · 160 dp (aba Música) |
+| Capa | 128 dp (cartão da Home) · 160 dp (aba Música) · 440 dp (player grande, 0.4.24, com ícone de 144 dp quando o arquivo não tem capa) |
 
 ## 6. Componentes
 
@@ -84,8 +86,9 @@ Fonte do sistema (Roboto), aprovada na calibração.
 | Botão principal | estilo `PcButton.Primary` | normal, pressionado, desativado |
 | Botão secundário | estilo `PcButton` | normal, pressionado, desativado |
 | Botão redondo (mídia) | estilos `PcRoundButton` e `PcRoundButton.Primary` (64, 80 e 96 dp) | normal, pressionado, desativado |
+| Botão de alternar (0.4.24, Aleatório) | estilo `PcRoundButton.Toggle` (64 dp, ícone de 32 dp): `pc_bg_round_toggle` e `pc_toggle_content`; o estado vem de `setActivated` | desligado (ícone cinza sobre `pc_surface_high`), ligado (ícone turquesa sobre `pc_accent_container`, como o destino selecionado da barra), pressionado, desativado |
 | Atalho | `ui/components/ShortcutTile` (`app:tileIcon`, `app:tileLabel`, `caption`) | normal, pressionado, selecionado (borda turquesa), desativado, app ausente (desativado + legenda "Não encontrado"), app desativado nas Configurações (desativado + legenda "Desativado", 0.4.1) |
-| Cartão | `pc_bg_card` e `pc_bg_card_clickable` | normal, pressionado |
+| Cartão | `pc_bg_card` e `pc_bg_card_clickable` (o cartão da música na aba Música é tocável desde a 0.4.24) | normal, pressionado |
 | Cartão informativo | `layout/view_info_card` (título + linhas) | estático |
 | Barra inferior | `ui/components/BottomNavBar` + `ui/Destination` | só ícones; selecionado (ícone turquesa sobre pílula `pc_accent_container`, 88 × 48 dp), pressionado |
 | Atalho compacto (0.4.0) | `layout/view_source_button` (ícone 24 dp + rótulo lado a lado, 64 dp de altura) | normal, pressionado; some quando o app está ausente ou desativado (0.4.1) |
@@ -98,11 +101,12 @@ Fonte do sistema (Roboto), aprovada na calibração.
 | Barra de progresso (0.4.0) | `pc_progress_bar` (trilho `pc_outline`, preenchimento turquesa, 4 dp, sem animação) | — |
 
 **Ícones** (`drawable/ic_*.xml`, 24 × 24, traço de 2 dp com pontas arredondadas, ou
-preenchidos para os controles de mídia), 39 no total:
+preenchidos para os controles de mídia), 41 no total:
 - navegação e status: home, music, apps, connectivity, settings, bluetooth, wifi,
-  navigation, carplay, chevron_right, chevron_left (0.4.0), restore (0.4.0, "Launcher
-  original");
-- mídia: play, pause, skip_previous, skip_next;
+  navigation, carplay, chevron_right, chevron_left (0.4.0), chevron_down (0.4.24, fechar o
+  player grande), restore (0.4.0, "Launcher original");
+- mídia: play, pause, skip_previous, skip_next, shuffle (0.4.24, duas setas que se cruzam; a
+  de baixo passa por trás);
 - apps e telas (Fase 3): usb, radio, video, movie, map, camera, car, gauge, equalizer,
   steering, folder, gear, volume, display, clock, diagnostics, store (0.4.3, Play Store);
 - lista "Todos" (0.4.4): browser (Chrome, globo), search (Google, lupa), book (Instruções),
@@ -155,16 +159,18 @@ por peso, sem rolagem (`ui/screens/ScreenBuilder`). A aba Música tem layout pr�
 
 | Aba | Conteúdo |
 |---|---|
-| Música (0.4.0) | metade esquerda: pastas e músicas do pendrive (lista com rolagem rápida) · metade direita: capa 160 dp, título, artista, "pasta · 2 de 3", progresso, ⏮ ▶ ⏭ · linha de atalhos compactos: BT Música e Rádio (o player USB do fabricante saiu na 0.4.2) |
+| Música (0.4.0) | metade esquerda: pastas e músicas do pendrive (lista com rolagem rápida) e, no topo, o ⇄ que toca a pasta aberta e as subpastas em ordem aleatória (0.4.24) · metade direita: capa 160 dp, título, artista, "pasta · 2 de 3", progresso, ⇄ ⏮ ▶ ⏭ (⇄ desde a 0.4.24) · linha de atalhos compactos: BT Música e Rádio (o player USB do fabricante saiu na 0.4.2) |
+| Player grande (0.4.24, layout escolhido pelo usuário) | aberto ao tocar no cartão da música, no cartão da Home ou na notificação; ocupa a aba inteira, acima da barra inferior (`layout/view_player_expanded`): capa de 440 dp à esquerda; à direita, título (`TitleLarge`), artista (`BodyLarge` secundário), álbum (só quando o arquivo tem), "pasta · 2 de 30", ⌄ no canto (volta à lista), progresso e ⇄ ⏮ ▶ ⏭ (64, 80, 96 e 80 dp). Voltar e o ícone Música da barra também voltam à lista |
 | Aplicativos | botão **Editar** (só o ícone de lápis) e seletor **Favoritos \| Todos** ao lado do título (0.4.4). **Favoritos:** grade 3 × 4 com os 12 favoritos (padrão: Rádio, Vídeo, Bluetooth, CarPlay · Maps, YouTube, Câmera, Informações do carro · Equalizador, Comandos de volante, Arquivos, Play Store). **Todos:** os apps da central em ordem alfabética, ícones de traço, nos mesmos atalhos dos Favoritos (4 colunas, 3 linhas por tela) com barra de rolagem; 20 apps = 5 linhas. **Editar favoritos:** os 12 com borda turquesa e a legenda "Trocar", botões Restaurar padrão e Concluir (primário); tocar num lugar abre "Trocar “X” por…" (a lista de Todos com a legenda "Favorito" e o lugar tocado com borda) e Cancelar |
-| Tela de espera do CarPlay (0.4.7) | janela sobreposta ao ZLINK, tela cheia `pc_background`: círculo `pc_accent_container` de 112 dp com o ícone `carplay` turquesa (56 dp), título "Conectando ao CarPlay" (Headline), situação em Body ("iPhone conectado pelo cabo" / "iPhone conectando sem fio" / "Preparando a tela do CarPlay…"), "Toque para voltar ao Nyx Car · toque e segure para ver o ZLINK" (Caption) no rodapé (0.4.10; era "Toque para fechar"); na desconexão, "CarPlay desconectado — Voltando para o Nyx Car…" (por 2 s na 0.4.9); se a conexão cai antes do CarPlay aparecer (0.4.9), "Conexão interrompida — Aguardando o iPhone voltar…", com "Toque para voltar ao Nyx Car"; ao tocar em CarPlay sem iPhone (0.4.8), "Aguardando o iPhone — Conecte o cabo ou ligue o CarPlay sem fio no iPhone", com "Toque para voltar · toque e segure para abrir o ZLINK". Sem animação |
+| Tela de espera do CarPlay (0.4.7) | janela sobreposta ao ZLINK, tela cheia `pc_background`: círculo `pc_accent_container` de 112 dp com o ícone `carplay` turquesa (56 dp), título "Conectando ao CarPlay" (Headline), situação em Body ("iPhone conectado pelo cabo" só com aparelho da Apple identificado no USB, senão "Celular conectado pelo cabo" / "Celular conectando sem fio" / "Preparando a tela do CarPlay…"; "celular" desde a 0.4.15), "Toque para voltar ao Nyx Car · toque e segure para ver o ZLINK" (Caption) no rodapé (0.4.10; era "Toque para fechar"); na desconexão, "CarPlay desconectado — Voltando para o Nyx Car…" (por 2 s na 0.4.9); se a conexão cai antes do CarPlay aparecer (0.4.9), "Conexão interrompida — Aguardando o celular voltar…", com "Toque para voltar ao Nyx Car"; ao tocar em CarPlay sem celular (0.4.8), "Aguardando o celular — Conecte o celular pelo cabo ou ligue a conexão sem fio nele", com "Toque para voltar · toque e segure para abrir o ZLINK". Sem animação |
 | Conectividade | Bluetooth, Wi-Fi, CarPlay · cartão "Estado" (2/3 da altura) |
-| Configurações | grade 4 × 2 (Android, Som, Tela, Data e hora, Veículo, Tela inicial, Launcher original, Nyx Diagnóstico) · cartão com a versão e o caminho de volta ao launcher original |
+| Configurações | grade 4 × 2 (Android, Som, Tela, Data e hora, Veículo, Tela inicial, Launcher original, Nyx Diagnóstico) · cartão "Nyx Car · versão" com "Distribuído por Vinicius Soares" (0.4.16; a volta ao launcher original fica nos atalhos Tela inicial e Launcher original) |
 
 Capturas: `docs/design/home-v0.4.0.png`, `home-tocando-v0.4.0.png`,
 `aba-music-tocando-v0.4.0.png`, `aba-music-permissao-v0.4.0.png`,
-`aba-settings-v0.4.3.png` (novo nome), `aba-music-tocando-v0.4.2.png` (sem o atalho Música USB),
-`aba-apps-v0.4.4.png`, `aba-apps-todos-v0.4.4.png`, `aba-apps-todos-fim-v0.4.4.png` (rolada até o fim), `aba-apps-editar-v0.4.4.png` e `aba-apps-trocar-v0.4.4.png` (Favoritos | Todos e edição), `carplay-espera-cabo-v0.4.7.png`, `carplay-espera-sem-fio-v0.4.7.png`, `carplay-espera-preparando-v0.4.7.png` `carplay-desconectado-v0.4.7.png`, `carplay-aguardando-iphone-v0.4.8.png`, `carplay-interrompida-v0.4.9.png` e `carplay-espera-cabo-v0.4.10.png` (rodapé novo) (tela de espera do CarPlay) e, das abas sem mudança, `aba-*-v0.3.0.png`. O deslize não aparece em capturas:
+`aba-settings-v0.4.3.png` (novo nome), `aba-settings-v0.4.16.png` (cartão "Distribuído por"), `aba-music-tocando-v0.4.2.png` (sem o atalho Música USB),
+`aba-music-player-v0.4.24.png` (player grande, aleatório ligado), `aba-music-tocando-v0.4.24.png` (cartão com o ⇄ e o ⇄ da lista), `aba-music-aleatorio-v0.4.24.png` (aleatório do pendrive ligado),
+`aba-apps-v0.4.4.png`, `aba-apps-todos-v0.4.4.png`, `aba-apps-todos-fim-v0.4.4.png` (rolada até o fim), `aba-apps-editar-v0.4.4.png` e `aba-apps-trocar-v0.4.4.png` (Favoritos | Todos e edição), `carplay-espera-cabo-v0.4.7.png`, `carplay-espera-sem-fio-v0.4.7.png`, `carplay-espera-preparando-v0.4.7.png` `carplay-desconectado-v0.4.7.png`, `carplay-aguardando-iphone-v0.4.8.png`, `carplay-interrompida-v0.4.9.png` e `carplay-espera-cabo-v0.4.10.png` (rodapé novo), `carplay-espera-celular-cabo-v0.4.15.png`, `carplay-aguardando-celular-v0.4.15.png` e `carplay-interrompida-v0.4.15.png` ("celular") (tela de espera do CarPlay) e, das abas sem mudança, `aba-*-v0.3.0.png`. O deslize não aparece em capturas:
 é verificado pelos testes de toque (BUILD.md, seção 3).
 
 ## 8. Como verificar

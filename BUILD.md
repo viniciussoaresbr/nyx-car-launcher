@@ -52,9 +52,10 @@ APK gerado: **`app/build/outputs/apk/release/nyx-car-launcher-release.apk`**
 - A **primeira** compilação demora bastante: cerca de 30 min neste PC, por causa do
   download de dependências e da primeira execução do R8 e do lint. As seguintes levam
   cerca de 1 min.
-- Fase 1: o APK é assinado com a chave de debug desta máquina (`~/.android/debug.keystore`).
-  **Faça backup desse arquivo.** Sem ele, uma versão nova não consegue atualizar a
-  instalada: seria preciso desinstalar antes. A Fase 6 criará uma chave própria do projeto.
+- O APK é assinado com a chave de debug deste PC (`~/.android/debug.keystore`), por decisão
+  do usuário (ARCHITECTURE.md, D11). Sem esse arquivo, uma versão nova não consegue atualizar
+  a instalada: seria preciso desinstalar antes e escolher de novo a tela inicial e as
+  permissões.
 
 ## 3. Testes
 
@@ -69,7 +70,8 @@ APK gerado: **`app/build/outputs/apk/release/nyx-car-launcher-release.apk`**
     música tocando, `home_playing.png`;
   - **abas** Música, Aplicativos, Conectividade e Configurações: `tab_*.png` (com os apps
     da central simulados como instalados) e a aba Música com um pendrive simulado:
-    `tab_music_playing.png`;
+    `tab_music_playing.png`, o player grande `tab_music_player.png` e o aleatório do
+    pendrive `tab_music_shuffle.png` (0.4.24);
   - **catálogo de componentes** completo: `design_catalog.png`;
   - **painel de diagnóstico**, todas as abas, a 160 e 240 dpi.
 - Regras do Design System verificadas automaticamente: todo elemento tocável com pelo
@@ -139,6 +141,27 @@ APK gerado: **`app/build/outputs/apk/release/nyx-car-launcher-release.apk`**
   aprendida); voltando na conferência, não é; pelo cabo, o ZLINK "conectando" segura a tela até
   1 min. Na JVM: fim provável e confirmação, piscadas com a imagem, a imagem nunca vira espera,
   tela sem a imagem nunca vira tela do CarPlay.
+- 0.4.13: o diário registra quanto antes do fim a notificação do ZLINK mudou (e ignora uma
+  mudança antiga); na JVM, o resumo do texto muda com o texto sem mostrá-lo, e a descrição só
+  tem a forma (`ZlinkNotificationsTest`).
+- 0.4.14: o diário registra quanto antes do fim o som do CarPlay parou.
+- 0.4.15: o ZLINK voltando sozinho logo depois de uma conexão fechada é coberto e sai de novo
+  (e, passados 5 s, é uma conexão nova); a Home volta sem animação; pelo cabo sem o aviso da
+  Apple, o texto fala em celular.
+- Player grande e aleatório (0.4.24):
+  - o cartão da música abre o player grande com a barra embaixo (capa de 440 dp, álbum só
+    quando o arquivo tem, 64 dp em tudo); Voltar, ⌄ e o ícone Música voltam à lista; pela
+    barra, a aba abre na lista;
+  - o cartão da Home e a notificação abrem o player grande, ou a lista sem música escolhida;
+  - o ⇄ da lista toca o pendrive inteiro; o ⇄ do player liga e desliga nos dois players;
+  - no player: cada música uma vez antes de repetir, "anterior" volta à que tocou, ligar não
+    troca a música e desligar volta à ordem da pasta, pasta e subpastas (sem as ocultas), pasta
+    sem música, fim da fila com sorteio novo e a mesma ordem depois de ligar a central;
+  - na JVM, a ordem sorteada (`PlayOrderTest`) e as duas capas (`TrackReaderTest`).
+- 0.4.25: o iPhone no USB com o CarPlay sem fio em uso não abre a espera do cabo nem fecha o
+  ZLINK, e o fim continua valendo; a espera do cabo com o Bluetooth da central já desligado
+  não vira "Conexão interrompida"; aberto do zero com o Bluetooth da central desligado, o Nyx
+  Car volta a vigiar o fim (e, com ele ligado, não abre sessão).
 - As capturas aprovadas de cada versão ficam em `docs/design/`.
 - Relatório HTML: `app/build/reports/tests/testDebugUnitTest/index.html`.
 
@@ -174,38 +197,26 @@ APK gerado: **`app/build/outputs/apk/release/nyx-car-launcher-release.apk`**
 Se aparecer **"App não instalado"** ou **"Erro ao analisar o pacote"**, anote a mensagem
 exata. Isso indica que o Android real é anterior ao 6.0, um dado importante para o diagnóstico.
 
-## 6. Roteiro de teste na central (versão 0.4.12)
+## 6. Conferência na central (versão 1.0.0)
 
-Valida o fim do CarPlay pela imagem do CarPlay sumindo da tela do ZLINK, já na primeira vez. O
-serviço "Nyx Car — fim do CarPlay" continua ligado (confira no cartão 6: "Situação: ligado").
-Instale **por cima** (toque em "Atualizar"). Faça com o **carro parado**. Grave cada teste no
-Nyx Diagnóstico → Testes no carro. Anote as respostas das perguntas em **negrito**.
+A 1.0.0 é a versão final: o mesmo código da 0.4.25, testada no carro em 15/11/2026. Os
+resultados de cada teste ficam no HARDWARE.md, seção 5. Depois de instalar por cima (toque em
+"Atualizar"), confira com o **carro parado**:
 
-**A. Desconexão**
+1. Em Configurações, o cartão mostra **"Nyx Car · versão 1.0.0"**.
+2. A Home mostra a hora certa, e os atalhos abrem os apps da central.
+3. Na aba Música, uma música do pendrive toca; tocar no cartão dela abre o player grande, e o
+   ⇄ liga e desliga o aleatório.
+4. Pelo cabo e sem fio: "Conectando" do Nyx Car cobre a espera do ZLINK e, ao desconectar com
+   música tocando, "CarPlay desconectado" aparece e o Nyx Car volta para a frente.
 
-1. Pelo cabo: conecte, espere o CarPlay e tire o cabo. **A tela de espera do ZLINK ainda
-   aparece antes de "CarPlay desconectado"? Por quanto tempo, mais ou menos?** Repita 3
-   vezes.
-2. Sem fio: com o CarPlay na tela, desligue o Bluetooth do iPhone. Mesmas perguntas, 2 vezes.
-3. **Durante o CarPlay (pelo cabo e sem fio, alguns minutos), o Nyx Car voltou para a frente
-   sozinho alguma vez sem você desconectar?** (não deveria)
+Se a hora estiver errada, a central partiu do zero sem internet (o relógio volta à data do
+firmware): acerte em Configurações → Data e hora, um ajuste comum, fora do menu de fábrica.
 
-**B. Conexão lenta (se acontecer)**
-
-4. Se o CarPlay demorar para entrar pelo cabo, a tela "Conectando ao CarPlay" deve continuar
-   enquanto o ZLINK estiver conectando, até 1 min.
-
-**C. Relatório (atenção aos 0 bytes)**
-
-5. Salve o relatório no pendrive pelo Nyx Diagnóstico (**Salvar em…**) e espere a mensagem
-   **"Relatório salvo e conferido"** antes de remover o pendrive.
-
-**Para desligar o serviço:** cartão 6 → Abrir acessibilidade → desative "Nyx Car — fim do
-CarPlay". O Nyx Car volta a perceber o fim pelo Bluetooth, como na 0.4.10.
-
-O relatório omite identificadores (número de série, MAC, IMEI, dados de rede). O diário do
-app não tem nomes de músicas; avisos de outros players podem ter: revise o arquivo antes
-de compartilhar.
+Se algo der errado, salve o relatório no pendrive pelo Nyx Diagnóstico (**Salvar em…**) e
+espere a mensagem **"Relatório salvo e conferido"** antes de remover o pendrive. O relatório
+omite identificadores (número de série, MAC, IMEI, dados de rede). O diário do app não tem
+nomes de músicas; avisos de outros players podem ter: revise o arquivo antes de compartilhar.
 
 ## 7. Desinstalar
 
