@@ -23,6 +23,7 @@ import android.os.SystemClock
 import androidx.annotation.RequiresApi
 import com.premiumcar.launcher.diagnostics.SystemProperties
 import com.premiumcar.launcher.diagnostics.UsbDevices
+import com.premiumcar.launcher.launcher.ZlinkNotifications
 import com.premiumcar.launcher.system.FastProperty
 
 /**
@@ -183,6 +184,7 @@ object CarTestRecorder {
         lastProps = current
         if (previous == null) {
             WATCHED.forEach { key -> log("Início: $key = ${current[key]?.ifEmpty { "(vazio)" } ?: "(não existe)"}") }
+            log("Início: notificações do ZLINK: ${ZlinkNotifications.summary()}")
             return
         }
         // As da leitura rápida já aparecem com o horário exato.

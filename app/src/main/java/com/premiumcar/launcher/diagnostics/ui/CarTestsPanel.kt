@@ -26,6 +26,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import com.premiumcar.launcher.design.PcColors
 import com.premiumcar.launcher.diagnostics.InfoSection
 import com.premiumcar.launcher.diagnostics.cartest.CarTestLog
@@ -41,9 +44,18 @@ import com.premiumcar.launcher.launcher.ZlinkScreenService
 internal fun CarTestsPanel(sections: List<InfoSection>?, onRefresh: () -> Unit, onStatus: (String) -> Unit) {
     val context = LocalContext.current
     var version by remember { mutableIntStateOf(0) }
-    DisposableEffect(Unit) {
-        CarTestLog.listener = { version++ }
-        onDispose { CarTestLog.listener = null }
+    val lifecycle = (context as? LifecycleOwner)?.lifecycle
+    DisposableEffect(lifecycle) {
+        // Só com o Nyx Diagnóstico na frente (0.4.22). Atrás do ZLINK, ele continuava redesenhando
+        // a lista inteira a cada linha nova da gravação (0,1 a 0,5 s cada vez neste processador),
+        // justo quando o CarPlay está começando. Ao voltar para a frente, mostra tudo de uma vez.
+        CarTestLog.listener = { if (lifecycle == null || lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) version++ }
+        val observer = LifecycleEventObserver { _, event -> if (event == Lifecycle.Event.ON_RESUME) version++ }
+        lifecycle?.addObserver(observer)
+        onDispose {
+            CarTestLog.listener = null
+            lifecycle?.removeObserver(observer)
+        }
     }
     val running = remember(version) { CarTestRecorder.running }
     val elapsed = remember(version) { CarTestRecorder.elapsedMillis / 1000 }
