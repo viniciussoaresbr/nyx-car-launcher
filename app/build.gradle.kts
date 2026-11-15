@@ -13,8 +13,8 @@ android {
         // seja bem menor (ver HARDWARE.md). minSdk baixo garante que o APK instale.
         minSdk = 23
         targetSdk = 37
-        versionCode = 20
-        versionName = "0.4.12"
+        versionCode = 34
+        versionName = "1.0.0"
     }
 
     buildTypes {
