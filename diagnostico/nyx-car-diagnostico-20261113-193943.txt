@@ -1,0 +1,1518 @@
+NYX CAR LAUNCHER — RELATÓRIO DE DIAGNÓSTICO
+Versão do app: 0.4.19
+Gerado em: 13/11/2026 19:39:42 (BRT)
+Legenda: [*] destaque · [!] atenção. Identificadores (serial, MAC, IMEI, rede) foram omitidos.
+
+========================================================================
+TESTES NO CARRO
+========================================================================
+
+## Player próprio (pendrive)
+    Permissão de leitura das músicas: concedida
+    Estado do player: pausado
+    Música atual: fila ainda não lida (.mp3)
+[*] Pendrives encontrados: 1
+    Como foram encontrados: lista de volumes do Android
+    Pendrive 1 (PENDRIVE 16): raiz: 0 pastas, 0 músicas
+
+## Diário de eventos (player, CarPlay e erros do app)
+    13/11 19:04:21: CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    13/11 19:04:22: CarPlay: terminou (cabo desconectado) 0,8 s depois de a tela do ZLINK mostrar o fim
+    13/11 19:04:55: CarPlay: iPhone apareceu no USB (Apple)
+    13/11 19:04:55: CarPlay: tela de espera do Nyx Car aberta (cabo)
+    13/11 19:04:57: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    13/11 19:04:59: CarPlay: conexão interrompida antes de o CarPlay aparecer (cabo desconectado): aguardando o celular por 5,0 s
+    13/11 19:04:59: CarPlay: mensagem de fim fechada com um toque
+    13/11 19:04:59: CarPlay: o celular não voltou: tela de espera e ZLINK fechados, Nyx Car na frente
+    13/11 19:05:07: CarPlay: iPhone apareceu no USB (Apple)
+    13/11 19:05:07: CarPlay: tela de espera do Nyx Car aberta (cabo)
+    13/11 19:05:10: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    13/11 19:05:16: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    13/11 19:05:17: CarPlay: vídeo do CarPlay chegou 9,6 s depois de a tela de espera abrir: ela fecha em 2 s
+    13/11 19:06:09: CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    13/11 19:06:10: CarPlay: terminou (cabo desconectado) 1,1 s depois de a tela do ZLINK mostrar o fim
+    13/11 19:06:45: CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    13/11 19:06:52: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    13/11 19:06:52: CarPlay: vídeo do CarPlay chegou 7,0 s depois de a tela de espera abrir: ela fecha em 2 s
+    13/11 19:07:26: CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    13/11 19:07:27: CarPlay: terminou (Bluetooth da central ligou de novo) 1,4 s depois de a tela do ZLINK mostrar o fim
+    13/11 19:07:45: CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    13/11 19:07:45: CarPlay: tela de espera tocada: ela e o ZLINK fechados, Nyx Car na frente
+    13/11 19:08:08: CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    13/11 19:08:13: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    13/11 19:08:13: CarPlay: vídeo do CarPlay chegou 5,6 s depois de a tela de espera abrir: ela fecha em 2 s
+    13/11 19:08:51: CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    13/11 19:08:53: CarPlay: terminou (Bluetooth da central ligou de novo) 1,4 s depois de a tela do ZLINK mostrar o fim
+    13/11 19:09:53: Armazenamento: media_mounted
+    13/11 19:10:27: Armazenamento: media_eject
+    13/11 19:10:27: Armazenamento: media_unmounted
+    13/11 19:10:27: Armazenamento: media_bad_removal
+    13/11 19:10:39: Player iniciado (sistema ligado há 3256 min, acordado há 328 min): última música pausada em 0:23, aguardando toque
+    13/11 19:29:30: Tela acesa
+    13/11 19:29:38: Armazenamento: media_mounted
+    13/11 19:30:21: Player iniciado (sistema ligado há 3275 min, acordado há 329 min): última música pausada em 0:23, aguardando toque
+    13/11 19:30:23: Armazenamento: media_eject
+    13/11 19:30:24: Armazenamento: media_unmounted
+    13/11 19:30:24: Armazenamento: media_bad_removal
+    13/11 19:31:12: CarPlay: serviço de acessibilidade do ZLINK ligado: o fim do CarPlay é visto pela tela dele
+    13/11 19:31:30: CarPlay: iPhone apareceu no USB (Apple)
+    13/11 19:31:30: CarPlay: tela de espera do Nyx Car aberta (cabo)
+    13/11 19:31:32: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    13/11 19:31:40: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    13/11 19:31:50: CarPlay: tempo máximo (20,1 s) sem o vídeo do CarPlay: tela de espera fechada
+    13/11 19:32:27: CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    13/11 19:32:27: CarPlay: terminou (cabo desconectado) 0,8 s depois de a tela do ZLINK mostrar o fim
+    13/11 19:32:40: CarPlay: iPhone apareceu no USB (Apple)
+    13/11 19:32:40: CarPlay: tela de espera do Nyx Car aberta (cabo)
+    13/11 19:32:42: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    13/11 19:32:49: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    13/11 19:32:50: CarPlay: vídeo do CarPlay chegou 9,1 s depois de a tela de espera abrir: ela fecha em 2 s
+    13/11 19:34:11: CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    13/11 19:34:12: CarPlay: terminou (cabo desconectado) 0,9 s depois de a tela do ZLINK mostrar o fim
+    13/11 19:34:23: CarPlay: iPhone apareceu no USB (Apple)
+    13/11 19:34:23: CarPlay: tela de espera do Nyx Car aberta (cabo)
+    13/11 19:34:25: CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    13/11 19:34:32: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    13/11 19:34:33: CarPlay: vídeo do CarPlay chegou 9,8 s depois de a tela de espera abrir: ela fecha em 2 s
+    13/11 19:35:14: CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    13/11 19:35:15: CarPlay: terminou (cabo desconectado) 0,9 s depois de a tela do ZLINK mostrar o fim
+    13/11 19:35:34: CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    13/11 19:35:41: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    13/11 19:35:41: CarPlay: vídeo do CarPlay chegou 6,7 s depois de a tela de espera abrir: ela fecha em 2 s
+    13/11 19:36:21: CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    13/11 19:36:22: CarPlay: terminou (Bluetooth da central ligou de novo) 1,1 s depois de a tela do ZLINK mostrar o fim
+    13/11 19:36:33: CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    13/11 19:36:39: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    13/11 19:36:40: CarPlay: vídeo do CarPlay chegou 6,5 s depois de a tela de espera abrir: ela fecha em 2 s
+    13/11 19:36:53: CarPlay: Bluetooth da central ligou, mas a imagem do CarPlay continua na tela do ZLINK: não é o fim, a sessão continua
+    13/11 19:36:54: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    13/11 19:37:58: CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    13/11 19:37:59: CarPlay: terminou (Bluetooth da central ligou de novo) 1,0 s depois de a tela do ZLINK mostrar o fim
+    13/11 19:38:31: CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    13/11 19:38:35: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    13/11 19:38:36: CarPlay: vídeo do CarPlay chegou 4,4 s depois de a tela de espera abrir: ela fecha em 2 s
+    13/11 19:38:45: CarPlay: Bluetooth da central ligou, mas a imagem do CarPlay continua na tela do ZLINK: não é o fim, a sessão continua
+    13/11 19:38:46: CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    13/11 19:39:15: CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    13/11 19:39:17: CarPlay: terminou (Bluetooth da central ligou de novo) 1,2 s depois de a tela do ZLINK mostrar o fim
+    13/11 19:39:41: Armazenamento: media_mounted
+    Obs.: Sem nomes de músicas. "Player iniciado" marca cada vez que o Nyx Car foi aberto do zero e mostra há quanto tempo o sistema está ligado (se a central reiniciou ou só acordou). Sem um "Erro do app" logo antes, quem fechou o Nyx Car foi a central, não um erro do app.
+
+## Player USB (com.hcn.AutoMediaPlayer)
+    Versão: 1.3.20260202-ac8227l
+    Situação: ativado
+[*] Receptor de botões de mídia: com.hcn.media.local.event.MusicIntentReceiver
+    Serviço de navegação de mídia (MediaBrowserService): não
+    Serviços declarados (3): com.hcn.media.local.LocalService · exportado
+        com.hcn.media.external.ReceptionService · exportado
+        androidx.room.MultiInstanceInvalidationService
+    Obs.: Sem serviço, um player normalmente não consegue tocar com a tela dele fechada. Sem receptor nem sessão de mídia, ele não recebe comandos de outros apps.
+
+## Receptores de botões de mídia no sistema
+    Receptor 1: com.auto.hcamera/com.auto.tv.TVKeyIntentReceiver
+    Receptor 2: com.auto.hcamera/com.auto.hcamera.local.AuxKeyIntentReceiver
+    Receptor 3: com.autochips.bluetooth/com.autochips.bluetooth.receiver.MediaButtonReceiver
+    Receptor 4: com.google.android.youtube/com.google.android.libraries.youtube.player.ui.mediasession.MediaButtonIntentReceiverProvider$DefaultMediaButtonIntentReceiver
+    Receptor 5: com.hcn.AutoMediaPlayer/com.hcn.media.local.event.MusicIntentReceiver
+    Receptor 6: com.hcn.audioinputsource/com.hcn.audioinputsource.local.AuxKeyIntentReceiver
+    Receptor 7: com.hcn.autoradio/com.hcn.autoradio.RadioMediaButtonReceiver
+    Receptor 8: com.zjinnova.zlink/com.zjinnova.android.zlink.features.broadcast.MediaButtonReceiver
+    Obs.: Apps que aceitam teclas de mídia (volante, fones) pelo caminho antigo do Android.
+
+## Sessões de mídia ativas
+    Acesso a notificações: concedido
+    Sessões agora: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    Obs.: Com o acesso, dá para saber se o player USB, o Bluetooth e o CarPlay publicam estado e faixa, o que permite sincronizar o cartão de música.
+
+## Linha do tempo dos testes
+    19:05:04.407 (t+0,4 s): Início: sys.usb.configfs = 2
+    19:05:04.407 (t+0,4 s): Início: rw.cp.link.state = 1
+    19:05:04.408 (t+0,4 s): Início: notificações do ZLINK: leitor desligado (sem o acesso, ou não religado pelo Android depois de a central fechar o app)
+    19:05:04.409 (t+0,4 s): Música tocando: não
+    19:05:04.410 (t+0,4 s): Modo de áudio: normal
+    19:05:04.413 (t+0,4 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:05:04.414 (t+0,4 s): Lista USB do Android: vazia
+    19:05:04.416 (t+0,4 s): Início: interfaces de rede (só o total do Android): total
+    19:05:07.464 (t+3,5 s): Nyx Car — CarPlay: iPhone apareceu no USB (Apple)
+    19:05:07.468 (t+3,5 s): USB: aparelho conectado — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/012
+    19:05:07.476 (t+3,5 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (cabo)
+    19:05:08.062 (t+4,1 s): Lista USB do Android: Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/012
+    19:05:08.564 (t+4,6 s): USB: aparelho removido — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/012
+    19:05:09.346 (t+5,4 s): Lista USB do Android: vazia
+    19:05:09.610 (t+5,6 s): Propriedade sys.usb.state: mtp → none
+    19:05:09.610 (t+5,6 s): Propriedade sys.usb.config: mtp → none
+    19:05:09.912 (t+5,9 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    19:05:10.056 (t+6,1 s): USB (central como aparelho): connected, host_connected, mtp
+    19:05:10.057 (t+6,1 s): Nyx Car — CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    19:05:10.068 (t+6,1 s): USB (central como aparelho): configured, connected, host_connected, mtp
+    19:05:10.299 (t+6,3 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/FrameLayout/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:05:10.745 (t+6,8 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    19:05:10.768 (t+6,8 s): Bluetooth: conexão geral conectando → desconectado
+    19:05:14.003 (t+10,0 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:05:14.005 (t+10,0 s): Bluetooth: conexão geral desconectado → conectando
+    19:05:14.023 (t+10,0 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:05:14.970 (t+11,0 s): ZLINK (acessibilidade): tela 85a96c05 (espera) — 23 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, state_connecting, title_link
+    19:05:15.158 (t+11,2 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:05:16.778 (t+12,8 s): ZLINK (acessibilidade): tela 7228d6ff (CarPlay) — 27 elementos, 5 com texto, 4 tocáveis; com a imagem do CarPlay, conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:05:16.782 (t+12,8 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    19:05:16.789 (t+12,8 s): Bluetooth: adaptador ligado → desligando
+    19:05:17.105 (t+13,1 s): Nyx Car — CarPlay: vídeo do CarPlay chegou 9,6 s depois de a tela de espera abrir: ela fecha em 2 s
+    19:05:18.456 (t+14,5 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:05:19.355 (t+15,4 s): Bluetooth: adaptador desligando → desligado
+    19:05:19.751 (t+15,8 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum)
+    19:05:19.762 (t+15,8 s): Rede total: recebendo 791 KB/s, enviando 391 KB/s (subiu)
+    19:05:20.982 (t+17,0 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:05:20.992 (t+17,0 s): Rede total: recebendo 2 KB/s, enviando 1 KB/s (caiu)
+    19:05:21.359 (t+17,4 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:05:27.758 (t+23,0 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:05:28.118 (t+23,4 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:05:33.790 (t+29,1 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:05:34.121 (t+29,4 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:05:39.826 (t+35,1 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:05:40.143 (t+35,4 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:05:57.885 (t+53,2 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:05:58.208 (t+53,5 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:06:01.217 (t+56,5 s): Rede total: recebendo 175 KB/s, enviando 90 KB/s (subiu)
+    19:06:02.432 (t+57,7 s): Rede total: recebendo 1 KB/s, enviando 0 KB/s (caiu)
+    19:06:03.931 (t+59,2 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:06:04.215 (t+59,5 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:06:09.368 (t+64,7 s): ZLINK (acessibilidade): tela 14073307 (espera) — 21 elementos, 4 com texto, 3 tocáveis; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, title_link
+    19:06:09.370 (t+64,7 s): Nyx Car — CarPlay: medição do fim, em ms depois do aviso do ZLINK: aviso recebido 4 · leitura 5 a 37 · janela pedida 37 · quadro 48 · janela no lugar 69 · desenhada 87 (prioridade da thread -8)
+    19:06:09.372 (t+64,7 s): Nyx Car — CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    19:06:09.372 (t+64,7 s): Nyx Car — CarPlay: avisos do ZLINK durante o CarPlay: conteúdo/ViewGroup/subárvore ×13, conteúdo/ImageView/subárvore ×8; o do fim: conteúdo/ViewGroup/subárvore
+    19:06:09.478 (t+64,8 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    19:06:09.831 (t+65,1 s): ZLINK (acessibilidade): tela 6e642b59 (nova) — 6 elementos, 0 com texto, 0 tocáveis; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, content, content_container
+    19:06:10.411 (t+65,7 s): Nyx Car — CarPlay: terminou (cabo desconectado) 1,1 s depois de a tela do ZLINK mostrar o fim
+    19:06:10.412 (t+65,7 s): USB (central como aparelho): host_connected, mtp
+    19:06:10.489 (t+65,8 s): Propriedade sys.usb.config: none → mtp
+    19:06:10.490 (t+65,8 s): USB (central como aparelho): config_changed, host_connected, mtp
+    19:06:10.597 (t+65,9 s): Propriedade sys.usb.state: none → mtp
+    19:06:10.664 (t+65,9 s): Bluetooth: adaptador desligado → ligando
+    19:06:11.136 (t+66,4 s): Bluetooth: adaptador ligando → ligado
+    19:06:11.642 (t+66,9 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:06:11.673 (t+67,0 s): Bluetooth: conexão geral desconectado → conectando
+    19:06:11.712 (t+67,0 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:06:11.904 (t+67,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:06:13.124 (t+68,4 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:06:14.268 (t+69,6 s): Gravação encerrada (pelo usuário)
+    19:06:34.638 (t+0,0 s): Gravação iniciada (até 180 s)
+    19:06:34.648 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    19:06:34.649 (t+0,0 s): Tipos de áudio tocando: nenhum
+    19:06:34.847 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:06:34.847 (t+0,2 s): Início: sys.usb.state = mtp
+    19:06:34.848 (t+0,2 s): Início: sys.usb.config = mtp
+    19:06:34.848 (t+0,2 s): Início: sys.usb.configfs = 2
+    19:06:34.851 (t+0,2 s): Início: rw.cp.link.state = 1
+    19:06:34.851 (t+0,2 s): Início: notificações do ZLINK: leitor desligado (sem o acesso, ou não religado pelo Android depois de a central fechar o app)
+    19:06:34.854 (t+0,2 s): Música tocando: não
+    19:06:34.855 (t+0,2 s): Modo de áudio: normal
+    19:06:34.860 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:06:34.861 (t+0,2 s): Lista USB do Android: vazia
+    19:06:34.863 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    19:06:37.605 (t+3,0 s): Bluetooth: enlace com um aparelho conectado (ACL)
+    19:06:38.929 (t+4,3 s): Bluetooth HFP (ligações do celular): conectando → conectado
+    19:06:38.932 (t+4,3 s): Bluetooth: conexão geral conectando → conectado
+    19:06:39.730 (t+5,1 s): Bluetooth A2DP sink: tocando → parado
+    19:06:39.736 (t+5,1 s): Bluetooth A2DP sink (música do celular): conectando → conectado
+    19:06:39.785 (t+5,1 s): Propriedade init.svc.wpa_supplicant: running → stopped
+    19:06:40.024 (t+5,4 s): Bluetooth AVRCP (controles do celular): desconectado → conectado
+    19:06:41.005 (t+6,4 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (pausado; dados: título+artista; comandos: play, pause, próxima, anterior)
+    19:06:42.252 (t+7,6 s): Propriedade init.svc.hostapd: stopped → running
+    19:06:45.788 (t+11,2 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    19:06:45.799 (t+11,2 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    19:06:46.217 (t+11,6 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/FrameLayout/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:06:50.849 (t+16,2 s): ZLINK (acessibilidade): tela 85a96c05 (espera) — 23 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, state_connecting, title_link
+    19:06:51.044 (t+16,4 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:06:52.297 (t+17,7 s): ZLINK (acessibilidade): tela 7228d6ff (CarPlay) — 27 elementos, 5 com texto, 4 tocáveis; com a imagem do CarPlay, conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:06:52.411 (t+17,8 s): Bluetooth: adaptador ligado → desligando
+    19:06:52.439 (t+17,8 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    19:06:52.598 (t+18,0 s): Bluetooth HFP (ligações do celular): conectado → desconectado
+    19:06:52.781 (t+18,1 s): Nyx Car — CarPlay: vídeo do CarPlay chegou 7,0 s depois de a tela de espera abrir: ela fecha em 2 s
+    19:06:53.722 (t+19,1 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:06:53.920 (t+19,3 s): Rede total: recebendo 335 KB/s, enviando 169 KB/s (subiu)
+    19:06:54.560 (t+19,9 s): Bluetooth: adaptador desligando → desligado
+    19:06:55.151 (t+20,5 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum)
+    19:06:55.154 (t+20,5 s): Rede total: recebendo 2 KB/s, enviando 0 KB/s (caiu)
+    19:06:56.850 (t+22,2 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:06:57.147 (t+22,5 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:07:01.305 (t+26,7 s): Rede total: recebendo 46 KB/s, enviando 24 KB/s (subiu)
+    19:07:02.879 (t+28,2 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:07:03.060 (t+28,4 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:07:05.088 (t+30,5 s): Rede total: recebendo 1 KB/s, enviando 0 KB/s (caiu)
+    19:07:08.889 (t+34,3 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:07:09.163 (t+34,5 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:07:11.185 (t+36,5 s): Rede total: recebendo 69 KB/s, enviando 35 KB/s (subiu)
+    19:07:12.391 (t+37,8 s): Rede total: recebendo 0 KB/s, enviando 0 KB/s (caiu)
+    19:07:14.939 (t+40,3 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:07:15.251 (t+40,6 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:07:26.237 (t+51,6 s): Nyx Car — CarPlay: medição do fim, em ms depois do aviso do ZLINK: aviso recebido 9 · leitura 12 a 39 · janela pedida 40 · quadro 52 · janela no lugar 77 · desenhada 77 (prioridade da thread -8)
+    19:07:26.238 (t+51,6 s): ZLINK (acessibilidade): tela 14073307 (espera) — 21 elementos, 4 com texto, 3 tocáveis; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, title_link
+    19:07:26.240 (t+51,6 s): Nyx Car — CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    19:07:26.240 (t+51,6 s): Nyx Car — CarPlay: avisos do ZLINK durante o CarPlay: conteúdo/ViewGroup/subárvore ×9, conteúdo/ImageView/subárvore ×5; o do fim: conteúdo/ViewGroup/subárvore
+    19:07:26.388 (t+51,7 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    19:07:27.608 (t+53,0 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo) 1,4 s depois de a tela do ZLINK mostrar o fim
+    19:07:27.611 (t+53,0 s): Bluetooth: adaptador desligado → ligando
+    19:07:28.005 (t+53,4 s): Bluetooth: adaptador ligando → ligado
+    19:07:28.231 (t+53,6 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:07:28.448 (t+53,8 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:07:28.499 (t+53,9 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:07:28.500 (t+53,9 s): Bluetooth: conexão geral desconectado → conectando
+    19:07:35.122 (t+60,5 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    19:07:38.492 (t+63,9 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:07:40.471 (t+65,8 s): Bluetooth: enlace com um aparelho conectado (ACL)
+    19:07:42.175 (t+67,5 s): Bluetooth A2DP sink (música do celular): conectando → conectado
+    19:07:42.176 (t+67,5 s): Bluetooth A2DP sink: tocando → parado
+    19:07:42.190 (t+67,6 s): Bluetooth: conexão geral conectando → conectado
+    19:07:42.290 (t+67,7 s): Bluetooth AVRCP (controles do celular): desconectado → conectado
+    19:07:42.513 (t+67,9 s): Bluetooth HFP (ligações do celular): conectando → conectado
+    19:07:42.866 (t+68,2 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:07:43.329 (t+68,7 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (pausado; dados: título+artista; comandos: play, pause, próxima, anterior)
+    19:07:43.712 (t+69,1 s): Gravação encerrada (pelo usuário)
+    19:07:57.539 (t+0,0 s): Gravação iniciada (até 180 s)
+    19:07:57.546 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    19:07:57.547 (t+0,0 s): Tipos de áudio tocando: nenhum
+    19:07:57.773 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:07:57.776 (t+0,2 s): Início: sys.usb.state = mtp
+    19:07:57.777 (t+0,2 s): Início: sys.usb.config = mtp
+    19:07:57.778 (t+0,2 s): Início: sys.usb.configfs = 2
+    19:07:57.779 (t+0,2 s): Início: rw.cp.link.state = 1
+    19:07:57.779 (t+0,2 s): Início: notificações do ZLINK: leitor desligado (sem o acesso, ou não religado pelo Android depois de a central fechar o app)
+    19:07:57.780 (t+0,2 s): Música tocando: não
+    19:07:57.782 (t+0,2 s): Modo de áudio: normal
+    19:07:57.785 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum)
+    19:07:57.786 (t+0,2 s): Lista USB do Android: vazia
+    19:07:57.788 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    19:07:59.833 (t+2,3 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:07:59.855 (t+2,3 s): Bluetooth: conexão geral desconectado → conectando
+    19:07:59.864 (t+2,3 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:08:03.045 (t+5,5 s): Bluetooth: enlace com um aparelho conectado (ACL)
+    19:08:04.940 (t+7,4 s): Bluetooth HFP (ligações do celular): conectando → conectado
+    19:08:04.952 (t+7,4 s): Bluetooth: conexão geral conectando → conectado
+    19:08:06.564 (t+9,0 s): Bluetooth A2DP sink: tocando → parado
+    19:08:06.573 (t+9,0 s): Bluetooth A2DP sink (música do celular): conectando → conectado
+    19:08:07.125 (t+9,6 s): Bluetooth AVRCP (controles do celular): desconectado → conectado
+    19:08:08.180 (t+10,6 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    19:08:08.192 (t+10,7 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    19:08:08.578 (t+11,0 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/FrameLayout/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:08:13.208 (t+15,7 s): ZLINK (acessibilidade): tela 85a96c05 (espera) — 23 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, state_connecting, title_link
+    19:08:13.452 (t+15,9 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    19:08:13.472 (t+15,9 s): Bluetooth: adaptador ligado → desligando
+    19:08:13.762 (t+16,2 s): Bluetooth HFP (ligações do celular): conectado → desconectado
+    19:08:13.786 (t+16,2 s): Nyx Car — CarPlay: vídeo do CarPlay chegou 5,6 s depois de a tela de espera abrir: ela fecha em 2 s
+    19:08:14.035 (t+16,5 s): ZLINK (acessibilidade): tela 7228d6ff (CarPlay) — 27 elementos, 5 com texto, 4 tocáveis; com a imagem do CarPlay, conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:08:15.027 (t+17,5 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:08:15.144 (t+17,6 s): Rede total: recebendo 339 KB/s, enviando 172 KB/s (subiu)
+    19:08:15.764 (t+18,2 s): Bluetooth: adaptador desligando → desligado
+    19:08:16.365 (t+18,8 s): Rede total: recebendo 1 KB/s, enviando 1 KB/s (caiu)
+    19:08:22.472 (t+24,9 s): Rede total: recebendo 84 KB/s, enviando 43 KB/s (subiu)
+    19:08:25.299 (t+27,8 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:08:25.519 (t+28,0 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:08:31.327 (t+33,8 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:08:31.550 (t+34,0 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:08:33.969 (t+36,4 s): Rede total: recebendo 2 KB/s, enviando 2 KB/s (caiu)
+    19:08:35.214 (t+37,7 s): Rede total: recebendo 38 KB/s, enviando 20 KB/s (subiu)
+    19:08:38.943 (t+41,4 s): Rede total: recebendo 0 KB/s, enviando 0 KB/s (caiu)
+    19:08:41.350 (t+43,8 s): Rede total: recebendo 47 KB/s, enviando 23 KB/s (subiu)
+    19:08:42.541 (t+45,0 s): Rede total: recebendo 0 KB/s, enviando 0 KB/s (caiu)
+    19:08:43.389 (t+45,9 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:08:43.655 (t+46,1 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:08:49.438 (t+51,9 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:08:49.729 (t+52,2 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:08:51.884 (t+54,3 s): ZLINK (acessibilidade): tela 14073307 (espera) — 21 elementos, 4 com texto, 3 tocáveis; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, title_link
+    19:08:51.886 (t+54,3 s): Nyx Car — CarPlay: medição do fim, em ms depois do aviso do ZLINK: aviso recebido 2 · leitura 3 a 25 · janela pedida 26 · quadro 37 · janela no lugar 53 · desenhada 83 (prioridade da thread -8)
+    19:08:51.889 (t+54,4 s): Nyx Car — CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    19:08:51.890 (t+54,4 s): Nyx Car — CarPlay: avisos do ZLINK durante o CarPlay: conteúdo/ViewGroup/subárvore ×12, conteúdo/ImageView/subárvore ×6; o do fim: conteúdo/ViewGroup/subárvore
+    19:08:51.936 (t+54,4 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    19:08:53.225 (t+55,7 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo) 1,4 s depois de a tela do ZLINK mostrar o fim
+    19:08:53.226 (t+55,7 s): Bluetooth: adaptador desligado → ligando
+    19:08:53.670 (t+56,1 s): Bluetooth: adaptador ligando → ligado
+    19:08:54.135 (t+56,6 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:08:54.153 (t+56,6 s): Bluetooth: conexão geral desconectado → conectando
+    19:08:54.173 (t+56,6 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:08:54.739 (t+57,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:08:55.666 (t+58,1 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:08:56.900 (t+59,4 s): Gravação encerrada (pelo usuário)
+    19:31:26.092 (t+0,0 s): Gravação iniciada (até 180 s)
+    19:31:26.137 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    19:31:26.149 (t+0,1 s): Tipos de áudio tocando: nenhum
+    19:31:27.316 (t+1,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:31:27.317 (t+1,2 s): Início: sys.usb.state = mtp
+    19:31:27.318 (t+1,2 s): Início: sys.usb.config = mtp
+    19:31:27.320 (t+1,2 s): Início: sys.usb.configfs = 2
+    19:31:27.336 (t+1,2 s): Início: rw.cp.link.state = 1
+    19:31:27.337 (t+1,2 s): Início: notificações do ZLINK: leitor desligado (sem o acesso, ou não religado pelo Android depois de a central fechar o app)
+    19:31:27.358 (t+1,3 s): Música tocando: não
+    19:31:27.368 (t+1,3 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    19:31:27.381 (t+1,3 s): Modo de áudio: normal
+    19:31:27.400 (t+1,3 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:31:27.441 (t+1,4 s): Lista USB do Android: vazia
+    19:31:27.489 (t+1,4 s): Início: interfaces de rede (só o total do Android): total
+    19:31:30.409 (t+4,3 s): Nyx Car — CarPlay: iPhone apareceu no USB (Apple)
+    19:31:30.414 (t+4,3 s): USB: aparelho conectado — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/015
+    19:31:30.431 (t+4,3 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (cabo)
+    19:31:31.180 (t+5,1 s): Lista USB do Android: Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/015
+    19:31:31.186 (t+5,1 s): Rede total: recebendo 54 KB/s, enviando 15 KB/s (subiu)
+    19:31:31.608 (t+5,5 s): USB: aparelho removido — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/015
+    19:31:32.521 (t+6,4 s): Propriedade sys.usb.state: mtp → none
+    19:31:32.522 (t+6,4 s): Propriedade sys.usb.config: mtp → none
+    19:31:32.923 (t+6,8 s): Nyx Car — CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    19:31:32.927 (t+6,8 s): USB (central como aparelho): connected, host_connected, mtp
+    19:31:32.960 (t+6,9 s): USB (central como aparelho): configured, connected, host_connected, mtp
+    19:31:33.739 (t+7,6 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    19:31:34.036 (t+7,9 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    19:31:34.057 (t+8,0 s): Bluetooth: conexão geral conectando → desconectado
+    19:31:34.122 (t+8,0 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:31:34.137 (t+8,0 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:31:34.162 (t+8,1 s): Bluetooth: conexão geral desconectado → conectando
+    19:31:35.726 (t+9,6 s): Lista USB do Android: vazia
+    19:31:35.784 (t+9,7 s): Rede total: recebendo 2 KB/s, enviando 2 KB/s (caiu)
+    19:31:39.230 (t+13,1 s): Propriedade sys.sourcing.package: (vazio) → com.zjinnova.zlink
+    19:31:40.400 (t+14,3 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: janela/MainActivity; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:31:40.704 (t+14,6 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    19:31:40.713 (t+14,6 s): Bluetooth: adaptador ligado → desligando
+    19:31:40.852 (t+14,8 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    19:31:40.994 (t+14,9 s): ZLINK (acessibilidade): tela 7228d6ff (CarPlay) — 27 elementos, 5 com texto, 4 tocáveis; com a imagem do CarPlay, conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:31:43.044 (t+17,0 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:31:43.311 (t+17,2 s): Bluetooth: adaptador desligando → desligado
+    19:31:44.870 (t+18,8 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:31:44.920 (t+18,8 s): Rede total: recebendo 105 KB/s, enviando 51 KB/s (subiu)
+    19:31:47.287 (t+21,2 s): Rede total: recebendo 44 KB/s, enviando 24 KB/s (caiu)
+    19:31:50.490 (t+24,4 s): Nyx Car — CarPlay: tempo máximo (20,1 s) sem o vídeo do CarPlay: tela de espera fechada
+    19:31:54.618 (t+28,5 s): Rede total: recebendo 804 KB/s, enviando 401 KB/s (subiu)
+    19:31:55.816 (t+29,7 s): Rede total: recebendo 8 KB/s, enviando 15 KB/s (caiu)
+    19:31:57.092 (t+31,0 s): Rede total: recebendo 1 KB/s, enviando 0 KB/s (caiu)
+    19:31:59.558 (t+33,5 s): Rede total: recebendo 52 KB/s, enviando 16 KB/s (subiu)
+    19:32:00.853 (t+34,8 s): Rede total: recebendo 277 KB/s, enviando 99 KB/s (subiu)
+    19:32:02.079 (t+36,0 s): Rede total: recebendo 1 KB/s, enviando 0 KB/s (caiu)
+    19:32:06.137 (t+40,0 s): Rede total: recebendo 306 KB/s, enviando 154 KB/s (subiu)
+    19:32:08.105 (t+42,0 s): Tipos de áudio tocando: mídia/música ×1
+    19:32:09.433 (t+43,3 s): Música tocando: SIM
+    19:32:09.449 (t+43,4 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum)
+    19:32:09.452 (t+43,4 s): Rede total: recebendo 1,5 MB/s, enviando 794 KB/s (subiu)
+    19:32:10.847 (t+44,8 s): Música tocando: não
+    19:32:10.853 (t+44,8 s): Rede total: recebendo 541 KB/s, enviando 222 KB/s (caiu)
+    19:32:12.170 (t+46,1 s): Música tocando: SIM
+    19:32:12.195 (t+46,1 s): Rede total: recebendo 841 KB/s, enviando 463 KB/s (subiu)
+    19:32:26.641 (t+60,5 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:32:26.722 (t+60,6 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:32:26.740 (t+60,6 s): Tipos de áudio tocando: nenhum
+    19:32:27.031 (t+60,9 s): Nyx Car — CarPlay: medição do fim, em ms depois do aviso do ZLINK: aviso recebido 165 · leitura 165 a 202 · janela pedida 202 · quadro 245 · janela no lugar ? · desenhada 245 (prioridade: thread do CarPlay -8, principal -8)
+    19:32:27.033 (t+60,9 s): ZLINK (acessibilidade): tela 14073307 (espera) — 21 elementos, 4 com texto, 3 tocáveis; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, title_link
+    19:32:27.035 (t+60,9 s): Nyx Car — CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    19:32:27.040 (t+60,9 s): Nyx Car — CarPlay: avisos do ZLINK durante o CarPlay (com o do fim): conteúdo/ViewGroup/subárvore ×13, conteúdo/ImageView/subárvore ×8; depois de 1,0 s sem avisos: conteúdo/ViewGroup/subárvore ×1, conteúdo/ImageView/subárvore ×8; o do fim: conteúdo/ViewGroup/subárvore
+    19:32:27.145 (t+61,1 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    19:32:27.800 (t+61,7 s): USB (central como aparelho): host_connected, mtp
+    19:32:27.806 (t+61,7 s): Nyx Car — CarPlay: terminou (cabo desconectado) 0,8 s depois de a tela do ZLINK mostrar o fim
+    19:32:27.910 (t+61,8 s): USB (central como aparelho): config_changed, host_connected, mtp
+    19:32:27.959 (t+61,9 s): Propriedade sys.usb.state: none → mtp
+    19:32:27.960 (t+61,9 s): Propriedade sys.usb.config: none → mtp
+    19:32:28.568 (t+62,5 s): Bluetooth: adaptador desligado → ligando
+    19:32:29.275 (t+63,2 s): Bluetooth: adaptador ligando → ligado
+    19:32:29.609 (t+63,5 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:32:29.626 (t+63,5 s): Bluetooth: conexão geral desconectado → conectando
+    19:32:29.653 (t+63,6 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:32:30.334 (t+64,2 s): Música tocando: não
+    19:32:30.343 (t+64,3 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:32:30.346 (t+64,3 s): Rede total: recebendo 75 KB/s, enviando 40 KB/s (caiu)
+    19:32:31.578 (t+65,5 s): Rede total: recebendo 4 KB/s, enviando 5 KB/s (caiu)
+    19:32:32.825 (t+66,7 s): Rede total: recebendo 27 KB/s, enviando 16 KB/s (subiu)
+    19:32:33.927 (t+67,8 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:32:34.384 (t+68,3 s): Rede total: recebendo 0 KB/s, enviando 0 KB/s (caiu)
+    19:32:34.946 (t+68,9 s): Gravação encerrada (pelo usuário)
+    19:32:38.044 (t+0,0 s): Gravação iniciada (até 180 s)
+    19:32:38.056 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    19:32:38.060 (t+0,0 s): Tipos de áudio tocando: nenhum
+    19:32:38.289 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:32:38.289 (t+0,2 s): Início: sys.usb.state = mtp
+    19:32:38.290 (t+0,2 s): Início: sys.usb.config = mtp
+    19:32:38.290 (t+0,2 s): Início: sys.usb.configfs = 2
+    19:32:38.291 (t+0,2 s): Início: rw.cp.link.state = 1
+    19:32:38.291 (t+0,2 s): Início: notificações do ZLINK: leitor desligado (sem o acesso, ou não religado pelo Android depois de a central fechar o app)
+    19:32:38.293 (t+0,2 s): Música tocando: não
+    19:32:38.294 (t+0,3 s): Modo de áudio: normal
+    19:32:38.301 (t+0,3 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:32:38.303 (t+0,3 s): Lista USB do Android: vazia
+    19:32:38.305 (t+0,3 s): Início: interfaces de rede (só o total do Android): total
+    19:32:39.670 (t+1,6 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:32:40.880 (t+2,8 s): Nyx Car — CarPlay: iPhone apareceu no USB (Apple)
+    19:32:40.883 (t+2,8 s): USB: aparelho conectado — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/016
+    19:32:40.895 (t+2,9 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (cabo)
+    19:32:41.509 (t+3,5 s): USB: aparelho removido — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/016
+    19:32:42.285 (t+4,2 s): Propriedade sys.usb.state: mtp → none
+    19:32:42.287 (t+4,2 s): Propriedade sys.usb.config: mtp → none
+    19:32:42.738 (t+4,7 s): USB (central como aparelho): connected, host_connected, mtp
+    19:32:42.738 (t+4,7 s): Nyx Car — CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    19:32:42.752 (t+4,7 s): USB (central como aparelho): configured, connected, host_connected, mtp
+    19:32:42.989 (t+4,9 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    19:32:43.042 (t+5,0 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    19:32:43.566 (t+5,5 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/FrameLayout/subárvore+texto; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:32:48.033 (t+10,0 s): ZLINK (acessibilidade): tela 85a96c05 (espera) — 23 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, state_connecting, title_link
+    19:32:48.247 (t+10,2 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:32:49.079 (t+11,0 s): Rede total: recebendo 7 KB/s, enviando 9 KB/s (subiu)
+    19:32:49.557 (t+11,5 s): ZLINK (acessibilidade): tela 7228d6ff (CarPlay) — 27 elementos, 5 com texto, 4 tocáveis; com a imagem do CarPlay, conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:32:49.576 (t+11,5 s): Bluetooth: adaptador ligado → desligando
+    19:32:49.622 (t+11,6 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    19:32:49.736 (t+11,7 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    19:32:49.836 (t+11,8 s): Bluetooth: conexão geral conectando → desconectado
+    19:32:50.022 (t+12,0 s): Nyx Car — CarPlay: vídeo do CarPlay chegou 9,1 s depois de a tela de espera abrir: ela fecha em 2 s
+    19:32:50.177 (t+12,1 s): Bluetooth: adaptador desligando → desligado
+    19:32:50.238 (t+12,2 s): Tipos de áudio tocando: mídia/música ×1
+    19:32:51.863 (t+13,8 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:32:52.519 (t+14,5 s): Música tocando: SIM
+    19:32:52.523 (t+14,5 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum)
+    19:32:52.526 (t+14,5 s): Rede total: recebendo 1,1 MB/s, enviando 566 KB/s (subiu)
+    19:32:53.746 (t+15,7 s): Rede total: recebendo 357 KB/s, enviando 173 KB/s (caiu)
+    19:33:06.106 (t+28,1 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:33:06.377 (t+28,3 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:33:24.245 (t+46,2 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:33:24.523 (t+46,5 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:33:30.249 (t+52,2 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:33:30.590 (t+52,5 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:33:34.347 (t+56,3 s): Rede total: recebendo 861 KB/s, enviando 428 KB/s (subiu)
+    19:33:41.228 (t+63,2 s): Rede total: recebendo 589 KB/s, enviando 292 KB/s (caiu)
+    19:33:42.348 (t+64,3 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:33:42.711 (t+64,7 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:33:54.420 (t+76,4 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:33:54.794 (t+76,8 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:34:06.530 (t+88,5 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:34:06.727 (t+88,7 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:34:11.470 (t+93,4 s): Tipos de áudio tocando: nenhum
+    19:34:11.733 (t+93,7 s): ZLINK (acessibilidade): tela 14073307 (espera) — 21 elementos, 4 com texto, 3 tocáveis; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, title_link
+    19:34:11.736 (t+93,7 s): Nyx Car — CarPlay: medição do fim, em ms depois do aviso do ZLINK: aviso recebido 183 · leitura 184 a 201 · janela pedida 201 · quadro 222 · janela no lugar ? · desenhada 249 (prioridade: thread do CarPlay -8, principal -8)
+    19:34:11.737 (t+93,7 s): Nyx Car — CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    19:34:11.740 (t+93,7 s): Nyx Car — CarPlay: avisos do ZLINK durante o CarPlay (com o do fim): conteúdo/ViewGroup/subárvore ×19, conteúdo/ImageView/subárvore ×13, conteúdo/ViewGroup/subárvore+texto ×4; depois de 1,0 s sem avisos: conteúdo/ViewGroup/subárvore ×2, conteúdo/ImageView/subárvore ×12, conteúdo/ViewGroup/subárvore+texto ×3; o do fim: conteúdo/ViewGroup/subárvore
+    19:34:11.847 (t+93,8 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    19:34:12.567 (t+94,5 s): Nyx Car — CarPlay: terminou (cabo desconectado) 0,9 s depois de a tela do ZLINK mostrar o fim
+    19:34:12.571 (t+94,5 s): USB (central como aparelho): host_connected, mtp
+    19:34:12.679 (t+94,6 s): USB (central como aparelho): config_changed, host_connected, mtp
+    19:34:12.763 (t+94,7 s): Propriedade sys.usb.state: none → mtp
+    19:34:12.764 (t+94,7 s): Propriedade sys.usb.config: none → mtp
+    19:34:13.045 (t+95,0 s): Bluetooth: adaptador desligado → ligando
+    19:34:13.060 (t+95,0 s): Música tocando: não
+    19:34:13.488 (t+95,4 s): Bluetooth: adaptador ligando → ligado
+    19:34:13.907 (t+95,9 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:34:13.935 (t+95,9 s): Bluetooth: conexão geral desconectado → conectando
+    19:34:13.953 (t+95,9 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:34:14.816 (t+96,8 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:34:14.819 (t+96,8 s): Rede total: recebendo 1 KB/s, enviando 2 KB/s (caiu)
+    19:34:15.886 (t+97,8 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:34:16.783 (t+98,7 s): Gravação encerrada (pelo usuário)
+    19:34:18.877 (t+0,0 s): Gravação iniciada (até 180 s)
+    19:34:18.890 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    19:34:18.894 (t+0,0 s): Tipos de áudio tocando: nenhum
+    19:34:19.096 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:34:19.096 (t+0,2 s): Início: sys.usb.state = mtp
+    19:34:19.097 (t+0,2 s): Início: sys.usb.config = mtp
+    19:34:19.097 (t+0,2 s): Início: sys.usb.configfs = 2
+    19:34:19.098 (t+0,2 s): Início: rw.cp.link.state = 1
+    19:34:19.098 (t+0,2 s): Início: notificações do ZLINK: leitor desligado (sem o acesso, ou não religado pelo Android depois de a central fechar o app)
+    19:34:19.099 (t+0,2 s): Música tocando: não
+    19:34:19.100 (t+0,2 s): Modo de áudio: normal
+    19:34:19.104 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:34:19.105 (t+0,2 s): Lista USB do Android: vazia
+    19:34:19.107 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    19:34:20.616 (t+1,7 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    19:34:23.422 (t+4,5 s): Nyx Car — CarPlay: iPhone apareceu no USB (Apple)
+    19:34:23.427 (t+4,6 s): USB: aparelho conectado — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/017
+    19:34:23.438 (t+4,6 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (cabo)
+    19:34:23.970 (t+5,1 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:34:23.987 (t+5,1 s): Lista USB do Android: Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/017
+    19:34:24.545 (t+5,7 s): USB: aparelho removido — Apple · iPhone · 05ac:12a8 · classe definida por interface · 12 interfaces · /dev/bus/usb/001/017
+    19:34:25.323 (t+6,4 s): Lista USB do Android: vazia
+    19:34:25.327 (t+6,5 s): Propriedade sys.usb.state: mtp → none
+    19:34:25.327 (t+6,5 s): Propriedade sys.usb.config: mtp → none
+    19:34:25.798 (t+6,9 s): Nyx Car — CarPlay: cabo conectado (a central virou aparelho USB do iPhone)
+    19:34:25.799 (t+6,9 s): USB (central como aparelho): connected, host_connected, mtp
+    19:34:25.814 (t+6,9 s): USB (central como aparelho): configured, connected, host_connected, mtp
+    19:34:26.133 (t+7,3 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    19:34:26.720 (t+7,8 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/FrameLayout/subárvore+texto; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:34:27.305 (t+8,4 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    19:34:31.251 (t+12,4 s): ZLINK (acessibilidade): tela 85a96c05 (espera) — 23 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, state_connecting, title_link
+    19:34:31.511 (t+12,6 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:34:32.796 (t+13,9 s): ZLINK (acessibilidade): tela 7228d6ff (CarPlay) — 27 elementos, 5 com texto, 4 tocáveis; com a imagem do CarPlay, conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:34:32.823 (t+13,9 s): Bluetooth: adaptador ligado → desligando
+    19:34:32.835 (t+14,0 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    19:34:33.197 (t+14,3 s): Nyx Car — CarPlay: vídeo do CarPlay chegou 9,8 s depois de a tela de espera abrir: ela fecha em 2 s
+    19:34:33.389 (t+14,5 s): Tipos de áudio tocando: mídia/música ×1
+    19:34:34.013 (t+15,1 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    19:34:34.106 (t+15,2 s): Bluetooth: conexão geral conectando → desconectado
+    19:34:34.897 (t+16,0 s): Bluetooth: adaptador desligando → desligado
+    19:34:35.080 (t+16,2 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:34:36.175 (t+17,3 s): Música tocando: SIM
+    19:34:36.178 (t+17,3 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum)
+    19:34:36.181 (t+17,3 s): Rede total: recebendo 1003 KB/s, enviando 488 KB/s (subiu)
+    19:34:37.268 (t+18,4 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:34:37.624 (t+18,7 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:34:37.629 (t+18,8 s): Rede total: recebendo 364 KB/s, enviando 180 KB/s (caiu)
+    19:34:43.290 (t+24,4 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:34:43.606 (t+24,7 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:34:49.336 (t+30,5 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:34:49.565 (t+30,7 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:34:50.226 (t+31,3 s): Rede total: recebendo 1,2 MB/s, enviando 601 KB/s (subiu)
+    19:34:51.442 (t+32,6 s): Rede total: recebendo 525 KB/s, enviando 259 KB/s (caiu)
+    19:34:55.393 (t+36,5 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:34:55.595 (t+36,7 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:35:01.407 (t+42,5 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:35:01.630 (t+42,8 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:35:14.621 (t+55,7 s): Tipos de áudio tocando: nenhum
+    19:35:14.637 (t+55,8 s): Rede total: recebendo 2,1 MB/s, enviando 1,1 MB/s (subiu)
+    19:35:14.896 (t+56,0 s): ZLINK (acessibilidade): tela 14073307 (espera) — 21 elementos, 4 com texto, 3 tocáveis; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, title_link
+    19:35:14.898 (t+56,0 s): Nyx Car — CarPlay: medição do fim, em ms depois do aviso do ZLINK: aviso recebido 201 · leitura 201 a 227 · janela pedida 227 · quadro 245 · janela no lugar ? · desenhada 262 (prioridade: thread do CarPlay -8, principal -8)
+    19:35:14.899 (t+56,0 s): Nyx Car — CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    19:35:14.900 (t+56,0 s): Nyx Car — CarPlay: avisos do ZLINK durante o CarPlay (com o do fim): conteúdo/ViewGroup/subárvore ×13, conteúdo/ImageView/subárvore ×7; depois de 1,0 s sem avisos: conteúdo/ViewGroup/subárvore ×2, conteúdo/ImageView/subárvore ×7; o do fim: conteúdo/ViewGroup/subárvore
+    19:35:14.963 (t+56,1 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    19:35:15.716 (t+56,8 s): Nyx Car — CarPlay: terminou (cabo desconectado) 0,9 s depois de a tela do ZLINK mostrar o fim
+    19:35:15.718 (t+56,8 s): USB (central como aparelho): host_connected, mtp
+    19:35:15.876 (t+57,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    19:35:15.880 (t+57,0 s): Propriedade sys.usb.state: none → mtp
+    19:35:15.882 (t+57,0 s): Propriedade sys.usb.config: none → mtp
+    19:35:16.018 (t+57,1 s): Bluetooth: adaptador desligado → ligando
+    19:35:16.632 (t+57,8 s): Bluetooth: adaptador ligando → ligado
+    19:35:17.050 (t+58,2 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:35:17.062 (t+58,2 s): Bluetooth: conexão geral desconectado → conectando
+    19:35:17.081 (t+58,2 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:35:17.646 (t+58,8 s): Música tocando: não
+    19:35:17.680 (t+58,8 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:35:17.713 (t+58,8 s): Rede total: recebendo 2 KB/s, enviando 2 KB/s (caiu)
+    19:35:18.302 (t+59,4 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:35:19.233 (t+60,4 s): Gravação encerrada (pelo usuário)
+    19:35:22.743 (t+0,0 s): Gravação iniciada (até 180 s)
+    19:35:22.751 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    19:35:22.754 (t+0,0 s): Tipos de áudio tocando: nenhum
+    19:35:22.956 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:35:22.956 (t+0,2 s): Início: sys.usb.state = mtp
+    19:35:22.956 (t+0,2 s): Início: sys.usb.config = mtp
+    19:35:22.957 (t+0,2 s): Início: sys.usb.configfs = 2
+    19:35:22.957 (t+0,2 s): Início: rw.cp.link.state = 1
+    19:35:22.958 (t+0,2 s): Início: notificações do ZLINK: leitor desligado (sem o acesso, ou não religado pelo Android depois de a central fechar o app)
+    19:35:22.958 (t+0,2 s): Música tocando: não
+    19:35:22.959 (t+0,2 s): Modo de áudio: normal
+    19:35:22.962 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:35:22.963 (t+0,2 s): Lista USB do Android: vazia
+    19:35:22.965 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    19:35:23.733 (t+1,0 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    19:35:26.520 (t+3,8 s): Bluetooth: enlace com um aparelho conectado (ACL)
+    19:35:27.111 (t+4,4 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:35:27.828 (t+5,1 s): Bluetooth A2DP sink (música do celular): conectando → conectado
+    19:35:27.836 (t+5,1 s): Bluetooth A2DP sink: tocando → parado
+    19:35:27.849 (t+5,1 s): Bluetooth: conexão geral conectando → conectado
+    19:35:28.071 (t+5,3 s): Bluetooth AVRCP (controles do celular): desconectado → conectado
+    19:35:28.183 (t+5,4 s): Propriedade init.svc.wpa_supplicant: running → stopped
+    19:35:28.189 (t+5,4 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (nenhum; dados: nenhum; comandos: play, pause, próxima, anterior)
+    19:35:28.378 (t+5,6 s): Bluetooth HFP (ligações do celular): conectando → conectado
+    19:35:29.407 (t+6,7 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (pausado; dados: título+artista+duração; comandos: play, pause, próxima, anterior)
+    19:35:31.978 (t+9,2 s): Propriedade init.svc.hostapd: stopped → running
+    19:35:34.705 (t+12,0 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    19:35:34.717 (t+12,0 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    19:35:35.058 (t+12,3 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: conteúdo/FrameLayout/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:35:40.977 (t+18,2 s): ZLINK (acessibilidade): tela 7228d6ff (CarPlay) — 27 elementos, 5 com texto, 4 tocáveis; com a imagem do CarPlay, conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:35:41.020 (t+18,3 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    19:35:41.020 (t+18,3 s): Bluetooth: adaptador ligado → desligando
+    19:35:41.168 (t+18,4 s): Bluetooth HFP (ligações do celular): conectado → desconectado
+    19:35:41.356 (t+18,6 s): Nyx Car — CarPlay: vídeo do CarPlay chegou 6,7 s depois de a tela de espera abrir: ela fecha em 2 s
+    19:35:41.465 (t+18,7 s): Rede total: recebendo 203 KB/s, enviando 7 KB/s (subiu)
+    19:35:41.912 (t+19,2 s): Tipos de áudio tocando: mídia/música ×1
+    19:35:42.616 (t+19,9 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:35:42.948 (t+20,2 s): Música tocando: SIM
+    19:35:42.954 (t+20,2 s): Rede total: recebendo 613 KB/s, enviando 516 KB/s (subiu)
+    19:35:43.169 (t+20,4 s): Bluetooth: adaptador desligando → desligado
+    19:35:44.174 (t+21,4 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum)
+    19:35:44.177 (t+21,4 s): Rede total: recebendo 192 KB/s, enviando 159 KB/s (caiu)
+    19:35:51.788 (t+29,0 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:35:52.088 (t+29,3 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:36:03.875 (t+41,1 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:36:04.130 (t+41,4 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:36:08.872 (t+46,1 s): Rede total: recebendo 1,4 MB/s, enviando 764 KB/s (subiu)
+    19:36:12.746 (t+50,0 s): Rede total: recebendo 253 KB/s, enviando 171 KB/s (caiu)
+    19:36:13.957 (t+51,2 s): Música tocando: não
+    19:36:13.963 (t+51,2 s): Rede total: recebendo 0 KB/s, enviando 0 KB/s (caiu)
+    19:36:21.430 (t+58,7 s): Tipos de áudio tocando: nenhum
+    19:36:21.702 (t+59,0 s): Nyx Car — CarPlay: medição do fim, em ms depois do aviso do ZLINK: aviso recebido 219 · leitura 220 a 234 · janela pedida 234 · quadro 247 · janela no lugar ? · desenhada 247 (prioridade: thread do CarPlay -8, principal -8)
+    19:36:21.703 (t+59,0 s): ZLINK (acessibilidade): tela 14073307 (espera) — 21 elementos, 4 com texto, 3 tocáveis; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, title_link
+    19:36:21.705 (t+59,0 s): Nyx Car — CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    19:36:21.708 (t+59,0 s): Nyx Car — CarPlay: avisos do ZLINK durante o CarPlay (com o do fim): conteúdo/ViewGroup/subárvore ×12, conteúdo/ImageView/subárvore ×6; depois de 1,0 s sem avisos: conteúdo/ViewGroup/subárvore ×2, conteúdo/ImageView/subárvore ×6; o do fim: conteúdo/ViewGroup/subárvore
+    19:36:21.777 (t+59,0 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    19:36:22.754 (t+60,0 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo) 1,1 s depois de a tela do ZLINK mostrar o fim
+    19:36:22.756 (t+60,0 s): Bluetooth: adaptador desligado → ligando
+    19:36:23.177 (t+60,4 s): Bluetooth: adaptador ligando → ligado
+    19:36:23.570 (t+60,8 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:36:23.645 (t+60,9 s): Bluetooth: conexão geral desconectado → conectando
+    19:36:23.646 (t+60,9 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:36:23.872 (t+61,1 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:36:25.713 (t+63,0 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:36:26.527 (t+63,8 s): Gravação encerrada (pelo usuário)
+    19:38:10.508 (t+0,0 s): Gravação iniciada (até 180 s)
+    19:38:10.522 (t+0,0 s): USB (central como aparelho): config_changed, host_connected, mtp
+    19:38:10.523 (t+0,0 s): Tipos de áudio tocando: nenhum
+    19:38:10.741 (t+0,2 s): Início: sys.top.activity = com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:38:10.741 (t+0,2 s): Início: sys.usb.state = mtp
+    19:38:10.742 (t+0,2 s): Início: sys.usb.config = mtp
+    19:38:10.743 (t+0,2 s): Início: sys.usb.configfs = 2
+    19:38:10.743 (t+0,2 s): Início: rw.cp.link.state = 1
+    19:38:10.744 (t+0,2 s): Início: notificações do ZLINK: leitor desligado (sem o acesso, ou não religado pelo Android depois de a central fechar o app)
+    19:38:10.745 (t+0,2 s): Música tocando: não
+    19:38:10.746 (t+0,2 s): Modo de áudio: normal
+    19:38:10.749 (t+0,2 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:38:10.750 (t+0,2 s): Lista USB do Android: vazia
+    19:38:10.752 (t+0,2 s): Início: interfaces de rede (só o total do Android): total
+    19:38:13.537 (t+3,0 s): Bluetooth A2DP sink (música do celular): conectando → desconectado
+    19:38:14.562 (t+4,1 s): Bluetooth: enlace com um aparelho conectado (ACL)
+    19:38:15.162 (t+4,7 s): Bluetooth HFP (ligações do celular): conectando → desconectado
+    19:38:15.169 (t+4,7 s): Bluetooth: enlace com um aparelho desconectado (ACL)
+    19:38:15.176 (t+4,7 s): Bluetooth: conexão geral conectando → desconectado
+    19:38:25.225 (t+14,7 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:38:25.240 (t+14,7 s): Bluetooth: conexão geral desconectado → conectando
+    19:38:25.250 (t+14,7 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:38:27.123 (t+16,6 s): Bluetooth: enlace com um aparelho conectado (ACL)
+    19:38:28.739 (t+18,2 s): Bluetooth HFP (ligações do celular): conectando → conectado
+    19:38:28.760 (t+18,3 s): Bluetooth: conexão geral conectando → conectado
+    19:38:29.573 (t+19,1 s): Bluetooth A2DP sink (música do celular): conectando → conectado
+    19:38:29.578 (t+19,1 s): Bluetooth A2DP sink: tocando → parado
+    19:38:29.859 (t+19,4 s): Bluetooth AVRCP (controles do celular): desconectado → conectado
+    19:38:30.444 (t+19,9 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (pausado; dados: nenhum; comandos: play, pause, próxima, anterior)
+    19:38:31.604 (t+21,1 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    19:38:31.725 (t+21,2 s): Nyx Car — CarPlay: tela de espera do Nyx Car aberta (sem fio)
+    19:38:31.986 (t+21,5 s): ZLINK (acessibilidade): tela 72cf7b5d (espera) — 24 elementos, 5 com texto, 3 tocáveis; conectando; aviso: janela/MainActivity; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, state_connecting …
+    19:38:32.161 (t+21,7 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (pausado; dados: título+artista+duração; comandos: play, pause, próxima, anterior)
+    19:38:32.166 (t+21,7 s): Rede total: recebendo 8 KB/s, enviando 7 KB/s (subiu)
+    19:38:33.420 (t+22,9 s): Rede total: recebendo 4 KB/s, enviando 7 KB/s (caiu)
+    19:38:35.656 (t+25,1 s): ZLINK (acessibilidade): tela 7228d6ff (CarPlay) — 27 elementos, 5 com texto, 4 tocáveis; com a imagem do CarPlay, conectando; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:38:35.708 (t+25,2 s): Bluetooth: adaptador ligado → desligando
+    19:38:35.717 (t+25,2 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    19:38:35.930 (t+25,4 s): Bluetooth HFP (ligações do celular): conectado → desconectado
+    19:38:36.050 (t+25,5 s): Nyx Car — CarPlay: vídeo do CarPlay chegou 4,4 s depois de a tela de espera abrir: ela fecha em 2 s
+    19:38:36.418 (t+25,9 s): Tipos de áudio tocando: mídia/música ×1
+    19:38:37.824 (t+27,3 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:38:38.467 (t+28,0 s): Bluetooth: enlace com um aparelho desconectado (ACL)
+    19:38:38.672 (t+28,2 s): Bluetooth: adaptador desligando → desligado
+    19:38:39.422 (t+28,9 s): Música tocando: SIM
+    19:38:39.448 (t+28,9 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum)
+    19:38:39.457 (t+28,9 s): Rede total: recebendo 405 KB/s, enviando 265 KB/s (subiu)
+    19:38:42.702 (t+32,2 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:38:42.909 (t+32,4 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:38:44.362 (t+33,9 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.hcn.autoeq/.BlankActivity
+    19:38:44.464 (t+34,0 s): Propriedade sys.top.activity: com.hcn.autoeq/.BlankActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    19:38:45.549 (t+35,0 s): Bluetooth: adaptador desligado → ligando
+    19:38:45.572 (t+35,1 s): Nyx Car — CarPlay: Bluetooth da central ligou, mas a imagem do CarPlay continua na tela do ZLINK: não é o fim, a sessão continua
+    19:38:46.182 (t+35,7 s): Bluetooth: adaptador ligando → ligado
+    19:38:46.613 (t+36,1 s): Bluetooth: adaptador ligado → desligando
+    19:38:46.614 (t+36,1 s): Nyx Car — CarPlay: Bluetooth da central desligou com o ZLINK na tela
+    19:38:47.086 (t+36,6 s): Bluetooth: adaptador desligando → desligado
+    19:38:48.778 (t+38,3 s): ZLINK (acessibilidade): tela aff3f9d9 (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, phone_content_event_delegate, phone_content_presenter …
+    19:38:49.032 (t+38,5 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:38:52.575 (t+42,1 s): Rede total: recebendo 1,1 MB/s, enviando 615 KB/s (subiu)
+    19:38:53.657 (t+43,1 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:38:54.302 (t+43,8 s): Rede total: recebendo 459 KB/s, enviando 302 KB/s (caiu)
+    19:38:57.175 (t+46,7 s): Propriedade sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity → com.premiumcar.launcher/.app.MainActivity
+    19:38:59.489 (t+49,0 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    19:39:07.879 (t+57,4 s): Rede total: recebendo 31 KB/s, enviando 27 KB/s (caiu)
+    19:39:09.093 (t+58,6 s): Música tocando: não
+    19:39:09.098 (t+58,6 s): Rede total: recebendo 0 KB/s, enviando 0 KB/s (caiu)
+    19:39:10.592 (t+60,1 s): ZLINK (acessibilidade): tela 2218598f (nova) — 23 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ImageView/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate, phone_content_presenter …
+    19:39:10.708 (t+60,2 s): ZLINK (acessibilidade): tela 310e8c29 (CarPlay) — 24 elementos, 4 com texto, 4 tocáveis; com a imagem do CarPlay; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, phone_content_event_delegate …
+    19:39:15.905 (t+65,4 s): Tipos de áudio tocando: nenhum
+    19:39:15.972 (t+65,5 s): Nyx Car — CarPlay: medição do fim, em ms depois do aviso do ZLINK: aviso recebido 8 · leitura 9 a 33 · janela pedida 33 · quadro 54 · janela no lugar ? · desenhada 54 (prioridade: thread do CarPlay -8, principal -8)
+    19:39:15.973 (t+65,5 s): ZLINK (acessibilidade): tela 14073307 (espera) — 21 elementos, 4 com texto, 3 tocáveis; aviso: conteúdo/ViewGroup/subárvore; nomes: action_bar_root, btn_back_sender, btn_mirroring, btn_settings, cl_previews, content, content_container, link_aa_op_preview, link_cl, link_container, link_cp_op_preview, title_link
+    19:39:15.976 (t+65,5 s): Nyx Car — CarPlay: a tela do ZLINK voltou para a espera (o CarPlay terminou): "CarPlay desconectado" na tela e o Nyx Car voltou para a frente
+    19:39:15.977 (t+65,5 s): Nyx Car — CarPlay: avisos do ZLINK durante o CarPlay (com o do fim): conteúdo/ImageView/subárvore ×5, conteúdo/ViewGroup/subárvore ×9, janela/MainActivity ×3; depois de 1,0 s sem avisos: conteúdo/ImageView/subárvore ×4, janela/MainActivity ×2, conteúdo/ViewGroup/subárvore ×1; o do fim: conteúdo/ViewGroup/subárvore
+    19:39:16.062 (t+65,6 s): Propriedade sys.top.activity: com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity → com.premiumcar.launcher/.app.MainActivity
+    19:39:17.119 (t+66,6 s): Nyx Car — CarPlay: terminou (Bluetooth da central ligou de novo) 1,2 s depois de a tela do ZLINK mostrar o fim
+    19:39:17.122 (t+66,6 s): Bluetooth: adaptador desligado → ligando
+    19:39:17.478 (t+67,0 s): Bluetooth: adaptador ligando → ligado
+    19:39:17.949 (t+67,4 s): Bluetooth HFP (ligações do celular): desconectado → conectando
+    19:39:17.958 (t+67,4 s): Bluetooth: conexão geral desconectado → conectando
+    19:39:18.005 (t+67,5 s): Bluetooth A2DP sink (música do celular): desconectado → conectando
+    19:39:18.341 (t+67,8 s): Sessões de mídia: com.autochips.bluetooth (sem estado; dados: nenhum; comandos: nenhum) | com.zjinnova.zlink (sem estado; dados: nenhum; comandos: nenhum) | com.android.bluetooth (sem estado; dados: nenhum; comandos: nenhum)
+    19:39:19.696 (t+69,2 s): Propriedade sys.top.activity: com.premiumcar.launcher/.app.MainActivity → com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    19:39:23.126 (t+72,6 s): Gravação encerrada (pelo usuário)
+    Obs.: 786 registros mais antigos foram descartados (limite de 600).
+
+========================================================================
+SISTEMA
+========================================================================
+
+## Versão do sistema
+    Android declarado: 13
+[*] Nível de API real (SDK_INT): 27 — corresponde ao Android 8.1
+[!] Consistência: INCOERENTE: o sistema se apresenta como Android 13, mas a API real é 27 (Android 8.1)
+    API de lançamento (first_api_level): indisponível
+    Patch de segurança: 2018-07-05
+[*] Kernel: 3.18.79+
+    /proc/version: indisponível
+    Máquina virtual: ART 2.1.0
+    Treble / VNDK: true / —
+    Modo low-RAM (Android Go): não
+    Build: full_8227L_demo-user 13 O11019 1776394618 release-keys
+    Fingerprint: alps/full_8227L_demo/8227L_demo:13/O11019/1776394618:user/release-keys
+    Tipo / tags: user / release-keys
+
+## Data e hora
+    Data e hora automáticas (pela rede): ligado
+    Fuso horário automático: ligado
+    Fuso horário: America/Recife
+    Sistema ligado há: 3284 min
+    Relógio: acertado (posterior à data do firmware, 16/04/2026)
+
+## Aparelho
+    Fabricante / marca: alps / alps
+    Modelo: 8227L_demo
+    Produto / dispositivo: full_8227L_demo / 8227L_demo
+    Placa / hardware: unknown / ac8227l
+[*] Plataforma (ro.board.platform): ac8227l
+    Característica do build: default
+[*] ABIs suportadas: armeabi-v7a, armeabi
+    Executa apps de 64 bits: não (somente 32 bits)
+
+## Processador
+    Núcleos ativos: 4
+    Núcleos existentes (sysfs): 0-3
+[*] Núcleos identificados: 4× Cortex-A7 (0xc07)
+    Hardware (cpuinfo): AC8227L
+    Modelo (cpuinfo): ARMv7 Processor rev 3 (v7l)
+    Arquitetura: 7
+    Recursos: half thumb fastmult vfp edsp thumbee neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm
+[*] Frequência máxima: 1118 MHz
+
+## Memória
+[*] RAM total: 1,90 GB
+    Disponível agora: 935,4 MB
+    Limiar de memória baixa: 144,0 MB
+    Sistema em memória baixa agora: não
+    Swap / zRAM: 1024,0 MB
+[*] Heap por app (memoryClass): 128 MB · grande: 256 MB
+    Heap máximo deste processo: 128,0 MB
+    dalvik.vm.heapgrowthlimit / heapsize: 128m / 256m
+
+## Gráficos
+    OpenGL ES (sistema): 2.0
+[*] GPU (GL_RENDERER): Mali-450 MP
+    Fabricante da GPU: ARM
+    Versão do driver GL: OpenGL ES 2.0 58bf738
+    Vulkan: não suportado
+    Renderizador da interface (HWUI): padrão do sistema
+
+## Armazenamento interno
+    Total: 25,29 GB
+    Livre: 23,16 GB
+
+========================================================================
+TELA E TOQUE
+========================================================================
+
+## Tela
+[*] Resolução física: 1280 × 720 px
+[*] Densidade: 160 dpi (mdpi) · 1 dp = 1,00 px
+    Densidade de fábrica (ro.sf.lcd_density): indisponível
+[*] Área lógica disponível: 1280 × 655 dp
+    Menor largura (sw): 720 dp
+    DPI físico informado (x / y): 160,0 / 160,0
+    Diagonal estimada: 9,2" (depende do DPI informado; pode ser impreciso)
+[*] Taxa de atualização: 60,0 Hz
+    Modos de vídeo: 1280×720 @ 60,0 Hz
+    Orientação: horizontal · rotação 0°
+    Modo de interface (uiMode): normal · diurno
+    Escala de fonte do sistema: 1,00
+
+## Janela do aplicativo
+    Janela: 1280 × 720 px (1280 × 720 dp)
+[*] Área útil para a interface: 1280 × 720 px (1280 × 720 dp)
+[*] Barra superior: 65 px (65 dp)
+    Barra inferior: 0 px (0 dp)
+    Barras laterais (esq. / dir.): 0 px (0 dp) / 0 px (0 dp)
+    Obs.: A área útil é o espaço real disponível para o launcher, já descontadas as barras do sistema.
+
+## Toque e entrada
+    Multitoque: 5 ou mais pontos
+[*] Tela de toque: TS_GT9xx: faixa X 0–1279 · Y 0–719
+    Dispositivos de entrada: Virtual
+        TS_GT9xx
+        mtk-kpd
+    Obs.: Use a aba Calibração para testar a precisão do toque.
+
+========================================================================
+APPS E ATALHOS
+========================================================================
+
+## Atalhos e indicadores do launcher
+[*] Nyx Car como tela inicial: SIM (padrão)
+    Wi-Fi (indicador da Home): desconectado
+    Bluetooth segundo o Android: ligado (indicador visível)
+    Música tocando agora (qualquer app): não
+    Atalho: CarPlay (ZLINK): com.zjinnova.zlink/com.zjinnova.android.zlink.features.main.MainActivity
+    Atalho: Bluetooth: com.autochips.bluetooth/.MainBluetoothActivity
+    Atalho: BT Música: com.autochips.bluetooth/.BtMusicActivity
+    Atalho: Música USB: com.hcn.AutoMediaPlayer/com.hcn.MediaActivity.MusicPlayerUiActivity
+    Atalho: Vídeo: com.hcn.AutoMediaPlayer/com.hcn.MediaActivity.VideoPlayerUiActivity
+    Atalho: Rádio: com.hcn.autoradio/.RadioMain
+    Atalho: Maps: com.google.android.apps.maps/com.google.android.maps.MapsActivity
+    Atalho: YouTube: com.google.android.youtube/.app.honeycomb.Shell$HomeActivity
+    Atalho: Câmera: com.auto.hcamera/.VideoInActivity
+    Atalho: Informações do carro: com.hcn.autocan/.activity.CanActivity
+    Atalho: Veículo: com.hcn.autosetting/.ui.SettingActivity
+    Atalho: Comandos de volante: com.hcn.swc/.MainActivity
+    Atalho: Equalizador: com.hcn.autoeq/.MainActivity
+    Atalho: Arquivos: com.mediatek.filemanager/.FileManagerOperationActivity
+    Atalho: Play Store: com.android.vending/.AssetBrowserActivity
+    Atalho: Configurações do Android: android.settings.SETTINGS
+    Atalho: Wi-Fi: android.settings.WIFI_SETTINGS
+    Atalho: Som: android.settings.SOUND_SETTINGS
+    Atalho: Tela: android.settings.DISPLAY_SETTINGS
+    Atalho: Data e hora: android.settings.DATE_SETTINGS
+    Atalho: Tela inicial (escolher): android.settings.HOME_SETTINGS
+    Atalho: Launcher original: com.android.launcher3/.Launcher
+    Tela de espera do CarPlay (sobrepor a outros apps): permitida
+    Fim do CarPlay pela tela do ZLINK (acessibilidade): ligado · telas aprendidas: 8 de espera, 2 do CarPlay
+    Aplicativos → Favoritos (12): Rádio · Vídeo · Bluetooth · CarPlay · Maps · YouTube · Câmera · Informações do carro · Equalizador · Comandos de volante · Arquivos · Play Store
+    Favoritos personalizados: não (padrão)
+    Aplicativos → Todos (20): Arquivos · Bluetooth · BT Música · Câmera · CarPlay · Chrome · Comandos de volante · Configurações do Android · Equalizador · Google · Informações do carro · Instruções · Maps · Nyx Diagnóstico · Play Store · Rádio · Scan de imagens · Veículo · Vídeo · YouTube
+    Todos com ícone genérico: nenhum
+    Escondidos de Todos: Música · atualização · Atualização de Rede Can · Atualização Mcu · com.hcn.screensaver · Theme · Nyx Car
+    Obs.: Cada atalho mostra a tela que será aberta. "Não encontrado" ou "app desativado" deixa o atalho desativado no launcher. Em "Todos" ficam escondidos o Nyx Car, os atualizadores de firmware, MCU e CAN, o Theme e a Música USB.
+
+## Depuração (ADB)
+    Opções do desenvolvedor: desativadas
+    Depuração USB (ADB): desligada
+    Tela de opções do desenvolvedor: com.android.settings/com.android.settings.development.DevelopmentSettingsDisabledActivity
+    Obs.: Com a depuração ligada, o PC conecta pela rede na porta 8555 (ver BUILD.md, seção 9).
+
+## Tela inicial (launcher)
+[*] Launcher padrão atual: Nyx Car — com.premiumcar.launcher/.app.MainActivity
+    Launcher instalado 1: Tela de início 3 — com.android.launcher3/.Launcher · sistema
+    Launcher instalado 2: Nyx Car — com.premiumcar.launcher/.app.MainActivity
+    Launcher instalado 3:  — com.android.settings/.FallbackHome · sistema
+    Tela "Escolher tela inicial": disponível
+    Obs.: Anote o pacote do launcher original: ele é a referência para recuperação (ver BUILD.md).
+
+## Candidatos para atalhos
+[*] Projeção (CarPlay / Android Auto): ZLINK5 — com.zjinnova.zlink
+    Bluetooth / telefone: Bluetooth — com.autochips.bluetooth
+        BT Música — com.autochips.bluetooth
+    Música / mídia: BT Música — com.autochips.bluetooth
+        Música — com.hcn.AutoMediaPlayer
+        Vídeo — com.hcn.AutoMediaPlayer
+    Rádio: Rádio — com.hcn.autoradio
+    Navegação: Maps — com.google.android.apps.maps
+    Vídeo: Vídeo — com.hcn.AutoMediaPlayer
+        YouTube — com.google.android.youtube
+    Veículo / câmera: Atualização de Rede Can — com.hcn.canupgrade
+        Av In — com.auto.hcamera
+        Comandos de volante — com.hcn.swc
+    Configurações: Configurar — com.android.settings
+        Configurações Do Veículo — com.hcn.autosetting
+    Arquivos: Gerenciador de arquivos — com.mediatek.filemanager
+    Obs.: Classificação automática por nome e pacote; confirme na lista completa de aplicativos.
+
+## Atalhos do sistema (intents)
+    Configurações do Android: Configurar — com.android.settings/.Settings
+[!] Bluetooth: indisponível
+    Wi-Fi: Wi-Fi — com.android.settings/.Settings$WifiSettingsActivity
+    Data e hora: Data e hora — com.android.settings/.Settings$DateTimeSettingsActivity
+    Tela: Tela — com.android.settings/.Settings$DisplaySettingsActivity
+    Som: Som — com.android.settings/.Settings$SoundSettingsActivity
+    Lista de aplicativos: Informações do app — com.android.settings/.Settings$ManageApplicationsActivity
+    Escolher tela inicial: Apps padrão — com.android.settings/.Settings$AdvancedAppsActivity
+    Apps padrão: Apps padrão — com.android.settings/.Settings$AdvancedAppsActivity
+    Fontes desconhecidas: Instalar apps desconhecidos — com.android.settings/.Settings$ManageExternalSourcesActivity
+    Acesso a notificações: Acesso a notificações — com.android.settings/.Settings$NotificationAccessSettingsActivity
+    Acesso ao uso de apps: Apps com acesso ao uso — com.android.settings/.Settings$UsageAccessSettingsActivity
+[!] Player de música padrão: indisponível
+    App de mapas padrão: Maps — com.google.android.apps.maps/com.google.android.maps.MapsActivity
+    Navegação (geo:): Maps — com.google.android.apps.maps/com.google.android.maps.MapsActivity
+[!] Discador: indisponível
+    Navegador: Chrome — com.android.chrome/com.google.android.apps.chrome.Main
+    Seletor de arquivos ("Salvar em…"): Arquivos — com.android.documentsui/.picker.PickActivity
+    Obs.: "Indisponível" significa que o atalho não pode ser aberto por esta via neste firmware.
+
+## Mídia (cartão de música)
+    Apps com MediaBrowserService: Áudio Bluetooth — com.android.bluetooth/.a2dpsink.mbs.A2dpMediaBrowserService
+        Podcasts — com.google.android.googlequicksearchbox/com.google.android.apps.search.podcasts.browser.PodcastBrowserService
+        Google Notícias — com.google.android.googlequicksearchbox/com.google.android.libraries.assistant.auto.tng.media.mediabrowser.NewsMediaBrowserService
+        YouTube — com.google.android.youtube/com.google.android.apps.youtube.app.extensions.mediabrowser.impl.MainAppMediaBrowserService
+    Modo low-RAM (Android Go): não
+    Obs.: Mostrar a faixa que toca em outros apps exige "Acesso a notificações" (ver Atalhos do sistema). Em modo low-RAM o Android costuma bloquear esse acesso — a confirmar na Fase 4.
+
+## Aplicativos com ícone (27)
+    : com.hcn.screensaver · v1.0 · sistema
+    atualização: com.hcn.autoupdate · v1.0 · sistema
+    Atualização de Rede Can: com.hcn.canupgrade · v3.0.1.2026-01-12 11:51:39 · sistema
+    Atualização Mcu: com.hcn.mcuupgrade · v1.0 · sistema
+    Av In: com.auto.hcamera · v8.1.0 · sistema
+    Bluetooth: com.autochips.bluetooth · v2.1.2025-11-06 17:33:55 · sistema
+    BT Música: com.autochips.bluetooth · v2.1.2025-11-06 17:33:55 · sistema
+    Chrome: com.android.chrome · v138.0.7204.179 · sistema
+    Comandos de volante: com.hcn.swc · v1.0 · sistema
+    Configurar: com.android.settings · v8.1.0 · sistema
+    Configurações Do Veículo: com.hcn.autosetting · v1.0 · sistema
+    DSP: com.hcn.autoeq · v2025_11_07_17_40_23 · sistema
+    Gerenciador de arquivos: com.mediatek.filemanager · v1.0 · sistema
+    Google: com.google.android.googlequicksearchbox · v14.14.16.26.arm · sistema
+    Informaçãodocarro: com.hcn.autocan · v146.0.1.20251110 · sistema
+    Instruções: com.hcn.autouserguide · v1.0 · sistema
+    Maps: com.google.android.apps.maps · v25.32.00.790560726 · sistema
+    Música: com.hcn.AutoMediaPlayer · v1.3.20260202-ac8227l · sistema
+    Nyx Car: com.premiumcar.launcher · v0.4.19
+    Nyx Diagnóstico: com.premiumcar.launcher · v0.4.19
+    Play Store: com.android.vending · v50.3.27-24 [0] [PR] 875414499 · sistema
+    Rádio: com.hcn.autoradio · vV.1.0.2512171412 · sistema
+    Scan de imagens: com.hcn.gallery · v1.0 · sistema
+    Theme: com.hcn.themepicker · v1.0 · sistema
+    Vídeo: com.hcn.AutoMediaPlayer · v1.3.20260202-ac8227l · sistema
+    YouTube: com.google.android.youtube · v20.19.37 · sistema
+    ZLINK5: com.zjinnova.zlink · v5.4.23
+
+========================================================================
+RECURSOS
+========================================================================
+
+## Recursos principais
+    Bluetooth: sim
+    Bluetooth LE: não
+    Wi-Fi: sim
+    Wi-Fi Direct: sim
+    GPS: sim
+    USB host (pendrive): sim
+    USB acessório: sim
+    Câmera: sim
+    Microfone: sim
+    Telefonia (chip): não
+    Android Automotive oficial: não
+    Declarado como RAM baixa: não
+    Suporte a launchers: sim
+    Widgets de apps: sim
+    Papel de parede animado: sim
+    Picture-in-picture: sim
+    Apps em telas secundárias: sim
+    WebView: sim
+
+## Todos os recursos declarados (43)
+    android.hardware.audio.output: sim
+    android.hardware.bluetooth: sim
+    android.hardware.camera: sim
+    android.hardware.camera.any: sim
+    android.hardware.ethernet: sim
+    android.hardware.faketouch: sim
+    android.hardware.location: sim
+    android.hardware.location.gps: sim
+    android.hardware.location.network: sim
+    android.hardware.microphone: sim
+    android.hardware.nfc: sim
+    android.hardware.nfc.any: sim
+    android.hardware.nfc.hce: sim
+    android.hardware.nfc.hcef: sim
+    android.hardware.ram.normal: sim
+    android.hardware.screen.landscape: sim
+    android.hardware.screen.portrait: sim
+    android.hardware.touchscreen: sim
+    android.hardware.touchscreen.multitouch: sim
+    android.hardware.touchscreen.multitouch.distinct: sim
+    android.hardware.touchscreen.multitouch.jazzhand: sim
+    android.hardware.usb.accessory: sim
+    android.hardware.usb.host: sim
+    android.hardware.wifi: sim
+    android.hardware.wifi.direct: sim
+    android.software.activities_on_secondary_displays: sim
+    android.software.app_widgets: sim
+    android.software.autofill: sim
+    android.software.backup: sim
+    android.software.companion_device_setup: sim
+    android.software.connectionservice: sim
+    android.software.cts: sim
+    android.software.device_admin: sim
+    android.software.home_screen: sim
+    android.software.input_methods: sim
+    android.software.live_wallpaper: sim
+    android.software.managed_users: sim
+    android.software.midi: sim
+    android.software.picture_in_picture: sim
+    android.software.voice_recognizers: sim
+    android.software.webview: sim
+    com.google.android.feature.GMSEXPRESS_PLUS_BUILD: sim
+    com.nxp.mifare: sim
+
+========================================================================
+PROPRIEDADES
+========================================================================
+
+## Propriedades do sistema (449)
+    af.music.outputid: 2
+    audio.dualmic: 1
+    bt.profiles.avrcp.multiPlayer.enable: 0
+    bt_drv.ko: 1
+    camera.disable_zsl_mode: 1
+    dalvik.vm.appimageformat: lz4
+    dalvik.vm.dex2oat-Xms: 64m
+    dalvik.vm.dex2oat-Xmx: 512m
+    dalvik.vm.dexopt.secondary: true
+    dalvik.vm.heapgrowthlimit: 128m
+    dalvik.vm.heapsize: 256m
+    dalvik.vm.image-dex2oat-Xms: 64m
+    dalvik.vm.image-dex2oat-Xmx: 64m
+    dalvik.vm.isa.arm.features: default
+    dalvik.vm.isa.arm.variant: cortex-a7
+    dalvik.vm.stack-trace-dir: /data/anr
+    dalvik.vm.usejit: true
+    dalvik.vm.usejitprofiles: true
+    debug.MB.running: 0
+    debug.atrace.tags.enableflags: 0
+    debug.force_rtl: 0
+    debug.gpsdbglog.file: none
+    debug.mtk.aee.reinit: done
+    debug.mtk.aee.status: free
+    debug.mtk.aee.vstatus: free
+    debug.mtklog.netlog.Running: 0
+    debug.sf.disable_backpressure: 1
+    debug.sf.enable_hwc_vds: 1
+    debug.sf.latch_unsignaled: 1
+    dev.bootcomplete: 1
+    drm.service.enabled: true
+    fmradio_drv.ko: 1
+    gps.clock.type: 20
+    gps.gps.version: 0x8127
+    gps_drv.ko: 1
+    gsm.network.type: Unknown
+    gsm.operator.alpha: (vazio)
+    gsm.operator.iso-country: (vazio)
+    gsm.operator.isroaming: false
+    gsm.operator.numeric: (vazio)
+    gsm.sim.operator.alpha: (vazio)
+    gsm.sim.operator.iso-country: (vazio)
+    gsm.sim.operator.numeric: (vazio)
+    hw.sys.device.version: CVD1810-WJ_24.02.20_339
+    hw.sys.radio.region: 7
+    hwservicemanager.ready: true
+    init.svc.DMAgent: running
+    init.svc.NvRAMAgent: running
+    init.svc.adbd: stopped
+    init.svc.aee-reinit: stopped
+    init.svc.aee_aed: running
+    init.svc.aee_aedv: running
+    init.svc.aeev-reinit: stopped
+    init.svc.atc_hal_audhw: running
+    init.svc.audio-hal-2-0: running
+    init.svc.audioserver: running
+    init.svc.automated: stopped
+    init.svc.backcar_daemon: running
+    init.svc.bluetooth-1-0: running
+    init.svc.bootanim: stopped
+    init.svc.broadcastradio-hal: running
+    init.svc.camerad: running
+    init.svc.camerahalserver: running
+    init.svc.cameraserver: running
+    init.svc.cas-hal-1-0: running
+    init.svc.chg_mcu_val: stopped
+    init.svc.configstore-hal-1-0: running
+    init.svc.console: running
+    init.svc.drm: running
+    init.svc.drm-hal-1-0: running
+    init.svc.drm-widevine-hal-1-0: running
+    init.svc.fan: running
+    init.svc.gatekeeper-1-0: running
+    init.svc.gatekeeperd: running
+    init.svc.ged_srv: running
+    init.svc.gnss_service: running
+    init.svc.gralloc-2-0: running
+    init.svc.healthd: running
+    init.svc.hidl_memory: running
+    init.svc.hostapd: running
+    init.svc.hwcomposer-2-1: running
+    init.svc.hwservicemanager: running
+    init.svc.installd: running
+    init.svc.keymanage-1-0: running
+    init.svc.keymaster-3-0: running
+    init.svc.keystore: running
+    init.svc.kmesg: running
+    init.svc.lbs_hidl_service: running
+    init.svc.light-hal-2-0: running
+    init.svc.lmkd: running
+    init.svc.logcat: running
+    init.svc.logd: running
+    init.svc.logd-reinit: stopped
+    init.svc.mcud: running
+    init.svc.media: running
+    init.svc.mediacodec: running
+    init.svc.mediadrm: running
+    init.svc.mediaextractor: running
+    init.svc.mediametrics: running
+    init.svc.memtrack-hal-1-0: running
+    init.svc.metalogo_daemon: running
+    init.svc.mnld: running
+    init.svc.mobile_log_d: running
+    init.svc.mtkcodecservice-1-1: running
+    init.svc.netd: running
+    init.svc.netdagent: running
+    init.svc.netdiag: running
+    init.svc.nvram_daemon: stopped
+    init.svc.nvrom: running
+    init.svc.power-hal-1-1: running
+    init.svc.ril-3gddaemon: stopped
+    init.svc.rshell: running
+    init.svc.servicemanager: running
+    init.svc.storaged: running
+    init.svc.surfaceflinger: running
+    init.svc.teststub: running
+    init.svc.thermal: running
+    init.svc.thermal_manager: stopped
+    init.svc.thermald: running
+    init.svc.thermalservice: running
+    init.svc.tombstoned: running
+    init.svc.ueventd: running
+    init.svc.usb-hal-1-1: running
+    init.svc.usbdongled: running
+    init.svc.vendor.nfc_hal_service: stopped
+    init.svc.vndservicemanager: running
+    init.svc.vold: running
+    init.svc.webview_zygote32: running
+    init.svc.wifi_hal_legacy: running
+    init.svc.wificond: running
+    init.svc.wmt_launcher: running
+    init.svc.wmt_loader: stopped
+    init.svc.wpa_supplicant: stopped
+    init.svc.z-link: running
+    init.svc.zygote: running
+    log.mcud.statistics: rx:20485,drop:0,err:0
+    log.tag: M
+    media.settings.xml: /vendor/etc/media_profiles.xml
+    media.wfd.portrait: 0
+    media.wfd.video-format: 5
+    mediatek.wlan.chip: mediatek.wlan.module.postfix=_
+    mediatek.wlan.ctia: 0
+    mtk.vdec.waitkeyframeforplay: 1
+    mtk_in_house_tee_support: true
+    net.bt.name: Android
+    net.qtaguid_enabled: 1
+    net.tcp.default_init_rwnd: 60
+    persist.aee.core.direct: enable
+    persist.aee.core.dump: enable
+    persist.aee.mode: 3
+    persist.atc.bt.callfilter: enable
+    persist.atc.bt.inbandringtone: disable
+    persist.atc.bt.pan: enable
+    persist.atc.bt.transToPinyin: true
+    persist.atc.bt.volumesync: enable
+    persist.atc.fsckexternaldevice: false
+    persist.audio.get.hpoffset: 0
+    persist.demo.hdmirotates: true
+    persist.dis.force_direct: 1
+    persist.dm.lock: false
+    persist.log.tag.CdmaMoSms: I
+    persist.log.tag.CdmaMtSms: I
+    persist.log.tag.DCT: D
+    persist.log.tag.RILMUXD: I
+    persist.mediascan.foldcnt: 256
+    persist.mediascan.foldlevel: 8
+    persist.mediascanner.audio.cnt: 3000
+    persist.mediascanner.fileCnt: 0
+    persist.mediascanner.image.cnt: 1500
+    persist.mediascanner.slpTimeMs: 0
+    persist.mediascanner.thread.run: 1
+    persist.mediascanner.video.cnt: 500
+    persist.meta.dumpdata: 0
+    persist.mtk.connsys.poweron.ctl: 0
+    persist.mtk.wcn.combo.chipid: 0x8127
+    persist.mtk.wcn.coredump.mode: 0
+    persist.mtk.wcn.dynamic.dump: 0
+    persist.mtk.wcn.patch.version: 20180907200225a
+    persist.mtk_vilte_support: 0
+    persist.mtk_viwifi_support: 0
+    persist.nfc_cfg.nfc_chip_type: (vazio)
+    persist.nfc_cfg.nfc_fw_version: (vazio)
+    persist.nfc_cfg.nfc_fwupdate: (vazio)
+    persist.operator.optr: OP01
+    persist.operator.seg: SEGC
+    persist.operator.spec: SPEC0200
+    persist.radio.combo.chipid: -1
+    persist.radio.mobile.data: 0,0
+    persist.radio.mtk_ps2_rat: G
+    persist.radio.mtk_ps3_rat: G
+    persist.service.acm.enable: 0
+    persist.sys.autoplay: 0
+    persist.sys.bt.reverse_name: disable
+    persist.sys.customer: WJ
+    persist.sys.dalvik.vm.lib.2: libart.so
+    persist.sys.etheme_god: 400
+    persist.sys.gps.time: 0
+    persist.sys.launcher.skin: AutoTheme_XT88.apk
+    persist.sys.launcher.skin.pkg: com.hcn.auto.theme.xt88
+    persist.sys.launcher.theme.pkg: com.hcn.auto.theme.xt88
+    persist.sys.lic.dir: /apd/zlink/
+    persist.sys.linktype: zlink
+    persist.sys.locale: pt-BR
+    persist.sys.logo_checked_path: /apd/logo/Logo215.png
+    persist.sys.pms_sys_removable: 1
+    persist.sys.radio-mcu: 0
+    persist.sys.skin: xt88
+    persist.sys.splitscreen: 1
+    persist.sys.timezone: America/Recife
+    persist.sys.tv_type: 0
+    persist.sys.update.copy: normal
+    persist.sys.usb.config: none
+    persist.sys.video_on_switch: 2
+    persist.sys.voice_assis: 1
+    persist.sys.webview.vmsize: 176379992
+    pm.dexopt.ab-ota: speed-profile
+    pm.dexopt.bg-dexopt: speed-profile
+    pm.dexopt.boot: verify
+    pm.dexopt.first-boot: quicken
+    pm.dexopt.inactive: verify
+    pm.dexopt.install: quicken
+    pm.dexopt.shared: speed
+    qemu.hw.mainkeys: 1
+    rild.mark_switchuser: 0
+    ro.adb.secure: 1
+    ro.aee.enforcing: no
+    ro.aee.enperf: off
+    ro.ap_info_monitor: 0
+    ro.atc.aosp_enhancement: 1
+    ro.atc.disable_android_bt: 1
+    ro.atc.disable_battery: 1
+    ro.atc.storage.shared.sdcard: yes
+    ro.atc_adoptable_disk: ext_sdcard2
+    ro.atc_maxsavearm2logfile: 5
+    ro.atc_qb_support: 1
+    ro.atc_savelastarm2log: 1
+    ro.audio.silent: 0
+    ro.baseband: unknown
+    ro.board.platform: ac8227l
+    ro.boot.bootreason: power_key
+    ro.boot.hardware: ac8227l
+    ro.boot.phandle: (vazio)
+    ro.boot.verifiedbootstate: green
+    ro.boot.veritymode: disabled
+    ro.bootimage.build.date: Fri Apr 17 10:56:15 CST 2026
+    ro.bootimage.build.date.utc: 1776394575
+    ro.bootimage.build.fingerprint: alps/full_8227L_demo/8227L_demo:8.1.0/O11019/1776394618:user/release-keys
+    ro.bootloader: unknown
+    ro.bootmode: unknown
+    ro.btstack: blueangel
+    ro.build.characteristics: default
+    ro.build.date: Fri Apr 17 10:56:15 CST 2026
+    ro.build.date.utc: 1776394575
+    ro.build.description: full_8227L_demo-user 8.1.0 O11019 1776394618 release-keys
+    ro.build.display.id: O11019 release-keys
+    ro.build.fingerprint: alps/full_8227L_demo/8227L_demo:8.1.0/O11019/1776394618:user/release-keys
+    ro.build.flavor: full_8227L_demo-user
+    ro.build.host: ubuntu128
+    ro.build.id: O11019
+    ro.build.product: 8227L_demo
+    ro.build.tags: release-keys
+    ro.build.type: user
+    ro.build.user: publisher28
+    ro.build.version.all_codenames: REL
+    ro.build.version.base_os: (vazio)
+    ro.build.version.codename: REL
+    ro.build.version.incremental: 1776394618
+    ro.build.version.preview_sdk: 0
+    ro.build.version.release: 8.1.0
+    ro.build.version.sdk: 27
+    ro.build.version.security_patch: 2018-07-05
+    ro.carrier: unknown
+    ro.com.android.mobiledata: true
+    ro.com.google.gmsversion: 8.1_201812
+    ro.config.alarm_alert: Alarm_Classic.ogg
+    ro.config.notification_sound: pixiedust.ogg
+    ro.config.ringtone: Ring_Synth_04.ogg
+    ro.control_privapp_permissions: log
+    ro.crypto.state: unencrypted
+    ro.dalvik.vm.native.bridge: 0
+    ro.debuggable: 0
+    ro.email_support_ucs2: 0
+    ro.expect.recovery_id: 0x843356df913109e1fe8d70bb806312a0f3a951c6000000000000000000000000
+    ro.fota.app: 5
+    ro.fota.device: CVD1926-WJ
+    ro.fota.id: mac
+    ro.fota.oem: hcn8167_8.1
+    ro.fota.platform: MTK8167_8.1
+    ro.fota.type: pad
+    ro.fota.version: WJ_2026.04.17.10
+    ro.frp.pst: /dev/block/platform/soc/11230000.mmc/by-name/FRP
+    ro.hardware: ac8227l
+    ro.have_aacencode_feature: 1
+    ro.have_aee_feature: 1
+    ro.hw.arm2.version: V2.0_13/Jun/2025
+    ro.hw.dsp.chip: cd3313
+    ro.hw.lcm.name: YT090IBNK12018-A12
+    ro.hw.radio.chip: mt6627
+    ro.hw.tp.fwresolution: GT9xx_1085x600
+    ro.internal.storage.size: 32G
+    ro.ksc5601_write: 0
+    ro.mediatek.aal: 1
+    ro.mediatek.chip_ver: S01
+    ro.mediatek.platform: AC8227L
+    ro.mediatek.version.branch: alps-mp-o1.mp5
+    ro.mediatek.version.release: WJ_2026.04.17.11
+    ro.mediatek.version.sdk: 4
+    ro.mediatek.wlan.p2p: 1
+    ro.mediatek.wlan.wsc: 1
+    ro.mount.fs: EXT4
+    ro.mtk_audio_alac_support: 1
+    ro.mtk_audio_ape_support: 1
+    ro.mtk_audio_change_support: 1
+    ro.mtk_audio_tuning_tool_ver: V1
+    ro.mtk_besloudness_support: 1
+    ro.mtk_bg_power_saving_support: 1
+    ro.mtk_bg_power_saving_ui: 1
+    ro.mtk_bsp_package: 1
+    ro.mtk_bt_support: 1
+    ro.mtk_cam_cfb: 1
+    ro.mtk_cam_mfb_support: 1
+    ro.mtk_config_max_dram_size: ro.mtk_f2fs_enable=0
+    ro.mtk_cta_set: 1
+    ro.mtk_default_ime: com.iflytek.inputmethod.FlyIME
+    ro.mtk_deinterlace_support: 1
+    ro.mtk_dual_mic_support: 0
+    ro.mtk_emmc_support: 1
+    ro.mtk_external_sim_only_slots: 0
+    ro.mtk_flight_mode_power_off_md: 1
+    ro.mtk_flv_playback_support: 1
+    ro.mtk_gps_support: 1
+    ro.mtk_in_house_tee_support: true
+    ro.mtk_is_tablet: 1
+    ro.mtk_log_hide_gps: 0
+    ro.mtk_lte_support: 1
+    ro.mtk_matv_analog_support: 1
+    ro.mtk_mobile_management: 0
+    ro.mtk_multi_patition: 1
+    ro.mtk_owner_sdcard_support: 1
+    ro.mtk_owner_sim_support: 1
+    ro.mtk_pq_color_mode: 1
+    ro.mtk_protocol1_rat_config: Lf/Lt/W/T/G
+    ro.mtk_ril_mode: c6m_3rild
+    ro.mtk_runtime_permission: 1
+    ro.mtk_search_db_support: 1
+    ro.mtk_send_rr_support: 1
+    ro.mtk_shared_sdcard: 1
+    ro.mtk_sim_hot_swap: 1
+    ro.mtk_subtitle_support: 1
+    ro.mtk_support_mp2_playback: 1
+    ro.mtk_wappush_support: 1
+    ro.mtk_wfd_support: 1
+    ro.mtk_widevine_drm_l3_support: 1
+    ro.mtk_wlan_support: 1
+    ro.mtk_wmv_playback_support: 1
+    ro.mtkrc.path: /vendor/etc/init/hw/
+    ro.num_md_protocol: 2
+    ro.opa.eligible_device: true
+    ro.opengles.version: 131072
+    ro.product.board: (vazio)
+    ro.product.brand: alps
+    ro.product.cpu.abi: armeabi-v7a
+    ro.product.cpu.abi2: armeabi
+    ro.product.cpu.abilist: armeabi-v7a,armeabi
+    ro.product.cpu.abilist32: armeabi-v7a,armeabi
+    ro.product.cpu.abilist64: (vazio)
+    ro.product.device: 8227L_demo
+    ro.product.locale: en-US
+    ro.product.manufacturer: alps
+    ro.product.model: 8227L_demo
+    ro.product.name: full_8227L_demo
+    ro.property_service.version: 2
+    ro.recovery_id: 0xb1dc725e1f348479337a6d908ec4bdbb128a238d000000000000000000000000
+    ro.redstone.brand: alps
+    ro.redstone.model: 8227L_demo
+    ro.redstone.version: CVD1926-WJ_WJ_2026.04.17.10
+    ro.revision: 0
+    ro.secure: 1
+    ro.setupwizard.mode: OPTIONAL
+    ro.sf.hwrotation: 90
+    ro.sim_me_lock_mode: 0
+    ro.sys.sdcardfs: 1
+    ro.sys.usb.bicr: no
+    ro.sys.usb.charging.only: yes
+    ro.sys.usb.storage.type: mtp
+    ro.telephony.default_network: 9
+    ro.treble.enabled: true
+    ro.ussd_ksc5601: 0
+    ro.vendor.build.date: Fri Apr 17 11:14:06 CST 2026
+    ro.vendor.build.date.utc: 1776395646
+    ro.vendor.build.fingerprint: alps/full_8227L_demo/8227L_demo:8.1.0/O11019/1776395653:user/release-keys
+    ro.vendor.product.brand: alps
+    ro.vendor.product.device: 8227L_demo
+    ro.vendor.product.manufacturer: alps
+    ro.vendor.product.model: 8227L_demo
+    ro.vendor.product.name: full_8227L_demo
+    ro.vendor.sys.skin_support: 1
+    ro.wifi.channels: (vazio)
+    ro.wlan.gen: gen2
+    ro.wlan.mtk.wifi.5g: 0
+    ro.zygote: zygote32
+    runtime.arm2.exit: true
+    runtime.home.screen.ready: y
+    runtime.rearservice.start.status: true
+    runtime.savearm2log.stop.save: 1
+    runtime.watermark.config: 0
+    rw.cp.link.state: 1
+    security.perf_harden: 1
+    service.adb.tcp.port: 8555
+    service.bootanim.exit: 1
+    service.nvram_init: Ready
+    service.sf.present_timestamp: 0
+    service.wcn.driver.ready: yes
+    service.wcn.formeta.ready: yes
+    service.zlink.enable: 1
+    sys.audio.percentage: 100
+    sys.boot_completed: 1
+    sys.ipo.disable: 1
+    sys.ipowin.done: 1
+    sys.logbootcomplete: 1
+    sys.nonsystem.callstate: 0
+    sys.oem_unlock_allowed: 0
+    sys.radio.rds: 0
+    sys.rescue_boot_count: 1
+    sys.retaildemo.enabled: 0
+    sys.running.phase: completed
+    sys.sourcing.package: com.zjinnova.zlink
+    sys.suspend.state: 1
+    sys.sysctl.extra_free_kbytes: 10800
+    sys.sysctl.tcp_def_init_rwnd: 60
+    sys.systemui.interacting: 0
+    sys.top.activity: com.premiumcar.launcher/.diagnostics.ui.DiagnosticsActivity
+    sys.usb.config: mtp
+    sys.usb.configfs: 2
+    sys.usb.controller: musb-hdrc.0.auto
+    sys.usb.ffs.ready: 0
+    sys.usb.state: mtp
+    sys.usb.vid: 0E8D
+    sys.user.0.ce_available: true
+    sys.wifitracing.started: 1
+    vold.atc.emmc_total_size: 61472768
+    vold.has_adoptable: 1
+    vold.has_quota: 1
+    vold.post_fs_data_done: 1
+    wfd.dummy.enable: 1
+    wfd.iframesize.level: 0
+    wifi.direct.interface: p2p0
+    wifi.interface: wlan0
+    wifi.tethering.interface: ap0
+    Obs.: 7 propriedades com possíveis identificadores (serial, MAC, IMEI, rede etc.) foram omitidas.
+
+========================================================================
+DESEMPENHO
+========================================================================
+
+## Home em Views: aberturas a frio
+[*] Mediana (10 aberturas): 686 ms · PSS 13,7 MB
+    13/11 19:30: 618 ms · PSS 13,5 MB (Java 1,5 MB · nativo 6,0 MB)
+    13/11 19:10: 651 ms · PSS 13,7 MB (Java 1,0 MB · nativo 5,6 MB)
+    13/11 18:59: 606 ms · PSS 13,7 MB (Java 1,5 MB · nativo 6,0 MB)
+    13/11 18:09: 706 ms · PSS 13,7 MB (Java 0,9 MB · nativo 5,4 MB)
+    13/11 17:55: 548 ms · PSS 14,2 MB (Java 1,6 MB · nativo 6,4 MB)
+    13/11 13:23: 665 ms · PSS 13,6 MB (Java 1,0 MB · nativo 5,6 MB)
+    13/11 11:25: 803 ms · PSS 13,9 MB (Java 0,9 MB · nativo 5,4 MB)
+    13/11 11:19: 960 ms · PSS 14,2 MB (Java 2,1 MB · nativo 5,5 MB)
+    13/11 10:18: 774 ms · PSS 13,4 MB (Java 1,0 MB · nativo 5,5 MB)
+    13/11 08:36: 718 ms · PSS 13,6 MB (Java 1,0 MB · nativo 5,6 MB)
+    Obs.: Tempo do início do processo até o primeiro quadro; memória medida 3 s depois. "Processo já aberto": o Android tinha reaberto o app em segundo plano (por exemplo, depois de a central fechá-lo ao desligar o carro); o tempo conta da criação da tela. A primeira abertura após instalar é mais lenta.
+
+## Inicialização deste processo
+    Primeira tela aberta: Home (Views)
+    Processo → Application.onCreate: 107 ms
+    Processo → Activity.onCreate: 150 ms
+[*] Processo → primeiro quadro: 618 ms
+    Tipo de build: release otimizado (R8)
+    Obs.: A primeira abertura após instalar é mais lenta (código ainda não compilado). Feche o app pela tela de Recentes e abra novamente 2 ou 3 vezes para obter números estáveis.
+
+## Memória deste processo (agora)
+[*] Total (PSS): 28,2 MB
+    Heap Java: 7,1 MB
+    Heap nativo: 9,5 MB
+    Gráficos: 0,0 MB
