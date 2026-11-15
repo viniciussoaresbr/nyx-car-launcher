@@ -1,6 +1,7 @@
 package com.premiumcar.launcher.launcher
 
 import android.app.Activity
+import android.os.Looper
 import android.provider.Settings
 import android.view.ContextThemeWrapper
 import android.view.View
@@ -14,9 +15,11 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowSettings
+import java.time.Duration
 
 /** Tela de espera do CarPlay do Nyx Car (B1, 0.4.7): visual em 1280 × 720 e a janela sobreposta. */
 @RunWith(RobolectricTestRunner::class)
@@ -53,11 +56,23 @@ class CarPlayWaitScreenTest {
         assertTrue(screen.visible)
         screen.show(CarPlayWaitState.PREPARING, onTap = {})
         assertTrue("Atualiza a mesma janela", screen.visible)
-        screen.park()
+        screen.park(CarPlayWaitState.DISCONNECTED)
         assertFalse("Reservada não está à vista", screen.visible)
         assertTrue(screen.parked)
         screen.show(CarPlayWaitState.DISCONNECTED, onTap = {})
         assertTrue("Volta da reserva", screen.visible)
+        var marks: FrameMarks? = null
+        screen.afterNextFrame { marks = it }
+        shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(120))
+        assertTrue("Roda depois do quadro (ou do tempo-limite)", marks != null)
+        assertTrue("Saindo da reserva, vai para o lugar sem esperar o quadro (Android 8.1)", marks!!.immediate)
+
+        screen.park(CarPlayWaitState.CONNECTING_WIRELESS)
+        screen.show(CarPlayWaitState.INTERRUPTED, onTap = {})
+        marks = null
+        screen.afterNextFrame { marks = it }
+        shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(120))
+        assertFalse("Com outra mensagem, espera o quadro, que a desenha", marks!!.immediate)
         screen.hide()
         assertFalse(screen.visible)
         assertFalse(screen.parked)

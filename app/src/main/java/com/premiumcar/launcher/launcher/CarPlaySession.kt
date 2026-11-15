@@ -6,8 +6,8 @@ package com.premiumcar.launcher.launcher
  *
  * Sinais (HARDWARE.md, seção 5; confirmados nas gravações de 12/11/2026):
  * - **Bluetooth:** ao entrar no CarPlay (pelo cabo ou sem fio), a central desliga o próprio
- *   Bluetooth com o ZLINK na tela (8,4 a 8,9 s depois de o iPhone aparecer no USB). Ao tirar o
- *   cabo, ele volta a ligar: é o primeiro sinal do fim, ~0,5 s antes do USB.
+ *   Bluetooth (8,4 a 8,9 s depois de o iPhone aparecer no USB), normalmente com o ZLINK na
+ *   tela. Ao tirar o cabo, ele volta a ligar: é o primeiro sinal do fim, ~0,5 s antes do USB.
  * - **Cabo:** com o CarPlay pelo cabo, a central é "aparelho" USB do iPhone (estado USB
  *   `connected`). Ao tirar o cabo, esse estado cai.
  *
@@ -22,6 +22,7 @@ class CarPlaySession {
     enum class Signal(val label: String) {
         CABLE("cabo desconectado"),
         BLUETOOTH("Bluetooth da central ligou de novo"),
+        SOUND("som do CarPlay parou depois de o Bluetooth religar"),
     }
 
     // Lidos também pela thread principal (CarPlayReturn.interceptCarPlay).
@@ -33,6 +34,7 @@ class CarPlaySession {
     private var pending: Signal? = null
 
     /** O Bluetooth da central foi desligado pelo CarPlay nesta sessão. */
+    @Volatile
     var bluetoothOff = false
         private set
 
@@ -71,12 +73,15 @@ class CarPlaySession {
     }
 
     /**
-     * Bluetooth da central ligado ou desligado. Desligar só conta com o ZLINK na tela
-     * ([zlinkOnTop]): é o CarPlay entrando. Devolve `true` quando ele religa (fim provável).
+     * Bluetooth da central ligado ou desligado. Desligar é o CarPlay entrando: a central só
+     * desliga o próprio Bluetooth para ele. Até a 0.4.22, só contava com o ZLINK na tela; no
+     * teste da 0.4.22, o CarPlay sem fio entrou depois do tempo máximo, com o ZLINK atrás do Nyx
+     * Car, e o fim dele passou sem ser percebido (0.4.23). Devolve `true` quando ele religa (fim
+     * provável).
      */
-    fun bluetooth(on: Boolean, zlinkOnTop: Boolean): Boolean {
+    fun bluetooth(on: Boolean): Boolean {
         if (!on) {
-            if (!bluetoothOff && zlinkOnTop) {
+            if (!bluetoothOff) {
                 if (ended) begin()
                 bluetoothOff = true
             }
@@ -85,6 +90,36 @@ class CarPlaySession {
         if (!bluetoothOff) return false
         bluetoothOff = false
         return endLikely(Signal.BLUETOOTH)
+    }
+
+    /**
+     * O fim provável não se confirmou (0.4.17): o Bluetooth religou, mas a imagem do CarPlay
+     * continua na tela do ZLINK. No teste de 13/11/2026, a central religou o Bluetooth 2,3 s
+     * depois de o vídeo do CarPlay chegar pelo cabo e o desligou de novo 1,4 s depois. A sessão
+     * continua; o Bluetooth fica como está (ligado), e o próximo desligar volta a contar.
+     */
+    fun cancelEnd() {
+        pending = null
+    }
+
+    /**
+     * A imagem do CarPlay está na tela do ZLINK com o Bluetooth da central desligado, mas a
+     * sessão não estava registrada (0.4.17): por exemplo, com o Nyx Car aberto do zero durante o
+     * CarPlay. A sessão volta a valer, para o fim ser percebido.
+     */
+    fun resumeCarPlay() {
+        if (ended) begin()
+        bluetoothOff = true
+    }
+
+    /**
+     * O som do CarPlay parou com o Bluetooth da central já religado (0.4.21): o "Bluetooth ligou"
+     * tinha sido desmentido pelo som ([cancelEnd]), e agora o fim vale. Devolve `true` quando é um
+     * fim provável, a confirmar com [confirmEnd].
+     */
+    fun soundStopped(): Boolean {
+        if (bluetoothOff) return false
+        return endLikely(Signal.SOUND)
     }
 
     /** Depois da espera: se nada indicou reconexão, a sessão terminou (devolve o primeiro sinal). */

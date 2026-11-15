@@ -153,6 +153,9 @@ object MusicPlayer {
 
     val sessionToken: MediaSession.Token? get() = session?.sessionToken
 
+    /** O player do Nyx Car está tocando (ou vai tocar assim que carregar); leitura leve, de qualquer thread. */
+    val isPlaying: Boolean get() = playWhenReady
+
     fun positionMs(): Int =
         if (prepared) runCatching { player?.currentPosition }.getOrNull() ?: startPosition else startPosition
 

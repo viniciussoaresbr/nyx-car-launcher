@@ -15,14 +15,14 @@ class CarPlaySessionTest {
     /** Cabo conectado e CarPlay entrando: a central desliga o próprio Bluetooth. */
     private fun connectedByCable() {
         assertFalse(session.usb(connected = true))
-        assertFalse(session.bluetooth(on = false, zlinkOnTop = true))
+        assertFalse(session.bluetooth(on = false))
         assertTrue(session.active)
     }
 
     @Test
     fun `cabo tirado - Bluetooth religa, USB cai e a sessao termina uma vez`() {
         connectedByCable()
-        assertTrue("Fim provável", session.bluetooth(on = true, zlinkOnTop = false))
+        assertTrue("Fim provável", session.bluetooth(on = true))
         assertTrue(session.usb(connected = false))
         assertEquals("Vale o primeiro sinal", Signal.BLUETOOTH, session.confirmEnd())
         assertFalse(session.active)
@@ -39,14 +39,14 @@ class CarPlaySessionTest {
     @Test
     fun `mau contato - o iPhone reaparece no USB e a sessao continua`() {
         connectedByCable()
-        session.bluetooth(on = true, zlinkOnTop = false)
+        session.bluetooth(on = true)
         session.usb(connected = false)
         assertTrue("Cancelou um fim provável", session.appleAttached())
         assertNull(session.confirmEnd())
         assertTrue(session.active)
         // A troca de papéis volta ~2 s depois; mais tarde o CarPlay desliga o Bluetooth de novo.
         session.usb(connected = true)
-        session.bluetooth(on = false, zlinkOnTop = true)
+        session.bluetooth(on = false)
         assertTrue(session.bluetoothOff)
     }
 
@@ -71,21 +71,52 @@ class CarPlaySessionTest {
     }
 
     @Test
-    fun `sem fio - Bluetooth desligado com o ZLINK na tela e religado encerra`() {
-        assertFalse(session.bluetooth(on = false, zlinkOnTop = true))
+    fun `sem fio - Bluetooth desligado e religado encerra`() {
+        assertFalse(session.bluetooth(on = false))
         assertTrue(session.bluetoothOff)
         assertTrue(session.active)
-        assertFalse("Repetido (desligando → desligado)", session.bluetooth(on = false, zlinkOnTop = true))
-        assertTrue(session.bluetooth(on = true, zlinkOnTop = false))
+        assertFalse("Repetido (desligando → desligado)", session.bluetooth(on = false))
+        assertTrue(session.bluetooth(on = true))
         assertEquals(Signal.BLUETOOTH, session.confirmEnd())
         assertFalse(session.active)
     }
 
     @Test
-    fun `Bluetooth desligado sem o ZLINK na tela nao conta`() {
-        assertFalse(session.bluetooth(on = false, zlinkOnTop = false))
-        assertFalse(session.bluetoothOff)
-        assertFalse(session.bluetooth(on = true, zlinkOnTop = false))
+    fun `Bluetooth desligado de novo depois de um fim e uma sessao nova (0_4_23)`() {
+        // Até a 0.4.22, desligar com outro app na tela não contava. No teste de 13/11/2026, a
+        // central religou o Bluetooth (fim), o Nyx Car voltou e ela o desligou 1,4 s depois, com o
+        // CarPlay continuando atrás do Nyx Car.
+        session.bluetooth(on = false)
+        assertTrue(session.bluetooth(on = true))
+        assertEquals(Signal.BLUETOOTH, session.confirmEnd())
+        assertFalse(session.bluetooth(on = false))
+        assertTrue(session.active)
+        assertTrue(session.bluetooth(on = true))
+        assertEquals("O fim desta também é percebido", Signal.BLUETOOTH, session.confirmEnd())
+    }
+
+    @Test
+    fun `Bluetooth religado com o CarPlay ainda na tela - o fim e desfeito e a sessao continua`() {
+        connectedByCable()
+        assertTrue(session.bluetooth(on = true))
+        session.cancelEnd()
+        assertNull(session.confirmEnd())
+        assertTrue(session.active)
+        // A central desliga de novo; depois, o cabo sai de verdade.
+        assertFalse(session.bluetooth(on = false))
+        assertTrue(session.bluetoothOff)
+        assertTrue(session.usb(connected = false))
+        assertEquals(Signal.CABLE, session.confirmEnd())
+    }
+
+    @Test
+    fun `imagem do CarPlay sem sessao registrada - a sessao volta a valer`() {
+        assertFalse("Nyx Car aberto do zero durante o CarPlay", session.active)
+        session.resumeCarPlay()
+        assertTrue(session.active)
+        assertTrue(session.bluetoothOff)
+        assertTrue(session.bluetooth(on = true))
+        assertEquals(Signal.BLUETOOTH, session.confirmEnd())
     }
 
     @Test
@@ -95,7 +126,7 @@ class CarPlaySessionTest {
         assertEquals(Signal.CABLE, session.confirmEnd())
         // O cabo volta antes de o Bluetooth religar: sessão nova.
         session.usb(connected = true)
-        assertFalse(session.bluetooth(on = true, zlinkOnTop = false))
+        assertFalse(session.bluetooth(on = true))
         assertTrue(session.active)
     }
 }

@@ -10,16 +10,36 @@ import android.media.session.MediaSessionManager
 import android.media.session.PlaybackState
 import android.provider.Settings
 import android.service.notification.NotificationListenerService
+import android.service.notification.StatusBarNotification
 import androidx.core.app.NotificationManagerCompat
+import com.premiumcar.launcher.launcher.ZlinkNotifications
 
 /**
  * Componente exigido pelo Android para listar as sessões de mídia de outros apps
  * (`MediaSessionManager.getActiveSessions`). Só funciona se o usuário conceder
  * "Acesso a notificações" ao Nyx Car; sem isso, fica inerte.
  *
- * Não lê nem guarda notificações: nenhum método é sobrescrito.
+ * Das notificações, só olha as do ZLINK (0.4.13, [ZlinkNotifications]): quando aparecem,
+ * mudam ou somem, sem guardar o texto. As dos outros apps são ignoradas.
  */
-class MediaAccessListenerService : NotificationListenerService()
+class MediaAccessListenerService : NotificationListenerService() {
+
+    override fun onListenerConnected() {
+        ZlinkNotifications.connected(this)
+    }
+
+    override fun onListenerDisconnected() {
+        ZlinkNotifications.disconnected(this)
+    }
+
+    override fun onNotificationPosted(sbn: StatusBarNotification?) {
+        sbn?.let(ZlinkNotifications::posted)
+    }
+
+    override fun onNotificationRemoved(sbn: StatusBarNotification?) {
+        sbn?.let(ZlinkNotifications::removed)
+    }
+}
 
 /** Sessões de mídia ativas (player USB, Bluetooth, CarPlay…), para o teste de sincronização. */
 object MediaSessionAccess {

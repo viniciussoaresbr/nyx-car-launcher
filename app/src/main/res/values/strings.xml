@@ -105,22 +105,24 @@
     <!-- Tela de espera do CarPlay (B1, 0.4.7). -->
     <string name="carplay_wait_title_connecting">Conectando ao CarPlay</string>
     <string name="carplay_wait_title_disconnected">CarPlay desconectado</string>
-    <string name="carplay_wait_status_cable">iPhone conectado pelo cabo</string>
-    <string name="carplay_wait_status_wireless">iPhone conectando sem fio</string>
+    <string name="carplay_wait_status_cable">Celular conectado pelo cabo</string>
+    <!-- Só quando o USB identificou um aparelho da Apple (0.4.15). -->
+    <string name="carplay_wait_status_iphone_cable">iPhone conectado pelo cabo</string>
+    <string name="carplay_wait_status_wireless">Celular conectando sem fio</string>
     <string name="carplay_wait_status_preparing">Preparando a tela do CarPlay…</string>
     <string name="carplay_wait_status_disconnected">Voltando para o Nyx Car…</string>
     <string name="carplay_wait_hint">Toque para fechar</string>
     <string name="carplay_wait_hint_connecting">Toque para voltar ao Nyx Car · toque e segure para ver o ZLINK</string>
-    <!-- CarPlay tocado sem iPhone conectado (0.4.8). -->
-    <string name="carplay_wait_title_waiting">Aguardando o iPhone</string>
-    <string name="carplay_wait_status_waiting">Conecte o cabo ou ligue o CarPlay sem fio no iPhone</string>
+    <!-- CarPlay tocado sem celular conectado (0.4.8; "celular" na 0.4.15). -->
+    <string name="carplay_wait_title_waiting">Aguardando o celular</string>
+    <string name="carplay_wait_status_waiting">Conecte o celular pelo cabo ou ligue a conexão sem fio nele</string>
     <string name="carplay_wait_hint_waiting">Toque para voltar · toque e segure para abrir o ZLINK</string>
     <!-- Serviço de acessibilidade restrito ao ZLINK (0.4.11). -->
     <string name="zlink_service_label">Nyx Car — fim do CarPlay</string>
     <string name="zlink_service_description">Avisa o Nyx Car quando a tela do ZLINK muda, para cobrir a tela de espera dele assim que o CarPlay termina. Só observa o ZLINK: vê quais elementos a tela dele tem, sem guardar textos, e não toca em nada.</string>
     <!-- Conexão caiu antes de o CarPlay aparecer (0.4.9). -->
     <string name="carplay_wait_title_interrupted">Conexão interrompida</string>
-    <string name="carplay_wait_status_interrupted">Aguardando o iPhone voltar…</string>
+    <string name="carplay_wait_status_interrupted">Aguardando o celular voltar…</string>
     <string name="carplay_wait_hint_interrupted">Toque para voltar ao Nyx Car</string>
     <string name="tile_favorite">Favorito</string>
     <string name="connectivity_status_title">Estado</string>
@@ -129,7 +131,7 @@
     <string name="connectivity_bt_on">Bluetooth: ligado</string>
     <string name="connectivity_bt_off">Bluetooth: desligado no Android (o app Bluetooth da central pode estar ativo)</string>
     <string name="connectivity_bt_unknown">Bluetooth: controlado pelo app Bluetooth da central</string>
-    <string name="connectivity_carplay_hint">CarPlay: abre sozinho ao conectar o iPhone pelo cabo</string>
+    <string name="connectivity_carplay_hint">CarPlay: abre sozinho ao conectar o celular pelo cabo</string>
     <string name="about_title">Nyx Car · versão %1$s</string>
     <string name="about_home_hint">Para voltar ao launcher original como tela inicial: Tela inicial → Tela de início 3.</string>
     <string name="about_soon">Favoritos, atalhos da Home e formato do relógio chegam nas próximas versões.</string>

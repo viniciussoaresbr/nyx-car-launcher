@@ -215,7 +215,8 @@
 
         <!--
             Só para o teste de sessões de mídia do Nyx Diagnóstico. Fica inerte até o usuário
-            ativar "Nyx Car" em Acesso a notificações; não lê notificações.
+            ativar "Nyx Car" em Acesso a notificações. Das notificações, só observa as do ZLINK
+            (0.4.13: quando aparecem, mudam ou somem), sem guardar o texto.
         -->
         <service
             android:name=".diagnostics.cartest.MediaAccessListenerService"

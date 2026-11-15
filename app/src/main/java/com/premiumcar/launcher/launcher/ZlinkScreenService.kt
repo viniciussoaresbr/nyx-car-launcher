@@ -4,9 +4,11 @@ import android.accessibilityservice.AccessibilityService
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.SystemClock
 import android.provider.Settings
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
+import com.premiumcar.launcher.diagnostics.cartest.CarTestRecorder
 
 /**
  * Serviço de acessibilidade do Nyx Car, restrito ao ZLINK (0.4.11; quarta exceção do plano,
@@ -31,7 +33,9 @@ class ZlinkScreenService : AccessibilityService() {
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         if (event?.packageName?.toString() != CarApps.CARPLAY.packageName) return
-        CarPlayReturn.onZlinkScreenChanged(event.windowId)
+        val receivedAt = SystemClock.uptimeMillis()
+        val kind = if (CarTestRecorder.running) eventKind(event.eventType, event.className, event.contentChangeTypes) else null
+        CarPlayReturn.onZlinkScreenChanged(event.windowId, event.eventTime, receivedAt, kind)
     }
 
     override fun onInterrupt() = Unit
@@ -64,6 +68,31 @@ class ZlinkScreenService : AccessibilityService() {
     companion object {
 
         private const val MAX_NODES = 300
+
+        private const val KNOWN_CHANGES = AccessibilityEvent.CONTENT_CHANGE_TYPE_SUBTREE or
+            AccessibilityEvent.CONTENT_CHANGE_TYPE_TEXT or
+            AccessibilityEvent.CONTENT_CHANGE_TYPE_CONTENT_DESCRIPTION
+
+        /**
+         * Tipo de um aviso do ZLINK, para a gravação (0.4.18): se é de janela ou de conteúdo, o
+         * tipo do elemento que mudou e o que mudou nele. Só a estrutura; os textos nunca são lidos.
+         */
+        internal fun eventKind(type: Int, className: CharSequence?, changes: Int): String {
+            val kind = when (type) {
+                AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED -> "janela"
+                AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED -> "conteúdo"
+                else -> "aviso $type"
+            }
+            val element = className?.toString()?.substringAfterLast('.')?.ifEmpty { null } ?: "?"
+            val what = buildList {
+                if ((changes and AccessibilityEvent.CONTENT_CHANGE_TYPE_SUBTREE) != 0) add("subárvore")
+                if ((changes and AccessibilityEvent.CONTENT_CHANGE_TYPE_TEXT) != 0) add("texto")
+                if ((changes and AccessibilityEvent.CONTENT_CHANGE_TYPE_CONTENT_DESCRIPTION) != 0) add("descrição")
+                val other = changes and KNOWN_CHANGES.inv()
+                if (other != 0) add("outro $other")
+            }
+            return if (what.isEmpty()) "$kind/$element" else "$kind/$element/${what.joinToString("+")}"
+        }
 
         /** Elementos visíveis, de cima para baixo. O texto só é olhado para saber se existe. */
         private fun visibleElements(root: AccessibilityNodeInfo): List<ZlinkScreen.Element> {

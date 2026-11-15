@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
+import android.view.Choreographer
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -76,6 +77,7 @@ class MainActivity : Activity() {
     private var musicScreen: MusicScreen? = null
     private var appsScreen: AppsScreen? = null
     private var started = false
+    private var resumedNow = false
     private val playerListener: () -> Unit = { renderPlayer() }
 
     private var wifiConnected = false
@@ -152,10 +154,20 @@ class MainActivity : Activity() {
 
     override fun onResume() {
         super.onResume()
-        CarPlayReturn.onLauncherResumed() // a tela de espera do CarPlay sai quando a Home volta
+        resumedNow = true
+        // A tela de espera do CarPlay só sai com a Home já desenhada, para o ZLINK não aparecer no
+        // meio (0.4.15): dois quadros depois de voltar, se a Home ainda estiver na frente.
+        afterFrames(2) { if (resumedNow) CarPlayReturn.onLauncherShown() }
+    }
+
+    private fun afterFrames(count: Int, action: () -> Unit) {
+        Choreographer.getInstance().postFrameCallback {
+            if (count <= 1) window.decorView.post(action) else afterFrames(count - 1, action)
+        }
     }
 
     override fun onPause() {
+        resumedNow = false
         // Se for o ZLINK abrindo sozinho, a tela de espera do Nyx Car cobre a dele (0.4.7/0.4.8).
         CarPlayReturn.onLauncherPaused()
         super.onPause()
