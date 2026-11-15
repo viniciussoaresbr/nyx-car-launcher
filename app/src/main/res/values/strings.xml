@@ -133,8 +133,7 @@
     <string name="connectivity_bt_unknown">Bluetooth: controlado pelo app Bluetooth da central</string>
     <string name="connectivity_carplay_hint">CarPlay: abre sozinho ao conectar o celular pelo cabo</string>
     <string name="about_title">Nyx Car · versão %1$s</string>
-    <string name="about_home_hint">Para voltar ao launcher original como tela inicial: Tela inicial → Tela de início 3.</string>
-    <string name="about_soon">Favoritos, atalhos da Home e formato do relógio chegam nas próximas versões.</string>
+    <string name="about_distributed">Distribuído por Vinicius Soares</string>
 
     <!-- Avisos. -->
     <string name="app_not_found">%1$s não foi encontrado nesta central</string>

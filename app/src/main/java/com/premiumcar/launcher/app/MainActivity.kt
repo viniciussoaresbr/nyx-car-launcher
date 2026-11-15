@@ -304,8 +304,7 @@ class MainActivity : Activity() {
             Destination.SETTINGS -> builder.screen(R.string.nav_settings) {
                 TabContent.settings.forEach { tiles(it) }
                 val card = infoCard(builder, getString(R.string.about_title, AppInfo.versionName(this@MainActivity)))
-                card.addLine().setText(R.string.about_home_hint)
-                card.addLine(R.style.PcText_Caption).setText(R.string.about_soon)
+                card.addLine().setText(R.string.about_distributed)
                 block(card.view, weight = 1f)
             }
         }
