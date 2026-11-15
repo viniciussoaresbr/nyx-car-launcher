@@ -20,6 +20,12 @@
         <item name="android:textSize">28sp</item>
     </style>
 
+    <!-- Título da música no player grande da aba Música (0.4.24). -->
+    <style name="PcText.TitleLarge">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <!-- Títulos de cartão e informação principal. -->
     <style name="PcText.Title">
         <item name="android:textSize">24sp</item>
@@ -85,5 +91,15 @@
         <item name="android:background">@drawable/pc_bg_round_primary</item>
         <item name="android:tint">@color/pc_content_on_accent</item>
         <item name="android:padding">22dp</item>
+    </style>
+
+    <!--
+        Botão que liga e desliga (0.4.24, Aleatório): o estado vem de setActivated. Ícone de
+        32 dp no botão de 64 dp, para acompanhar o tamanho dos ícones de anterior e próxima.
+    -->
+    <style name="PcRoundButton.Toggle">
+        <item name="android:background">@drawable/pc_bg_round_toggle</item>
+        <item name="android:tint">@color/pc_toggle_content</item>
+        <item name="android:padding">16dp</item>
     </style>
 </resources>

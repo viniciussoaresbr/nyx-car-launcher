@@ -35,6 +35,15 @@ object PlayerChecks {
             val position = if (player.count > 0) "faixa ${player.index + 1} de ${player.count}" else "fila ainda não lida"
             add("Música atual", "$position (.${AudioFiles.extension(track.name)})")
         }
+        add(
+            "Ordem de reprodução (0.4.24)",
+            when {
+                player.shuffle && player.subfolders -> "aleatória, pasta e subpastas"
+                player.shuffle -> "aleatória, só a pasta"
+                player.subfolders -> "na ordem da pasta e das subpastas"
+                else -> "na ordem da pasta"
+            },
+        )
         if (!granted) return@section
         val volumes = MusicStorage.volumes(context)
         add("Pendrives encontrados", if (volumes.isEmpty()) "nenhum" else volumes.size, if (volumes.isEmpty()) EntryLevel.WARNING else EntryLevel.HIGHLIGHT)

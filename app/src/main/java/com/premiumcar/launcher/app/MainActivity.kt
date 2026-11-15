@@ -125,10 +125,10 @@ class MainActivity : Activity() {
         handleIntent(intent)
     }
 
-    /** Botão Home do sistema: volta à Home. Toque na notificação do player: aba Música. */
+    /** Botão Home do sistema: volta à Home. Toque na notificação do player: player grande da aba Música. */
     private fun handleIntent(intent: Intent?) {
         when {
-            intent?.getStringExtra(EXTRA_TAB) == TAB_MUSIC -> show(Destination.MUSIC)
+            intent?.getStringExtra(EXTRA_TAB) == TAB_MUSIC -> show(Destination.MUSIC, musicPlayer = true)
             intent?.hasCategory(Intent.CATEGORY_HOME) == true -> show(Destination.HOME)
         }
     }
@@ -214,28 +214,35 @@ class MainActivity : Activity() {
         return Destination.entries.getOrNull(current.ordinal + step)
     }
 
-    /** Mostra [destination], montando a tela na primeira visita. */
-    private fun show(destination: Destination) {
-        if (destination == current) return
-        val screen = screens[destination] ?: buildScreen(destination).also {
-            screens[destination] = it
-            container.addView(it)
+    /**
+     * Mostra [destination], montando a tela na primeira visita. Na aba Música (0.4.24),
+     * [musicPlayer] abre o player grande (cartão da Home e notificação); sem ele, a aba mostra a
+     * lista (barra e deslize), inclusive quando o ícone Música é tocado com o player aberto.
+     */
+    private fun show(destination: Destination, musicPlayer: Boolean = false) {
+        if (destination != current) {
+            val screen = screens[destination] ?: buildScreen(destination).also {
+                screens[destination] = it
+                container.addView(it)
+            }
+            screens[current]?.visibility = View.GONE
+            screen.visibility = View.VISIBLE
+            // A aba Aplicativos sempre abre na página "Favoritos" (e sai da edição, se estava nela).
+            if (destination == Destination.APPS) appsScreen?.showFavorites()
+            current = destination
+            nav.selected = destination
+            musicScreen?.setActive(started && destination == Destination.MUSIC)
         }
-        screens[current]?.visibility = View.GONE
-        screen.visibility = View.VISIBLE
-        // A aba Aplicativos sempre abre na página "Favoritos" (e sai da edição, se estava nela).
-        if (destination == Destination.APPS) appsScreen?.showFavorites()
-        current = destination
-        nav.selected = destination
-        musicScreen?.setActive(started && destination == Destination.MUSIC)
+        if (destination == Destination.MUSIC) musicScreen?.showPlayer(musicPlayer)
     }
 
     /**
-     * Voltar: na edição dos favoritos, um passo para trás; nas abas, para a Home; na Home, nada
-     * (como em qualquer launcher).
+     * Voltar: na edição dos favoritos e no player grande, um passo para trás; nas abas, para a
+     * Home; na Home, nada (como em qualquer launcher).
      */
     private fun handleBack() {
         if (current == Destination.APPS && appsScreen?.onBack() == true) return
+        if (current == Destination.MUSIC && musicScreen?.onBack() == true) return
         if (current != Destination.HOME) show(Destination.HOME)
     }
 
@@ -266,8 +273,9 @@ class MainActivity : Activity() {
         findViewById<View>(R.id.card_navigation).setOnClickListener(openCarPlay)
         findViewById<View>(R.id.navigation_open).setOnClickListener(openCarPlay)
 
-        // Cartão de música: o player próprio. Sem música escolhida, os botões levam à aba Música.
-        findViewById<View>(R.id.card_music).setOnClickListener { show(Destination.MUSIC) }
+        // Cartão de música: o player próprio. Tocar no cartão abre o player grande (0.4.24); sem
+        // música escolhida, o cartão e os botões levam à lista da aba Música.
+        findViewById<View>(R.id.card_music).setOnClickListener { show(Destination.MUSIC, musicPlayer = true) }
         findViewById<View>(R.id.music_artwork).clipToOutline = true
         findViewById<View>(R.id.music_play).setOnClickListener {
             if (MusicPlayer.state.hasTrack) MusicPlayer.togglePlayPause() else show(Destination.MUSIC)

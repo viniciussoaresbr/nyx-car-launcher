@@ -34,8 +34,9 @@
     <string name="card_navigation_action">Abrir navegação</string>
 
     <!--
-        Cartão de música: mostra a música do player próprio (pendrive). Tocar no cartão leva à
-        aba Música; os botões controlam o player.
+        Cartão de música: mostra a música do player próprio (pendrive). Tocar no cartão abre o
+        player grande da aba Música (0.4.24; sem música escolhida, a lista); os botões
+        controlam o player.
     -->
     <string name="card_music_title">Música</string>
     <string name="card_music_source">Músicas do pendrive</string>
@@ -65,6 +66,12 @@
     <string name="player_nothing_playable">Nenhuma música desta pasta pôde ser tocada.</string>
     <string name="player_focus_denied">O som está em uso por outro app (ligação ou CarPlay).</string>
     <string name="player_notification_channel">Reprodução de música</string>
+    <!-- Player grande e modo aleatório (0.4.24). -->
+    <string name="player_close">Voltar à lista de músicas</string>
+    <string name="player_shuffle_turn_on">Ligar o aleatório</string>
+    <string name="player_shuffle_turn_off">Desligar o aleatório</string>
+    <string name="player_shuffle_folder">Tocar a pasta e as subpastas em ordem aleatória</string>
+    <string name="player_empty_tree">Nenhuma música nesta pasta nem nas subpastas.</string>
 
     <!-- Apps e telas abertos pelos atalhos. -->
     <string name="app_bt_music">BT Música</string>

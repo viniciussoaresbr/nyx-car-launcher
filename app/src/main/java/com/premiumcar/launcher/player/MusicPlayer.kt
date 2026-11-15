@@ -38,6 +38,11 @@ import java.util.concurrent.CopyOnWriteArrayList
  *   o player nunca começa a tocar sem um toque do usuário (decisão do usuário, 10/11/2026).
  * - Pendrive removido: a música para e a posição fica guardada.
  * - Enquanto toca, [PlaybackService] mantém o processo em primeiro plano; ao pausar, ele sai.
+ * - Aleatório (0.4.24, escolhas do usuário): o ⇄ do player liga e desliga o sorteio na fila
+ *   atual, sem trocar a música; o ⇄ da lista de pastas toca a pasta aberta e as subpastas
+ *   ([playShuffled]). A fila fica na ordem natural e a ordem de reprodução vem de [PlayOrder]:
+ *   cada música toca uma vez antes de repetir, e "anterior" volta à que tocou antes. O modo e o
+ *   sorteio ficam guardados, e a ordem continua depois de ligar a central.
  */
 @SuppressLint("StaticFieldLeak") // Guarda só o contexto da aplicação, que vive tanto quanto o processo.
 object MusicPlayer {
@@ -52,7 +57,10 @@ object MusicPlayer {
         val album: String?,
         val folderLabel: String?,
         val track: File?,
-        /** Posição na fila, a partir de 0; -1 enquanto a fila não foi lida (depois de ligar). */
+        /**
+         * Posição na ordem de reprodução (com o aleatório, na ordem sorteada), a partir de 0; -1
+         * enquanto a fila não foi lida (depois de ligar).
+         */
         val index: Int,
         val count: Int,
         /** 0 se ainda desconhecida. */
@@ -60,6 +68,14 @@ object MusicPlayer {
         val cover: Bitmap?,
         /** Aviso para o usuário (pendrive removido, formato não suportado…). */
         val message: String?,
+        /** Capa do player grande (0.4.24); a mesma de [cover] quando a imagem do arquivo é pequena. */
+        val largeCover: Bitmap? = cover,
+        /** Aleatório ligado (0.4.24). */
+        val shuffle: Boolean = false,
+        /** A fila tem as subpastas da pasta escolhida (⇄ da lista de pastas, 0.4.24). */
+        val subfolders: Boolean = false,
+        /** Lendo o pendrive para montar a fila (pasta e subpastas podem levar alguns segundos). */
+        val loading: Boolean = false,
     )
 
     private enum class PauseReason(val log: String) {
@@ -86,11 +102,33 @@ object MusicPlayer {
     private var focusRequest: AudioFocusRequest? = null
     private var hasFocus = false
 
+    /** Músicas da fila, na ordem natural (da pasta ou da pasta e das subpastas). */
     private var queue: List<File> = emptyList()
-    private var index = -1
+
+    /** Ordem de reprodução: posições de [queue] (0.4.24, ver [PlayOrder]). */
+    private var order = IntArray(0)
+
+    /** Onde a música atual está em [order]. */
+    private var position = -1
     private var track: File? = null
     private var folder: File? = null
     private var folderLabel: String? = null
+
+    /** Aleatório ligado; [subfolders]: a fila tem as subpastas de [folder] (0.4.24). */
+    private var shuffle = false
+    private var subfolders = false
+    private var seed = 0L
+
+    /** Música que abriu o sorteio atual: ela vem primeiro na ordem ([PlayOrder.shuffled]). */
+    private var anchor: File? = null
+    internal var random = java.util.Random()
+
+    /** Lendo a fila em segundo plano; [pendingAction] (o último toque) roda quando ela chegar. */
+    private var loadingQueue = false
+    private var pendingAction: (() -> Unit)? = null
+
+    /** Conta os pedidos de fila nova: uma leitura que termina depois de outro pedido é descartada. */
+    private var queueRequest = 0
     private var info: TrackInfo? = null
     private var readingInfo: File? = null
     private var savedTitle: String? = null
@@ -124,11 +162,17 @@ object MusicPlayer {
             savedArtist = saved.artist
             startPosition = saved.positionMs
         }
+        val mode = store.loadMode()
+        shuffle = mode.shuffle
+        subfolders = mode.subfolders
+        seed = mode.seed
+        anchor = mode.anchor
         registerReceivers(appContext)
         val since = "sistema ligado há ${minutes(SystemClock.elapsedRealtime())}, acordado há ${minutes(SystemClock.uptimeMillis())}"
         PlayerLog.add(
             "Player iniciado ($since): " +
-                if (saved != null) "última música pausada em ${formatTime(saved.positionMs)}, aguardando toque" else "nenhuma música salva",
+                (if (saved != null) "última música pausada em ${formatTime(saved.positionMs)}, aguardando toque" else "nenhuma música salva") +
+                modeLog(),
         )
     }
 
@@ -143,11 +187,15 @@ object MusicPlayer {
                 album = current?.album,
                 folderLabel = folderLabel,
                 track = track,
-                index = if (queue.isEmpty()) -1 else index,
+                index = if (queue.isEmpty()) -1 else position,
                 count = queue.size,
                 durationMs = current?.durationMs?.takeIf { it > 0 } ?: preparedDuration(),
                 cover = current?.cover,
                 message = message,
+                largeCover = current?.largeCover,
+                shuffle = shuffle,
+                subfolders = subfolders,
+                loading = loadingQueue,
             )
         }
 
@@ -169,15 +217,77 @@ object MusicPlayer {
 
     // ---------- Comandos ----------
 
-    /** O usuário tocou numa música da lista: a fila passa a ser a pasta dela. */
+    /**
+     * O usuário tocou numa música da lista: a fila passa a ser a pasta dela, sem as subpastas.
+     * Com o aleatório ligado, a música escolhida abre um sorteio novo.
+     */
     fun playFrom(folder: File, label: String, tracks: List<File>, startIndex: Int) {
         if (tracks.isEmpty()) return
+        queueRequest++
+        loadingQueue = false
+        pendingAction = null
         this.folder = folder
         folderLabel = label
+        subfolders = false
         queue = tracks
         consecutiveErrors = 0
         message = null
-        load(startIndex.coerceIn(0, tracks.lastIndex), play = true, startAt = 0)
+        arrange(startIndex.coerceIn(0, tracks.lastIndex))
+        saveMode()
+        loadAt(position, play = true, startAt = 0)
+    }
+
+    /**
+     * ⇄ da lista de pastas (0.4.24): lê [folder] e as subpastas em segundo plano e toca tudo em
+     * ordem aleatória, a partir de uma música sorteada. Na raiz, o pendrive inteiro.
+     */
+    fun playShuffled(folder: File, label: String) {
+        val request = ++queueRequest
+        pendingAction = null
+        loadingQueue = true
+        message = null
+        changed()
+        Background.executor.execute {
+            val found = runCatching { MusicStorage.allTracks(folder) }.getOrDefault(emptyList())
+            main.post {
+                if (request != queueRequest) return@post // outro pedido chegou antes
+                loadingQueue = false
+                pendingAction = null // a fila nova substitui o toque que esperava a antiga
+                if (found.isEmpty()) {
+                    message = text(R.string.player_empty_tree)
+                    changed()
+                    return@post
+                }
+                this.folder = folder
+                folderLabel = label
+                subfolders = true
+                shuffle = true
+                queue = found
+                consecutiveErrors = 0
+                arrange(random.nextInt(found.size))
+                saveMode()
+                PlayerLog.add("Aleatório da pasta e das subpastas: ${found.size} músicas")
+                loadAt(position, play = true, startAt = 0)
+            }
+        }
+    }
+
+    /** ⇄ do player (0.4.24): liga ou desliga o aleatório na fila atual, sem trocar a música. */
+    fun toggleShuffle() {
+        shuffle = !shuffle
+        if (shuffle) {
+            seed = random.nextLong()
+            anchor = track
+        }
+        val current = order.getOrElse(position) { -1 }
+        if (queue.isNotEmpty() && current >= 0) {
+            order = if (shuffle) PlayOrder.shuffled(queue.size, seed, current) else PlayOrder.natural(queue.size)
+            position = order.indexOf(current)
+        }
+        // Sem fila ainda (depois de ligar a central), a ordem é montada quando ela for lida.
+        saveMode()
+        PlayerLog.add(if (shuffle) "Aleatório ligado" else "Aleatório desligado")
+        changed()
     }
 
     fun togglePlayPause() {
@@ -196,7 +306,7 @@ object MusicPlayer {
                     playWhenReady = true
                     changed()
                 }
-                else -> load(index, play = true, startAt = startPosition)
+                else -> loadAt(position, play = true, startAt = startPosition)
             }
         }
         return true
@@ -204,22 +314,24 @@ object MusicPlayer {
 
     fun pause() = pause(PauseReason.USER)
 
-    /** Próxima música; na última, volta à primeira. Mantém tocando ou pausado. */
+    /** Próxima música; na última, volta ao começo (com o aleatório, num sorteio novo). Mantém tocando ou pausado. */
     fun next() {
         if (track == null) return
         message = null
-        withQueue { load(if (index + 1 < queue.size) index + 1 else 0, play = playWhenReady, startAt = 0) }
+        withQueue {
+            if (position + 1 < order.size) loadAt(position + 1, play = playWhenReady, startAt = 0) else restart(play = playWhenReady)
+        }
     }
 
-    /** Volta ao início da música; se ela acabou de começar, vai para a anterior. */
+    /** Volta ao início da música; se ela acabou de começar, vai para a que tocou antes. */
     fun previous() {
         if (track == null) return
         message = null
         withQueue {
-            if (index == 0 || positionMs() > RESTART_THRESHOLD_MS) {
+            if (position <= 0 || positionMs() > RESTART_THRESHOLD_MS) {
                 seekTo(0)
             } else {
-                load(index - 1, play = playWhenReady, startAt = 0)
+                loadAt(position - 1, play = playWhenReady, startAt = 0)
             }
         }
     }
@@ -242,10 +354,11 @@ object MusicPlayer {
 
     // ---------- Reprodução ----------
 
-    private fun load(target: Int, play: Boolean, startAt: Int) {
-        val file = queue.getOrNull(target) ?: return
+    /** Carrega a música da posição [target] da ordem de reprodução. */
+    private fun loadAt(target: Int, play: Boolean, startAt: Int) {
+        val file = order.getOrNull(target)?.let(queue::getOrNull) ?: return
         val changedTrack = file != track
-        index = target
+        position = target
         track = file
         if (changedTrack) {
             info = null
@@ -322,7 +435,7 @@ object MusicPlayer {
         app?.let { PlaybackService.start(it) }
         main.removeCallbacks(saveTick)
         main.postDelayed(saveTick, SAVE_EVERY_MS)
-        PlayerLog.add("Tocando: faixa ${index + 1} de ${queue.size} (${formatOf(track)}) a partir de ${formatTime(positionMs())}")
+        PlayerLog.add("Tocando: faixa ${position + 1} de ${queue.size}${if (shuffle) " (aleatório)" else ""} (${formatOf(track)}) a partir de ${formatTime(positionMs())}")
         updateSession()
         changed()
     }
@@ -346,20 +459,59 @@ object MusicPlayer {
     }
 
     private fun onCompleted() {
-        if (index + 1 < queue.size) {
-            load(index + 1, play = true, startAt = 0)
+        if (position + 1 < order.size) {
+            loadAt(position + 1, play = true, startAt = 0)
         } else {
-            // Sem "repetir" na primeira versão: volta à primeira música e pausa.
-            PlayerLog.add("Fim da pasta: volta à primeira música, pausado")
+            // Sem "repetir": volta ao começo e pausa (com o aleatório, num sorteio novo).
+            PlayerLog.add("Fim da fila: volta ao começo, pausado")
             main.removeCallbacks(saveTick)
             abandonFocus()
-            load(0, play = false, startAt = 0)
+            restart(play = false)
         }
+    }
+
+    /**
+     * Fim da ordem de reprodução: volta ao começo. Com o aleatório, sorteia uma ordem nova, que
+     * não começa pela música que acabou de tocar.
+     */
+    private fun restart(play: Boolean) {
+        if (shuffle && queue.size > 1) {
+            val last = order.getOrElse(position) { -1 }
+            var first = random.nextInt(if (last >= 0) queue.size - 1 else queue.size)
+            if (last in 0..first) first++
+            arrange(first)
+            saveMode()
+        } else {
+            position = 0
+        }
+        loadAt(position, play = play, startAt = 0)
+    }
+
+    /** Monta a ordem com a música [current] (posição na fila) como atual; com o aleatório, num sorteio novo. */
+    private fun arrange(current: Int) {
+        if (shuffle) {
+            seed = random.nextLong()
+            anchor = queue.getOrNull(current)
+            order = PlayOrder.shuffled(queue.size, seed, current)
+        } else {
+            order = PlayOrder.natural(queue.size)
+        }
+        position = order.indexOf(current).coerceAtLeast(0)
+    }
+
+    private fun saveMode() {
+        memory?.saveMode(PlayerMemory.Mode(shuffle, subfolders, seed, anchor))
+    }
+
+    private fun modeLog(): String = when {
+        shuffle && subfolders -> ", aleatório na pasta e nas subpastas"
+        shuffle -> ", aleatório"
+        else -> ""
     }
 
     /** Uma música não abriu: pula para a próxima ou, se o pendrive sumiu, para tudo. */
     private fun trackFailed(file: File, detail: String) {
-        PlayerLog.add("Erro ao tocar faixa ${index + 1} de ${queue.size} (${formatOf(file)}): $detail")
+        PlayerLog.add("Erro ao tocar faixa ${position + 1} de ${queue.size} (${formatOf(file)}): $detail")
         Background.executor.execute {
             val exists = file.exists()
             main.post {
@@ -371,7 +523,7 @@ object MusicPlayer {
                 consecutiveErrors++
                 message = text(R.string.player_cannot_play, AudioFiles.displayName(file.name))
                 if (playWhenReady && queue.size > 1 && consecutiveErrors < queue.size) {
-                    load((index + 1) % queue.size, play = true, startAt = 0)
+                    loadAt((position + 1) % order.size, play = true, startAt = 0)
                 } else {
                     if (consecutiveErrors >= queue.size && queue.size > 1) message = text(R.string.player_nothing_playable)
                     playWhenReady = false
@@ -386,24 +538,28 @@ object MusicPlayer {
 
     /** Pendrive removido (ou arquivo sumiu): para, guarda a posição e avisa. */
     private fun stopForMissingStorage() {
-        val position = positionMs()
-        startPosition = position
-        memory?.savePosition(position)
+        val stoppedAt = positionMs()
+        startPosition = stoppedAt
+        memory?.savePosition(stoppedAt)
         runCatching { player?.reset() }
         prepared = false
         preparing = false
         playWhenReady = false
         resumeOnFocusGain = false
-        queue = emptyList() // relida (e conferida) no próximo ▶
+        queue = emptyList() // relida (e conferida) no próximo ▶, na mesma ordem
+        order = IntArray(0)
         main.removeCallbacks(saveTick)
         abandonFocus()
         message = text(R.string.player_storage_removed)
-        PlayerLog.add("Pendrive removido: música parada em ${formatTime(position)}")
+        PlayerLog.add("Pendrive removido: música parada em ${formatTime(stoppedAt)}")
         updateSession()
         changed()
     }
 
-    /** Garante a fila (depois de ligar a central ela ainda não foi lida) e então executa [action]. */
+    /**
+     * Garante a fila (depois de ligar a central ela ainda não foi lida) e então executa [action].
+     * Com o aleatório, a semente e a âncora guardadas refazem a mesma ordem.
+     */
     private fun withQueue(action: () -> Unit) {
         if (queue.isNotEmpty()) {
             action()
@@ -411,20 +567,45 @@ object MusicPlayer {
         }
         val file = track ?: return
         val dir = folder ?: file.parentFile ?: return
+        pendingAction = action // vale o último toque
+        if (loadingQueue) return
+        loadingQueue = true
+        val request = queueRequest
+        val all = subfolders
+        if (all) changed() // pasta e subpastas podem demorar: a interface mostra "Lendo o pendrive…"
         Background.executor.execute {
             val exists = file.exists()
-            val tracks = if (exists) runCatching { MusicStorage.tracks(dir) }.getOrDefault(emptyList()) else emptyList()
+            val tracks = if (!exists) {
+                emptyList()
+            } else {
+                runCatching { if (all) MusicStorage.allTracks(dir) else MusicStorage.tracks(dir) }.getOrDefault(emptyList())
+            }
             main.post {
-                if (track != file || queue.isNotEmpty()) return@post
+                if (request != queueRequest) return@post // outra fila foi escolhida enquanto esta era lida
+                loadingQueue = false
+                val next = pendingAction
+                pendingAction = null
+                if (track != file || queue.isNotEmpty()) {
+                    changed()
+                    return@post
+                }
                 if (!exists) {
                     message = text(R.string.player_track_missing)
                     PlayerLog.add("Última música não encontrada (pendrive ausente ou trocado)")
                     changed()
                     return@post
                 }
-                queue = tracks.ifEmpty { listOf(file) }
-                index = queue.indexOf(file).takeIf { it >= 0 } ?: 0
-                action()
+                // A música salva fica na fila mesmo se não for encontrada (ex.: além do teto de subpastas).
+                queue = if (file in tracks) tracks else listOf(file) + tracks
+                val current = queue.indexOf(file)
+                order = if (shuffle) {
+                    PlayOrder.shuffled(queue.size, seed, anchor?.let(queue::indexOf) ?: -1)
+                } else {
+                    PlayOrder.natural(queue.size)
+                }
+                position = order.indexOf(current)
+                if (all) PlayerLog.add("Fila relida: ${queue.size} músicas da pasta e das subpastas")
+                next?.invoke()
             }
         }
     }
@@ -692,10 +873,19 @@ object MusicPlayer {
         focusRequest = null
         hasFocus = false
         queue = emptyList()
-        index = -1
+        order = IntArray(0)
+        position = -1
         track = null
         folder = null
         folderLabel = null
+        shuffle = false
+        subfolders = false
+        seed = 0L
+        anchor = null
+        random = java.util.Random()
+        loadingQueue = false
+        pendingAction = null
+        queueRequest = 0
         info = null
         readingInfo = null
         savedTitle = null

@@ -41,6 +41,9 @@
     <dimen name="pc_artwork">128dp</dimen>
     <!-- Capa no player da aba Música. -->
     <dimen name="pc_artwork_large">160dp</dimen>
+    <!-- Capa no player grande da aba Música (0.4.24) e o ícone de música quando não há capa. -->
+    <dimen name="pc_artwork_xl">440dp</dimen>
+    <dimen name="pc_artwork_xl_icon">144dp</dimen>
     <dimen name="pc_progress_height">4dp</dimen>
     <!-- Pílula atrás do ícone do destino selecionado (a barra não tem rótulos). -->
     <dimen name="pc_nav_indicator_width">88dp</dimen>

@@ -102,18 +102,20 @@ class HomeScreenTest {
     private fun insertPendrive(): List<File> {
         val root = temp.newFolder("1234-ABCD")
         File(root, "Viagem").mkdir()
+        // Nome do arquivo, título, artista e álbum ("Final" sem álbum nas etiquetas).
         val songs = listOf(
-            Triple("01 - Abertura.mp3", "Abertura", "Banda Exemplo"),
-            Triple("02 - Estrada Longa.mp3", "Estrada Longa", "Banda Exemplo"),
-            Triple("10 - Final.flac", "Final", "Outro Artista"),
+            listOf("01 - Abertura.mp3", "Abertura", "Banda Exemplo", "Álbum Exemplo"),
+            listOf("02 - Estrada Longa.mp3", "Estrada Longa", "Banda Exemplo", "Álbum Exemplo"),
+            listOf("10 - Final.flac", "Final", "Outro Artista", null),
         )
-        val files = songs.map { (name, title, artist) ->
-            File(root, name).apply {
+        val files = songs.map { (name, title, artist, album) ->
+            File(root, name!!).apply {
                 writeText("x")
                 val source = DataSource.toDataSource(path)
                 ShadowMediaPlayer.addMediaInfo(source, ShadowMediaPlayer.MediaInfo(225_000, 0))
                 ShadowMediaMetadataRetriever.addMetadata(source, MediaMetadataRetriever.METADATA_KEY_TITLE, title)
                 ShadowMediaMetadataRetriever.addMetadata(source, MediaMetadataRetriever.METADATA_KEY_ARTIST, artist)
+                album?.let { ShadowMediaMetadataRetriever.addMetadata(source, MediaMetadataRetriever.METADATA_KEY_ALBUM, it) }
                 ShadowMediaMetadataRetriever.addMetadata(source, MediaMetadataRetriever.METADATA_KEY_DURATION, "225000")
             }
         }
@@ -323,6 +325,139 @@ class HomeScreenTest {
         action.performClick()
         val request = shadowOf(activity).lastRequestedPermission
         assertEquals(listOf(Manifest.permission.READ_EXTERNAL_STORAGE), request.requestedPermissions.toList())
+    }
+
+    // ---------- Player grande e aleatório (0.4.24) ----------
+
+    private fun MainActivity.isShown(id: Int) = findViewById<View>(id).visibility == View.VISIBLE
+
+    /** Na lista da aba Música, toca "02 - Estrada Longa" (linha 2: a pasta vem primeiro). */
+    private fun MainActivity.playSecondSong() {
+        val list = findViewById<ListView>(R.id.music_list)
+        list.performItemClick(list.getChildAt(2), 2, 2)
+        idle()
+    }
+
+    @Test
+    fun `cartao do player abre o player grande e voltar, recolher e o icone Musica voltam a lista`() {
+        insertPendrive()
+        installCarApps()
+        val activity = launch()
+        val root = activity.findViewById<View>(android.R.id.content)
+        activity.go(Destination.MUSIC)
+        activity.playSecondSong()
+        assertFalse(activity.isShown(R.id.music_expanded))
+
+        activity.click(R.id.music_now_playing)
+        assertTrue(activity.isShown(R.id.music_expanded))
+        assertFalse(activity.isShown(R.id.music_browse))
+        assertTrue("A barra inferior continua", activity.isShown(R.id.home_nav))
+        assertEquals("Estrada Longa", activity.findViewById<TextView>(R.id.expanded_title).text)
+        assertEquals("Banda Exemplo", activity.findViewById<TextView>(R.id.expanded_artist).text)
+        assertEquals("Álbum Exemplo", activity.findViewById<TextView>(R.id.expanded_album).text)
+        assertTrue(activity.isShown(R.id.expanded_album))
+        assertEquals("Pendrive · 2 de 3", activity.findViewById<TextView>(R.id.expanded_details).text)
+        assertEquals("Pausar", activity.findViewById<ImageButton>(R.id.expanded_play).contentDescription)
+        val artwork = activity.findViewById<View>(R.id.expanded_artwork)
+        assertEquals(440, artwork.width)
+        assertEquals(440, artwork.height)
+        assertTouchTargets(activity, "Player grande")
+
+        activity.click(R.id.expanded_next)
+        assertEquals("Final", activity.findViewById<TextView>(R.id.expanded_title).text)
+        assertFalse("Sem álbum nas etiquetas, sem a linha", activity.isShown(R.id.expanded_album))
+        activity.click(R.id.expanded_previous)
+        assertEquals("Estrada Longa", activity.findViewById<TextView>(R.id.expanded_title).text)
+
+        activity.click(R.id.expanded_shuffle)
+        assertTrue(MusicPlayer.state.shuffle)
+        assertTrue(activity.findViewById<View>(R.id.expanded_shuffle).isActivated)
+        assertTrue("Os dois players mostram o mesmo modo", activity.findViewById<View>(R.id.player_shuffle).isActivated)
+        assertEquals("Estrada Longa", activity.findViewById<TextView>(R.id.expanded_title).text)
+        root.captureRoboImage("build/outputs/roborazzi/tab_music_player.png")
+
+        activity.click(R.id.expanded_play)
+        assertFalse(MusicPlayer.state.playing)
+
+        @Suppress("DEPRECATION")
+        activity.onBackPressed()
+        assertTrue(activity.isShown(R.id.music_browse))
+        assertFalse(activity.isShown(R.id.music_expanded))
+        assertEquals("Voltar fecha só o player grande", Destination.MUSIC, activity.selected())
+
+        activity.click(R.id.music_now_playing)
+        activity.click(R.id.expanded_close)
+        assertTrue(activity.isShown(R.id.music_browse))
+
+        activity.click(R.id.music_now_playing)
+        activity.go(Destination.MUSIC)
+        assertTrue("O ícone Música volta à lista", activity.isShown(R.id.music_browse))
+
+        activity.click(R.id.music_now_playing)
+        activity.go(Destination.APPS)
+        activity.go(Destination.MUSIC)
+        assertTrue("Pela barra, a aba abre na lista", activity.isShown(R.id.music_browse))
+    }
+
+    @Test
+    fun `cartao da Home e notificacao abrem o player grande, ou a lista sem musica escolhida`() {
+        insertPendrive()
+        val controller = controller()
+        val activity = controller.get()
+        activity.click(R.id.card_music)
+        assertEquals(Destination.MUSIC, activity.selected())
+        assertTrue("Sem música escolhida, a lista", activity.isShown(R.id.music_browse))
+        activity.click(R.id.music_now_playing)
+        assertTrue("Sem música, o cartão não abre o player grande", activity.isShown(R.id.music_browse))
+
+        activity.playSecondSong()
+        activity.go(Destination.HOME)
+        activity.click(R.id.card_music)
+        assertEquals(Destination.MUSIC, activity.selected())
+        assertTrue(activity.isShown(R.id.music_expanded))
+
+        activity.go(Destination.MUSIC)
+        activity.go(Destination.HOME)
+        controller.newIntent(Intent().putExtra(MainActivity.EXTRA_TAB, MainActivity.TAB_MUSIC))
+        idle()
+        assertEquals(Destination.MUSIC, activity.selected())
+        assertTrue("Notificação do player: player grande", activity.isShown(R.id.music_expanded))
+    }
+
+    @Test
+    fun `aleatorio da lista toca o pendrive e o do player liga e desliga nos dois players`() {
+        val files = insertPendrive()
+        installCarApps()
+        val activity = launch()
+        val root = activity.findViewById<View>(android.R.id.content)
+        activity.go(Destination.MUSIC)
+        val folderShuffle = activity.findViewById<ImageButton>(R.id.music_shuffle_folder)
+        assertTrue("Na raiz do pendrive, o ⇄ toca o pendrive inteiro", activity.isShown(R.id.music_shuffle_folder))
+        assertEquals("Tocar a pasta e as subpastas em ordem aleatória", folderShuffle.contentDescription)
+        val compact = activity.findViewById<ImageButton>(R.id.player_shuffle)
+        val large = activity.findViewById<ImageButton>(R.id.expanded_shuffle)
+        assertFalse("Sem música, o ⇄ do player fica desativado", compact.isEnabled)
+        assertEquals("Ligar o aleatório", compact.contentDescription)
+
+        folderShuffle.performClick()
+        idle()
+        val state = MusicPlayer.state
+        assertTrue(state.playing)
+        assertTrue(state.shuffle)
+        assertEquals(3, state.count)
+        assertTrue(state.track in files)
+        assertTrue(compact.isActivated)
+        assertTrue(large.isActivated)
+        assertEquals("Desligar o aleatório", compact.contentDescription)
+        assertTouchTargets(activity, "Música com aleatório")
+        root.captureRoboImage("build/outputs/roborazzi/tab_music_shuffle.png")
+
+        compact.performClick()
+        idle()
+        assertFalse(MusicPlayer.state.shuffle)
+        assertFalse(compact.isActivated)
+        assertFalse(large.isActivated)
+        assertEquals("Ligar o aleatório", compact.contentDescription)
     }
 
     // ---------- Tela inicial ----------

@@ -84,6 +84,7 @@ class DesignCatalogActivity : Activity() {
     private fun typography(): View {
         val samples = listOf(
             Triple(R.style.PcText_Clock, "15:48", "Relógio · 112 sp · leve"),
+            Triple(R.style.PcText_TitleLarge, "Estrada Longa", "TitleLarge · 32 sp · médio"),
             Triple(R.style.PcText_Headline, "Configurações do launcher", "Headline · 28 sp"),
             Triple(R.style.PcText_Title, "Navegação · Música", "Title · 24 sp · médio"),
             Triple(R.style.PcText_BodyLarge, "domingo, 9 de novembro", "BodyLarge · 22 sp"),
@@ -136,7 +137,19 @@ class DesignCatalogActivity : Activity() {
             labeled(round(R.style.PcRoundButton, R.drawable.ic_skip_next, R.dimen.pc_media_button).disabled(), "Desativado"),
             labeled(round(R.style.PcRoundButton_Primary, R.drawable.ic_play, R.dimen.pc_media_button_primary), "Principal"),
             labeled(round(R.style.PcRoundButton_Primary, R.drawable.ic_pause, R.dimen.pc_media_button_primary).pressed(), "Principal · pressionado"),
-        )
+        ).let { buttons ->
+            // Botão de alternar (0.4.24, Aleatório): desligado, ligado, pressionado e desativado.
+            fun toggle() = round(R.style.PcRoundButton_Toggle, R.drawable.ic_shuffle, R.dimen.pc_media_button)
+            column(
+                buttons,
+                row(
+                    labeled(toggle(), "Alternar · desligado"),
+                    labeled(toggle().apply { isActivated = true }, "Alternar · ligado"),
+                    labeled(toggle().pressed(), "Alternar · pressionado"),
+                    labeled(toggle().disabled(), "Alternar · desativado"),
+                ),
+            )
+        }
     }
 
     private fun navigationBar(): View {
@@ -187,7 +200,8 @@ class DesignCatalogActivity : Activity() {
             R.drawable.ic_car to "car", R.drawable.ic_gauge to "gauge", R.drawable.ic_equalizer to "equalizer",
             R.drawable.ic_steering to "steering", R.drawable.ic_folder to "folder", R.drawable.ic_gear to "gear",
             R.drawable.ic_volume to "volume", R.drawable.ic_display to "display", R.drawable.ic_clock to "clock",
-            R.drawable.ic_diagnostics to "diagnostics",
+            R.drawable.ic_diagnostics to "diagnostics", R.drawable.ic_shuffle to "shuffle",
+            R.drawable.ic_chevron_down to "chevron_down",
         )
         val views = all.map { (icon, name) ->
             labeled(

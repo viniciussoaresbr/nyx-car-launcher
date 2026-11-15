@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Ícone "Aleatório" (Design System Nyx Car, 0.4.24): duas setas que se cruzam; a de baixo
+    passa por trás da outra. Branco: a cor vem do tint de quem usa.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M3,17 H7.5 L15.5,7 H20 M17,4 L20,7 L17,10 M3,7 H7.5 L9.5,9.5 M13.5,14.5 L15.5,17 H20 M17,14 L20,17 L17,20"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

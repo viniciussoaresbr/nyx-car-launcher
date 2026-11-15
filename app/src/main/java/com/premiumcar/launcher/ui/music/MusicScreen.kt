@@ -35,6 +35,11 @@ import java.io.File
  * Aba Música: pastas do pendrive à esquerda; música atual, progresso e controles à direita;
  * atalhos para BT Música, Rádio e o player original embaixo.
  *
+ * Player grande (0.4.24): tocar no cartão da música atual abre o player na aba inteira, acima
+ * da barra inferior ([showPlayer]); ⌄, Voltar ([onBack]) ou o ícone Música da barra voltam à
+ * lista. Os dois players têm o ⇄ (aleatório na fila atual); a lista tem o ⇄ que toca a pasta
+ * aberta e as subpastas em ordem aleatória.
+ *
  * Só trabalha enquanto a aba está visível ([setActive]): escuta pendrive inserido/removido e
  * atualiza o progresso uma vez por segundo (só com música tocando). Leituras do pendrive em
  * segundo plano.
@@ -50,26 +55,59 @@ class MusicScreen(
     private val handler = Handler(Looper.getMainLooper())
     private val adapter = BrowserAdapter(activity)
 
+    private val browse: View = view.findViewById(R.id.music_browse)
+    private val expanded: View = view.findViewById(R.id.music_expanded)
+    private val nowPlaying: View = view.findViewById(R.id.music_now_playing)
     private val upButton: ImageButton = view.findViewById(R.id.music_up)
     private val pathView: TextView = view.findViewById(R.id.music_path)
+    private val shuffleFolder: ImageButton = view.findViewById(R.id.music_shuffle_folder)
     private val list: ListView = view.findViewById(R.id.music_list)
     private val emptyBox: View = view.findViewById(R.id.music_empty)
     private val emptyIcon: ImageView = view.findViewById(R.id.music_empty_icon)
     private val emptyText: TextView = view.findViewById(R.id.music_empty_text)
     private val emptyAction: Button = view.findViewById(R.id.music_empty_action)
 
-    private val cover: ImageView = view.findViewById(R.id.player_cover)
-    private val placeholder: View = view.findViewById(R.id.player_placeholder)
-    private val title: TextView = view.findViewById(R.id.player_title)
-    private val artist: TextView = view.findViewById(R.id.player_artist)
-    private val details: TextView = view.findViewById(R.id.player_details)
-    private val message: TextView = view.findViewById(R.id.player_message)
-    private val progress: ProgressBar = view.findViewById(R.id.player_progress)
-    private val elapsed: TextView = view.findViewById(R.id.player_elapsed)
-    private val total: TextView = view.findViewById(R.id.player_total)
-    private val previous: ImageButton = view.findViewById(R.id.player_previous)
-    private val play: ImageButton = view.findViewById(R.id.player_play)
-    private val next: ImageButton = view.findViewById(R.id.player_next)
+    /** O cartão ao lado da lista e o player grande (0.4.24) mostram o mesmo player. */
+    private val players = listOf(
+        PlayerViews(
+            cover = view.findViewById(R.id.player_cover),
+            placeholder = view.findViewById(R.id.player_placeholder),
+            title = view.findViewById(R.id.player_title),
+            artist = view.findViewById(R.id.player_artist),
+            album = null,
+            details = view.findViewById(R.id.player_details),
+            message = view.findViewById(R.id.player_message),
+            progress = view.findViewById(R.id.player_progress),
+            elapsed = view.findViewById(R.id.player_elapsed),
+            total = view.findViewById(R.id.player_total),
+            shuffle = view.findViewById(R.id.player_shuffle),
+            previous = view.findViewById(R.id.player_previous),
+            play = view.findViewById(R.id.player_play),
+            next = view.findViewById(R.id.player_next),
+            large = false,
+        ),
+        PlayerViews(
+            cover = view.findViewById(R.id.expanded_cover),
+            placeholder = view.findViewById(R.id.expanded_placeholder),
+            title = view.findViewById(R.id.expanded_title),
+            artist = view.findViewById(R.id.expanded_artist),
+            album = view.findViewById(R.id.expanded_album),
+            details = view.findViewById(R.id.expanded_details),
+            message = view.findViewById(R.id.expanded_message),
+            progress = view.findViewById(R.id.expanded_progress),
+            elapsed = view.findViewById(R.id.expanded_elapsed),
+            total = view.findViewById(R.id.expanded_total),
+            shuffle = view.findViewById(R.id.expanded_shuffle),
+            previous = view.findViewById(R.id.expanded_previous),
+            play = view.findViewById(R.id.expanded_play),
+            next = view.findViewById(R.id.expanded_next),
+            large = true,
+        ),
+    )
+
+    /** Player grande aberto no lugar da lista (0.4.24). */
+    var isPlayerOpen = false
+        private set
 
     private var volumes: List<MusicVolume> = emptyList()
 
@@ -94,10 +132,14 @@ class MusicScreen(
         list.adapter = adapter
         list.setOnItemClickListener { _, _, position, _ -> onItemClick(adapter.getItem(position)) }
         upButton.setOnClickListener { goUp() }
-        previous.setOnClickListener { MusicPlayer.previous() }
-        play.setOnClickListener { MusicPlayer.togglePlayPause() }
-        next.setOnClickListener { MusicPlayer.next() }
+        shuffleFolder.setOnClickListener {
+            val folder = location ?: return@setOnClickListener
+            MusicPlayer.playShuffled(folder, labelFor(folder))
+        }
+        nowPlaying.setOnClickListener { showPlayer(true) }
+        view.findViewById<View>(R.id.expanded_close).setOnClickListener { showPlayer(false) }
         view.findViewById<View>(R.id.player_artwork).clipToOutline = true
+        view.findViewById<View>(R.id.expanded_artwork).clipToOutline = true
 
         listOf(R.id.source_1, R.id.source_2, R.id.source_3).forEachIndexed { index, id ->
             val button = view.findViewById<View>(id)
@@ -134,6 +176,26 @@ class MusicScreen(
         handler.removeCallbacksAndMessages(null)
     }
 
+    /**
+     * Player grande ([open], só com uma música escolhida) ou a lista. A MainActivity chama ao
+     * mostrar a aba: pelo cartão da Home e pela notificação, o player grande; pela barra e pelo
+     * deslize, a lista.
+     */
+    fun showPlayer(open: Boolean) {
+        val value = open && lastState.hasTrack
+        if (value == isPlayerOpen) return
+        isPlayerOpen = value
+        browse.visibility = if (value) View.GONE else View.VISIBLE
+        expanded.visibility = if (value) View.VISIBLE else View.GONE
+    }
+
+    /** Voltar do sistema: no player grande, volta à lista. */
+    fun onBack(): Boolean {
+        if (!isPlayerOpen) return false
+        showPlayer(false)
+        return true
+    }
+
     fun onPermissionResult(granted: Boolean) {
         PlayerLog.add("Permissão de leitura do armazenamento: ${if (granted) "concedida" else "negada"}")
         if (granted) MusicPlayer.loadSavedInfo()
@@ -144,31 +206,16 @@ class MusicScreen(
 
     fun render(state: MusicPlayer.State) {
         lastState = state
-        title.text = state.title ?: activity.getString(R.string.player_nothing_title)
-        val artistText = state.artist ?: if (state.hasTrack) null else activity.getString(R.string.player_nothing_hint)
-        artist.text = artistText
-        artist.visibility = if (artistText.isNullOrEmpty()) View.GONE else View.VISIBLE
         val label = state.folderLabel ?: activity.getString(R.string.player_volume_default)
-        details.text = when {
+        val detailsText = when {
+            state.loading -> activity.getString(R.string.player_loading)
             !state.hasTrack -> null
             state.count > 0 -> activity.getString(R.string.player_position, label, state.index + 1, state.count)
             else -> label
         }
-        details.visibility = if (details.text.isNullOrEmpty()) View.GONE else View.VISIBLE
-        if (state.cover != null) {
-            cover.setImageBitmap(state.cover)
-            cover.visibility = View.VISIBLE
-            placeholder.visibility = View.GONE
-        } else {
-            cover.setImageDrawable(null)
-            cover.visibility = View.GONE
-            placeholder.visibility = View.VISIBLE
-        }
-        message.text = state.message
-        message.visibility = if (state.message == null) View.GONE else View.VISIBLE
-        play.setImageResource(if (state.playing) R.drawable.ic_pause else R.drawable.ic_play)
-        play.contentDescription = activity.getString(if (state.playing) R.string.music_pause else R.string.music_play)
-        listOf(previous, play, next).forEach { it.isEnabled = state.hasTrack }
+        players.forEach { it.render(state, detailsText) }
+        nowPlaying.isEnabled = state.hasTrack
+        shuffleFolder.isEnabled = !state.loading
         adapter.current = state.track
         updateProgress()
         restartTicker()
@@ -177,11 +224,7 @@ class MusicScreen(
     private fun updateProgress() {
         val state = lastState
         val position = if (state.hasTrack) MusicPlayer.positionMs() else 0
-        val duration = state.durationMs
-        progress.max = duration.coerceAtLeast(1)
-        progress.progress = position.coerceIn(0, duration.coerceAtLeast(0))
-        elapsed.text = if (state.hasTrack) MusicPlayer.formatTime(position) else null
-        total.text = if (duration > 0) MusicPlayer.formatTime(duration) else null
+        players.forEach { it.renderProgress(state, position) }
     }
 
     private fun restartTicker() {
@@ -299,12 +342,15 @@ class MusicScreen(
         adapter.items = items
         list.visibility = View.VISIBLE
         emptyBox.visibility = View.GONE
+        // ⇄ da lista: numa pasta (na raiz, o pendrive todo); não na lista de pendrives.
+        shuffleFolder.visibility = if (location != null) View.VISIBLE else View.GONE
     }
 
     private fun showEmpty(@DrawableRes icon: Int, @StringRes text: Int, @StringRes action: Int? = null, onAction: (() -> Unit)? = null) {
         adapter.items = emptyList()
         list.visibility = View.GONE
         emptyBox.visibility = View.VISIBLE
+        shuffleFolder.visibility = View.GONE
         emptyIcon.setImageResource(icon)
         emptyText.setText(text)
         if (action != null && onAction != null) {
@@ -363,6 +409,81 @@ class MusicScreen(
     private fun unregisterStorageReceiver() {
         storageReceiver?.let { runCatching { activity.unregisterReceiver(it) } }
         storageReceiver = null
+    }
+
+    // ---------- Vistas de um player ----------
+
+    /** Um player na tela: o cartão ao lado da lista ou o player grande ([large], capa maior e álbum). */
+    private inner class PlayerViews(
+        private val cover: ImageView,
+        private val placeholder: View,
+        private val title: TextView,
+        private val artist: TextView,
+        private val album: TextView?,
+        private val details: TextView,
+        private val message: TextView,
+        private val progress: ProgressBar,
+        private val elapsed: TextView,
+        private val total: TextView,
+        private val shuffle: ImageButton,
+        private val previous: ImageButton,
+        private val play: ImageButton,
+        private val next: ImageButton,
+        private val large: Boolean,
+    ) {
+        init {
+            shuffle.setOnClickListener { MusicPlayer.toggleShuffle() }
+            previous.setOnClickListener { MusicPlayer.previous() }
+            play.setOnClickListener { MusicPlayer.togglePlayPause() }
+            next.setOnClickListener { MusicPlayer.next() }
+        }
+
+        fun render(state: MusicPlayer.State, detailsText: String?) {
+            title.text = state.title ?: activity.getString(R.string.player_nothing_title)
+            val artistText = state.artist ?: if (state.hasTrack) null else activity.getString(R.string.player_nothing_hint)
+            artist.text = artistText
+            artist.visibility = if (artistText.isNullOrEmpty()) View.GONE else View.VISIBLE
+            album?.let {
+                it.text = state.album
+                it.visibility = if (state.album.isNullOrEmpty()) View.GONE else View.VISIBLE
+            }
+            details.text = detailsText
+            details.visibility = if (detailsText.isNullOrEmpty()) View.GONE else View.VISIBLE
+            val image = if (large) state.largeCover else state.cover
+            if (image != null) {
+                cover.setImageBitmap(image)
+                cover.visibility = View.VISIBLE
+                placeholder.visibility = View.GONE
+            } else {
+                cover.setImageDrawable(null)
+                cover.visibility = View.GONE
+                placeholder.visibility = View.VISIBLE
+            }
+            message.text = state.message
+            message.visibility = if (state.message == null) View.GONE else View.VISIBLE
+            play.setImageResource(if (state.playing) R.drawable.ic_pause else R.drawable.ic_play)
+            play.contentDescription = activity.getString(if (state.playing) R.string.music_pause else R.string.music_play)
+            shuffle.isActivated = state.shuffle
+            shuffle.contentDescription =
+                activity.getString(if (state.shuffle) R.string.player_shuffle_turn_off else R.string.player_shuffle_turn_on)
+            listOf(shuffle, previous, play, next).forEach { it.isEnabled = state.hasTrack }
+        }
+
+        fun renderProgress(state: MusicPlayer.State, position: Int) {
+            val duration = state.durationMs
+            progress.max = duration.coerceAtLeast(1)
+            progress.progress = position.coerceIn(0, duration.coerceAtLeast(0))
+            elapsed.setIfChanged(if (state.hasTrack) MusicPlayer.formatTime(position) else null)
+            total.setIfChanged(if (duration > 0) MusicPlayer.formatTime(duration) else null)
+        }
+
+        /**
+         * Troca o texto só quando muda: o tempo total, de largura livre, pediria um layout novo
+         * da tela a cada segundo de música.
+         */
+        private fun TextView.setIfChanged(value: String?) {
+            if (text.toString() != value.orEmpty()) text = value
+        }
     }
 
     companion object {

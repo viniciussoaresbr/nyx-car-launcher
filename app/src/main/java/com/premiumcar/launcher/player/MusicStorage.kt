@@ -107,4 +107,28 @@ object MusicStorage {
     }
 
     fun tracks(folder: File): List<File> = list(folder).tracks
+
+    /** Até quantos níveis de subpastas [allTracks] desce. */
+    const val MAX_DEPTH = 8
+
+    /** Teto de músicas de [allTracks]: um pendrive de 64 GB cheio de MP3 tem perto disso. */
+    const val MAX_TRACKS = 10_000
+
+    /**
+     * Músicas de [folder] e das subpastas (aleatório da lista de pastas, 0.4.24): primeiro as
+     * da própria pasta, depois cada subpasta, em ordem natural. Desce até [MAX_DEPTH] níveis e
+     * para em [MAX_TRACKS] músicas.
+     */
+    fun allTracks(folder: File): List<File> {
+        val result = ArrayList<File>()
+        fun visit(dir: File, depth: Int) {
+            if (result.size >= MAX_TRACKS) return
+            val listing = list(dir)
+            val room = MAX_TRACKS - result.size
+            result += if (listing.tracks.size <= room) listing.tracks else listing.tracks.subList(0, room)
+            if (depth < MAX_DEPTH) listing.folders.forEach { visit(it, depth + 1) }
+        }
+        visit(folder, 0)
+        return result
+    }
 }
