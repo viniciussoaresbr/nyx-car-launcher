@@ -17,6 +17,7 @@ import android.view.WindowInsets
 import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.ScrollView
+import android.widget.TextClock
 import android.widget.TextView
 import com.github.takahirom.roborazzi.captureRoboImage
 import com.premiumcar.launcher.R
@@ -51,12 +52,15 @@ import org.robolectric.annotation.GraphicsMode
 import org.robolectric.android.controller.ActivityController
 import org.robolectric.shadows.ShadowMediaMetadataRetriever
 import org.robolectric.shadows.ShadowMediaPlayer
+import org.robolectric.shadows.ShadowSystem
 import org.robolectric.shadows.ShadowToast
 import org.robolectric.shadows.util.DataSource
 import org.robolectric.util.ReflectionHelpers
 import org.robolectric.util.ReflectionHelpers.ClassParameter
 import java.io.File
+import java.text.SimpleDateFormat
 import java.time.Duration
+import java.util.Date
 import java.util.Locale
 import java.util.concurrent.Executor
 
@@ -76,7 +80,8 @@ class HomeScreenTest {
     fun setUp() {
         // A central roda em pt-BR (persist.sys.locale). Atenção: no Robolectric para a API 27,
         // os nomes de dias e meses do TextClock saem sempre em inglês (dados de idioma
-        // simulados). Na central, o formatador nativo usa o português.
+        // simulados). Na central, o formatador nativo usa o português; nas capturas da Home,
+        // portugueseDate() faz o mesmo.
         Locale.setDefault(Locale.forLanguageTag("pt-BR"))
         // Consultas "em segundo plano" rodam na hora, para o teste ser determinístico.
         Background.executor = Executor { it.run() }
@@ -97,6 +102,21 @@ class HomeScreenTest {
         Robolectric.buildActivity(MainActivity::class.java).setup().also { idle() }
 
     private fun launch(): MainActivity = controller().get()
+
+    /**
+     * Data da Home em português nas capturas (README, 1.0.0). No Robolectric para a API 27, o
+     * TextClock só tem os nomes de dias e meses em inglês; o formatador do Java tem os do pt-BR,
+     * como os da central. A data vem do relógio do Robolectric, o mesmo do TextClock.
+     */
+    private fun MainActivity.portugueseDate() {
+        val text = SimpleDateFormat(getString(R.string.date_format), Locale.forLanguageTag("pt-BR"))
+            .format(Date(ShadowSystem.currentTimeMillis()))
+        findViewById<TextClock>(R.id.home_date).apply {
+            format12Hour = "'$text'"
+            format24Hour = "'$text'"
+        }
+        idle()
+    }
 
     /** Pendrive simulado: três músicas soltas na raiz (como o do usuário) e uma pasta. */
     private fun insertPendrive(): List<File> {
@@ -201,9 +221,11 @@ class HomeScreenTest {
     @Test
     fun `home ocupa a area util e gera a captura de referencia`() {
         installCarApps()
-        val root = launch().findViewById<View>(android.R.id.content)
+        val activity = launch()
+        val root = activity.findViewById<View>(android.R.id.content)
         assertEquals(1280, root.width)
         assertEquals(655, root.height)
+        activity.portugueseDate()
         root.captureRoboImage("build/outputs/roborazzi/home_reference.png")
     }
 
@@ -304,6 +326,7 @@ class HomeScreenTest {
         assertEquals("Banda Exemplo", activity.findViewById<TextView>(R.id.music_hint).text)
         val play = activity.findViewById<ImageButton>(R.id.music_play)
         assertEquals("Pausar", play.contentDescription)
+        activity.portugueseDate()
         root.captureRoboImage("build/outputs/roborazzi/home_playing.png")
 
         play.performClick()
