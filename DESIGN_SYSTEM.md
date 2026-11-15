@@ -8,8 +8,11 @@ Implementação: **Views nativas** (decisão D2), com recursos XML em `app/src/m
 
 | Referência visual | Arquivo |
 |---|---|
-| Home de referência (1280 × 655 dp) | [docs/design/home-referencia-v0.2.0.png](docs/design/home-referencia-v0.2.0.png) |
-| Catálogo completo de componentes | [docs/design/catalogo-v0.2.0.png](docs/design/catalogo-v0.2.0.png) |
+| Home da versão final (1280 × 655 dp) | [docs/design/home-tocando-v1.0.0.png](docs/design/home-tocando-v1.0.0.png) |
+| Catálogo completo de componentes (1.0.0) | [docs/design/catalogo-v1.0.0.png](docs/design/catalogo-v1.0.0.png) |
+| Home de referência aprovada na Fase 2 | [docs/design/home-referencia-v0.2.0.png](docs/design/home-referencia-v0.2.0.png) |
+
+As telas da versão final estão no [README.md](README.md#telas).
 
 ## 1. Base: a tela da central
 
@@ -173,11 +176,19 @@ Capturas: `docs/design/home-v0.4.0.png`, `home-tocando-v0.4.0.png`,
 `aba-apps-v0.4.4.png`, `aba-apps-todos-v0.4.4.png`, `aba-apps-todos-fim-v0.4.4.png` (rolada até o fim), `aba-apps-editar-v0.4.4.png` e `aba-apps-trocar-v0.4.4.png` (Favoritos | Todos e edição), `carplay-espera-cabo-v0.4.7.png`, `carplay-espera-sem-fio-v0.4.7.png`, `carplay-espera-preparando-v0.4.7.png` `carplay-desconectado-v0.4.7.png`, `carplay-aguardando-iphone-v0.4.8.png`, `carplay-interrompida-v0.4.9.png` e `carplay-espera-cabo-v0.4.10.png` (rodapé novo), `carplay-espera-celular-cabo-v0.4.15.png`, `carplay-aguardando-celular-v0.4.15.png` e `carplay-interrompida-v0.4.15.png` ("celular") (tela de espera do CarPlay) e, das abas sem mudança, `aba-*-v0.3.0.png`. O deslize não aparece em capturas:
 é verificado pelos testes de toque (BUILD.md, seção 3).
 
+Versão final (1.0.0), as capturas do README: `home-tocando-v1.0.0.png`,
+`aba-music-v1.0.0.png`, `aba-music-player-v1.0.0.png`, `aba-apps-v1.0.0.png`,
+`aba-apps-todos-v1.0.0.png`, `aba-connectivity-v1.0.0.png`, `aba-settings-v1.0.0.png`,
+`carplay-conectando-v1.0.0.png`, `carplay-aguardando-celular-v1.0.0.png`,
+`carplay-interrompida-v1.0.0.png`, `carplay-desconectado-v1.0.0.png` e
+`catalogo-v1.0.0.png`.
+
 ## 8. Como verificar
 
 - `./gradlew testDebugUnitTest` gera as capturas em `app/build/outputs/roborazzi/`
   (`home_reference.png`, `tab_*.png` e `design_catalog.png`) e valida o alvo mínimo de
   toque na Home e em cada aba, além da paleta.
 - Na central: **Nyx Diagnóstico → Calibração → Abrir catálogo de componentes**.
-- Limitação conhecida: nas capturas da JVM (Robolectric, API 27), dias e meses saem em
-  inglês e o relógio mostra um horário simulado. Na central, a data sai em português.
+- Limitação conhecida: na JVM (Robolectric, API 27), o TextClock só tem os nomes de dias e
+  meses em inglês, e o relógio mostra um horário simulado. Desde a 1.0.0, as capturas da
+  Home escrevem a data com o formatador do Java, em português, como na central.
